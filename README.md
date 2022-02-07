@@ -51,7 +51,7 @@ Use them together to get:
 - File storage & file hosting. (Zero setup, pre-integrated.)
 - Integrated CDN. (300+ locations, 47+ countries.)
 - File processing. (Image resizing, cropping, etc.)
-- File authorization. (Optional: issue JWTs from your web app to define who can upload & download certain files.)
+- File authorization. (Optional: issue JWTs from your app to define per-user file access.)
 - Monitoring. (Beautiful dashboards to monitor storage & traffic.)
 - And much more, [explore Upload.io](https://upload.io/features).
 
