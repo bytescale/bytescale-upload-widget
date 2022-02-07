@@ -5,6 +5,7 @@ module.exports = {
       {
         exclude: ["transform-regenerator"]
       }
-    ]
+    ],
+    "@babel/preset-react"
   ]
 };
