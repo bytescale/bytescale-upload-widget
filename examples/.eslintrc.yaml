@@ -1,0 +1,103 @@
+# ESLint at project-level as linting settings may differ between browser-based and node-based projects.
+# Prettier at repository-level as formatting settings will be the same across all projects.
+# IMPORTANT: Sync with all other '.eslintrc.yaml' files!
+root: true
+parser: "@typescript-eslint/parser"
+parserOptions:
+  project: "./tsconfig.json"
+plugins:
+  - "@typescript-eslint"
+  - jest
+  - protractor
+rules:
+  "jest/no-disabled-tests": "error"
+  "jest/no-focused-tests": "error"
+  "jest/no-identical-title": "error"
+  "jest/prefer-to-have-length": "error"
+  "jest/valid-expect": "error"
+
+  "no-else-return": error
+  "object-shorthand": error
+  "@typescript-eslint/no-var-requires": error
+  "@typescript-eslint/no-redeclare": off
+  "@typescript-eslint/member-ordering":
+    - error
+    - default:
+        order: alphabetically
+        memberTypes:
+          # Index signature
+          - "signature"
+
+          # Fields
+          - "public-static-field"
+          - "protected-static-field"
+          - "private-static-field"
+
+          - "public-decorated-field"
+          - "protected-decorated-field"
+          - "private-decorated-field"
+
+          - "public-instance-field"
+          - "protected-instance-field"
+          - "private-instance-field"
+
+          - "public-abstract-field"
+          - "protected-abstract-field"
+          - "private-abstract-field"
+
+          - "public-field"
+          - "protected-field"
+          - "private-field"
+
+          - "static-field"
+          - "instance-field"
+          - "abstract-field"
+
+          - "decorated-field"
+
+          - "field"
+
+          # Constructors
+          - "public-constructor"
+          - "protected-constructor"
+          - "private-constructor"
+
+          - "constructor"
+
+          # Methods
+          - "public-static-method"
+          - "protected-static-method"
+
+          - "public-decorated-method"
+          - "protected-decorated-method"
+
+          - "public-instance-method"
+          - "protected-instance-method"
+
+          - "public-abstract-method"
+          - "protected-abstract-method"
+
+          - "public-method"
+          - "protected-method"
+
+          - "private-static-method"
+          - "private-decorated-method"
+          - "private-instance-method"
+          - "private-abstract-method"
+          - "private-method"
+
+          - "static-method"
+          - "instance-method"
+          - "abstract-method"
+
+          - "decorated-method"
+
+          - "method"
+extends:
+  - standard-with-typescript
+  - prettier
+  - prettier/@typescript-eslint
+env:
+  node: true
+  jest/globals: true
+  protractor: true

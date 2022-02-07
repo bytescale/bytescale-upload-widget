@@ -1,0 +1,73 @@
+{
+  "name": "uploader",
+  "version": "0.0.4",
+  "author": "Upload <hello@upload.io> (https://upload.io)",
+  "description": "Uploader | File & Image Uploader for Upload.io",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://upload.io/uploader",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upload-js/uploader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/upload-js/uploader/issues"
+  },
+  "files": [
+    "*"
+  ],
+  "keywords": [
+    "uploader",
+    "file uploader",
+    "image uploader",
+    "html5 upload",
+    "upload widget",
+    "upload",
+    "files",
+    "file management",
+    "file input",
+    "multi image",
+    "multi file",
+    "multipart",
+    "images",
+    "image processing"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist && rm -f uploader.tgz",
+    "analyse": "npm run clean && webpack --config webpack.config.analyse.js",
+    "prepack": "npm run clean && webpack --config webpack.config.js && tsc-alias && cp ../README.md README.md",
+    "prepack:fat": "npm run clean && webpack --config webpack.config.fat.js && tsc-alias",
+    "prepack:cdn": "npm run clean && webpack --config webpack.config.cdn.js && find dist -name \"*.ts\" -type f -delete && for f in dist/*.js; do cp -- \"$f\" \"${f%.js}\"; done",
+    "postpack": "([ ! -f uploader-*.tgz ] || mv uploader-*.tgz uploader.tgz) && rm README.md",
+    "publish:cdn:onrelease": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:cdn'",
+    "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/"
+  },
+  "dependencies": {
+    "@upload-io/upload-api-client-uploader": "1.12.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.11.6",
+    "@babel/core": "7.11.6",
+    "@babel/preset-env": "7.11.5",
+    "@typescript-eslint/eslint-plugin": "4.8.1",
+    "@typescript-eslint/parser": "4.8.1",
+    "babel-loader": "8.2.1",
+    "babel-plugin-transform-async-to-promises": "0.8.15",
+    "eslint": "7.13.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-config-standard-with-typescript": "19.0.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-return-types-object-literals": "1.0.1",
+    "eslint-plugin-standard": "4.1.0",
+    "ts-loader": "8.0.11",
+    "tsc-alias": "1.2.10",
+    "typescript": "4.1.2",
+    "webpack": "5.5.1",
+    "webpack-bundle-analyzer": "4.2.0",
+    "webpack-cli": "4.9.1",
+    "webpack-node-externals": "2.5.2"
+  }
+}

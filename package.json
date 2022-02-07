@@ -1,0 +1,37 @@
+{
+  "name": "uploader-root",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "npm run prettier && npm run lint-sdk && npm run lint-e2e",
+    "lint-sdk": "(cd sdk && npm run lint)",
+    "lint-e2e": "(cd e2e_test && npm run lint)",
+    "typecheck": "npm run typecheck-sdk && npm run typecheck-e2e",
+    "typecheck-sdk": "(cd sdk && npm run typecheck)",
+    "typecheck-e2e": "(cd e2e_test && npm run typecheck)",
+    "prettier": "prettier . --check",
+    "prettier-fix": "prettier . --write --loglevel=silent",
+    "test": "(cd e2e_test && npm run test)"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*/**/*.{js,jsx,ts,tsx}": [
+      "./runForEachPackage.js eslint !"
+    ],
+    "*/**/*.{ts,tsx}": [
+      "./runForEachPackage.js tsc --noEmit ?"
+    ],
+    "*.{js,jsx,ts,tsx,json,css,html,md,yaml,yml}": [
+      "prettier -c"
+    ]
+  },
+  "devDependencies": {
+    "husky": "4.3.0",
+    "lint-staged": "10.5.1",
+    "prettier": "2.1.2"
+  }
+}

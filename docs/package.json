@@ -1,0 +1,13 @@
+{
+  "name": "uploader-docs",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "generate-polyfills-md": "node POLYFILLS.md.generate.js"
+  },
+  "devDependencies": {
+    "@babel/core": "7.11.6",
+    "@babel/preset-env": "7.11.5",
+    "eslint": "7.13.0"
+  }
+}

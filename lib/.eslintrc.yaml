@@ -1,0 +1,132 @@
+# ESLint at project-level as linting settings may differ between browser-based and node-based projects.
+# Prettier at repository-level as formatting settings will be the same across all projects.
+# IMPORTANT: Sync with all other '.eslintrc.yaml' files!
+root: true
+parser: "@typescript-eslint/parser"
+parserOptions:
+  project: "./tsconfig.json"
+plugins:
+  - "@typescript-eslint"
+  - "return-types-object-literals"
+overrides:
+  - files:
+      - "*.js"
+    rules:
+      "@typescript-eslint/explicit-function-return-type": off
+      "return-types-object-literals/require-return-types-for-object-literals": off
+rules:
+  "return-types-object-literals/require-return-types-for-object-literals": error
+  "no-else-return": error
+  "object-shorthand": error
+  "@typescript-eslint/no-var-requires": error
+  "@typescript-eslint/no-redeclare": off
+  "@typescript-eslint/no-extraneous-class": off
+  "@typescript-eslint/no-namespace": off
+  "@typescript-eslint/member-ordering":
+    - error
+    - classes:
+        order: as-written
+        memberTypes:
+          # Index signature
+          - "signature"
+
+          # Fields
+          - "static-field"
+          - "decorated-field"
+          - "instance-field"
+          - "abstract-field"
+
+          - "field"
+
+          # Constructors
+          - "public-constructor"
+          - "protected-constructor"
+          - "private-constructor"
+
+          - "constructor"
+
+          # Methods
+          - "public-static-method"
+          - "protected-static-method"
+
+          - "public-decorated-method"
+          - "protected-decorated-method"
+
+          - "public-instance-method"
+          - "protected-instance-method"
+
+          - "public-abstract-method"
+          - "protected-abstract-method"
+
+          - "public-method"
+          - "protected-method"
+
+          - "private-static-method"
+          - "private-decorated-method"
+          - "private-instance-method"
+          - "private-abstract-method"
+          - "private-method"
+
+          - "static-method"
+          - "instance-method"
+          - "abstract-method"
+
+          - "decorated-method"
+
+          - "method"
+      default:
+        order: alphabetically
+        memberTypes:
+          # Index signature
+          - "signature"
+
+          # Fields
+          - "static-field"
+          - "decorated-field"
+          - "instance-field"
+          - "abstract-field"
+
+          - "field"
+
+          # Constructors
+          - "public-constructor"
+          - "protected-constructor"
+          - "private-constructor"
+
+          - "constructor"
+
+          # Methods
+          - "public-static-method"
+          - "protected-static-method"
+
+          - "public-decorated-method"
+          - "protected-decorated-method"
+
+          - "public-instance-method"
+          - "protected-instance-method"
+
+          - "public-abstract-method"
+          - "protected-abstract-method"
+
+          - "public-method"
+          - "protected-method"
+
+          - "private-static-method"
+          - "private-decorated-method"
+          - "private-instance-method"
+          - "private-abstract-method"
+          - "private-method"
+
+          - "static-method"
+          - "instance-method"
+          - "abstract-method"
+
+          - "decorated-method"
+
+          - "method"
+extends:
+  - standard-with-typescript
+  - prettier
+  - prettier/@typescript-eslint
+env:
+  node: true
