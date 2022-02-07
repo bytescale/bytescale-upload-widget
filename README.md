@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://upload.io/uploader">
-    <img alt="Upload.js" width="280" height="78" src="https://raw.githubusercontent.com/upload-io/assets/master/logo.svg">
+    <img alt="Upload.js" width="276" height="80" src="https://raw.githubusercontent.com/upload-io/assets/master/logo-uploader.svg">
   </a>
 </h1>
 
@@ -24,8 +24,6 @@
   </a>
 
 </p>
-<br/>
-<p align="center"><a href="https://upload.io/uploader"><img alt="Upload.js Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/assets/master/uploader-demo.gif"></a></p>
 
 ## ⚙️ Prerequisites
 
@@ -45,16 +43,17 @@
 
 ## 🎯 Features
 
-Uploader is an HTML5 file & image uploader widget for [Upload.io](https://upload.io/uploader): a powerful file uploading, file storage and file hosting platform.
+Uploader is an HTML5 file & image uploader widget for [Upload.io](https://upload.io/uploader).
 
-You can use them together to:
+Use them together to get:
 
-- Add file uploads to your web app. (With zero configuration or infrastructure.)
-- Serve files with minimal latency. (Worldwide CDN, 300+ locations.)
-- Secure your files. (Optional: issue JWTs from your web app to define who can upload & download certain files.)
-- Resize images, crop images & convert images.
-- Extract image keywords & metadata.
-- And much more, [explore Uploader](https://upload.io/uploader).
+- File uploading that works out-the-box.
+- File storage & file hosting. (Zero setup, pre-integrated.)
+- Integrated CDN. (300+ locations, 47+ countries.)
+- File processing. (Image resizing, cropping, etc.)
+- File authorization. (Optional: issue JWTs from your web app to define who can upload & download certain files.)
+- Monitoring. (Beautiful dashboards to monitor storage & traffic.)
+- And much more, [explore Upload.io](https://upload.io/features).
 
 ## 👀 Examples
 
