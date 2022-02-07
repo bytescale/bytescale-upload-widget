@@ -17,6 +17,8 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "baseUrl": "./src",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     "paths": {
       // These mappings are relative to "baseUrl".
       // Remember to keep in sync with `webpack.config.js`
