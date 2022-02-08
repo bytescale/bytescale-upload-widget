@@ -4,6 +4,28 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const port = 3001;
 
+const srcs = [path.resolve(__dirname, "src"), path.resolve(__dirname, "../lib/src")];
+
+const cssLoaders = [
+  "style-loader",
+  "css-loader",
+  {
+    loader: "postcss-loader",
+    options: {
+      postcssOptions: {
+        plugins: [
+          [
+            "postcss-preset-env",
+            {
+              // postcss options
+            }
+          ]
+        ]
+      }
+    }
+  }
+];
+
 module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
@@ -29,7 +51,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        include: [path.resolve(__dirname, "src"), path.resolve(__dirname, "../lib/src")],
+        include: srcs,
         use: [
           {
             loader: "babel-loader" // Options are in 'babel.config.js'
@@ -38,6 +60,16 @@ module.exports = {
             loader: "ts-loader"
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        include: srcs,
+        use: [...cssLoaders]
+      },
+      {
+        test: /\.scss/,
+        include: srcs,
+        use: [...cssLoaders, "sass-loader"]
       }
     ]
   },
