@@ -1,3 +1,5 @@
 export interface UploaderWidgetLocale {
-  upload: string;
+  orDragDropCopyPaste: string;
+  uploadFile: string;
+  uploadFiles: string;
 }

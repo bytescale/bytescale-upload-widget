@@ -16,22 +16,40 @@ export class Uploader {
 
   async open(params: UploaderParams = {}): Promise<UploadedFile[]> {
     const container = document.createElement("div");
+    container.className = "uploader";
     document.body.appendChild(container);
 
-    const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
-      render(
-        <UploaderWidget
-          resolve={resolve}
-          reject={reject}
-          params={UploaderParamsRequired.from(params)}
-          upload={this.upload}
-        />,
-        container
-      );
-    });
+    return await this.addClass(
+      document.documentElement,
+      "uploader__html",
+      async () =>
+        await this.addClass(document.body, "uploader__body", async () => {
+          const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
+            render(
+              <UploaderWidget
+                resolve={resolve}
+                reject={reject}
+                params={UploaderParamsRequired.from(params)}
+                upload={this.upload}
+              />,
+              container
+            );
+          });
 
-    container.remove();
+          container.remove();
 
-    return uploadedFiles;
+          return uploadedFiles;
+        })
+    );
+  }
+
+  private async addClass<T>(element: Element, className: string, callback: () => Promise<T>): Promise<T> {
+    const oldClass = element.className;
+    try {
+      element.className = `${oldClass} ${className}`;
+      return await callback();
+    } finally {
+      element.className = oldClass;
+    }
   }
 }

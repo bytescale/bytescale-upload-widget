@@ -44,6 +44,7 @@
     "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/"
   },
   "dependencies": {
+    "classnames": "2.2.6",
     "preact": "10.6.5",
     "upload-js": "1.38.2"
   },
@@ -52,6 +53,7 @@
     "@babel/core": "7.12.10",
     "@babel/preset-env": "7.12.10",
     "@babel/preset-react": "7.12.10",
+    "@types/classnames": "2.2.11",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",
     "babel-loader": "8.2.1",
