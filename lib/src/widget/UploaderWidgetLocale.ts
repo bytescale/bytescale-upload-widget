@@ -1,3 +1,3 @@
 export interface UploaderWidgetLocale {
-  upload: "upload";
+  upload: string;
 }

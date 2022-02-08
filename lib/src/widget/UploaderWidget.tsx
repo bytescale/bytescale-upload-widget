@@ -1,10 +1,10 @@
 import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
-import { UploaderParams } from "uploader/UploaderParams";
+import { UploaderParamsRequired } from "uploader/UploaderParams";
 import "./UploaderWidget.scss";
 
 interface Props {
-  params: UploaderParams;
+  params: UploaderParamsRequired;
   reject: (error: Error) => void;
   resolve: (files: UploadedFile[]) => void;
   upload: Upload;

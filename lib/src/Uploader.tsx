@@ -1,5 +1,5 @@
 import { Upload, UploadConfig, UploadedFile } from "upload-js";
-import { UploaderParams } from "uploader/UploaderParams";
+import { UploaderParams, UploaderParamsRequired } from "uploader/UploaderParams";
 import { render } from "preact";
 import { UploaderWidget } from "uploader/widget/UploaderWidget";
 
@@ -19,7 +19,15 @@ export class Uploader {
     document.body.appendChild(container);
 
     const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
-      render(<UploaderWidget resolve={resolve} reject={reject} params={params} upload={this.upload} />, container);
+      render(
+        <UploaderWidget
+          resolve={resolve}
+          reject={reject}
+          params={UploaderParamsRequired.from(params)}
+          upload={this.upload}
+        />,
+        container
+      );
     });
 
     container.remove();
