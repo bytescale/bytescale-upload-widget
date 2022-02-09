@@ -52,12 +52,35 @@ Use them together to get:
 - Integrated CDN. (300+ locations, 47+ countries.)
 - File processing. (Image resizing, cropping, etc.)
 - File authorization. (Optional: issue JWTs from your app to define per-user file access.)
-- Monitoring. (Beautiful dashboards to monitor storage & traffic.)
+- Monitoring. (Beautiful dashboards to monitor usage & traffic.)
 - And much more, [explore Upload.io](https://upload.io/features).
 
 ## 👀 Examples
 
-Coming soon...
+```html
+<html>
+  <head>
+    <script src="https://js.upload.io/uploader/v1"></script>
+    <script>
+      const uploader = new Uploader({
+
+        // Replace with your API key. (Get from: https://upload.io/)
+        apiKey: "..."
+
+      });
+
+      uploader.open({ multi: true }).then(
+        files => {
+          alert(`Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`);
+        },
+        e => console.error(e)
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+```
 
 ## Contribute
 
