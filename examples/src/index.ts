@@ -11,7 +11,7 @@ const uploader = new Uploader({
   internal: { apiUrl: (window as any).UPLOAD_JS_API_URL, cdnUrl: (window as any).UPLOAD_JS_CDN_URL }
 });
 
-uploader.open().then(
+uploader.open({ multi: true }).then(
   (f: UploadedFile[]) => {
     console.log(`Files uploaded: ${f.map(x => x.fileId).join(", ")}`);
   },
