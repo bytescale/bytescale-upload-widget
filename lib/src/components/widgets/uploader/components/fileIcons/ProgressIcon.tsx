@@ -32,6 +32,14 @@ export const ProgressIcon = ({ height, progress, onCompleteImageSource }: Props)
     <span className="progress-icon__container">
       <svg className="progress-icon" width={size} height={size}>
         <circle
+          className="progress-icon__circle__bg"
+          stroke-width={0}
+          r={size / 2}
+          cx={size / 2}
+          cy={size / 2}
+          style={{ opacity: completed ? 0 : 1 }}
+        />
+        <circle
           className="progress-icon__circle"
           stroke-width={completed ? 0 : stokeWidth}
           fill="transparent"

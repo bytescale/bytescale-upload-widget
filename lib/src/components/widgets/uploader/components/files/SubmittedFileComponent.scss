@@ -1,0 +1,10 @@
+@import "~uploader/components/widgets/uploader/Variables";
+
+.uploader__submitted-file {
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 7 * $px;
+  padding: 21 * $px 23 * $px;
+  margin-bottom: $px * 8;
+}

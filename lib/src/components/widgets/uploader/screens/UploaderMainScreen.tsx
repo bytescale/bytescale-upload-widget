@@ -10,9 +10,10 @@ interface Props {
 }
 
 export const UploaderMainScreen = ({ submittedFiles }: Props): JSX.Element => (
-  <>
+  // Div required to break-out of flex-box layout.
+  <div>
     {submittedFiles.map(file => (
       <SubmittedFileComponent file={file} key={file.fileIndex} />
     ))}
-  </>
+  </div>
 );

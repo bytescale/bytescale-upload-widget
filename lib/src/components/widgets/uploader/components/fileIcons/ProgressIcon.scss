@@ -14,6 +14,10 @@
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     stroke: #377dff;
+    &__bg {
+      transition: $vanishSpeed opacity linear;
+      fill: #f0f0f0;
+    }
   }
   &__thumbnail {
     $growSpeed: 0.2s;

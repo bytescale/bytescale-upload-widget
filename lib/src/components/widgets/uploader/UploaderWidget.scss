@@ -1,3 +1,5 @@
+@import "~uploader/components/widgets/uploader/Variables";
+
 .uploader {
   $base-size: 16;
   $px: (1 / $base-size) * 1em;
@@ -52,5 +54,36 @@
         opacity: 0;
       }
     }
+  }
+
+  /* UTILS */
+
+  .vcenter {
+    display: flex;
+    align-items: center;
+  }
+  .ml-1 {
+    margin-left: $px * 5;
+  }
+  .ml-2 {
+    margin-left: $px * 7;
+  }
+  .ml-3 {
+    margin-left: $px * 8;
+  }
+  .ml-4 {
+    margin-left: $px * 10;
+  }
+  .mb-1 {
+    margin-bottom: $px * 5;
+  }
+  .mb-2 {
+    margin-bottom: $px * 7;
+  }
+  .mb-3 {
+    margin-bottom: $px * 8;
+  }
+  .mb-4 {
+    margin-bottom: $px * 10;
   }
 }
