@@ -14,8 +14,8 @@ export const UploaderWelcomeScreen = ({ addFiles, params: { multi, locale } }: P
 
   useEffect(() => {
     setInterval(() => {
-      setProgress(p => Math.min(1, p + 0.2));
-    }, 1000);
+      setProgress(p => Math.min(1, p + 0.25));
+    }, 750);
   }, []);
 
   return (
