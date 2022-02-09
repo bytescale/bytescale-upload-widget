@@ -5,12 +5,35 @@ import { ProgressIcon } from "uploader/components/widgets/uploader/components/fi
 import { getFileIconImageSource } from "uploader/components/widgets/uploader/components/fileIcons/utils/FileIconUtil";
 import unknownSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Unknown.svg";
 import "./SubmittedFileComponent.scss";
+import { useEffect, useState } from "preact/compat";
+import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
 
 interface Props {
   file: SubmittedFile;
+  locale: UploaderWidgetLocale;
+  remove: () => void;
 }
 
-export const SubmittedFileComponent = ({ file }: Props): JSX.Element => {
+// Keep up-to-date with total animation duration in CSS.
+const removalAnimationTime = 1000;
+
+export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Element => {
+  const [isDelayedRemove, setIsDelayedRemove] = useState(false);
+
+  const delayedRemove = (): void => {
+    setIsDelayedRemove(true);
+  };
+
+  useEffect(() => {
+    if (!isDelayedRemove) {
+      return;
+    }
+    const timeout = setTimeout(() => {
+      remove();
+    }, removalAnimationTime);
+    return () => clearTimeout(timeout);
+  }, [isDelayedRemove]);
+
   const progressMargin = 0.02;
   let thumbnail = unknownSvg;
   let progress = 0;
@@ -34,8 +57,26 @@ export const SubmittedFileComponent = ({ file }: Props): JSX.Element => {
 
   return (
     <div className="mb-3 uploader__submitted-file">
-      <ProgressIcon progress={Math.max(progressMargin, progress)} onCompleteImageSource={thumbnail} height={15} />{" "}
-      <span className="ml-2">{fileName}</span>
+      {/* span required to align button to right of div */}
+      <span className="vcenter">
+        <ProgressIcon progress={Math.max(progressMargin, progress)} onCompleteImageSource={thumbnail} height={15} />{" "}
+        <span className="ml-2 mr-3">{fileName}</span>
+      </span>
+      {isDelayedRemove ? (
+        <span className="uploader__submitted-file__action">
+          {file.type === "uploading" ? locale["cancelled!"] : locale["removed!"]}
+        </span>
+      ) : (
+        <a
+          className="uploader__submitted-file__action"
+          href="#remove"
+          onClick={e => {
+            e.preventDefault();
+            delayedRemove();
+          }}>
+          {file.type === "uploading" ? locale.cancel : locale.remove}
+        </a>
+      )}
     </div>
   );
 };

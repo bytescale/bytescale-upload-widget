@@ -6,14 +6,20 @@ import { UploaderParamsRequired } from "uploader/UploaderParams";
 interface Props {
   addFiles: (files: File[]) => void;
   params: UploaderParamsRequired;
+  remove: (fileIndex: number) => void;
   submittedFiles: SubmittedFile[];
 }
 
-export const UploaderMainScreen = ({ submittedFiles }: Props): JSX.Element => (
+export const UploaderMainScreen = ({ submittedFiles, params, remove }: Props): JSX.Element => (
   // Div required to break-out of flex-box layout.
   <div>
     {submittedFiles.map(file => (
-      <SubmittedFileComponent file={file} key={file.fileIndex} />
+      <SubmittedFileComponent
+        file={file}
+        locale={params.locale}
+        key={file.fileIndex}
+        remove={() => remove(file.fileIndex)}
+      />
     ))}
   </div>
 );

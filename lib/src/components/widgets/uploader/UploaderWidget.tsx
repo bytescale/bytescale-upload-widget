@@ -36,6 +36,18 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     }
   }, [uploadedFiles]);
 
+  const removeSubmittedFile = (fileIndex: number): void => {
+    setSubmittedFiles(
+      (x): SubmittedFileMap => {
+        const { [fileIndex]: removed, ...rest } = x;
+        if (removed?.type === "uploading") {
+          removed.cancel();
+        }
+        return rest;
+      }
+    );
+  };
+
   const setSubmittedFile = (fileIndex: number, file: SubmittedFile): void => {
     setSubmittedFiles(
       (x): SubmittedFileMap => ({
@@ -113,6 +125,11 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   return submittedFileList.length === 0 ? (
     <UploaderWelcomeScreen params={params} addFiles={addFiles} />
   ) : (
-    <UploaderMainScreen params={params} addFiles={addFiles} submittedFiles={submittedFileList} />
+    <UploaderMainScreen
+      params={params}
+      addFiles={addFiles}
+      submittedFiles={submittedFileList}
+      remove={removeSubmittedFile}
+    />
   );
 };

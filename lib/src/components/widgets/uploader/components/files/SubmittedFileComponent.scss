@@ -3,8 +3,14 @@
 .uploader__submitted-file {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: #f8f8f8;
   border-radius: 7 * $px;
   padding: 21 * $px 23 * $px;
   margin-bottom: $px * 8;
+  &__action {
+    min-width: 74 * $px; // Causes "cancel" and "remove" to take up same width, so prevents jerking when they transition between.
+    text-align: right;
+    display: inline-block;
+  }
 }
