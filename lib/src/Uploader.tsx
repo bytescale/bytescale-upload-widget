@@ -31,9 +31,10 @@ export class Uploader {
         : undefined;
     const container = existingContainer ?? document.createElement("div");
     container.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
+    const body = await this.getBody();
 
     if (existingContainer === undefined) {
-      document.body.appendChild(container);
+      body.appendChild(container);
     }
 
     const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
@@ -57,5 +58,22 @@ export class Uploader {
     container.remove();
 
     return uploadedFiles;
+  }
+
+  /**
+   * Required when the 'uploader.open()' method is called from within '<head>'.
+   */
+  private async getBody(): Promise<HTMLElement> {
+    return await new Promise(resolve => {
+      const attempt = (): void => {
+        const bodyMaybe = document.body ?? undefined;
+        if (bodyMaybe !== undefined) {
+          resolve(bodyMaybe);
+        }
+        setTimeout(attempt, 250);
+      };
+
+      attempt();
+    });
   }
 }
