@@ -70,7 +70,7 @@ export class Uploader {
         if (bodyMaybe !== undefined) {
           resolve(bodyMaybe);
         }
-        setTimeout(attempt, 250);
+        setTimeout(attempt, 100);
       };
 
       attempt();
