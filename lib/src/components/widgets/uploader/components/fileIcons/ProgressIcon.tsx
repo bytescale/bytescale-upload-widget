@@ -1,14 +1,17 @@
 import { JSX } from "preact";
 import "./ProgressIcon.scss";
 import { useEffect, useState } from "preact/compat";
+import cn from "classnames";
 
 interface Props {
+  height: number;
+  onCompleteImageSource: string;
   progress: number; // Factor (0 to 1)
 }
 
-export const ProgressIcon = ({ progress }: Props): JSX.Element => {
+export const ProgressIcon = ({ height, progress, onCompleteImageSource }: Props): JSX.Element => {
   const [completed, setCompleted] = useState(false);
-  const radius = 10;
+  const radius = height / 2;
   const stokeWidth = radius * 2;
   const size = stokeWidth * 2;
   const circumference = radius * 2 * Math.PI;
@@ -26,7 +29,7 @@ export const ProgressIcon = ({ progress }: Props): JSX.Element => {
   }, [progress]);
 
   return (
-    <>
+    <span className="progress-icon__container">
       <svg className="progress-icon" width={size} height={size}>
         <circle
           className="progress-icon__circle"
@@ -42,6 +45,10 @@ export const ProgressIcon = ({ progress }: Props): JSX.Element => {
           }}
         />
       </svg>
-    </>
+      <span
+        className={cn("progress-icon__thumbnail", { "progress-icon__thumbnail--hidden": !completed })}
+        style={{ backgroundImage: `url(${onCompleteImageSource})` }}
+      />
+    </span>
   );
 };

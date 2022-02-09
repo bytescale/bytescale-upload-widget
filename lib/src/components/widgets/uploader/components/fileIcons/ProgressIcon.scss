@@ -1,13 +1,42 @@
 .progress-icon {
+  display: block;
+  &__container {
+    display: inline-block;
+    position: relative;
+  }
   &__circle {
     $shrinkSpeed: 0.6s;
     $shrinkEase: cubic-bezier(0.22, 1, 0.36, 1);
-    $vanishSpeed: $shrinkSpeed * 2;
+    $vanishSpeed: 0.3s;
     $rotateSpeed: 0.35s;
     $rotateEase: cubic-bezier(0.33, 1, 0.68, 1);
     transition: $rotateSpeed stroke-dashoffset $rotateEase, $shrinkSpeed stroke-width $shrinkEase, $shrinkSpeed r $shrinkEase, $vanishSpeed opacity linear;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     stroke: #377dff;
+  }
+  &__thumbnail {
+    $growSpeed: 0.2s;
+    $growEase: cubic-bezier(0.22, 1, 0.36, 1);
+    $appearSpeed: 0.05s;
+    transition: $growSpeed transform $growEase, $appearSpeed opacity linear;
+    transition-delay: 0.3s;
+
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 1;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(1,1);
+
+    &--hidden {
+      opacity: 0;
+      transform: scale(0.1,0.1);
+    }
   }
 }

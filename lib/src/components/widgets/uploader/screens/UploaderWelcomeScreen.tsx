@@ -3,6 +3,7 @@ import { JSX } from "preact";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
 import { ProgressIcon } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { useEffect, useState } from "preact/compat";
+import unknownSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Unknown.svg";
 
 interface Props {
   addFiles: (files: File[]) => void;
@@ -14,13 +15,13 @@ export const UploaderWelcomeScreen = ({ addFiles, params: { multi, locale } }: P
 
   useEffect(() => {
     setInterval(() => {
-      setProgress(p => Math.min(1, p + 0.25));
-    }, 750);
+      setProgress(p => Math.min(1, p + 0.2));
+    }, 300);
   }, []);
 
   return (
     <>
-      <ProgressIcon progress={progress} />
+      <ProgressIcon progress={progress} onCompleteImageSource={unknownSvg} height={40} />
       <UploadButton
         multi={multi}
         text={multi ? locale.uploadFiles : locale.uploadFile}

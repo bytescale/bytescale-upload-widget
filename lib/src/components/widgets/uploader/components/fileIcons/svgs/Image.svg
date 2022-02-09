@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="210px" viewBox="0 0 160 210" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Group</title>
+  <defs>
+    <filter id="filter-1">
+      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+    </filter>
+  </defs>
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Image" transform="translate(-118.000000, -110.000000)">
+      <g id="Group" transform="translate(118.000000, 110.000000)">
+        <g id="google-slides" fill-rule="nonzero">
+          <path d="M145,210 L15,210 C6.7,210 0,203.3 0,195 L0,15 C0,6.7 6.7,0 15,0 L110,0 L160,50 L160,195 C160,203.3 153.3,210 145,210 Z" id="Path" fill="#55ABF5"></path>
+          <polygon id="Path" fill="#9CD1FF" points="160 50 110 50 110 0"></polygon>
+          <polygon id="Path" fill="#3F92DA" points="110 50 160 100 160 50"></polygon>
+        </g>
+        <g filter="url(#filter-1)" id="file-picture">
+          <g transform="translate(33.000000, 96.000000)">
+            <polygon id="Path" fill="#000000" fill-rule="nonzero" points="94 75 0 75 0 56.1428571 27.1180051 23.094017 66.8293 56.1428571 94 44.2891633"></polygon>
+            <path d="M98,14.5 C98,22.5088333 91.5088333,29 83.5,29 C75.4911667,29 69,22.5088333 69,14.5 C69,6.49116667 75.4911667,0 83.5,0 C91.5088333,0 98,6.49116667 98,14.5 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

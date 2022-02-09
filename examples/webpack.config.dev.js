@@ -70,6 +70,18 @@ module.exports = {
         test: /\.scss/,
         include: srcs,
         use: [...cssLoaders, "sass-loader"]
+      },
+      {
+        test: /\.(ico|png|jpg|gif|ttf|eot|svg|woff|woff2)$/,
+        include: srcs,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: false
+            }
+          }
+        ]
       }
     ]
   },

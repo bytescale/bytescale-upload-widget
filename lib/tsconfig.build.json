@@ -3,5 +3,5 @@
     "target": "es2017"
   },
   "extends": "./tsconfig.json",
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "./ts-libs/**/*"]
 }
