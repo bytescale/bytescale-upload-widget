@@ -68,10 +68,8 @@ Use Uploader and [Upload.io](https://upload.io/uploader) to achieve:
       });
 
       uploader.open({ multi: true }).then(
-        files => {
-          alert(`Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`);
-        },
-        e => console.error(e)
+        files => alert(`Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
+        error => console.error(error)
       );
     </script>
   </head>
