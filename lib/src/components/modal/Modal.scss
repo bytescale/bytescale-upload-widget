@@ -10,17 +10,10 @@
     overflow: hidden;
   }
   &__modal {
-    min-height: 23em;
-    max-height: 30em;
-    height: 60%;
     background: #fff;
     border-radius: 8px;
     z-index: $modal-index;
     position: relative;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    display: flex;
   }
   &__backdrop {
     content: " ";

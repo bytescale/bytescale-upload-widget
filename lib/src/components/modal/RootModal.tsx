@@ -1,14 +1,11 @@
 import { JSX } from "preact";
 import { useState } from "preact/compat";
-import {
-  UploaderOrConfigError,
-  UploaderOrConfigErrorProps
-} from "uploader/components/widgets/uploaderOrConfigError/UploaderOrConfigError";
+import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploaderRoot/UploaderRoot";
 import { Modal } from "uploader/components/modal/Modal";
 import { UploadedFile } from "upload-js";
 import "./Modal.scss";
 
-interface Props extends UploaderOrConfigErrorProps {
+interface Props extends UploaderRootProps {
   container: Element;
 }
 
@@ -32,7 +29,7 @@ export const RootModal = (props: Props): JSX.Element => {
 
   return (
     <Modal onClosedModal={() => props.container.remove()} closeModal={() => resolve([])}>
-      <UploaderOrConfigError {...props} resolve={resolve} reject={reject} />
+      <UploaderRoot {...props} resolve={resolve} reject={reject} />
     </Modal>
   );
 };

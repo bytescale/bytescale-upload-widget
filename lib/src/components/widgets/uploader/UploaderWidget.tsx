@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
@@ -13,6 +14,9 @@ import {
   UploadingFile
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import "./UploaderWidget.scss";
+import cn from "classnames";
+import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
+import { useDragDrop } from "uploader/common/UseDragDrop";
 
 interface Props {
   params: UploaderParamsRequired;
@@ -22,7 +26,7 @@ interface Props {
 }
 
 export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element => {
-  const [nextSparseFileIndex, setNextSparseFileIndex] = useState<number>(0);
+  const [, setNextSparseFileIndex] = useState<number>(0);
   const [submittedFiles, setSubmittedFiles] = useState<SubmittedFileMap>({});
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
@@ -73,63 +77,69 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     );
   };
 
-  const addFiles = (files: File[]): void => {
-    setNextSparseFileIndex(nextSparseFileIndex + files.length);
-
-    files.forEach((file, i) => {
-      const fileIndex = nextSparseFileIndex + i;
-      upload
-        .uploadFile({
-          file,
-          tags,
-          onBegin: ({ cancel }) =>
-            setSubmittedFile(fileIndex, {
-              file,
-              fileIndex,
-              cancel,
-              progress: 0,
-              type: "uploading"
-            }),
-          onProgress: ({ bytesSent, bytesTotal }) =>
-            updateUploadingFile(
-              fileIndex,
-              (uploadingFile): UploadingFile => ({
-                ...uploadingFile,
-                progress: bytesSent / bytesTotal
-              })
-            )
-        })
-        .then(
-          uploadedFile => {
-            setSubmittedFile(fileIndex, {
-              fileIndex,
-              uploadedFile,
-              type: "uploaded"
-            });
-          },
-          error => {
-            updateUploadingFile(
-              fileIndex,
-              (uploadingFile): ErroneousFile => ({
+  const addFiles = (files: File[]): void =>
+    setNextSparseFileIndex(nextSparseFileIndex => {
+      files.forEach((file, i) => {
+        const fileIndex = nextSparseFileIndex + i;
+        upload
+          .uploadFile({
+            file,
+            tags,
+            onBegin: ({ cancel }) =>
+              setSubmittedFile(fileIndex, {
+                file,
                 fileIndex,
-                error,
-                file: uploadingFile.file,
-                type: "error"
-              })
-            );
-          }
-        );
+                cancel,
+                progress: 0,
+                type: "uploading"
+              }),
+            onProgress: ({ bytesSent, bytesTotal }) =>
+              updateUploadingFile(
+                fileIndex,
+                (uploadingFile): UploadingFile => ({
+                  ...uploadingFile,
+                  progress: bytesSent / bytesTotal
+                })
+              )
+          })
+          .then(
+            uploadedFile => {
+              setSubmittedFile(fileIndex, {
+                fileIndex,
+                uploadedFile,
+                type: "uploaded"
+              });
+            },
+            error => {
+              updateUploadingFile(
+                fileIndex,
+                (uploadingFile): ErroneousFile => ({
+                  fileIndex,
+                  error,
+                  file: uploadingFile.file,
+                  type: "error"
+                })
+              );
+            }
+          );
+      });
+      return nextSparseFileIndex + files.length;
     });
-  };
 
-  return submittedFileList.length === 0 ? (
-    <UploaderWelcomeScreen params={params} addFiles={addFiles} />
-  ) : (
-    <UploaderMainScreen
-      params={params}
-      addFiles={addFiles}
-      submittedFiles={submittedFileList}
-      remove={removeSubmittedFile}
-    />
+  const { isDragging, ...rootProps } = useDragDrop(addFiles);
+
+  return (
+    <WidgetBase htmlProps={rootProps} className={cn({ "uploader__widget--dragging": isDragging })}>
+      {submittedFileList.length === 0 ? (
+        <UploaderWelcomeScreen params={params} addFiles={addFiles} />
+      ) : (
+        <UploaderMainScreen
+          params={params}
+          addFiles={addFiles}
+          submittedFiles={submittedFileList}
+          remove={removeSubmittedFile}
+        />
+      )}
+    </WidgetBase>
   );
 };

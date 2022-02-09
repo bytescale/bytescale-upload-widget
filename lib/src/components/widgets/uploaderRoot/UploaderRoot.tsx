@@ -5,14 +5,16 @@ import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
 import { UploadedFile } from "upload-js";
 
-export interface UploaderOrConfigErrorProps {
+import "./UploaderRoot.scss";
+
+export interface UploaderRootProps {
   params: UploaderParamsRequired;
   reject: (error: Error) => void;
   resolve: (files: UploadedFile[]) => void;
   upload: UploadInstanceMaybe;
 }
 
-export const UploaderOrConfigError = ({ upload, resolve, reject, params }: UploaderOrConfigErrorProps): JSX.Element => (
+export const UploaderRoot = ({ upload, resolve, reject, params }: UploaderRootProps): JSX.Element => (
   <>
     {upload.type === "error" ? (
       <ConfigError error={upload.value} />

@@ -2,10 +2,7 @@ import { Upload, UploadConfig, UploadedFile } from "upload-js";
 import { UploaderParams, UploaderParamsRequired } from "uploader/UploaderParams";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
-import {
-  UploaderOrConfigError,
-  UploaderOrConfigErrorProps
-} from "uploader/components/widgets/uploaderOrConfigError/UploaderOrConfigError";
+import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploaderRoot/UploaderRoot";
 import { RootModal } from "uploader/components/modal/RootModal";
 
 export class Uploader {
@@ -38,7 +35,7 @@ export class Uploader {
     }
 
     const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
-      const props: UploaderOrConfigErrorProps = {
+      const props: UploaderRootProps = {
         upload: this.upload,
         resolve,
         reject,
@@ -46,11 +43,7 @@ export class Uploader {
       };
 
       render(
-        params.layout === "modal" ? (
-          <RootModal {...props} container={container} />
-        ) : (
-          <UploaderOrConfigError {...props} />
-        ),
+        params.layout === "modal" ? <RootModal {...props} container={container} /> : <UploaderRoot {...props} />,
         container
       );
     });
