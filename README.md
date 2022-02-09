@@ -43,9 +43,7 @@
 
 ## 🎯 Features
 
-Uploader is an HTML5 file & image uploader widget for [Upload.io](https://upload.io/uploader).
-
-Use them together to get:
+Use Uploader and [Upload.io](https://upload.io/uploader) to achieve:
 
 - File uploading that works out-the-box.
 - File storage & file hosting. (Zero setup, pre-integrated.)
