@@ -1,8 +1,11 @@
 import { FileTag } from "@upload-io/upload-api-client-upload-js";
-import { UploaderWidgetLocale } from "uploader/widget/UploaderWidgetLocale";
-import { uploaderWidgetLocaleEnUs } from "uploader/widget/locales/EN_US";
+import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
+import { uploaderWidgetLocaleEnUs } from "uploader/modules/locales/EN_US";
+import { UploaderLayout } from "uploader/UploaderLayout";
 
 export interface UploaderParams {
+  containerElementId?: string;
+  layout?: UploaderLayout;
   locale?: UploaderWidgetLocale;
   maxFileSizeBytes?: number;
   mimeTypes?: string[];
@@ -11,6 +14,8 @@ export interface UploaderParams {
 }
 
 export interface UploaderParamsRequired {
+  containerElementId: string | undefined;
+  layout: UploaderLayout;
   locale: UploaderWidgetLocale;
   maxFileSizeBytes: number | undefined;
   mimeTypes: string[] | undefined;
@@ -21,6 +26,8 @@ export interface UploaderParamsRequired {
 export namespace UploaderParamsRequired {
   export function from(params: UploaderParams): UploaderParamsRequired {
     return {
+      containerElementId: params.containerElementId,
+      layout: params.layout ?? "modal",
       locale: params.locale ?? uploaderWidgetLocaleEnUs,
       maxFileSizeBytes: params.maxFileSizeBytes,
       mimeTypes: params.mimeTypes,

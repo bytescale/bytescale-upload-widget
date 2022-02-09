@@ -1,55 +1,61 @@
 import { Upload, UploadConfig, UploadedFile } from "upload-js";
 import { UploaderParams, UploaderParamsRequired } from "uploader/UploaderParams";
 import { render } from "preact";
-import { UploaderWidget } from "uploader/widget/UploaderWidget";
+import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
+import {
+  UploaderOrConfigError,
+  UploaderOrConfigErrorProps
+} from "uploader/components/widgets/uploaderOrConfigError/UploaderOrConfigError";
+import { RootModal } from "uploader/components/modal/RootModal";
 
 export class Uploader {
-  private readonly upload: Upload;
+  private readonly upload: UploadInstanceMaybe;
 
   constructor(uploadOrConfig: UploadConfig | Upload) {
     if (uploadOrConfig instanceof Upload) {
-      this.upload = uploadOrConfig;
+      this.upload = { type: "upload", value: uploadOrConfig };
     } else {
-      this.upload = new Upload(uploadOrConfig);
+      try {
+        this.upload = { type: "upload", value: new Upload(uploadOrConfig) };
+      } catch (e) {
+        this.upload = { type: "error", value: e };
+      }
     }
   }
 
-  async open(params: UploaderParams = {}): Promise<UploadedFile[]> {
-    const container = document.createElement("div");
-    container.className = "uploader";
-    document.body.appendChild(container);
+  async open(paramsMaybe: UploaderParams = {}): Promise<UploadedFile[]> {
+    const params = UploaderParamsRequired.from(paramsMaybe);
+    const existingContainer =
+      params.containerElementId !== undefined
+        ? document.getElementById(params.containerElementId) ?? undefined
+        : undefined;
+    const container = existingContainer ?? document.createElement("div");
+    container.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
 
-    return await this.addClass(
-      document.documentElement,
-      "uploader__html",
-      async () =>
-        await this.addClass(document.body, "uploader__body", async () => {
-          const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
-            render(
-              <UploaderWidget
-                resolve={resolve}
-                reject={reject}
-                params={UploaderParamsRequired.from(params)}
-                upload={this.upload}
-              />,
-              container
-            );
-          });
-
-          container.remove();
-
-          return uploadedFiles;
-        })
-    );
-  }
-
-  private async addClass<T>(element: Element, className: string, callback: () => Promise<T>): Promise<T> {
-    const oldClass = element.className;
-    try {
-      element.className = `${oldClass} ${className}`;
-      return await callback();
-    } finally {
-      element.className = oldClass;
+    if (existingContainer === undefined) {
+      document.body.appendChild(container);
     }
+
+    const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
+      const props: UploaderOrConfigErrorProps = {
+        upload: this.upload,
+        resolve,
+        reject,
+        params
+      };
+
+      render(
+        params.layout === "modal" ? (
+          <RootModal {...props} container={container} />
+        ) : (
+          <UploaderOrConfigError {...props} />
+        ),
+        container
+      );
+    });
+
+    container.remove();
+
+    return uploadedFiles;
   }
 }

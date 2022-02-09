@@ -56,11 +56,6 @@ export const UploaderWidget = ({ resolve, params: { multi, locale, tags }, uploa
     }
   }, [uploadedFiles]);
 
-  const onCancel = (e: Event): void => {
-    e.preventDefault();
-    resolve([]);
-  };
-
   const setSubmittedFile = (fileIndex: number, file: SubmittedFile): void => {
     setSubmittedFiles(
       (x): SubmittedFileMap => ({
@@ -134,16 +129,12 @@ export const UploaderWidget = ({ resolve, params: { multi, locale, tags }, uploa
 
   return (
     <>
-      <div className="uploader__backdrop" onClick={onCancel} />
-
-      <div className="uploader__modal">
-        <UploadButton
-          text={multi ? locale.uploadFiles : locale.uploadFile}
-          className="btn--primary btn--upload"
-          onUpload={onUpload}
-        />
-        <p>{locale.orDragDropCopyPaste}</p>
-      </div>
+      <UploadButton
+        text={multi ? locale.uploadFiles : locale.uploadFile}
+        className="btn--primary btn--upload"
+        onUpload={onUpload}
+      />
+      <p>{locale.orDragDropCopyPaste}</p>
     </>
   );
 };
@@ -163,7 +154,7 @@ const UploadButton = ({
   const isDisabled = isUploading;
 
   return (
-    <label className={cn("btn custom-file-btn", className, { disabled: isDisabled })} htmlFor={inputId}>
+    <label className={cn("btn btn--file", className, { disabled: isDisabled })} htmlFor={inputId}>
       {text}
 
       <input
@@ -171,7 +162,7 @@ const UploadButton = ({
         id={inputId}
         name={inputId}
         type="file"
-        className="custom-file-btn-input"
+        className="btn--file__input"
         onChange={
           ((e: FileInputChangeEvent): void => {
             const input = e.target;
