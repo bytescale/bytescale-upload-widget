@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader for <a href="https://upload.io/">Upload.io</a></b></p>
+<p align="center"><b>File & Image Uploader Widget</b></p>
 <br/>
 <p align="center">
   <a href="https://github.com/uploader/uploader/">
