@@ -4,9 +4,9 @@
   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <g id="Group" fill-rule="nonzero">
       <g id="google-slides">
-        <path d="M145,210 L15,210 C6.7,210 0,203.3 0,195 L0,15 C0,6.7 6.7,0 15,0 L110,0 L160,50 L160,195 C160,203.3 153.3,210 145,210 Z" id="Path" fill="#DDE9FF"></path>
+        <path d="M145,210 L15,210 C6.7,210 0,203.3 0,195 L0,15 C0,6.7 6.7,0 15,0 L110,0 L160,50 L160,195 C160,203.3 153.3,210 145,210 Z" id="Path" fill="#c9dcfd"></path>
         <polygon id="Path" fill="#ECF3FF" points="160 50 110 50 110 0"></polygon>
-        <polygon id="Path" fill="#C5DAFF" points="110 50 160 100 160 50"></polygon>
+        <polygon id="Path" fill="#bcd4fe" points="110 50 160 100 160 50"></polygon>
       </g>
     </g>
   </g>

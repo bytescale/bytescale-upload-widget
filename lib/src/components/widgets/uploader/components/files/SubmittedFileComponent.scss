@@ -12,5 +12,9 @@
     min-width: 74 * $px; // Causes "cancel" and "remove" to take up same width, so prevents jerking when they transition between.
     text-align: right;
     display: inline-block;
+    &--performed {
+      font-weight: 600;
+      color: #999;
+    }
   }
 }

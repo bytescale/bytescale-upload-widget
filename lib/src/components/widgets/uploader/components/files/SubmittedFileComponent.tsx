@@ -63,7 +63,7 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
         <span className="ml-2 mr-3">{fileName}</span>
       </span>
       {isDelayedRemove ? (
-        <span className="uploader__submitted-file__action">
+        <span className="uploader__submitted-file__action uploader__submitted-file__action--performed">
           {file.type === "uploading" ? locale["cancelled!"] : locale["removed!"]}
         </span>
       ) : (
