@@ -11,9 +11,20 @@ const uploader = new Uploader({
   internal: { apiUrl: (window as any).UPLOAD_JS_API_URL, cdnUrl: (window as any).UPLOAD_JS_CDN_URL }
 });
 
-uploader.open({ multi: true }).then(
-  (f: UploadedFile[]) => {
-    console.log(`Files uploaded: ${f.map(x => x.fileId).join(", ")}`);
-  },
-  (e: Error) => console.error(e)
-);
+const openUploader = (): void => {
+  uploader.open({ multi: true }).then(
+    (f: UploadedFile[]) => {
+      console.log(`Files uploaded: ${f.map(x => x.fileId).join(", ")}`);
+    },
+    (e: Error) => console.error(e)
+  );
+};
+
+const button = document.createElement("a");
+button.innerHTML = "Try Me Out!";
+button.href = "#open";
+button.onclick = e => {
+  e.preventDefault();
+  openUploader();
+};
+document.body.appendChild(button);

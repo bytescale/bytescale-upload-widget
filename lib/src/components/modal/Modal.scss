@@ -6,14 +6,17 @@
     width: auto;
     height: 100%;
     overflow: hidden;
-    padding: 0;
-    margin: 0;
   }
   &--with-modal {
     justify-content: center;
     align-items: center;
     flex-direction: column;
     display: flex;
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   &__modal {
@@ -64,5 +67,13 @@
     top: 0;
     bottom: 0;
     z-index: $modal-index - 1;
+  }
+
+  &__modal, &__backdrop {
+    opacity: 0;
+    transition: 0.15s opacity linear;
+    &.show {
+      opacity: 1;
+    }
   }
 }
