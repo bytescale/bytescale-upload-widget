@@ -31,6 +31,7 @@ export function useDragDrop(
   const handleDrop = (e: DragEvent): void => {
     e.preventDefault();
     e.stopPropagation();
+    setIsDragging(false);
     if (e.dataTransfer !== null) {
       const files = Array.from(e.dataTransfer.files);
       if (files.length > 0) {

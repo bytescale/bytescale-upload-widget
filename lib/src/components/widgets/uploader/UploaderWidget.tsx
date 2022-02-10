@@ -14,7 +14,6 @@ import {
   UploadingFile
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import "./UploaderWidget.scss";
-import cn from "classnames";
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
 import { useDragDrop } from "uploader/common/UseDragDrop";
 
@@ -129,7 +128,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const { isDragging, ...rootProps } = useDragDrop(addFiles);
 
   return (
-    <WidgetBase htmlProps={rootProps} className={cn({ "uploader__widget--dragging": isDragging })}>
+    <WidgetBase htmlProps={rootProps} isDraggable={true} isDragging={isDragging}>
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen params={params} addFiles={addFiles} />
       ) : (

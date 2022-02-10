@@ -1,3 +1,5 @@
+@import "~uploader/components/widgets/uploader/Variables";
+
 .uploader {
   $modal-index: 10000;
   &--with-modal, &__body, &__html {
@@ -11,9 +13,10 @@
   }
   &__modal {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 8 * $px;
     z-index: $modal-index;
     position: relative;
+    overflow: auto;
   }
   &__backdrop {
     content: " ";

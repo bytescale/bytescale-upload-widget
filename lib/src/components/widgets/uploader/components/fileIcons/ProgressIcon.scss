@@ -1,3 +1,5 @@
+@import "~uploader/components/widgets/uploader/Variables";
+
 .progress-icon {
   display: block;
   &__container {
@@ -13,7 +15,7 @@
     transition: $rotateSpeed stroke-dashoffset $rotateEase, $shrinkSpeed stroke-width $shrinkEase, $shrinkSpeed r $shrinkEase, $vanishSpeed opacity linear;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
-    stroke: #377dff;
+    stroke: $primary;
     &__bg {
       transition: $vanishSpeed opacity linear;
       fill: #f0f0f0;
