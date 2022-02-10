@@ -54,9 +54,6 @@
         border-color: $primary-light;
       }
     }
-    &--upload {
-
-    }
     &--file {
       position: relative;
       overflow: hidden;
@@ -71,9 +68,18 @@
         opacity: 0;
       }
     }
+    &--upload {
+      font-size: 1.11em;
+      padding: 0 1.6em;
+      margin-bottom: 0.5em;
+    }
   }
 
   /* UTILS */
+
+  .text-secondary {
+    color: #acadaf;
+  }
 
   .vcenter {
     display: flex;
