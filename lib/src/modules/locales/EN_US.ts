@@ -1,11 +1,15 @@
 import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
 
 export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
-  "cancelled!": "cancelled",
+  "addAnotherFile": "Add another file...",
   "cancel": "cancel",
+  "cancelled!": "cancelled",
+  "finish": "Finish",
+  "finishIcon": true,
+  "orDragDropCopyPaste": "...or drag and drop files.",
+  "pleaseWait": "Please wait...",
   "removed!": "removed",
   "remove": "remove",
-  "orDragDropCopyPaste": "...or drag and drop files.",
   "uploadFile": "Upload a File",
   "uploadFiles": "Upload Files"
 };

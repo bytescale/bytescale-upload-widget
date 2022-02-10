@@ -141,6 +141,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           addFiles={addFiles}
           submittedFiles={submittedFileList}
           remove={removeSubmittedFile}
+          resolve={resolve}
         />
       )}
     </WidgetBase>

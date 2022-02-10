@@ -19,9 +19,13 @@
 
   a {
     color: $primary;
-    text-decoration: underline;
+    &, &:hover, &:active, &:focus {
+      text-decoration: underline;
+    }
     &:hover {
-      color: $primary-light;
+      &:not(:disabled):not(.disabled) {
+        color: $primary-light;
+      }
     }
   }
 
@@ -42,17 +46,32 @@
     line-height: 3;
     -webkit-border-radius: 0.3125em;
     border-radius: 0.3125em;
+    &, &:hover, &:active, &:focus {
+      text-decoration: none;
+    }
     &:not(:disabled):not(.disabled) {
       cursor: pointer;
+    }
+    &:hover {
+      &:not(:disabled):not(.disabled) {
+        color: #8599ae;
+      }
     }
     &--primary {
       color: #fff;
       background-color: $primary;
       border-color: $primary;
       &:hover {
-        background-color: $primary-light;
-        border-color: $primary-light;
+        &:not(:disabled):not(.disabled) {
+          background-color: $primary-light;
+          border-color: $primary-light;
+          color: #fff;
+        }
       }
+    }
+    &.disabled {
+      opacity: 0.5;
+      cursor: default;
     }
     &--file {
       position: relative;
@@ -85,6 +104,13 @@
     display: flex;
     align-items: center;
   }
+  .nudge-up-1 {
+    position: relative;
+    top: -1px
+  }
+  .ml-0 {
+    margin-left: 0;
+  }
   .ml-1 {
     margin-left: $px * 5;
   }
@@ -97,6 +123,9 @@
   .ml-4 {
     margin-left: $px * 10;
   }
+  .mr-0 {
+    margin-right: 0;
+  }
   .mr-1 {
     margin-right: $px * 5;
   }
@@ -108,6 +137,9 @@
   }
   .mr-4 {
     margin-right: $px * 10;
+  }
+  .mb-0 {
+    margin-bottom: 0;
   }
   .mb-1 {
     margin-bottom: $px * 5;

@@ -9,7 +9,7 @@ export const UploadButton = ({
   onUpload,
   text
 }: {
-  className: string;
+  className?: string;
   multi: boolean;
   onUpload: (files: File[]) => void;
   text: string;

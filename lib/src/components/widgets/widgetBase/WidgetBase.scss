@@ -30,6 +30,7 @@
     align-items: center;
     flex-direction: column;
     display: flex;
+    height: 100%;
     z-index: $modal-bg-z-index + 1;
   }
 
