@@ -1,12 +1,14 @@
 @import "~uploader/components/widgets/uploader/Variables";
 
 .uploader__widget-base {
-  margin: 15 * $px;
+  $margin: 15 * $px;
   border-radius: 5 * $px;
 
-  min-height: 23em;
-  max-height: 30em;
-  height: 60%;
+  position: absolute;
+  top: $margin;
+  left: $margin;
+  right: $margin;
+  bottom: $margin;
 
   justify-content: center;
   align-items: center;
