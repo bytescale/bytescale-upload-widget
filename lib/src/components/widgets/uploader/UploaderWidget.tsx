@@ -11,6 +11,7 @@ import {
   isUploadedFile,
   SubmittedFile,
   SubmittedFileMap,
+  UploadedFileContainer,
   UploadingFile
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import "./UploaderWidget.scss";
@@ -103,11 +104,14 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           })
           .then(
             uploadedFile => {
-              setSubmittedFile(fileIndex, {
+              updateUploadingFile(
                 fileIndex,
-                uploadedFile,
-                type: "uploaded"
-              });
+                (): UploadedFileContainer => ({
+                  fileIndex,
+                  uploadedFile,
+                  type: "uploaded"
+                })
+              );
             },
             error => {
               updateUploadingFile(
