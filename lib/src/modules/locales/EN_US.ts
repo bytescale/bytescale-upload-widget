@@ -5,7 +5,7 @@ export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
   "cancel": "cancel",
   "removed!": "removed!",
   "remove": "remove",
-  "orDragDropCopyPaste": "...or drag-and-drop, or copy-and-paste",
+  "orDragDropCopyPaste": "...or drag-and-drop, or copy-and-paste.",
   "uploadFile": "Upload a File",
   "uploadFiles": "Upload Files"
 };

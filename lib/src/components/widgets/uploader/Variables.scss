@@ -1,5 +1,8 @@
 $primary: #377dff;
+$primary-light: #528fff;
+$primary-dark: #2c76ff;
 $base-size: 16;
 $px: (1 / $base-size) * 1em;
 $mobile-width-max: 750px; // Use real pixels here
 $mobile-width-min: 751px; // Use real pixels here
+$modal-bg-z-index: 1;

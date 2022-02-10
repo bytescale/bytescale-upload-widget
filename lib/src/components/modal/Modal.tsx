@@ -1,14 +1,17 @@
 import { JSX } from "preact";
 import { ReactNode } from "uploader/common/React";
 import { useLayoutEffect } from "preact/compat";
-import "./Modal.scss";
 import { CloseSvg } from "uploader/assets/svgs/CloseSvg";
+import "./Modal.scss";
 
 interface Props {
   children: ReactNode;
   closeModal: () => void;
   onClosedModal: () => void;
 }
+
+export const modalCloseButtonSize = 18;
+export const modalCloseButtonPadding = 20;
 
 export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Element => {
   useLayoutEffect(() => {
@@ -27,6 +30,7 @@ export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Eleme
     <>
       <div className="uploader__backdrop" onClick={closeModal} />
       <div className="uploader__modal">
+        {children}
         <div className="uploader__modal__close">
           <a
             href="#close"
@@ -34,10 +38,9 @@ export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Eleme
               e.preventDefault();
               closeModal();
             }}>
-            <CloseSvg />
+            <CloseSvg width={modalCloseButtonSize} />
           </a>
         </div>
-        {children}
       </div>
     </>
   );

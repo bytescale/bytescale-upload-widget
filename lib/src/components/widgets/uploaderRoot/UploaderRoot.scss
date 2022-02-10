@@ -17,7 +17,16 @@
   line-height: 1;
   text-align: left;
 
+  a {
+    color: $primary;
+    text-decoration: underline;
+    &:hover {
+      color: $primary-light;
+    }
+  }
+
   .btn {
+    transition: 0.1s border-color linear, 0.1s background-color linear;
     display: inline-block;
     font-weight: 400;
     color: #677788;
@@ -40,6 +49,10 @@
       color: #fff;
       background-color: $primary;
       border-color: $primary;
+      &:hover {
+        background-color: $primary-light;
+        border-color: $primary-light;
+      }
     }
     &--upload {
 

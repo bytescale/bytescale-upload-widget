@@ -15,7 +15,7 @@ export const UploadButton = ({
   text: string;
 }): JSX.Element => {
   const [fileInputKey] = useState(Math.random());
-  const [inputId] = useState(`uploader__input__${Math.round(Math.random() * 1000000)}`);
+  const [inputId] = useState(`uploader__input-${Math.round(Math.random() * 1000000)}`);
 
   return (
     <label className={cn("btn btn--file", className)} htmlFor={inputId}>

@@ -40,17 +40,18 @@
     }
 
     &__close {
-      text-align: right;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: $modal-bg-z-index + 1;
       a {
-        color: #999;
-        &:hover {
-          color: #666;
-        }
-      }
-
-      svg {
+        transition: 0.1s color linear;
+        color: #c0c0c0;
+        padding: 20 * $px 20 * $px 13 * $px 14 * $px;
         display: inline-block;
-        margin: 15 * $px 15 * $px 0 auto;
+        &:hover {
+          color: #888;
+        }
       }
     }
   }

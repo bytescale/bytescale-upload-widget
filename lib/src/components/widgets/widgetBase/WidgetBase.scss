@@ -2,6 +2,7 @@
 
 .uploader__widget-base {
   $margin: 15 * $px;
+  $border-color: #ddd;
   border-radius: 5 * $px;
 
   position: absolute;
@@ -15,8 +16,25 @@
   flex-direction: column;
   display: flex;
 
+  &__modal-bg {
+    color: $border-color;
+    position: absolute;
+    z-index: $modal-bg-z-index;
+    &--dragging {
+      color: $primary;
+    }
+  }
+
+  &__children {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    z-index: $modal-bg-z-index + 1;
+  }
+
   &--draggable {
-    border: 1 * $px dashed #d5d5d5;
+    border: 2 * $px dashed $border-color;
   }
   &--dragging {
     border-color: $primary;

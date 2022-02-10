@@ -14,9 +14,9 @@ import {
   UploadedFileContainer,
   UploadingFile
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
-import "./UploaderWidget.scss";
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
 import { useDragDrop } from "uploader/common/UseDragDrop";
+import "./UploaderWidget.scss";
 
 interface Props {
   params: UploaderParamsRequired;
@@ -132,7 +132,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const { isDragging, ...rootProps } = useDragDrop(addFiles);
 
   return (
-    <WidgetBase htmlProps={rootProps} isDraggable={true} isDragging={isDragging}>
+    <WidgetBase htmlProps={rootProps} isDraggable={true} isDragging={isDragging} layout={params.layout}>
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen params={params} addFiles={addFiles} />
       ) : (
