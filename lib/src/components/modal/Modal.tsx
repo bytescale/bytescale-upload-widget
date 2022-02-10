@@ -2,6 +2,7 @@ import { JSX } from "preact";
 import { ReactNode } from "uploader/common/React";
 import { useLayoutEffect } from "preact/compat";
 import "./Modal.scss";
+import { CloseSvg } from "uploader/assets/svgs/CloseSvg";
 
 interface Props {
   children: ReactNode;
@@ -25,7 +26,19 @@ export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Eleme
   return (
     <>
       <div className="uploader__backdrop" onClick={closeModal} />
-      <div className="uploader__modal">{children}</div>
+      <div className="uploader__modal">
+        <div className="uploader__modal__close">
+          <a
+            href="#close"
+            onClick={e => {
+              e.preventDefault();
+              closeModal();
+            }}>
+            <CloseSvg />
+          </a>
+        </div>
+        {children}
+      </div>
     </>
   );
 };

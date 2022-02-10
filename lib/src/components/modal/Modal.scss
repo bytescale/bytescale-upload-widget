@@ -17,6 +17,20 @@
     z-index: $modal-index;
     position: relative;
     overflow: auto;
+    &__close {
+      text-align: right;
+      a {
+        color: #999;
+        &:hover {
+          color: #666;
+        }
+      }
+
+      svg {
+        display: inline-block;
+        margin: 15 * $px 15 * $px 0 auto;
+      }
+    }
   }
   &__backdrop {
     content: " ";
