@@ -8,7 +8,9 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.symbol.iterator
   - core-js/modules/es.symbol.to-string-tag
   - core-js/modules/es.array.concat
+  - core-js/modules/es.array.every
   - core-js/modules/es.array.filter
+  - core-js/modules/es.array.find
   - core-js/modules/es.array.for-each
   - core-js/modules/es.array.from
   - core-js/modules/es.array.index-of
@@ -25,6 +27,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.date.to-string
   - core-js/modules/es.function.bind
   - core-js/modules/es.function.name
+  - core-js/modules/es.global-this
   - core-js/modules/es.json.to-string-tag
   - core-js/modules/es.map
   - core-js/modules/es.math.to-string-tag
@@ -38,10 +41,13 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.object.values
   - core-js/modules/es.promise
   - core-js/modules/es.reflect.construct
+  - core-js/modules/es.regexp.constructor
   - core-js/modules/es.regexp.exec
   - core-js/modules/es.regexp.to-string
+  - core-js/modules/es.string.ends-with
   - core-js/modules/es.string.iterator
   - core-js/modules/es.string.replace
+  - core-js/modules/es.string.split
   - core-js/modules/es.string.starts-with
   - core-js/modules/es.string.trim
   - core-js/modules/es.string.sub
