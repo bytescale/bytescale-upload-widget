@@ -31,7 +31,7 @@
 
 The following provides a working file & image uploader UI component, with a JavaScript callback for the uploaded file URLs — files are hosted on [Upload.io](https://upload.io).
 
-**Give it a try!**
+Give it a try!
 
 ```html
 <html>
