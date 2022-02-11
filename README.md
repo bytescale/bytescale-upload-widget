@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader <br/>(Batteries Included)</b></p>
+<p align="center"><b>File & Image Uploader <br/><span style="opacity: 0.5;">(Batteries Included)</span></b></p>
 <br/>
 <p align="center">
   <a href="https://github.com/uploader/uploader/">
@@ -25,7 +25,13 @@
 
 </p>
 
-## 🚀 Working Example: Copy, Paste & Run!
+## 🚀 Working Example — Copy, Paste & Run:
+
+[Upload.io](https://upload.io) is a file upload & file transformation platform, designed for web apps.
+
+The following example provides a working file & image uploader UI component, with a JavaScript callback for the uploaded file URLs — files are hosted on [Upload.io](https://upload.io).
+
+Give it a try!
 
 ```html
 <html>
