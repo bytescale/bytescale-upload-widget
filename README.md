@@ -31,7 +31,7 @@ Beautifully clean & simple file uploader widget.
 
 **Supports:** image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
 
-Adds to your web app in seconds:
+Add to your web app in seconds:
 
 ```html
 <html>
