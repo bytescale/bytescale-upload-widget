@@ -37,7 +37,7 @@ module.exports = {
   entry: [`webpack-dev-server/client?http://localhost:${port}/`, "./src/index.ts"],
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Upload file",
+      title: "Uploader Demo",
       template: path.resolve(__dirname, "src/index.html"),
       filename: "index.html" // output file
     }),

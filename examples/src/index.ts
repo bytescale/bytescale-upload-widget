@@ -14,7 +14,7 @@ const uploader = new Uploader({
 const openUploader = (): void => {
   uploader.open({ multi: true }).then(
     (f: UploadedFile[]) => {
-      console.log(`Files uploaded: ${f.map(x => x.fileId).join(", ")}`);
+      alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
     },
     (e: Error) => console.error(e)
   );

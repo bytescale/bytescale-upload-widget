@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader Widget</b></p>
+<p align="center"><b>File & Image Uploader <br/>(Batteries Included)</b></p>
 <br/>
 <p align="center">
   <a href="https://github.com/uploader/uploader/">
@@ -25,6 +25,37 @@
 
 </p>
 
+## 🚀 Working Example: Copy, Paste & Run!
+
+```html
+<html>
+  <head>
+    <script src="https://js.upload.io/uploader/v1"></script>
+    <script>
+      const uploader = new Uploader({
+
+        // Replace with your API key. (Get from: https://upload.io/)
+        apiKey: "..."
+
+      });
+
+      // Opens the file & image uploader:
+      uploader.open({ multi: true }).then(
+        files => {
+          // Do something with these uploaded file URLs...
+          alert(
+            `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`
+          )
+        },
+        e => console.error(e)
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
 ## ⚙️ Prerequisites
 
 1.  [Create an Upload account](https://upload.io/) (it only takes a few seconds).
@@ -43,6 +74,8 @@
 
 ## 🎯 Features
 
+Uploader is an out-the-box file & image uploader for [Upload.io](https://upload.io/upload-js).
+
 Use Uploader and [Upload.io](https://upload.io/uploader) to achieve:
 
 - File uploading that works out-the-box.
@@ -52,33 +85,6 @@ Use Uploader and [Upload.io](https://upload.io/uploader) to achieve:
 - File authorization. (Optional: issue JWTs from your app to define per-user file access.)
 - Monitoring. (Beautiful dashboards to monitor usage & traffic.)
 - And much more, [explore Upload.io](https://upload.io/features).
-
-## 👀 Examples
-
-```html
-<html>
-  <head>
-    <script src="https://js.upload.io/uploader/v1"></script>
-    <script>
-      const uploader = new Uploader({
-
-        // Replace with your API key. (Get from: https://upload.io/)
-        apiKey: "..."
-
-      });
-
-      uploader.open({ multi: true }).then(
-        files => {
-          alert(`Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`)
-        },
-        e => console.error(e)
-      );
-    </script>
-  </head>
-  <body>
-  </body>
-</html>
-```
 
 ## Contribute
 

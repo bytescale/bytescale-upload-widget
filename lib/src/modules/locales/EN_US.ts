@@ -4,7 +4,7 @@ export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
   "addAnotherFile": "Add another file...",
   "cancel": "cancel",
   "cancelled!": "cancelled",
-  "finish": "Finish",
+  "finish": "Finished",
   "finishIcon": true,
   "orDragDropCopyPaste": "...or drag and drop files.",
   "pleaseWait": "Please wait...",
