@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader</b><br/> (Works Out-The-Box)</p>
+<p align="center"><b>File & Image Uploader</b><br/> (No Setup or Infrastructure Required)</p>
 <br/>
 <p align="center">
   <a href="https://github.com/uploader/uploader/">
@@ -31,7 +31,7 @@ Beautifully clean & simple file uploader widget.
 
 **Supports:** image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
 
-Add it to your web app in seconds:
+Adds to your web app in seconds:
 
 ```html
 <html>
