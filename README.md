@@ -29,7 +29,7 @@
 
 [Upload.io](https://upload.io) is a file upload & file transformation platform, designed for web apps.
 
-The following provides a working file & image uploader UI component, with a JavaScript callback for the uploaded file URLs — files are hosted on [Upload.io](https://upload.io).
+Example includes a JavaScript callback for your uploaded file URLs — hosted on [Upload.io](https://upload.io).
 
 Give it a try!
 
