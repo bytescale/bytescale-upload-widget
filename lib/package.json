@@ -1,12 +1,12 @@
 {
   "name": "uploader",
-  "version": "1.1.14",
+  "version": "1.1.16",
   "author": "Upload <hello@upload.io> (https://upload.io)",
   "description": "Uploader | File & Image Uploader for Upload.io",
   "license": "MIT",
   "main": "dist/main.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://upload.io/uploader",
+  "homepage": "https://upload.io/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upload-js/uploader.git"
