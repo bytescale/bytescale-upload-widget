@@ -27,9 +27,9 @@
 
 ## 🚀 Working Example — Copy, Paste & Run:
 
-[Upload.io](https://upload.io) is a file upload & file transformation platform, designed for web apps.
+This example provides a file & image uploader widget, with a JavaScript callback for your uploaded file URLs.
 
-This example includes a JavaScript callback for your uploaded file URLs — hosted on [Upload.io](https://upload.io).
+Files are hosted on [Upload.io](https://upload.io): a file upload & file transformation platform, designed for web apps.
 
 Give it a try!
 
