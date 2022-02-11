@@ -1,6 +1,6 @@
 {
   "name": "uploader",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "author": "Upload <hello@upload.io> (https://upload.io)",
   "description": "Uploader | File & Image Uploader. Beautiful, clean & simple file uploader widget. Supports: image resizing, image cropping, file storage & file hosting.",
   "license": "MIT",

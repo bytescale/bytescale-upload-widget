@@ -29,7 +29,7 @@
 
 Beautifully clean & simple file uploader widget.
 
-Supports: image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
+**Supports:** image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
 
 Add it to your web app in seconds:
 
