@@ -79,7 +79,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
 
   const addFiles = (files: File[]): void =>
     setNextSparseFileIndex(nextSparseFileIndex => {
-      files.forEach((file, i) => {
+      files.slice(0, multi ? files.length : 1).forEach((file, i) => {
         const fileIndex = nextSparseFileIndex + i;
         upload
           .uploadFile({

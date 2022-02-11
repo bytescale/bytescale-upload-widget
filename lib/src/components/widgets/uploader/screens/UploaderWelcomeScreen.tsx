@@ -15,6 +15,6 @@ export const UploaderWelcomeScreen = ({ addFiles, params: { multi, locale } }: P
       className="btn--primary btn--upload"
       onUpload={addFiles}
     />
-    <p className="text-secondary mb-0">{locale.orDragDropCopyPaste}</p>
+    <p className="text-secondary mb-0">{multi ? locale.orDragDropFiles : locale.orDragDropFile}</p>
   </>
 );

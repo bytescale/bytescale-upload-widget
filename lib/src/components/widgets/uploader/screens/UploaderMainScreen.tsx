@@ -34,27 +34,29 @@ export const UploaderMainScreen = ({ addFiles, submittedFiles, params, remove, r
           />
         ))}
       </div>
-      <div className="uploader__main-screen__buttons">
-        <UploadButton multi={params.multi} text={locale.addAnotherFile} onUpload={addFiles} />
+      {params.multi && (
+        <div className="uploader__main-screen__buttons">
+          <UploadButton multi={params.multi} text={locale.addAnotherFile} onUpload={addFiles} />
 
-        <a
-          href="#done"
-          className={cn("btn btn--primary", { disabled: !canFinish })}
-          onClick={e => {
-            e.preventDefault();
-            if (canFinish) {
-              resolve(uploadedFiles.map(x => x.uploadedFile));
-            }
-          }}>
-          {finishedUploading ? (
-            <span className="vcenter">
-              {locale.finish} {locale.finishIcon && <RightSvg width={12} className="ml-2" />}
-            </span>
-          ) : (
-            locale.pleaseWait
-          )}
-        </a>
-      </div>
+          <a
+            href="#done"
+            className={cn("btn btn--primary", { disabled: !canFinish })}
+            onClick={e => {
+              e.preventDefault();
+              if (canFinish) {
+                resolve(uploadedFiles.map(x => x.uploadedFile));
+              }
+            }}>
+            {finishedUploading ? (
+              <span className="vcenter">
+                {locale.finish} {locale.finishIcon && <RightSvg width={12} className="ml-2" />}
+              </span>
+            ) : (
+              locale.pleaseWait
+            )}
+          </a>
+        </div>
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const uploader = new Uploader({
 });
 
 const openUploader = (): void => {
-  uploader.open({ multi: true }).then(
+  uploader.open({ multi: false }).then(
     (f: UploadedFile[]) => {
       alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
     },

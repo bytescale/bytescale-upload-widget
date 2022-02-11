@@ -4,7 +4,8 @@ export interface UploaderWidgetLocale {
   "cancelled!": string;
   "finish": string;
   "finishIcon": boolean;
-  "orDragDropCopyPaste": string;
+  "orDragDropFile": string;
+  "orDragDropFiles": string;
   "pleaseWait": string;
   "remove": string;
   "removed!": string;
