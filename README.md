@@ -25,13 +25,13 @@
 
 </p>
 
-## 🚀 Working Example — Copy, Paste & Run:
+## 🚀 Get Started — Copy, Paste & Run!
 
-The following example provides a **file & image uploader** widget with a JavaScript callback for your uploaded files.
+Beautifully clean & simple file uploader widget.
 
-Files are conveniently hosted on [Upload.io](https://upload.io): a powerful file upload platform for web apps.
+Supports: image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
 
-Give it a try!
+Add it to your web app in seconds:
 
 ```html
 <html>

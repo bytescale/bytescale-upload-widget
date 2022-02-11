@@ -9,9 +9,7 @@ interface Props {
 
 export const ConfigError = ({ error, layout }: Props): JSX.Element => (
   <WidgetBase layout={layout}>
-    <p>
-      <strong>Invalid configuration:</strong>
-    </p>
+    <h1>Oops!</h1>
     <p>{(error.message ?? "unknown error").replace("[upload-js] ", "")}</p>
   </WidgetBase>
 );
