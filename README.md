@@ -27,7 +27,7 @@
 
 ## 🚀 Working Example — Copy, Paste & Run:
 
-The following example provides a file & image uploader widget, with a JavaScript callback for your uploaded files.
+The following example provides a **file & image uploader** widget, with a JavaScript callback for your uploaded files.
 
 Files are conveniently hosted on [Upload.io](https://upload.io): a powerful file upload platform for web apps.
 
