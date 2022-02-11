@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader <br/><span style="opacity: 0.5;">(Batteries Included)</span></b></p>
+<p align="center"><b>File & Image Uploader</b><br/> (Batteries Included)</p>
 <br/>
 <p align="center">
   <a href="https://github.com/uploader/uploader/">
