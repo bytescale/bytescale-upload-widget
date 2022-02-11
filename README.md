@@ -29,7 +29,7 @@
 
 This example provides a file & image uploader widget, with a JavaScript callback for your uploaded file URLs.
 
-Files are hosted on [Upload.io](https://upload.io): a file upload & file transformation platform, designed for web apps.
+Files are hosted on [Upload.io](https://upload.io): a file upload platform, designed for web apps.
 
 Give it a try!
 
