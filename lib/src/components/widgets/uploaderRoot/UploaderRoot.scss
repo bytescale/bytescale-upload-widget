@@ -69,6 +69,10 @@
         }
       }
     }
+    &--primary-outline {
+      color: $primary;
+      border-color: $primary;
+    }
     &.disabled {
       opacity: 0.5;
       cursor: default;
@@ -108,6 +112,7 @@
     position: relative;
     top: -1px
   }
+
   .ml-0 {
     margin-left: 0;
   }
@@ -123,6 +128,7 @@
   .ml-4 {
     margin-left: $px * 10;
   }
+
   .mr-0 {
     margin-right: 0;
   }
@@ -138,6 +144,7 @@
   .mr-4 {
     margin-right: $px * 10;
   }
+
   .mb-0 {
     margin-bottom: 0;
   }
@@ -152,5 +159,24 @@
   }
   .mb-4 {
     margin-bottom: $px * 10;
+  }
+
+  .mt-0 {
+    margin-top: 0;
+  }
+  .mt-1 {
+    margin-top: $px * 5;
+  }
+  .mt-2 {
+    margin-top: $px * 7;
+  }
+  .mt-3 {
+    margin-top: $px * 8;
+  }
+  .mt-4 {
+    margin-top: $px * 10;
+  }
+  .mt-5 {
+    margin-top: $px * 20;
   }
 }

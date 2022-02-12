@@ -7,8 +7,9 @@ if (apiKey === undefined) {
 }
 
 const uploader = new Uploader({
+  apiKey: "...",
   internal: { apiUrl: (window as any).UPLOAD_JS_API_URL, cdnUrl: (window as any).UPLOAD_JS_CDN_URL }
-} as any);
+});
 
 const openUploader = (): void => {
   uploader.open({ multi: false }).then(

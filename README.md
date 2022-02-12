@@ -31,7 +31,7 @@ Beautifully clean & simple file uploader widget.
 
 **Supports:** image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
 
-Add to your web app in seconds:
+Integrates in seconds:
 
 ```html
 <html>
@@ -48,7 +48,7 @@ Add to your web app in seconds:
       // Opens the file & image uploader:
       uploader.open({ multi: true }).then(
         files => {
-          // Do something with these uploaded file URLs...
+          // Do something with the uploaded file URLs...
           alert(
             `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`
           )
