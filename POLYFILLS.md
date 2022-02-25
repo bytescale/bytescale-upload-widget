@@ -13,6 +13,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.array.find
   - core-js/modules/es.array.for-each
   - core-js/modules/es.array.from
+  - core-js/modules/es.array.includes
   - core-js/modules/es.array.index-of
   - core-js/modules/es.array.is-array
   - core-js/modules/es.array.iterator
@@ -45,6 +46,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.regexp.exec
   - core-js/modules/es.regexp.to-string
   - core-js/modules/es.string.ends-with
+  - core-js/modules/es.string.includes
   - core-js/modules/es.string.iterator
   - core-js/modules/es.string.replace
   - core-js/modules/es.string.split
