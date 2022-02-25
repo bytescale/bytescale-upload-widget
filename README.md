@@ -31,7 +31,7 @@ Beautifully clean & simple file uploader widget.
 
 **Supports:** image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
 
-Integrates in seconds:
+Adds to your webpage in seconds:
 
 ```html
 <html>
@@ -39,10 +39,8 @@ Integrates in seconds:
     <script src="https://js.upload.io/uploader/v1"></script>
     <script>
       const uploader = new Uploader({
-
-        // Replace with your API key. (Get from: https://upload.io/)
-        apiKey: "..."
-
+        // Get production API keys from Upload.io
+        apiKey: "free"
       });
 
       // Opens the file & image uploader:

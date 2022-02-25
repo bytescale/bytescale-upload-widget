@@ -1,6 +1,6 @@
 {
   "name": "uploader",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "author": "Upload <hello@upload.io> (https://upload.io)",
   "description": "Uploader | File & Image Uploader. Beautiful, clean & simple file uploader widget. Supports: image resizing, image cropping, file storage & file hosting.",
   "license": "MIT",
@@ -46,8 +46,8 @@
   "dependencies": {
     "classnames": "2.2.6",
     "preact": "10.6.5",
-    "react-transition-group": "^4.4.2",
-    "upload-js": "1.39.1"
+    "react-transition-group": "4.4.2",
+    "upload-js": "1.40.0"
   },
   "devDependencies": {
     "@babel/cli": "7.12.10",
