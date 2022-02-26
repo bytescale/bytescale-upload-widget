@@ -25,7 +25,7 @@
 
 </p>
 
-## 🚀 Get Started — Copy, Paste & Run!
+# 🚀 Get Started — Copy, Paste & Run!
 
 Beautifully clean & simple file uploader widget.
 
