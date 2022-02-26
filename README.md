@@ -43,10 +43,10 @@ Adds to your webpage in seconds:
         apiKey: "free"
       });
 
-      // Opens the file & image uploader:
+      // Open the file & image uploader:
       uploader.open({ multi: true }).then(
         files => {
-          // Do something with the uploaded file URLs...
+          // Do something with the uploaded file URLs:
           alert(
             `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`
           )

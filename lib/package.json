@@ -7,6 +7,7 @@
   "main": "dist/main.js",
   "types": "dist/index.d.ts",
   "homepage": "https://upload.io/",
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upload-js/uploader.git"
@@ -41,7 +42,8 @@
     "prepack:cdn": "npm run clean && webpack --config webpack.config.cdn.js && find dist -name \"*.ts\" -type f -delete && for f in dist/*.js; do cp -- \"$f\" \"${f%.js}\"; done",
     "postpack": "([ ! -f uploader-*.tgz ] || mv uploader-*.tgz uploader.tgz) && rm README.md",
     "publish:cdn:onrelease": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:cdn'",
-    "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/"
+    "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/",
+    "test": "(cd ../e2e_test && npm run test)"
   },
   "dependencies": {
     "classnames": "2.2.6",
