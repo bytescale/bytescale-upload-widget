@@ -51,6 +51,7 @@
         transition: 0.1s color linear;
         color: #D3D3D3;
         padding: 18 * $px 17 * $px 13 * $px 14 * $px;
+        border-bottom: none;
         display: inline-block;
         font-size: inherit;
         &:hover {

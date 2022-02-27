@@ -123,7 +123,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/upload-j
 
 If you would like to contribute to Uploader:
 
-1. Add a [GitHub Star](https://github.com/upload-js/uploader/stargazers) to the project (only if you're feeling generous!).
+1. Add a [GitHub Star](https://github.com/upload-js/uploader/stargazers) to the project (if you're feeling generous!).
 2. Determine whether you're raising a bug, feature request or question.
 3. Raise your issue or PR. 🚀
 
