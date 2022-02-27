@@ -40,27 +40,24 @@
 
 # 🚀 Get Started — [Try on CodePen](https://codepen.io/upload-js/pen/QWOZWZR?editors=1010)
 
-To add a file uploader to your web app, copy this example:
+To add a file uploader to your web app, copy this code:
 
 ```html
 <html>
   <head>
     <script src="https://js.upload.io/uploader/v1"></script>
     <script>
+      // Get production API keys from Upload.io
       const uploader = new Uploader({
-        // Get production API keys from Upload.io
         apiKey: "free"
       });
 
-      // Open the file & image uploader:
+      // Show the file uploader.
       uploader.open({ multi: true }).then(
-        files => {
-          // Do something with the uploaded file URLs:
-          alert(
-            `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`
-          )
-        },
-        e => console.error(e)
+        files => alert(files.length === 0
+          ? "No files selected."
+          : `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
+        error => console.error(error)
       );
     </script>
   </head>

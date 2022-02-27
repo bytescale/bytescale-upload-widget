@@ -17,6 +17,17 @@
   line-height: 1;
   text-align: left;
 
+  // --- Reset styles (which may have been set in the containing page) ---
+  a, button {
+    font-size: inherit;
+    margin: 0;
+  }
+  a {
+    border-bottom: none;
+    padding: 0;
+  }
+  // ---------------------------------------------------------------------
+
   a {
     color: $primary;
     &, &:hover, &:active, &:focus {
