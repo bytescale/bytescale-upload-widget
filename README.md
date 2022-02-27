@@ -40,11 +40,7 @@
 
 # 🚀 Get Started — [Try on CodePen](https://codepen.io/upload-js/pen/QWOZWZR?editors=1010)
 
-Beautifully clean & simple file uploader widget.
-
-**Supports:** image resizing, image cropping, file storage & file hosting (via [Upload.io](https://upload.io)).
-
-Adds to your webpage in seconds:
+To add a file uploader to your web app, copy this example:
 
 ```html
 <html>
@@ -93,7 +89,7 @@ _Coming Soon!_
 
 ## 🎯 Features
 
-Uploader is the out-the-box file & image uploader for [Upload.io](https://upload.io/upload-js).
+Uploader is the file & image uploader for [Upload.io](https://upload.io/upload-js): the file upload service for developers.
 
 **Core features (available without an account):**
 
