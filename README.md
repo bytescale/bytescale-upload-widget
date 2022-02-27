@@ -8,11 +8,11 @@
 <br/>
 <p align="center">
   <a href="https://github.com/upload-js/uploader/">
-    <img src="https://img.shields.io/badge/gzipped-7%20kb-4ba0f6" />
+    <img src="https://img.shields.io/badge/gzipped-12%20kb-4ba0f6" />
   </a>
 
-  <a href="https://www.npmjs.com/package/upload-js">
-    <img src="https://img.shields.io/badge/upload--js-npm-4ba0f6" />
+  <a href="https://www.npmjs.com/package/uploader">
+    <img src="https://img.shields.io/badge/uploader-npm-4ba0f6" />
   </a>
 
   <a href="https://github.com/upload-js/uploader/actions/workflows/ci.yml">
@@ -78,7 +78,7 @@ Adds to your webpage in seconds:
 Install via NPM:
 
 ```shell
-npm install upload-js
+npm install uploader
 ```
 
 Or via a `<script>` tag:
@@ -89,7 +89,7 @@ Or via a `<script>` tag:
 
 ## Use with Popular Frameworks
 
-...
+_Coming Soon!_
 
 ## 🎯 Features
 
