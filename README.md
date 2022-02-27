@@ -7,25 +7,38 @@
 <p align="center"><b>File & Image Uploader</b><br/> (No Setup or Infrastructure Required)</p>
 <br/>
 <p align="center">
-  <a href="https://github.com/uploader/uploader/">
-    <img src="https://img.shields.io/badge/gzipped-7%20kb-75C46B" />
+  <a href="https://github.com/upload-js/uploader/">
+    <img src="https://img.shields.io/badge/gzipped-7%20kb-4ba0f6" />
+  </a>
+
+  <a href="https://www.npmjs.com/package/upload-js">
+    <img src="https://img.shields.io/badge/upload--js-npm-4ba0f6" />
+  </a>
+
+  <a href="https://github.com/upload-js/uploader/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/badge/build-passing-4ba0f6" />
   </a>
 
   <a href="https://www.npmjs.com/package/uploader">
-    <img src="https://img.shields.io/badge/uploader-npm-75C46B" />
+    <img src="https://img.shields.io/npm/dt/uploader?color=%234ba0f6" />
+  </a>
+  <br/>
+
+  <a href="https://www.npmjs.com/package/uploader">
+    <img src="https://img.shields.io/badge/TypeScript-included-4ba0f6" />
   </a>
 
-  <a href="https://github.com/uploader/uploader/actions/workflows/ci.yml">
-    <img src="https://img.shields.io/badge/build-passing-75C46B" />
+  <a href="https://github.com/upload-js/uploader/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/npms-io/maintenance-score/upload-js?color=4ba0f6" />
   </a>
 
-  <a target="_blank" href="https://twitter.com/intent/tweet?text=A%20new%20way%20to%20upload%20files%3F%20I%20just%20found%20Uploader%20%E2%80%94%20it's%20a%20library%20and%20a%20SaaS%20%E2%80%94%20makes%20it%20super%20easy%20to%20add%20file%20uploads%20%26%20transformations%20into%20web%20apps%20%E2%80%94%20installs%20with%207%20lines%20of%20code%20https%3A%2F%2Fgithub.com%2Fupload-js%2Fuploader&hashtags=javascript,opensource,js,webdev,developers">
+  <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20found%20Uploader%20%26%20Upload.io%20%E2%80%94%20they%20make%20it%20super%20easy%20to%20upload%20files%20%E2%80%94%20installs%20with%207%20lines%20of%20code%20https%3A%2F%2Fgithub.com%2Fupload-js%2Fupload-js&hashtags=javascript,opensource,js,webdev,developers&via=UploadJS">
     <img alt="Twitter URL" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fupload-js%2Fuploader%2F" />
   </a>
 
 </p>
 
-# 🚀 Get Started — Copy, Paste & Run!
+# 🚀 Get Started — [Try on CodePen](https://codepen.io/upload-js/pen/QWOZWZR?editors=1010)
 
 Beautifully clean & simple file uploader widget.
 
@@ -60,35 +73,55 @@ Adds to your webpage in seconds:
 </html>
 ```
 
-## ⚙️ Prerequisites
+## Installation
 
-1.  [Create an Upload account](https://upload.io/) (it only takes a few seconds).
+Install via NPM:
 
-2.  Install Uploader:
+```shell
+npm install upload-js
+```
 
-    ```bash
-    npm install uploader
-    ```
+Or via a `<script>` tag:
 
-    Or:
+```html
+<script src="https://js.upload.io/uploader/v1"></script>
+```
 
-    ```html
-    <script src="https://js.upload.io/uploader/v1"></script>
-    ```
+## Use with Popular Frameworks
+
+...
 
 ## 🎯 Features
 
-Uploader is an out-the-box file & image uploader for [Upload.io](https://upload.io/upload-js).
+Uploader is the out-the-box file & image uploader for [Upload.io](https://upload.io/upload-js).
 
-Use Uploader and [Upload.io](https://upload.io/uploader) to achieve:
+**Core features (available without an account):**
 
-- File uploading that works out-the-box.
-- File storage & file hosting. (Zero setup, pre-integrated.)
-- Integrated CDN. (300+ locations, 47+ countries.)
-- File processing. (Image resizing, cropping, etc.)
-- File authorization. (Optional: issue JWTs from your app to define per-user file access.)
-- Monitoring. (Beautiful dashboards to monitor usage & traffic.)
-- And much more, [explore Upload.io](https://upload.io/features).
+- **Beautifully clean UI widget.** (Lightweight & Customizable.)
+- Localization. (See `locale` constructor parameter.)
+- File Storage. (Files stored for 4 hours with the `"free"` API key.)
+- File Hosting via CDN. (Files served from 100 locations worldwide.)
+- Fast Image Transformations. (Resize images, crop images & convert images.)
+
+**All features (available with an account):**
+
+- Permanent Storage. (The `"free"` API key provides temporary storage only.)
+- Unlimited Daily Uploads. (The `"free"` API key allows 100 uploads per day per IP.)
+- Extended CDN Coverage. (Files served from 300+ locations worldwide.)
+- More File Transformations. (Custom image resizing, cropping, converting, etc.)
+- Upload & Download Authentication. (Supports federated auth via your own JWT authorizer.)
+- File & Folder Management.
+- Expiring Links.
+- Custom CNAME.
+- Advanced Rules Engine:
+  - Rate Limiting.
+  - Traffic Limiting.
+  - File Size Limiting.
+  - IP Blacklisting.
+  - File Type Blacklisting.
+  - And More...
+
+**[Create an Upload.io account »](https://upload.io/pricing)**
 
 ## Contribute
 

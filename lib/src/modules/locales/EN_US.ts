@@ -11,6 +11,6 @@ export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
   "pleaseWait": "Please wait...",
   "removed!": "removed",
   "remove": "remove",
-  "uploadFile": "Upload a File",
-  "uploadFiles": "Upload Files"
+  "uploadFile": "Select a File",
+  "uploadFiles": "Select a File" // We have chosen to use singular for the button anyway.
 };

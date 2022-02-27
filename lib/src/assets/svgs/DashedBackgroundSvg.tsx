@@ -44,10 +44,10 @@ export const DashedBackgroundSvg = ({
         xlinkHref="#a"
         transform="translate(-69 -99)"
         stroke="currentColor"
-        stroke-width="3"
+        strokeWidth="4"
         fill="none"
-        fill-rule="evenodd"
-        stroke-dasharray="4"
+        fillRule="evenodd"
+        strokeDasharray="4"
       />
     </svg>
   );

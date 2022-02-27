@@ -12,8 +12,8 @@ interface Props {
   onClosedModal: () => void;
 }
 
-export const modalCloseButtonSize = 18;
-export const modalCloseButtonPadding = 20;
+export const modalCloseButtonSize = 27;
+export const modalCloseButtonPadding = 11;
 
 export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Element => {
   const [isClosed, setIsClosed] = useState(false);

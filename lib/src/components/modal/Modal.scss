@@ -49,9 +49,10 @@
       z-index: $modal-bg-z-index + 1;
       a {
         transition: 0.1s color linear;
-        color: #c0c0c0;
-        padding: 20 * $px 20 * $px 13 * $px 14 * $px;
+        color: #D3D3D3;
+        padding: 18 * $px 17 * $px 13 * $px 14 * $px;
         display: inline-block;
+        font-size: inherit;
         &:hover {
           color: #888;
         }
