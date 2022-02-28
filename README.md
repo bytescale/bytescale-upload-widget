@@ -38,26 +38,30 @@
 
 </p>
 
-# 🚀 Get Started — [Try on CodePen](https://codepen.io/upload-js/pen/QWOZWZR?editors=1010)
+<h1 align="center">
+  Get Started —
+  <a href="https://codepen.io/upload-js/pen/QWOZWZR?editors=1010">
+    Try on CodePen
+  </a>
+</h1>
 
-To add a file uploader to your web app, copy this code:
+<p align="center">
+  Add a working file uploader to your web app in seconds:
+</p>
 
 ```html
 <html>
   <head>
     <script src="https://js.upload.io/uploader/v1"></script>
     <script>
-      // Get production API keys from Upload.io
-      const uploader = new Uploader({
-        apiKey: "free"
-      });
+      const uploader = new Uploader({ apiKey: "free" });
 
-      // Show the file uploader.
+      // Open the file uploader.
       uploader.open({ multi: true }).then(
         files => alert(files.length === 0
           ? "No files selected."
           : `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
-        error => console.error(error)
+        error => alert(error)
       );
     </script>
   </head>
