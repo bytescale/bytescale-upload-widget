@@ -76,10 +76,7 @@ module.exports = {
         include: srcs,
         use: [
           {
-            loader: "url-loader",
-            options: {
-              limit: false
-            }
+            loader: "url-loader"
           }
         ]
       }

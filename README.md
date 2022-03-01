@@ -46,7 +46,7 @@
 </h1>
 
 <p align="center">
-  Get started with a working file uploader using the following code:
+  Get a working file uploader with the following code:
 </p>
 
 ```html
