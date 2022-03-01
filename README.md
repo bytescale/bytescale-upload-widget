@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader</b><br/> (Pre-Integrated with Cloud Storage)</p>
+<p align="center"><b>File & Image Uploader</b><br/> (With Integrated Cloud Storage)</p>
 <br/>
 <p align="center">
   <a href="https://github.com/upload-js/uploader/">
