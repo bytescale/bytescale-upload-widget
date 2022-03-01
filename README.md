@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<p align="center"><b>File & Image Uploader</b><br/> (With Integrated Cloud Storage)</p>
+<p align="center"><b>File & Image Uploader</b><br/> (Pre-Integrated with Cloud Storage)</p>
 <br/>
 <p align="center">
   <a href="https://github.com/upload-js/uploader/">
@@ -46,7 +46,7 @@
 </h1>
 
 <p align="center">
-  Add a working file uploader to your web app in seconds:
+  Get started with a working file uploader using the following code:
 </p>
 
 ```html
@@ -56,7 +56,7 @@
     <script>
       const uploader = new Uploader({ apiKey: "free" });
 
-      // Open the file uploader.
+      // Opens the file uploader.
       uploader.open({ multi: true }).then(
         files => alert(files.length === 0
           ? "No files selected."
@@ -95,7 +95,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 **Core features (available without an account):**
 
 - **Beautifully clean UI widget.** (Lightweight & Customizable.)
-- Localization. (See `locale` constructor parameter.)
+- Localization. (See the `locale` constructor parameter.)
 - File Storage. (Files stored for 4 hours with the `"free"` API key.)
 - File Hosting via CDN. (Files served from 100 locations worldwide.)
 - Fast Image Transformations. (Resize images, crop images & convert images.)

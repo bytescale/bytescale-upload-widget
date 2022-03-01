@@ -1,8 +1,8 @@
 {
   "name": "uploader",
-  "version": "1.2.4",
+  "version": "1.2.7",
   "author": "Upload <hello@upload.io> (https://upload.io)",
-  "description": "Uploader | File & Image Uploader. Beautiful, clean & simple file uploader widget. Supports: image resizing, image cropping, file storage & file hosting.",
+  "description": "Uploader | File & Image Uploader | Pre-Integrated with Cloud Storage 🚀",
   "license": "MIT",
   "main": "dist/main.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,8 @@
     "multi file",
     "multipart",
     "images",
-    "image processing"
+    "image processing",
+    "filepicker"
   ],
   "scripts": {
     "clean": "rm -rf dist && rm -f uploader.tgz",
