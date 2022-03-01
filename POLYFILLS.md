@@ -28,7 +28,6 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.date.to-string
   - core-js/modules/es.function.bind
   - core-js/modules/es.function.name
-  - core-js/modules/es.global-this
   - core-js/modules/es.json.to-string-tag
   - core-js/modules/es.map
   - core-js/modules/es.math.to-string-tag
