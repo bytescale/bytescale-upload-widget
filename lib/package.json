@@ -42,7 +42,9 @@
     "prepack:fat": "npm run clean && webpack --config webpack.config.fat.js && tsc-alias",
     "prepack:cdn": "npm run clean && webpack --config webpack.config.cdn.js && find dist -name \"*.ts\" -type f -delete && for f in dist/*.js; do cp -- \"$f\" \"${f%.js}\"; done",
     "postpack": "([ ! -f uploader-*.tgz ] || mv uploader-*.tgz uploader.tgz) && rm README.md",
-    "publish:cdn:onrelease": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:cdn'",
+    "publish:executeIfReleaseCommit": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:execute'",
+    "publish:execute": "npm run publish:cdn && npm publish && npm run createGitHubRelease",
+    "publish:createGitHubRelease": "gh release create v$(node -p \"require('./package.json').version\")",
     "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/",
     "test": "(cd ../e2e_test && npm run test)"
   },
