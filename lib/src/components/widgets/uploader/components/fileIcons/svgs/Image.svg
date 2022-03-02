@@ -10,9 +10,9 @@
     <g id="Image" transform="translate(-118.000000, -110.000000)">
       <g id="Group" transform="translate(118.000000, 110.000000)">
         <g id="google-slides" fill-rule="nonzero">
-          <path d="M145,210 L15,210 C6.7,210 0,203.3 0,195 L0,15 C0,6.7 6.7,0 15,0 L110,0 L160,50 L160,195 C160,203.3 153.3,210 145,210 Z" id="Path" fill="#55ABF5"></path>
-          <polygon id="Path" fill="#9CD1FF" points="160 50 110 50 110 0"></polygon>
-          <polygon id="Path" fill="#3F92DA" points="110 50 160 100 160 50"></polygon>
+          <path d="M145,210 L15,210 C6.7,210 0,203.3 0,195 L0,15 C0,6.7 6.7,0 15,0 L110,0 L160,50 L160,195 C160,203.3 153.3,210 145,210 Z" id="Path" fill="#4d8afa"></path>
+          <polygon id="Path" fill="#95b6ff" points="160 50 110 50 110 0"></polygon>
+          <polygon id="Path" fill="#3e71e4" points="110 50 160 100 160 50"></polygon>
         </g>
         <g filter="url(#filter-1)" id="file-picture">
           <g transform="translate(33.000000, 96.000000)">

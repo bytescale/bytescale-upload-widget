@@ -1,13 +1,21 @@
 @import "~uploader/components/widgets/uploader/Variables";
 
 .uploader__submitted-file {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #f8f8f8;
-  border-radius: 7 * $px;
-  padding: 21 * $px 23 * $px;
-  margin-bottom: $px * 8;
+  flex-grow: 1;
+  max-width: 33.333333%;
+  width: 33.333333%;
+  margin: $px * $file-gutter 0;
+  &__container {
+    margin: 0 $file-gutter * $px;
+    background: #f8f8f8;
+    border-radius: 7 * $px;
+  }
+  &__inner {
+    padding: 21 * $px 23 * $px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__action {
     min-width: 74 * $px; // Causes "cancel" and "remove" to take up same width, so prevents jerking when they transition between.
     text-align: right;

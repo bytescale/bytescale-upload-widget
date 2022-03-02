@@ -32,7 +32,12 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
           closeButtonSize={modalCloseButtonSize + modalCloseButtonPadding}
         />
       )}
-      <div className="uploader__widget-base__children">{children}</div>
+      <div
+        className={cn("uploader__widget-base__children", {
+          "uploader__widget-base__children--has-modal": layout === "modal"
+        })}>
+        {children}
+      </div>
     </div>
   );
 };

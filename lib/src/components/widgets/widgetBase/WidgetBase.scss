@@ -30,8 +30,17 @@
     align-items: center;
     flex-direction: column;
     display: flex;
-    height: 100%;
     z-index: $modal-bg-z-index + 1;
+
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &--has-modal {
+      top: 40 * $px;
+    }
   }
 
   &--draggable {

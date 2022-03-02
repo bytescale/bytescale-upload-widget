@@ -56,7 +56,7 @@
     <script>
       const uploader = new Uploader({ apiKey: "free" });
 
-      // Opens the file uploader.
+      // Open the file uploader.
       uploader.open({ multi: true }).then(
         files => alert(files.length === 0
           ? "No files selected."

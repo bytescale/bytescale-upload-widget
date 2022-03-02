@@ -56,27 +56,31 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
   }
 
   return (
-    <div className="mb-3 uploader__submitted-file">
-      {/* span required to align button to right of div */}
-      <span className="vcenter">
-        <ProgressIcon progress={Math.max(progressMargin, progress)} onCompleteImageSource={thumbnail} height={15} />{" "}
-        <span className="ml-2 mr-3">{fileName}</span>
-      </span>
-      {isDelayedRemove ? (
-        <span className="uploader__submitted-file__action uploader__submitted-file__action--performed">
-          {file.type === "uploading" ? locale["cancelled!"] : locale["removed!"]}
-        </span>
-      ) : (
-        <a
-          className="uploader__submitted-file__action"
-          href="#remove"
-          onClick={e => {
-            e.preventDefault();
-            delayedRemove();
-          }}>
-          {file.type === "uploading" ? locale.cancel : locale.remove}
-        </a>
-      )}
+    <div className="uploader__submitted-file">
+      <div className="uploader__submitted-file__container">
+        <div className="uploader__submitted-file__inner">
+          {/* span required to align button to right of div */}
+          <span className="vcenter">
+            <ProgressIcon progress={Math.max(progressMargin, progress)} onCompleteImageSource={thumbnail} height={15} />{" "}
+            <span className="ml-2 mr-3">{fileName}</span>
+          </span>
+          {isDelayedRemove ? (
+            <span className="uploader__submitted-file__action uploader__submitted-file__action--performed">
+              {file.type === "uploading" ? locale["cancelled!"] : locale["removed!"]}
+            </span>
+          ) : (
+            <a
+              className="uploader__submitted-file__action"
+              href="#remove"
+              onClick={e => {
+                e.preventDefault();
+                delayedRemove();
+              }}>
+              {file.type === "uploading" ? locale.cancel : locale.remove}
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
