@@ -61,7 +61,7 @@ Or via a `<script>` tag:
 <script src="https://js.upload.io/uploader/v1"></script>
 ```
 
-## Usage
+## Usage — [Try on CodePen](https://codepen.io/upload-js/pen/QWOZWZR?editors=1010)
 
 ### Initialize
 
@@ -69,13 +69,14 @@ Initialize once at the start of your application:
 
 ```javascript
 const { Uploader } = require("uploader");
+
 const uploader = new Uploader({
   // Get production API keys from Upload.io
   apiKey: "free"
 });
 ```
 
-### Open the upload widget
+### Opening the widget
 
 To display the upload widget:
 
@@ -88,7 +89,7 @@ uploader.open({}).then(
 );
 ```
 
-### Get the results
+### The result
 
 The result of `.open()` is a promise of `UploadedFile[]`:
 
@@ -129,7 +130,7 @@ uploader
   .then(files => alert(files))
 ```
 
-### Localization
+#### Localization
 
 ```javascript
 const myCustomLocale = {
