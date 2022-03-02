@@ -92,7 +92,7 @@ uploader.open({}).then(
 
 ### The result
 
-The result of `.open()` is a promise of `UploadedFile[]`:
+`.open()` returns a promise of `UploadedFile[]`:
 
 ```javascript
 [
