@@ -68,10 +68,11 @@ Or via a `<script>` tag:
 Initialize once at the start of your application:
 
 ```javascript
+// Ignore if installed via a script tag.
 const { Uploader } = require("uploader");
 
+// Get production API keys from Upload.io
 const uploader = new Uploader({
-  // Get production API keys from Upload.io
   apiKey: "free"
 });
 ```
