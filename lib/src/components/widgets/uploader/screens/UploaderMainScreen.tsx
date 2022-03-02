@@ -25,14 +25,16 @@ export const UploaderMainScreen = ({ addFiles, submittedFiles, params, remove, r
     // Div required to break-out of flex-box layout.
     <div className="uploader__main-screen">
       <div className="uploader__main-screen__file-list">
-        {submittedFiles.map(file => (
-          <SubmittedFileComponent
-            file={file}
-            locale={locale}
-            key={file.fileIndex}
-            remove={() => remove(file.fileIndex)}
-          />
-        ))}
+        <div className="uploader__main-screen__file-list__inner">
+          {submittedFiles.map(file => (
+            <SubmittedFileComponent
+              file={file}
+              locale={locale}
+              key={file.fileIndex}
+              remove={() => remove(file.fileIndex)}
+            />
+          ))}
+        </div>
       </div>
       {params.multi && (
         <div className="uploader__main-screen__buttons">

@@ -10,12 +10,15 @@
   width: 100%;
   &__file-list {
     margin: auto 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     //padding: 15 * $px;
     overflow-y: auto;
     width: 100%;
+    &__inner {
+      padding: 15 * $px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
   &__buttons {
     padding: 15 * $px;
