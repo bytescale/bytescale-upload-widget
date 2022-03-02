@@ -4,6 +4,8 @@ $primary-dark: #2c76ff;
 $base-size: 16;
 $px: (1 / $base-size) * 1em;
 $mobile-width-max: 750px; // Use real pixels here
-$mobile-width-min: 751px; // Use real pixels here
+$mobile-width-min: $mobile-width-max + 1px; // Use real pixels here
+$mobile-height-max: 420px; // Use real pixels here
+$mobile-height-min: $mobile-height-max + 1px; // Use real pixels here
 $modal-bg-z-index: 1;
 $file-gutter: 5;

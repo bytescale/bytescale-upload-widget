@@ -34,10 +34,11 @@
     max-width: 1050 * $px;
     max-height: 660 * $px;
 
-    @media (max-width: $mobile-width-max) {
+    @media (max-width: $mobile-width-max), (max-height: $mobile-height-max) {
       top:0;
       height: 100%;
       width: 100%;
+      max-width: none;
       max-height: none;
       border-radius: 0;
     }
