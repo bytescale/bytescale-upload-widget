@@ -45,30 +45,7 @@
   </a>
 </h1>
 
-<p align="center">
-  Get a working file uploader with the following code:
-</p>
-
-```html
-<html>
-  <head>
-    <script src="https://js.upload.io/uploader/v1"></script>
-    <script>
-      const uploader = new Uploader({ apiKey: "free" });
-
-      // Open the file uploader.
-      uploader.open({ multi: true }).then(
-        files => alert(files.length === 0
-          ? "No files selected."
-          : `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
-        error => alert(error)
-      );
-    </script>
-  </head>
-  <body>
-  </body>
-</html>
-```
+<p align="center"><a href="https://upload.io/uploader"><img alt="Uploader Demo" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/demo.gif"></a></p>
 
 ## Installation
 
@@ -84,9 +61,92 @@ Or via a `<script>` tag:
 <script src="https://js.upload.io/uploader/v1"></script>
 ```
 
-## Use with Popular Frameworks
+## Usage
 
-_Coming Soon!_
+### Initialize
+
+Initialize once at the start of your application:
+
+```javascript
+const { Uploader } = require("uploader");
+const uploader = new Uploader({
+  // Get production API keys from Upload.io
+  apiKey: "free"
+});
+```
+
+### Open the upload widget
+
+To display the upload widget:
+
+```javascript
+uploader.open({}).then(
+  files => alert(files.length === 0
+    ? "No files selected."
+    : `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
+  error => alert(error)
+);
+```
+
+### Get the results
+
+The result of `.open()` is a promise of `UploadedFile[]`:
+
+```javascript
+[
+  {
+    accountId: "FW251aX",                       // The Upload.io account the file was uploaded to.
+    file: { ... },                              // DOM file object (from the <input> element).
+    fileId: "FW251aXa9ku...",                   // File ID. Append to 'https://files.upload.io/' for the file.
+    fileUrl: "https://files.upload.io/FW25...", // File URL.
+    fileSize: 12345,                            // File size in bytes.
+    mime: "image/jpeg",                         // File MIME type.
+    tags: [                                     // Tags manually & automatically assigned to this file.
+      { name: "tag1", searchable: true },
+      { name: "tag2", searchable: true },
+      ...
+    ]
+  },
+  ...
+]
+```
+
+Note: an empty array is returned if the user closes the dialog without clicking "Finish".
+
+### Optional parameters
+
+```javascript
+uploader
+  .open({
+    containerElementId: "custom-container", // <body> by default.
+    layout: "modal",                        // "modal" by default. "inline" also supported.
+    locale: myCustomLocale,                 // EN_US by default. (See "Localization" section below.)
+    maxFileSizeBytes: 1024 ** 2,            // Unlimited by default.
+    mimeTypes: ["image/jpeg"],              // Unrestricted by default.
+    multi: false,                           // False by default.
+    tags: ["profile_picture"]               // Requires an Upload.io account.
+  })
+  .then(files => alert(files))
+```
+
+### Localization
+
+```javascript
+const myCustomLocale = {
+  "addAnotherFile":   "Add another file...",
+  "cancel":           "cancel",
+  "cancelled!":       "cancelled",
+  "finish":           "Finished",
+  "finishIcon":       true,
+  "orDragDropFile":   "...or drag and drop a file.",
+  "orDragDropFiles":  "...or drag and drop files.",
+  "pleaseWait":       "Please wait...",
+  "removed!":         "removed",
+  "remove":           "remove",
+  "uploadFile":       "Select a File",
+  "uploadFiles":      "Select Files"
+}
+```
 
 ## 🎯 Features
 
@@ -105,7 +165,6 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 - Permanent Storage. (The `"free"` API key provides temporary storage only.)
 - Unlimited Daily Uploads. (The `"free"` API key allows 100 uploads per day per IP.)
 - Extended CDN Coverage. (Files served from 300+ locations worldwide.)
-- More File Transformations. (Custom image resizing, cropping, converting, etc.)
 - Upload & Download Authentication. (Supports federated auth via your own JWT authorizer.)
 - File & Folder Management.
 - Expiring Links.
