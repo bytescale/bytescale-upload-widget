@@ -90,6 +90,21 @@ uploader.open({}).then(
 );
 ```
 
+#### Single-File vs. Multi-File
+
+To perform a single-file upload (default):
+
+```javascript
+uploader.open({ multi: false })
+```
+
+To perform a multi-file upload:
+
+```javascript
+uploader.open({ multi: true })
+```
+
+
 ### The result
 
 `.open()` returns a promise of `UploadedFile[]`:
