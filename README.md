@@ -116,8 +116,8 @@ uploader.open({ multi: true })
   {
     accountId: "FW251aX",                       // The Upload.io account the file was uploaded to.
     file: { ... },                              // DOM file object (from the <input> element).
-    fileId: "FW251aXa9ku...",                   // File ID. Append to 'https://files.upload.io/' for the file.
-    fileUrl: "https://files.upload.io/FW25...", // File URL.
+    fileId: "FW251aXa9ku...",                   // The uploaded file ID. Append to 'https://files.upload.io/' for the file.
+    fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
     fileSize: 12345,                            // File size in bytes.
     mime: "image/jpeg",                         // File MIME type.
     tags: [                                     // Tags manually & automatically assigned to this file.
@@ -169,7 +169,7 @@ const myCustomLocale = {
 }
 ```
 
-### Resize & Crop Images
+### Resizing & Cropping Images
 
 Given an uploaded image URL:
 
@@ -196,7 +196,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 **Core features (available without an account):**
 
 - **Beautifully clean UI widget.**
-- Lightweight. (29KB gzipped including all dependencies - see [Upload.js](https://github.com/upload-js/upload-js) for an ultra-lightweight solution.)
+- Lightweight. (29KB gzipped including all dependencies — see [Upload.js](https://github.com/upload-js/upload-js) for an ultra-lightweight solution.)
 - Single & Multi-File Uploads.
 - Fluid Layout & Mobile-Friendly.
 - Modal & Inline Modes.
