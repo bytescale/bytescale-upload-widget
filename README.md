@@ -84,7 +84,7 @@ const uploader = new Uploader({
 To display the upload widget:
 
 ```javascript
-uploader.open({}).then(
+uploader.open().then(
   files => alert(files.length === 0
     ? "No files selected."
     : `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
@@ -107,7 +107,7 @@ uploader.open({ multi: true })
 ```
 
 
-### The result
+### Result
 
 `.open()` returns a promise of `UploadedFile[]`:
 
