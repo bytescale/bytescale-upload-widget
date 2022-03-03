@@ -203,7 +203,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 - Localization.
 - Integrated File Hosting:
   - Files stored on [Upload.io](https://upload.io/uploader) for 4 hours with the `"free"` API key.
-  - Files hosted via a CDN: 100 locations worldwide.
+  - Files hosted via the Upload CDN: 100 locations worldwide.
 - Image Transformations:
   - Append `/thumbnail` or `/thumbnail-square` to your image URLs.
   - Get more transformations with a full account.
