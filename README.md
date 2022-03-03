@@ -90,7 +90,7 @@ uploader.open({}).then(
 );
 ```
 
-#### Single-File vs. Multi-File
+#### Single-File / Multi-File
 
 To perform a single-file upload (default):
 
