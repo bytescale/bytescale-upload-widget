@@ -169,7 +169,7 @@ const myCustomLocale = {
 }
 ```
 
-### Resizing & Cropping Images
+### Resize & Crop Images
 
 Given an uploaded image URL:
 
