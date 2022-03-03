@@ -47,6 +47,8 @@
 
 <p align="center"><a href="https://upload.io/uploader"><img alt="Uploader Demo" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/demo.gif"></a></p>
 
+<p align="center"><b>Supports:</b> single-file, multi-file, modal view, inline view, localization, mobile, and more...<br/><br/></p>
+
 ## Installation
 
 Install via NPM:
