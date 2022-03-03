@@ -214,7 +214,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 - Unlimited Daily Uploads. (The `"free"` API key allows 100 uploads per day per IP.)
 - Extended CDN Coverage. (Files served from 300+ locations worldwide.)
 - Upload & Download Authentication. (Supports federated auth via your own JWT authorizer.)
-- File & Folder Management.
+- File & Folder Management Console.
 - Expiring Links.
 - Custom CNAME.
 - Advanced Rules Engine:
