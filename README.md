@@ -8,7 +8,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/upload-js/uploader/">
-    <img src="https://img.shields.io/badge/gzipped-12%20kb-4ba0f6" />
+    <img src="https://img.shields.io/badge/gzipped-29%20kb-4ba0f6" />
   </a>
 
   <a href="https://www.npmjs.com/package/uploader">
@@ -176,7 +176,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 **Core features (available without an account):**
 
 - **Beautifully clean UI widget.** (Lightweight & Customizable.)
-- Lightweight.
+- Lightweight. (29KB gzipped including all dependencies - see [Upload.js](https://github.com/upload-js/upload-js) for an ultra-lightweight solution.)
 - Single & Multi-File Uploads.
 - Fluid Layout & Mobile-Friendly.
 - Modal & Inline Views.
