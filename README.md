@@ -217,7 +217,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 - File & Folder Management Console.
 - Expiring Links.
 - Custom CNAME.
-- Advanced Rules Engine:
+- Advanced Upload Control:
   - Rate Limiting.
   - Traffic Limiting.
   - File Size Limiting.
