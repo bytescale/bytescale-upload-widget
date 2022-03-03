@@ -132,7 +132,9 @@ uploader.open({ multi: true })
 
 Note: an empty array is returned if the user closes the dialog without clicking "Finish".
 
-### Optional parameters
+### Configuration
+
+All parameters are optional:
 
 ```javascript
 uploader
