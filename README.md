@@ -176,10 +176,17 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 **Core features (available without an account):**
 
 - **Beautifully clean UI widget.** (Lightweight & Customizable.)
-- Localization. (See the `locale` constructor parameter.)
-- File Storage. (Files stored for 4 hours with the `"free"` API key.)
-- File Hosting via CDN. (Files served from 100 locations worldwide.)
-- Fast Image Transformations. (Resize images, crop images & convert images.)
+- Lightweight.
+- Single & Multi-File Uploads.
+- Fluid Layout & Mobile-Friendly.
+- Modal & Inline Views.
+- Localization.
+- File Hosting:
+  - Files stored for 4 hours with the `"free"` API key.
+  - Files hosted via a CDN. (Files served from 100 locations worldwide.)
+- Image Transformations:
+  - Simple append `/thumbnail` or `/thumbnail-square` to your image URLs.
+  - Get more transformations [with a full account](https://upload.io/pricing).
 
 **All features (available with an account):**
 
