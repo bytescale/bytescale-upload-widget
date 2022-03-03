@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://upload.io/uploader">
-    <img alt="Upload.js" width="276" height="80" src="https://raw.githubusercontent.com/upload-io/assets/master/logo-uploader.svg">
+    <img alt="Uploader" width="276" height="80" src="https://raw.githubusercontent.com/upload-io/assets/master/logo-uploader.svg">
   </a>
 </h1>
 
@@ -45,7 +45,7 @@
   </a>
 </h1>
 
-<p align="center"><a href="https://upload.io/uploader"><img alt="Uploader Demo" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/demo.gif"></a></p>
+<p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/demo.gif"></a></p>
 
 <p align="center"><b>Supports:</b> single & multi-file uploads, modal & inline views, localization, mobile, and more...<br/><br/></p>
 
@@ -196,7 +196,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 **Core features (available without an account):**
 
 - **Beautifully clean UI widget.**
-- Lightweight. (29KB gzipped including all dependencies — see [Upload.js](https://github.com/upload-js/upload-js) for an ultra-lightweight solution.)
+- Lightweight. (29KB gzipped including all dependencies — see [Upload.js](https://upload.io/upload-js) for an ultra-lightweight solution.)
 - Single & Multi-File Uploads.
 - Fluid Layout & Mobile-Friendly.
 - Modal & Inline Modes.
