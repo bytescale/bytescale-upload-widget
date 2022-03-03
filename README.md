@@ -169,6 +169,26 @@ const myCustomLocale = {
 }
 ```
 
+### Resizing & Cropping Images
+
+Given an uploaded image URL:
+
+```
+https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ
+```
+
+Resize with:
+
+```
+https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail
+```
+
+Autocrop with:
+
+```
+https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail-square
+```
+
 ## 🎯 Features
 
 Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader): the file upload service for developers.
@@ -179,13 +199,13 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 - Lightweight. (29KB gzipped including all dependencies - see [Upload.js](https://github.com/upload-js/upload-js) for an ultra-lightweight solution.)
 - Single & Multi-File Uploads.
 - Fluid Layout & Mobile-Friendly.
-- Modal & Inline Views.
+- Modal & Inline Modes.
 - Localization.
 - File Hosting:
   - Files stored for 4 hours with the `"free"` API key.
-  - Files hosted via a CDN. (Files served from 100 locations worldwide.)
+  - Files hosted via a CDN: 100 locations worldwide.
 - Image Transformations:
-  - Simple append `/thumbnail` or `/thumbnail-square` to your image URLs.
+  - Append `/thumbnail` or `/thumbnail-square` to your image URLs.
   - Get more transformations [with a full account](https://upload.io/pricing).
 
 **All features (available with an account):**
