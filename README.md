@@ -195,7 +195,7 @@ Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader
 
 **Core features (available without an account):**
 
-- **Beautifully clean UI widget.** (Lightweight & Customizable.)
+- **Beautifully clean UI widget.**
 - Lightweight. (29KB gzipped including all dependencies - see [Upload.js](https://github.com/upload-js/upload-js) for an ultra-lightweight solution.)
 - Single & Multi-File Uploads.
 - Fluid Layout & Mobile-Friendly.
