@@ -45,7 +45,7 @@
     "publish:executeIfReleaseCommit": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:execute'",
     "publish:execute": "npm run publish:cdn && npm publish && npm run publish:createGitHubRelease",
     "publish:createGitHubRelease": "gh release create v$(node -p \"require('./package.json').version\")",
-    "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/",
+    "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/json dist/ s3://upload-js-releases/uploader/ && aws cloudfront create-invalidation --distribution-id EO4VJPLCDN8HY --paths '/uploader/*'",
     "test": "(cd ../e2e_test && npm run test)"
   },
   "dependencies": {
