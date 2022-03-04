@@ -14,5 +14,5 @@ export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
   "remove": "remove",
   "unsupportedFileType": "File type not supported.",
   "uploadFile": "Select a File",
-  "uploadFiles": "Select a File" // We have chosen to use singular for the button anyway.
+  "uploadFiles": "Select a File" // We've now chosen to use singular tense for the upload button.
 };

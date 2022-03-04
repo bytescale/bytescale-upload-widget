@@ -90,13 +90,13 @@ uploader.open().then(
 );
 ```
 
-#### Single-File (default)
+#### Single File Mode (default)
 
 ```javascript
 uploader.open({ multi: false })
 ```
 
-#### Multi-File
+#### Multi File Mode
 
 ```javascript
 uploader.open({ multi: true })
@@ -147,6 +147,8 @@ uploader
 ```
 
 #### Localization
+
+Default is [EN_US](https://github.com/upload-js/uploader/blob/main/lib/src/modules/locales/EN_US.ts):
 
 ```javascript
 const myCustomLocale = {
