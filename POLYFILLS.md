@@ -32,6 +32,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.json.to-string-tag
   - core-js/modules/es.map
   - core-js/modules/es.math.to-string-tag
+  - core-js/modules/es.number.to-fixed
   - core-js/modules/es.object.assign
   - core-js/modules/es.object.create
   - core-js/modules/es.object.define-property
