@@ -6,6 +6,7 @@ export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
   "cancelled!": "cancelled",
   "finish": "Finished",
   "finishIcon": true,
+  "maxSize": "Max size:",
   "orDragDropFile": "...or drag and drop a file.",
   "orDragDropFiles": "...or drag and drop files.",
   "pleaseWait": "Please wait...",

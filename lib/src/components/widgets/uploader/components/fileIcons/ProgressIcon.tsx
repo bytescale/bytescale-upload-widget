@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError }: Props): JSX.Element => {
-  const [completed, setCompleted] = useState(false);
+  const [completed, setCompleted] = useState(progress === 1);
   const radius = height / 2;
   const stokeWidth = radius * 2;
   const size = stokeWidth * 2;
@@ -20,7 +20,7 @@ export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError 
   const strokeDasharray = `${circumference} ${circumference}`;
 
   useEffect(() => {
-    if (progress === 1) {
+    if (progress === 1 && !completed) {
       const timeout = setTimeout(() => {
         setCompleted(true);
       }, 300);

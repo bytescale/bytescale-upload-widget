@@ -17,6 +17,7 @@ import {
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
 import { useDragDrop } from "uploader/common/UseDragDrop";
 import "./UploaderWidget.scss";
+import { humanFileSize } from "uploader/common/FormatUtils";
 
 interface Props {
   params: UploaderParamsRequired;
@@ -77,54 +78,71 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     );
   };
 
+  const doUpload = async (file: File, fileIndex: number): Promise<UploadedFile> => {
+    const { maxFileSizeBytes } = params;
+    if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
+      const error = new Error(`${params.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`);
+
+      // Required as the subsequent error handler requires a file to exist.
+      setSubmittedFile(fileIndex, {
+        file,
+        fileIndex,
+        error,
+        type: "error"
+      });
+
+      throw error;
+    }
+
+    return await upload.uploadFile({
+      file,
+      tags,
+      onBegin: ({ cancel }) =>
+        setSubmittedFile(fileIndex, {
+          file,
+          fileIndex,
+          cancel,
+          progress: 0,
+          type: "uploading"
+        }),
+      onProgress: ({ bytesSent, bytesTotal }) =>
+        updateUploadingFile(
+          fileIndex,
+          (uploadingFile): UploadingFile => ({
+            ...uploadingFile,
+            progress: bytesSent / bytesTotal
+          })
+        )
+    });
+  };
+
   const addFiles = (files: File[]): void =>
     setNextSparseFileIndex(nextSparseFileIndex => {
       files.slice(0, multi ? files.length : 1).forEach((file, i) => {
         const fileIndex = nextSparseFileIndex + i;
-        upload
-          .uploadFile({
-            file,
-            tags,
-            onBegin: ({ cancel }) =>
-              setSubmittedFile(fileIndex, {
-                file,
+        doUpload(file, fileIndex).then(
+          uploadedFile => {
+            updateUploadingFile(
+              fileIndex,
+              (): UploadedFileContainer => ({
                 fileIndex,
-                cancel,
-                progress: 0,
-                type: "uploading"
-              }),
-            onProgress: ({ bytesSent, bytesTotal }) =>
-              updateUploadingFile(
+                uploadedFile,
+                type: "uploaded"
+              })
+            );
+          },
+          error => {
+            updateUploadingFile(
+              fileIndex,
+              (uploadingFile): ErroneousFile => ({
                 fileIndex,
-                (uploadingFile): UploadingFile => ({
-                  ...uploadingFile,
-                  progress: bytesSent / bytesTotal
-                })
-              )
-          })
-          .then(
-            uploadedFile => {
-              updateUploadingFile(
-                fileIndex,
-                (): UploadedFileContainer => ({
-                  fileIndex,
-                  uploadedFile,
-                  type: "uploaded"
-                })
-              );
-            },
-            error => {
-              updateUploadingFile(
-                fileIndex,
-                (uploadingFile): ErroneousFile => ({
-                  fileIndex,
-                  error,
-                  file: uploadingFile.file,
-                  type: "error"
-                })
-              );
-            }
-          );
+                error,
+                file: uploadingFile.file,
+                type: "error"
+              })
+            );
+          }
+        );
       });
       return nextSparseFileIndex + files.length;
     });
