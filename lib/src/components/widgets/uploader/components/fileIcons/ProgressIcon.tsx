@@ -5,11 +5,12 @@ import cn from "classnames";
 
 interface Props {
   height: number;
+  isError: boolean;
   onCompleteImageSource: string;
   progress: number; // Factor (0 to 1)
 }
 
-export const ProgressIcon = ({ height, progress, onCompleteImageSource }: Props): JSX.Element => {
+export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError }: Props): JSX.Element => {
   const [completed, setCompleted] = useState(false);
   const radius = height / 2;
   const stokeWidth = radius * 2;
@@ -33,15 +34,15 @@ export const ProgressIcon = ({ height, progress, onCompleteImageSource }: Props)
       <svg className="progress-icon" width={size} height={size}>
         <circle
           className="progress-icon__circle__bg"
-          stroke-width={0}
+          strokeWidth={0}
           r={size / 2}
           cx={size / 2}
           cy={size / 2}
           style={{ opacity: completed ? 0 : 1 }}
         />
         <circle
-          className="progress-icon__circle"
-          stroke-width={completed ? 0 : stokeWidth}
+          className={cn("progress-icon__circle", { "progress-icon__circle--error": isError })}
+          strokeWidth={completed ? 0 : stokeWidth}
           fill="transparent"
           r={completed ? 0 : radius}
           cx={stokeWidth}

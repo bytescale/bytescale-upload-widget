@@ -7,6 +7,7 @@ import unknownSvg from "uploader/components/widgets/uploader/components/fileIcon
 import "./SubmittedFileComponent.scss";
 import { useEffect, useState } from "preact/compat";
 import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
+import errorSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Error.svg";
 
 interface Props {
   file: SubmittedFile;
@@ -16,6 +17,24 @@ interface Props {
 
 // Keep up-to-date with total animation duration in CSS.
 const removalAnimationTime = 1000;
+
+const LinkToUpload = ({ text }: { text: string }): JSX.Element => {
+  const find = "upload.io";
+  const index = text.toLowerCase().indexOf(find);
+  if (index === -1) {
+    return <>{text}</>;
+  }
+
+  return (
+    <>
+      {text.substring(0, index)}{" "}
+      <a href="https://upload.io/pricing" target="_blank">
+        Upload.io
+      </a>{" "}
+      {text.substring(index + find.length)}
+    </>
+  );
+};
 
 export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Element => {
   const [isDelayedRemove, setIsDelayedRemove] = useState(false);
@@ -38,6 +57,7 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
   let thumbnail = unknownSvg;
   let progress = 0;
   let fileName: string;
+  let errorMessage: string | undefined;
   switch (file.type) {
     case "uploading":
       progress = Math.min(file.progress, 1 - progressMargin); // Do not let progress display 100%, as we don't have the MIME type & URL for the thumbnail yet. Plus it's confusing leaving it hanging on 100%.
@@ -49,6 +69,9 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
       fileName = file.uploadedFile.file.name;
       break;
     case "error":
+      progress = 1;
+      thumbnail = errorSvg;
+      errorMessage = file.error?.message ?? "Unexpected error occurred.";
       fileName = file.file.name;
       break;
     default:
@@ -61,8 +84,20 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
         <div className="uploader__submitted-file__inner">
           {/* span required to align button to right of div */}
           <span className="vcenter">
-            <ProgressIcon progress={Math.max(progressMargin, progress)} onCompleteImageSource={thumbnail} height={15} />{" "}
-            <span className="ml-2 mr-3">{fileName}</span>
+            <ProgressIcon
+              progress={Math.max(progressMargin, progress)}
+              onCompleteImageSource={thumbnail}
+              height={15}
+              isError={file.type === "error"}
+            />{" "}
+            <span className="ml-2 mr-3">
+              {fileName}
+              {errorMessage !== undefined && (
+                <span className="uploader__submitted-file__error">
+                  <LinkToUpload text={errorMessage} />
+                </span>
+              )}
+            </span>
           </span>
           {isDelayedRemove ? (
             <span className="uploader__submitted-file__action uploader__submitted-file__action--performed">

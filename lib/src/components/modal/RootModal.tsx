@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { useState } from "preact/compat";
-import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploaderRoot/UploaderRoot";
+import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { Modal } from "uploader/components/modal/Modal";
 import { UploadedFile } from "upload-js";
 import "./Modal.scss";

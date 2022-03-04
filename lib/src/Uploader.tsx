@@ -2,7 +2,7 @@ import { Upload, UploadConfig, UploadedFile } from "upload-js";
 import { UploaderParams, UploaderParamsRequired } from "uploader/UploaderParams";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
-import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploaderRoot/UploaderRoot";
+import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { RootModal } from "uploader/components/modal/RootModal";
 
 export class Uploader {

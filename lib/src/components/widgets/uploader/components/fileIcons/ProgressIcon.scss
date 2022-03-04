@@ -20,6 +20,9 @@
       transition: $vanishSpeed opacity linear;
       fill: #f0f0f0;
     }
+    &--error {
+      stroke: $error;
+    }
   }
   &__thumbnail {
     $growSpeed: 0.2s;
