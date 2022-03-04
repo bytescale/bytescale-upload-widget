@@ -64,6 +64,7 @@ $large: 1200px;
     font-size: 0.75em;
     margin-top: 0.2em;
     display: block;
+    line-height: 1.1em; // Tall characters (e.g. "g") get chopped off if left unset or at 1em.
   }
   &__name {
     overflow: hidden;
