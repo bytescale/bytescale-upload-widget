@@ -1,5 +1,7 @@
 @import "~uploader/components/widgets/uploader/Variables";
 
+$large: 1200px;
+
 .uploader__submitted-file {
   flex-grow: 1;
 
@@ -15,13 +17,21 @@
     max-width: 100%;
     width: 100%;
   }
-  @media (min-width: 951px) and (max-width: 1200px) {
+  @media (min-width: 951px) and (max-width: $large) {
     max-width: 50%;
     width: 50%;
   }
-  @media (min-width: 1201px) {
+  @media (min-width: $large + 1px) {
     max-width: 33.333333%;
     width: 33.333333%;
+  }
+
+  // When there's only 1 to 2 files, make them larger...
+  &--loners {
+    @media (min-width: $large + 1px) {
+      max-width: 46%;
+      width: 46%;
+    }
   }
 
   margin: $px * $file-gutter 0;

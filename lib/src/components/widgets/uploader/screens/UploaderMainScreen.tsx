@@ -29,6 +29,7 @@ export const UploaderMainScreen = ({ addFiles, submittedFiles, params, remove, r
           {submittedFiles.map(file => (
             <SubmittedFileComponent
               file={file}
+              fileCount={submittedFiles.length}
               locale={locale}
               key={file.fileIndex}
               remove={() => remove(file.fileIndex)}

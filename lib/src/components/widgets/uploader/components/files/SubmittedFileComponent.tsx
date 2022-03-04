@@ -8,9 +8,11 @@ import "./SubmittedFileComponent.scss";
 import { useEffect, useState } from "preact/compat";
 import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
 import errorSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Error.svg";
+import cn from "classnames";
 
 interface Props {
   file: SubmittedFile;
+  fileCount: number;
   locale: UploaderWidgetLocale;
   remove: () => void;
 }
@@ -36,7 +38,7 @@ const LinkToUpload = ({ text }: { text: string }): JSX.Element => {
   );
 };
 
-export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Element => {
+export const SubmittedFileComponent = ({ file, fileCount, remove, locale }: Props): JSX.Element => {
   const [isDelayedRemove, setIsDelayedRemove] = useState(false);
 
   const delayedRemove = (): void => {
@@ -79,7 +81,7 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
   }
 
   return (
-    <div className="uploader__submitted-file">
+    <div className={cn("uploader__submitted-file", { "uploader__submitted-file--loners": fileCount <= 2 })}>
       <div className="uploader__submitted-file__container">
         <div className="uploader__submitted-file__inner">
           <ProgressIcon
