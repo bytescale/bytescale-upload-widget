@@ -10,6 +10,7 @@ export interface UploaderWidgetLocale {
   "pleaseWait": string;
   "remove": string;
   "removed!": string;
+  "unsupportedFileType": string;
   "uploadFile": string;
   "uploadFiles": string;
 }

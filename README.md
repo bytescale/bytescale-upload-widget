@@ -79,9 +79,7 @@ const uploader = new Uploader({
 });
 ```
 
-### Opening the widget
-
-To display the upload widget:
+### Open the widget
 
 ```javascript
 uploader.open().then(
@@ -92,15 +90,13 @@ uploader.open().then(
 );
 ```
 
-#### Single-File / Multi-File
-
-To perform a single-file upload (default):
+#### Single-File (default)
 
 ```javascript
 uploader.open({ multi: false })
 ```
 
-To perform a multi-file upload:
+#### Multi-File
 
 ```javascript
 uploader.open({ multi: true })
@@ -134,7 +130,7 @@ Note: an empty array is returned if the user closes the dialog without clicking 
 
 ### Configuration
 
-All parameters are optional:
+All configuration is optional:
 
 ```javascript
 uploader
@@ -154,19 +150,20 @@ uploader
 
 ```javascript
 const myCustomLocale = {
-  "addAnotherFile":   "Add another file...",
-  "cancel":           "cancel",
-  "cancelled!":       "cancelled",
-  "finish":           "Finished",
-  "finishIcon":       true,
-  "maxSize":          "Max size:",
-  "orDragDropFile":   "...or drag and drop a file.",
-  "orDragDropFiles":  "...or drag and drop files.",
-  "pleaseWait":       "Please wait...",
-  "removed!":         "removed",
-  "remove":           "remove",
-  "uploadFile":       "Select a File",
-  "uploadFiles":      "Select Files"
+  "addAnotherFile":      "Add another file...",
+  "cancel":              "cancel",
+  "cancelled!":          "cancelled",
+  "finish":              "Finished",
+  "finishIcon":          true,
+  "maxSize":             "Max size:",
+  "orDragDropFile":      "...or drag and drop a file.",
+  "orDragDropFiles":     "...or drag and drop files.",
+  "pleaseWait":          "Please wait...",
+  "removed!":            "removed",
+  "remove":              "remove",
+  "unsupportedFileType": "File type not supported.",
+  "uploadFile":          "Select a File",
+  "uploadFiles":         "Select Files"
 }
 ```
 

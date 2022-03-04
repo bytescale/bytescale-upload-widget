@@ -9,7 +9,7 @@ const uploader = new Uploader({
 });
 
 const openUploader = (): void => {
-  uploader.open({ multi: true, maxFileSizeBytes: 1024 * 100 }).then(
+  uploader.open({ multi: true, maxFileSizeBytes: 1024 * 100, mimeTypes: ["image/jpeg"] }).then(
     (f: UploadedFile[]) => {
       alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
     },

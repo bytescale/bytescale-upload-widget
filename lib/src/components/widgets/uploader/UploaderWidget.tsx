@@ -79,11 +79,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   };
 
   const doUpload = async (file: File, fileIndex: number): Promise<UploadedFile> => {
-    const { maxFileSizeBytes } = params;
-    if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
-      const error = new Error(`${params.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`);
-
-      // Required as the subsequent error handler requires a file to exist.
+    const raiseError = (error: Error): never => {
       setSubmittedFile(fileIndex, {
         file,
         fileIndex,
@@ -92,6 +88,14 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       });
 
       throw error;
+    };
+
+    const { maxFileSizeBytes, mimeTypes } = params;
+    if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
+      raiseError(new Error(`${params.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
+    }
+    if (mimeTypes !== undefined && !mimeTypes.includes(file.type)) {
+      raiseError(new Error(params.locale.unsupportedFileType));
     }
 
     return await upload.uploadFile({
