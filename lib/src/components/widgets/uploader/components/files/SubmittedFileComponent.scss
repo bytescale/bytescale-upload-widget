@@ -36,6 +36,12 @@
     align-items: center;
     justify-content: space-between;
   }
+  &__text {
+    margin-left: $px * 7;
+    margin-right: $px * 8;
+    overflow: hidden;
+    flex-grow: 1;
+  }
   &__action {
     min-width: 74 * $px; // Causes "cancel" and "remove" to take up same width, so prevents jerking when they transition between.
     text-align: right;
@@ -48,5 +54,12 @@
     font-size: 0.75em;
     margin-top: 0.2em;
     display: block;
+  }
+  &__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    height: 1.1em; // Tall characters (e.g. "g") get chopped off if left unset or at 1em.
   }
 }

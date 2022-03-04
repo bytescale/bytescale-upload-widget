@@ -82,22 +82,21 @@ export const SubmittedFileComponent = ({ file, remove, locale }: Props): JSX.Ele
     <div className="uploader__submitted-file">
       <div className="uploader__submitted-file__container">
         <div className="uploader__submitted-file__inner">
-          {/* span required to align button to right of div */}
-          <span className="vcenter">
-            <ProgressIcon
-              progress={Math.max(progressMargin, progress)}
-              onCompleteImageSource={thumbnail}
-              height={15}
-              isError={file.type === "error"}
-            />{" "}
-            <span className="ml-2 mr-3">
+          <ProgressIcon
+            progress={Math.max(progressMargin, progress)}
+            onCompleteImageSource={thumbnail}
+            height={15}
+            isError={file.type === "error"}
+          />{" "}
+          <span className="uploader__submitted-file__text">
+            <span className="uploader__submitted-file__name" title={fileName}>
               {fileName}
-              {errorMessage !== undefined && (
-                <span className="uploader__submitted-file__error">
-                  <LinkToUpload text={errorMessage} />
-                </span>
-              )}
             </span>
+            {errorMessage !== undefined && (
+              <span className="uploader__submitted-file__error">
+                <LinkToUpload text={errorMessage} />
+              </span>
+            )}
           </span>
           {isDelayedRemove ? (
             <span className="uploader__submitted-file__action uploader__submitted-file__action--performed">
