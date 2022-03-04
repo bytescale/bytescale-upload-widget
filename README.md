@@ -90,13 +90,13 @@ uploader.open().then(
 );
 ```
 
-#### Single File Mode (default)
+#### Single-File (default)
 
 ```javascript
 uploader.open({ multi: false })
 ```
 
-#### Multi File Mode
+#### Multi-File
 
 ```javascript
 uploader.open({ multi: true })
