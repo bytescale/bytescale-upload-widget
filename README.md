@@ -132,7 +132,7 @@ uploader.open({ multi: true }).then(
 
 - The `data-upload-complete` attribute is fired on completion.
 - The `event.files` array contains the uploaded files.
-- The following example will log the same output as above.
+- The following example will open an Uploader which logs the same output as above.
 
 ```html
 <a data-upload-complete="console.log(JSON.stringify(event.files))">
@@ -142,7 +142,7 @@ uploader.open({ multi: true }).then(
 
 ## 👀 More Examples
 
-**Uploader is a modal by default, but can be used in other contexts too:**
+**Uploader is a modal by default, but can be used in other contexts too!**
 
 ### Using as a Dropzone
 
@@ -167,8 +167,10 @@ uploader
      style="position: relative; width: 450px; height: 300px;">
 </div>
 ```
+**Note:**
 
-Note: `layout: "inline"` and `containerElement` is automatically set when using `data-upload-complete` on `div` elements.
+- You must set `position: relative`, `width` and `height` on the container `<div>`.
+- `layout: "inline"` and `containerElement` is automatically set when using `data-upload-complete` on `div` elements.
 
 ## ⚙️ Configuration
 
