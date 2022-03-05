@@ -204,7 +204,7 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?edito
 Note:
 
 - You must set `position: relative`, `width` and `height` on the container `<div>`.
-- `layout: "inline"` and `container` are auto-set when using `data-upload-complete` on `div`s.
+- `container` & `layout: "inline"` are auto-set when using `data-upload-complete` on `div`s.
 
 
 ## 🚀 SPA Support
