@@ -144,7 +144,7 @@ uploader.open({ multi: true }).then(
 
 **Uploader is a modal by default, but can be used in other contexts too!**
 
-### Using as a Dropzone
+### Using Uploader as a Dropzone
 
 You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 
@@ -167,10 +167,45 @@ uploader
      style="position: relative; width: 450px; height: 300px;">
 </div>
 ```
+
 **Note:**
 
 - You must set `position: relative`, `width` and `height` on the container `<div>`.
-- `layout: "inline"` and `containerElement` is automatically set when using `data-upload-complete` on `div` elements.
+- `layout: "inline"` and `containerElement` are auto-set when using `data-upload-complete` on `div`s.
+
+### Creating a "Single File" Upload Button
+
+**With JavaScript:**
+
+```javascript
+uploader.open({ multi: false }).then(files => alert(JSON.stringify(files)));
+```
+
+**Or with HTML:**
+
+```html
+<button data-upload-config="{ multi: false }"
+        data-upload-complete="alert(JSON.stringify(event.files))">
+  Upload a Single File...
+</button>
+```
+
+### Creating a "Multi File" Upload Button
+
+**With JavaScript:**
+
+```javascript
+uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
+```
+
+**Or with HTML:**
+
+```html
+<button data-upload-config="{ multi: true }"
+        data-upload-complete="alert(JSON.stringify(event.files))">
+  Upload Multiple Files...
+</button>
+```
 
 ## ⚙️ Configuration
 
