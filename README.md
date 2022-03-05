@@ -147,14 +147,13 @@ Or with HTML:
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
 
 ```javascript
-uploader.open({ multi: false }).then(files => alert(JSON.stringify(files)));
+uploader.open().then(files => alert(JSON.stringify(files)));
 ```
 
 Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWxQ?editors=1010):
 
 ```html
-<button data-upload-config='{ "multi": false }'
-        data-upload-complete='alert(JSON.stringify(event.files))'>
+<button data-upload-complete='alert(JSON.stringify(event.files))'>
   Upload a Single File...
 </button>
 ```
