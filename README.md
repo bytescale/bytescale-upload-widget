@@ -81,7 +81,7 @@ const uploader = new Uploader({
 
 ### Open the Modal
 
-**With JavaScript:**
+With JavaScript:
 
 ```javascript
 uploader.open({ multi: true }).then(
@@ -92,7 +92,7 @@ uploader.open({ multi: true }).then(
 );
 ```
 
-**Or with HTML:**
+Or with HTML:
 
 ```html
 <button data-upload-config="{ multi: true }"
@@ -105,7 +105,7 @@ uploader.open({ multi: true }).then(
 
 ### Get the Result
 
-**With JavaScript:**
+With JavaScript:
 
 `.open()` returns a promise of `UploadedFile[]`:
 
@@ -128,11 +128,7 @@ uploader.open({ multi: true }).then(
 ]
 ```
 
-**Or with HTML:**
-
-- The `data-upload-complete` attribute is fired on completion.
-- The `event.files` array contains the uploaded files.
-- The following example will open an Uploader which logs the same output as above.
+Or with HTML:
 
 ```html
 <a data-upload-complete="console.log(JSON.stringify(event.files))">
@@ -140,15 +136,19 @@ uploader.open({ multi: true }).then(
 </a>
 ```
 
+- The `data-upload-complete` attribute is fired on completion.
+- The `event.files` array contains the uploaded files.
+- The following example will open an Uploader which logs the same output as above.
+
 ## 👀 More Examples
 
-**Uploader is a modal by default, but can be used in other contexts too!**
+Uploader is a modal by default, but can be used in other contexts too!
 
 ### Using Uploader as a Dropzone
 
 You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 
-**With JavaScript:**
+With JavaScript:
 
 ```javascript
 uploader
@@ -160,7 +160,7 @@ uploader
   .then(files => alert(JSON.stringify(files)));
 ```
 
-**Or with HTML:**
+Or with HTML:
 
 ```html
 <div data-upload-complete="alert(event.files[0].fileUrl)"
@@ -168,20 +168,20 @@ uploader
 </div>
 ```
 
-**Note:**
+Note:
 
 - You must set `position: relative`, `width` and `height` on the container `<div>`.
 - `layout: "inline"` and `containerElement` are auto-set when using `data-upload-complete` on `div`s.
 
 ### Creating a "Single File" Upload Button
 
-**With JavaScript:**
+With JavaScript:
 
 ```javascript
 uploader.open({ multi: false }).then(files => alert(JSON.stringify(files)));
 ```
 
-**Or with HTML:**
+Or with HTML:
 
 ```html
 <button data-upload-config="{ multi: false }"
@@ -192,13 +192,13 @@ uploader.open({ multi: false }).then(files => alert(JSON.stringify(files)));
 
 ### Creating a "Multi File" Upload Button
 
-**With JavaScript:**
+With JavaScript:
 
 ```javascript
 uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 ```
 
-**Or with HTML:**
+Or with HTML:
 
 ```html
 <button data-upload-config="{ multi: true }"
@@ -218,7 +218,7 @@ Uploader automatically observes the DOM for changes, making the `data-upload-com
 
 All configuration is optional.
 
-**With JavaScript:**
+With JavaScript:
 
 ```javascript
 uploader
@@ -234,7 +234,7 @@ uploader
   .then(files => alert(files))
 ```
 
-**Or with HTML:**
+Or with HTML:
 
 ```html
 <button data-upload-complete="alert(event.files)"
