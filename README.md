@@ -207,6 +207,13 @@ uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 </button>
 ```
 
+## ⚡ SPA Support
+
+**Uploader is SPA-friendly,** even when using `data-*` attributes to render your widgets.
+
+Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute completely functional for SPAs that introduce elements at runtime, even after the initial page load.
+
+
 ## ⚙️ Configuration
 
 All configuration is optional.
@@ -262,12 +269,6 @@ const myCustomLocale = {
   "uploadFiles":         "Select Files"
 }
 ```
-
-## ✅ SPA Support
-
-**Uploader is SPA-friendly,** even when using `data-*` attributes to render your widgets.
-
-Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute completely functional for SPAs that introduce elements at runtime, even after the initial page load.
 
 ## 📷 Resizing & Cropping Images
 
