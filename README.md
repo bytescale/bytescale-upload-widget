@@ -142,37 +142,6 @@ Or with HTML:
 
 ## 👀 More Examples
 
-Uploader is a modal by default, but can be used in other contexts too!
-
-### Using Uploader as a Dropzone
-
-You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
-
-With JavaScript:
-
-```javascript
-uploader
-  .open({
-    multi: true,
-    layout: "inline",
-    containerElement: "#example_div_id"  // Replace with the ID of an existing DOM element.
-  })
-  .then(files => alert(JSON.stringify(files)));
-```
-
-Or with HTML:
-
-```html
-<div data-upload-complete="alert(event.files[0].fileUrl)"
-     style="position: relative; width: 450px; height: 300px;">
-</div>
-```
-
-Note:
-
-- You must set `position: relative`, `width` and `height` on the container `<div>`.
-- `layout: "inline"` and `containerElement` are auto-set when using `data-upload-complete` on `div`s.
-
 ### Creating a "Single File" Upload Button
 
 With JavaScript:
@@ -206,6 +175,36 @@ Or with HTML:
   Upload Multiple Files...
 </button>
 ```
+
+### Using Uploader as a Dropzone
+
+You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
+
+With JavaScript:
+
+```javascript
+uploader
+  .open({
+    multi: true,
+    layout: "inline",
+    containerElement: "#example_div_id"  // Replace with the ID of an existing DOM element.
+  })
+  .then(files => alert(JSON.stringify(files)));
+```
+
+Or with HTML:
+
+```html
+<div data-upload-complete="alert(event.files[0].fileUrl)"
+     style="position: relative; width: 450px; height: 300px;">
+</div>
+```
+
+Note:
+
+- You must set `position: relative`, `width` and `height` on the container `<div>`.
+- `layout: "inline"` and `containerElement` are auto-set when using `data-upload-complete` on `div`s.
+
 
 ## 🚀 SPA Support
 
