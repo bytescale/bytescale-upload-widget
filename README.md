@@ -138,7 +138,7 @@ Or with HTML:
 
 - The `data-upload-complete` attribute is fired on completion.
 - The `event.files` array contains the uploaded files.
-- The following example will open an Uploader which logs the same output as above.
+- The above example opens an Uploader which logs the same output as the JavaScript example.
 
 ## 👀 More Examples
 
