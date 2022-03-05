@@ -203,14 +203,14 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?edito
 Note:
 
 - You must set `position: relative`, `width` and `height` on the container `<div>`.
-- `container` & `layout: "inline"` are auto-set when using `data-upload-complete` on `div`s.
+- `container` & `layout: "inline"` are auto-set when using `data-*` on `div` elements.
 
 
 ## 🚀 SPA Support
 
 **Uploader is SPA-friendly** — even when using `data-*` attributes to render your widgets.
 
-Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute completely safe for SPAs which introduce elements at runtime (even after the initial page load).
+Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute safe for SPAs that introduce elements at runtime.
 
 **[» React Example on CodePen «](https://codepen.io/upload-js/pen/dyZrWqK?editors=1010)**
 
