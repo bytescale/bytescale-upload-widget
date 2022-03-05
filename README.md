@@ -67,7 +67,7 @@ Or via a `<script>` tag:
 
 ### Initialize
 
-Initialize once at the start of your application — required even when using the `data-upload-complete` attribute:
+Initialize once at the start of your application — required when using `data-*` attributes too:
 
 ```javascript
 // Ignore if installed via a script tag.
