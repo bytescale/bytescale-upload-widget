@@ -17,7 +17,7 @@ const openUploader = (): void => {
   );
 };
 
-openUploader();
+// openUploader();
 
 const button = document.createElement("a");
 button.innerHTML = "Try Me Out!";

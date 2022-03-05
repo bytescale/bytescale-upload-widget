@@ -4,9 +4,11 @@ import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { RootModal } from "uploader/components/modal/RootModal";
+import { InlineWidgetBinder } from "uploader/modules/InlineWidgetBinder";
 
 export class Uploader {
   private readonly upload: UploadInstanceMaybe;
+  private readonly inlineWidgets = new InlineWidgetBinder(this);
 
   constructor(uploadOrConfig: UploadConfig | Upload) {
     if (uploadOrConfig instanceof Upload) {
@@ -18,13 +20,17 @@ export class Uploader {
         this.upload = { type: "error", value: e };
       }
     }
+
+    this.inlineWidgets.bindWidgetsAndMonitor();
   }
 
   async open(paramsMaybe: UploaderParams = {}): Promise<UploadedFile[]> {
     const params = UploaderParamsRequired.from(paramsMaybe);
     const existingContainer =
-      params.containerElementId !== undefined
-        ? document.getElementById(params.containerElementId) ?? undefined
+      params.containerElement !== undefined
+        ? typeof params.containerElement === "string"
+          ? document.querySelector(params.containerElement) ?? undefined
+          : params.containerElement
         : undefined;
     const container = existingContainer ?? document.createElement("div");
     container.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;

@@ -67,7 +67,7 @@ Or via a `<script>` tag:
 
 ### Initialize
 
-Initialize once at the start of your application:
+Initialize once at the start of your application — required even when using the `data-upload-complete` attribute:
 
 ```javascript
 // Ignore if installed via a script tag.
@@ -79,10 +79,12 @@ const uploader = new Uploader({
 });
 ```
 
-### Open the widget
+### Open the Modal
+
+**With JavaScript:**
 
 ```javascript
-uploader.open().then(
+uploader.open({ multi: true }).then(
   files => alert(files.length === 0
     ? "No files selected."
     : `Files uploaded:\n${files.map(x => x.fileUrl).join("\n")}`),
@@ -90,20 +92,20 @@ uploader.open().then(
 );
 ```
 
-#### Single-File (default)
+**Or with HTML:**
 
-```javascript
-uploader.open({ multi: false })
+```html
+<button data-upload-config="{ multi: true }"
+        data-upload-complete="alert(
+          `Files uploaded:\n${event.files.map(x => x.fileUrl).join('\n')}`
+        )">
+  Upload Files...
+</button>
 ```
 
-#### Multi-File
+### Get the Result
 
-```javascript
-uploader.open({ multi: true })
-```
-
-
-### Result
+**With JavaScript:**
 
 `.open()` returns a promise of `UploadedFile[]`:
 
@@ -126,27 +128,82 @@ uploader.open({ multi: true })
 ]
 ```
 
-Note: an empty array is returned if the user closes the dialog without clicking "Finish".
+**Or with HTML:**
 
-### Configuration
+- The `data-upload-complete` attribute is fired on completion.
+- The `event.files` array contains the uploaded files.
+- The following example will log the same output as above.
 
-All configuration is optional:
+```html
+<a data-upload-complete="console.log(JSON.stringify(event.files))">
+  Upload a file...
+</a>
+```
+
+## 👀 More Examples
+
+**Uploader is a modal by default, but can be used in other contexts too:**
+
+### Using as a Dropzone
+
+You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
+
+**With JavaScript:**
 
 ```javascript
 uploader
   .open({
-    containerElementId: "custom-container", // <body> by default.
-    layout: "modal",                        // "modal" by default. "inline" also supported.
-    locale: myCustomLocale,                 // EN_US by default. (See "Localization" section below.)
-    maxFileSizeBytes: 1024 ** 2,            // Unlimited by default.
-    mimeTypes: ["image/jpeg"],              // Unrestricted by default.
-    multi: false,                           // False by default.
-    tags: ["profile_picture"]               // Requires an Upload.io account.
+    multi: true,
+    layout: "inline",
+    containerElement: "#example_div_id"  // Replace with the ID of an existing DOM element.
+  })
+  .then(files => alert(JSON.stringify(files)));
+```
+
+**Or with HTML:**
+
+```html
+<div data-upload-complete="alert(event.files[0].fileUrl)"
+     style="position: relative; width: 450px; height: 300px;">
+</div>
+```
+
+Note: `layout: "inline"` and `containerElement` is automatically set when using `data-upload-complete` on `div` elements.
+
+## ⚙️ Configuration
+
+All configuration is optional.
+
+**With JavaScript:**
+
+```javascript
+uploader
+  .open({
+    containerElement: "body",    // "body" by default.
+    layout: "modal",             // "modal" by default. "inline" also supported.
+    locale: myCustomLocale,      // EN_US by default. (See "Localization" section below.)
+    maxFileSizeBytes: 1024 ** 2, // Unlimited by default.
+    mimeTypes: ["image/jpeg"],   // Unrestricted by default.
+    multi: false,                // False by default.
+    tags: ["profile_picture"]    // Requires an Upload.io account.
   })
   .then(files => alert(files))
 ```
 
-#### Localization
+**Or with HTML:**
+
+```html
+<button data-upload-complete="alert(event.files)"
+        data-upload-config="{
+          containerElement: 'body',
+          layout: 'modal',
+          multi: false
+        }">
+  Upload a File...
+</button>
+```
+
+### Localization
 
 Default is [EN_US](https://github.com/upload-js/uploader/blob/main/lib/src/modules/locales/EN_US.ts):
 
@@ -169,7 +226,13 @@ const myCustomLocale = {
 }
 ```
 
-### Resizing & Cropping Images
+## ✅ SPA Support
+
+**Uploader is SPA-friendly,** even when using `data-*` attributes to render your widgets.
+
+Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute completely functional for SPAs that introduce elements at runtime, even after the initial page load.
+
+## 📷 Resizing & Cropping Images
 
 Given an uploaded image URL:
 
