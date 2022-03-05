@@ -95,10 +95,10 @@ uploader.open({ multi: true }).then(
 Or with HTML:
 
 ```html
-<button data-upload-config="{ multi: true }"
-        data-upload-complete="alert(
-          `Files uploaded:\n${event.files.map(x => x.fileUrl).join('\n')}`
-        )">
+<button data-upload-config='{ "multi": true }'
+        data-upload-complete='alert(
+          `Files uploaded:\n${event.files.map(x => x.fileUrl).join("\n")}`
+        )'>
   Upload Files...
 </button>
 ```
@@ -153,8 +153,8 @@ uploader.open({ multi: false }).then(files => alert(JSON.stringify(files)));
 Or with HTML:
 
 ```html
-<button data-upload-config="{ multi: false }"
-        data-upload-complete="alert(JSON.stringify(event.files))">
+<button data-upload-config='{ "multi": false }'
+        data-upload-complete='alert(JSON.stringify(event.files))'>
   Upload a Single File...
 </button>
 ```
@@ -170,8 +170,8 @@ uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 Or with HTML:
 
 ```html
-<button data-upload-config="{ multi: true }"
-        data-upload-complete="alert(JSON.stringify(event.files))">
+<button data-upload-config='{ "multi": true }'
+        data-upload-complete='alert(JSON.stringify(event.files))'>
   Upload Multiple Files...
 </button>
 ```
@@ -236,12 +236,12 @@ uploader
 Or with HTML:
 
 ```html
-<button data-upload-complete="alert(event.files)"
-        data-upload-config="{
-          containerElement: 'body',
-          layout: 'modal',
-          multi: false
-        }">
+<button data-upload-complete='alert(event.files)'
+        data-upload-config='{
+          "containerElement": "body",
+          "layout": "modal",
+          "multi": false
+        }'>
   Upload a File...
 </button>
 ```
@@ -333,7 +333,7 @@ If you would like to contribute to Uploader:
 
 1. Add a [GitHub Star](https://github.com/upload-js/uploader/stargazers) to the project (if you're feeling generous!).
 2. Determine whether you're raising a bug, feature request or question.
-3. Raise your issue or PR. 🚀
+3. Raise your issue or PR.
 
 ## License
 
