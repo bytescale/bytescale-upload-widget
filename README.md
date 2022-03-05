@@ -63,7 +63,7 @@ Or via a `<script>` tag:
 <script src="https://js.upload.io/uploader/v1"></script>
 ```
 
-## Usage — [Try on CodePen](https://codepen.io/upload-js/pen/QWOZWZR?editors=1010)
+## Usage
 
 ### Initialize
 
@@ -81,7 +81,7 @@ const uploader = new Uploader({
 
 ### Open the Modal
 
-With JavaScript:
+With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/RwjdVxY?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(
@@ -92,7 +92,7 @@ uploader.open({ multi: true }).then(
 );
 ```
 
-Or with HTML:
+Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/OJOqmOd?editors=1010):
 
 ```html
 <button data-upload-config='{ "multi": true }'
