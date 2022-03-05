@@ -4,7 +4,7 @@ import { uploaderWidgetLocaleEnUs } from "uploader/modules/locales/EN_US";
 import { UploaderLayout } from "uploader/UploaderLayout";
 
 export interface UploaderParams {
-  containerElement?: string | HTMLElement;
+  container?: string | HTMLElement;
   layout?: UploaderLayout;
   locale?: UploaderWidgetLocale;
   maxFileSizeBytes?: number;
@@ -14,7 +14,7 @@ export interface UploaderParams {
 }
 
 export interface UploaderParamsRequired {
-  containerElement: string | HTMLElement | undefined;
+  container: string | HTMLElement | undefined;
   layout: UploaderLayout;
   locale: UploaderWidgetLocale;
   maxFileSizeBytes: number | undefined;
@@ -26,7 +26,7 @@ export interface UploaderParamsRequired {
 export namespace UploaderParamsRequired {
   export function from(params: UploaderParams): UploaderParamsRequired {
     return {
-      containerElement: params.containerElement,
+      container: params.container,
       layout: params.layout ?? "modal",
       locale: params.locale ?? uploaderWidgetLocaleEnUs,
       maxFileSizeBytes: params.maxFileSizeBytes,

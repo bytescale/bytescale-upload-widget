@@ -144,13 +144,13 @@ Or with HTML:
 
 ### Creating a "Single File" Upload Button
 
-With JavaScript:
+With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
 
 ```javascript
 uploader.open({ multi: false }).then(files => alert(JSON.stringify(files)));
 ```
 
-Or with HTML:
+Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWxQ?editors=1010):
 
 ```html
 <button data-upload-config='{ "multi": false }'
@@ -161,13 +161,13 @@ Or with HTML:
 
 ### Creating a "Multi File" Upload Button
 
-With JavaScript:
+With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/RwjdVxY?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 ```
 
-Or with HTML:
+Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/OJOqmOd?editors=1010):
 
 ```html
 <button data-upload-config='{ "multi": true }'
@@ -180,22 +180,23 @@ Or with HTML:
 
 You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 
-With JavaScript:
+With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/PoOLmeL?editors=1010):
 
 ```javascript
 uploader
   .open({
     multi: true,
     layout: "inline",
-    containerElement: "#example_div_id"  // Replace with the ID of an existing DOM element.
+    container: "#example_div_id"  // Replace with the ID of an existing DOM element.
   })
   .then(files => alert(JSON.stringify(files)));
 ```
 
-Or with HTML:
+Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?editors=1010):
 
 ```html
-<div data-upload-complete="alert(event.files[0].fileUrl)"
+<div data-upload-config='{ "multi": true }'
+     data-upload-complete="alert(JSON.stringify(event.files))"
      style="position: relative; width: 450px; height: 300px;">
 </div>
 ```
@@ -203,7 +204,7 @@ Or with HTML:
 Note:
 
 - You must set `position: relative`, `width` and `height` on the container `<div>`.
-- `layout: "inline"` and `containerElement` are auto-set when using `data-upload-complete` on `div`s.
+- `layout: "inline"` and `container` are auto-set when using `data-upload-complete` on `div`s.
 
 
 ## 🚀 SPA Support
@@ -222,7 +223,7 @@ With JavaScript:
 ```javascript
 uploader
   .open({
-    containerElement: "body",    // "body" by default.
+    container: "body",    // "body" by default.
     layout: "modal",             // "modal" by default. "inline" also supported.
     locale: myCustomLocale,      // EN_US by default. (See "Localization" section below.)
     maxFileSizeBytes: 1024 ** 2, // Unlimited by default.
@@ -238,7 +239,7 @@ Or with HTML:
 ```html
 <button data-upload-complete='alert(event.files)'
         data-upload-config='{
-          "containerElement": "body",
+          "container": "body",
           "layout": "modal",
           "multi": false
         }'>

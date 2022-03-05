@@ -27,10 +27,10 @@ export class Uploader {
   async open(paramsMaybe: UploaderParams = {}): Promise<UploadedFile[]> {
     const params = UploaderParamsRequired.from(paramsMaybe);
     const existingContainer =
-      params.containerElement !== undefined
-        ? typeof params.containerElement === "string"
-          ? document.querySelector(params.containerElement) ?? undefined
-          : params.containerElement
+      params.container !== undefined
+        ? typeof params.container === "string"
+          ? document.querySelector(params.container) ?? undefined
+          : params.container
         : undefined;
     const container = existingContainer ?? document.createElement("div");
     container.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;

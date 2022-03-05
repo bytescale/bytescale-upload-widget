@@ -35,7 +35,7 @@ export class InlineWidgetBinder {
   private bindInline(element: HTMLElement): void {
     this.openUploader(element, {
       ...this.getConfig(element),
-      containerElement: element,
+      container: element,
       layout: "inline"
     });
   }
