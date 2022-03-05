@@ -212,7 +212,7 @@ Note:
 
 Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute completely functional for SPAs that introduce elements at runtime, even after the initial page load.
 
-- **[React Example on CodePen](https://codepen.io/upload-js/pen/dyZrWqK?editors=1010)**
+**[» React Example on CodePen «](https://codepen.io/upload-js/pen/dyZrWqK?editors=1010)**
 
 ## ⚙️ Configuration
 
