@@ -23,8 +23,6 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
   const [containerId] = useState(`uploader__widget-base-${Math.round(Math.random() * 100000)}`);
   const [dimensions, setDimensions] = useState<Rect | undefined>(undefined);
   const breakpoints = [
-    { width: 485, value: "xs" },
-    { width: 560, value: "sm" },
     { width: 650, value: "md" },
     { width: 930, value: "lg" }
   ];
