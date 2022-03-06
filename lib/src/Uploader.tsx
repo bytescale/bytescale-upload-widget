@@ -26,19 +26,25 @@ export class Uploader {
 
   async open(paramsMaybe: UploaderParams = {}): Promise<UploadedFile[]> {
     const params = UploaderParamsRequired.from(paramsMaybe);
-    const existingContainer =
+    const container =
       params.container !== undefined
         ? typeof params.container === "string"
           ? document.querySelector(params.container) ?? undefined
           : params.container
         : undefined;
-    const container = existingContainer ?? document.createElement("div");
-    container.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
+
     const body = await this.getBody();
 
-    if (existingContainer === undefined) {
-      body.appendChild(container);
+    let widget: Element;
+
+    if (params.layout === "modal") {
+      widget = document.createElement("div");
+      (container ?? body).appendChild(widget);
+    } else {
+      widget = container ?? document.createElement("div");
     }
+
+    widget.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
 
     const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
       const props: UploaderRootProps = {
@@ -49,12 +55,14 @@ export class Uploader {
       };
 
       render(
-        params.layout === "modal" ? <RootModal {...props} container={container} /> : <UploaderRoot {...props} />,
-        container
+        params.layout === "modal" ? <RootModal {...props} container={widget} /> : <UploaderRoot {...props} />,
+        widget
       );
     });
 
-    container.remove();
+    if (params.layout === "modal") {
+      widget.remove();
+    }
 
     return uploadedFiles;
   }
