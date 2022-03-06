@@ -6,18 +6,18 @@
     display: inline-block;
     position: relative;
   }
+  $circleVanishSpeed: 0.3s; // SYNC: 'progressWheelVanish' in ProgressIcon.tsx
   &__circle {
+    $rotateSpeed: 0.35s; // SYNC: 'progressWheelDelay' in ProgressIcon.tsx
     $shrinkSpeed: 0.6s;
     $shrinkEase: cubic-bezier(0.22, 1, 0.36, 1);
-    $vanishSpeed: 0.3s;
-    $rotateSpeed: 0.35s;
     $rotateEase: cubic-bezier(0.33, 1, 0.68, 1);
-    transition: $rotateSpeed stroke-dashoffset $rotateEase, $shrinkSpeed stroke-width $shrinkEase, $shrinkSpeed r $shrinkEase, $vanishSpeed opacity linear;
+    transition: $rotateSpeed stroke-dashoffset $rotateEase, $shrinkSpeed stroke-width $shrinkEase, $shrinkSpeed r $shrinkEase, $circleVanishSpeed opacity linear;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     stroke: $primary;
     &__bg {
-      transition: $vanishSpeed opacity linear;
+      transition: $circleVanishSpeed opacity linear;
       fill: #f0f0f0;
     }
     &--error {
@@ -29,7 +29,7 @@
     $growEase: cubic-bezier(0.22, 1, 0.36, 1);
     $appearSpeed: 0.05s;
     transition: $growSpeed transform $growEase, $appearSpeed opacity linear;
-    transition-delay: 0.3s;
+    transition-delay: $circleVanishSpeed;
 
     background-repeat:no-repeat;
     background-position: center center;

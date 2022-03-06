@@ -18,6 +18,10 @@ import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
 import { useDragDrop } from "uploader/common/UseDragDrop";
 import "./UploaderWidget.scss";
 import { humanFileSize } from "uploader/common/FormatUtils";
+import {
+  progressWheelDelay,
+  progressWheelVanish
+} from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 
 interface Props {
   params: UploaderParamsRequired;
@@ -37,7 +41,10 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     if (!multi && uploadedFiles.length > 0) {
       // Just in case the user dragged-and-dropped multiple files.
       const firstUploadedFile = uploadedFiles.map(x => x.uploadedFile).slice(0, 1);
-      resolve(firstUploadedFile);
+
+      setTimeout(() => {
+        resolve(firstUploadedFile);
+      }, progressWheelDelay + (progressWheelVanish - 100)); // Allow the animation to finish before closing modal. We add some time to allow the wheel to fade out.
     }
   }, [uploadedFiles]);
 

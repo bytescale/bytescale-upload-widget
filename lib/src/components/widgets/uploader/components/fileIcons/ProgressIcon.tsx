@@ -10,6 +10,9 @@ interface Props {
   progress: number; // Factor (0 to 1)
 }
 
+export const progressWheelVanish = 300;
+export const progressWheelDelay = 350;
+
 export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError }: Props): JSX.Element => {
   const [completed, setCompleted] = useState(progress === 1);
   const radius = height / 2;
@@ -23,7 +26,7 @@ export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError 
     if (progress === 1 && !completed) {
       const timeout = setTimeout(() => {
         setCompleted(true);
-      }, 300);
+      }, progressWheelDelay - 50); // We want to start this _just_ before the wheel finishes
 
       return () => clearTimeout(timeout);
     }
