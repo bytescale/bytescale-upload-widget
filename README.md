@@ -202,7 +202,7 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?edito
 
 Note:
 
-- You must set `position: relative`, `width` and `height` on the container `<div>`.
+- You must set `position: relative`, `width` and `height` on the container `div`.
 - `container` & `layout: "inline"` are auto-set when using `data-*` on `div` elements.
 
 

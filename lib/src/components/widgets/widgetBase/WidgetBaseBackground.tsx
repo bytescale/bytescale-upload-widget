@@ -1,28 +1,15 @@
 import cn from "classnames";
 import { DashedBackgroundSvg } from "uploader/assets/svgs/DashedBackgroundSvg";
 import { JSX } from "preact";
-import { useWindowSize } from "uploader/common/UseWindowSize";
-import { useLayoutEffect, useState } from "preact/compat";
+import { Rect } from "uploader/common/Rect";
 
 interface Props {
   closeButtonSize: number;
-  containerElementId: string;
+  dimensions: Rect | undefined;
   isDragging: boolean;
 }
 
-interface Rect {
-  height: number;
-  width: number;
-}
-
-export const WidgetBaseBackground = ({ closeButtonSize, containerElementId, isDragging }: Props): JSX.Element => {
-  const windowSize = useWindowSize();
-  const [dimensions, setDimensions] = useState<Rect | undefined>(undefined);
-
-  useLayoutEffect(() => {
-    setDimensions(document.querySelector(`#${containerElementId}`)?.getBoundingClientRect() ?? undefined);
-  }, [windowSize]);
-
+export const WidgetBaseBackground = ({ closeButtonSize, isDragging, dimensions }: Props): JSX.Element => {
   if (dimensions === undefined) {
     return <></>;
   }

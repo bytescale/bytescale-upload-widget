@@ -2,38 +2,37 @@
 
 $large: 1200px;
 
-.uploader__submitted-file {
-  flex-grow: 1;
-
-  @media (max-width: 650px) {
+.breakpoint {
+  &-xs .uploader__submitted-file {
     max-width: 100%;
     width: 100%;
   }
-  @media (min-width: 651px) and (max-width: $mobile-width-max) {
-    max-width: 50%;
-    width: 50%;
-  }
-  @media (min-width: $mobile-width-min) and (max-width: 950px) {
+  &-sm .uploader__submitted-file {
     max-width: 100%;
     width: 100%;
   }
-  @media (min-width: 951px) and (max-width: $large) {
+  &-md .uploader__submitted-file {
+    max-width: 100%;
+    width: 100%;
+  }
+  &-lg .uploader__submitted-file {
     max-width: 50%;
     width: 50%;
   }
-  @media (min-width: $large + 1px) {
+  &-xl .uploader__submitted-file {
     max-width: 33.333333%;
     width: 33.333333%;
-  }
 
-  // When there's only 1 to 2 files, make them larger...
-  &--loners {
-    @media (min-width: $large + 1px) {
+    // When there's only 1 to 2 files, make them larger...
+    &--loners {
       max-width: 46%;
       width: 46%;
     }
   }
+}
 
+.uploader__submitted-file {
+  flex-grow: 1;
   margin: $px * $file-gutter 0;
   &__container {
     margin: 0 $file-gutter * $px;
