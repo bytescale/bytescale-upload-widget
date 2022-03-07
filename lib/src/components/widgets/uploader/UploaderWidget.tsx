@@ -48,7 +48,9 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       const files = uploadedFiles.map(x => x.uploadedFile);
       params.onUpdate(files);
 
-      if (!multi && uploadedFiles.length > 0) {
+      // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
+      // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
+      if (!multi && uploadedFiles.length > 0 && !params.showFinishButton && params.layout === "modal") {
         // Just in case the user dragged-and-dropped multiple files.
         const firstUploadedFile = files.slice(0, 1);
 

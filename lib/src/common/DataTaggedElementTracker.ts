@@ -2,7 +2,7 @@ export class DataTaggedElementTracker {
   private readonly seenElements = new WeakSet();
   private readonly bindInlineWidgetsDelay = 500;
 
-  constructor(private readonly dataAttribute: string, private readonly onFind: (element: HTMLElement) => void) {}
+  constructor(private readonly dataAttributes: string[], private readonly onFind: (element: HTMLElement) => void) {}
 
   findElementsAndMonitor(): void {
     // Performed after delay, since adding a 'MutationObserver' before the page has initially loaded can hinder page load times.
@@ -13,7 +13,9 @@ export class DataTaggedElementTracker {
   }
 
   private findElements(): void {
-    document.querySelectorAll(`[${this.dataAttribute}]`).forEach(x => this.raiseUnseenElement(x as HTMLElement));
+    this.dataAttributes.forEach(attr =>
+      document.querySelectorAll(`[${attr}]`).forEach(x => this.raiseUnseenElement(x as HTMLElement))
+    );
   }
 
   private addDomMonitor(): void {
@@ -21,7 +23,7 @@ export class DataTaggedElementTracker {
       mutations.forEach(mutationRecord => {
         mutationRecord.addedNodes.forEach(node => {
           const element = node as Partial<HTMLElement> & Node;
-          if (element.hasAttribute?.(this.dataAttribute) === true) {
+          if (this.dataAttributes.some(x => element.hasAttribute?.(x) === true)) {
             this.raiseUnseenElement(element as HTMLElement);
           }
         });

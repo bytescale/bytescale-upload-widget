@@ -215,7 +215,11 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?edito
 Note:
 
 - You must set `position: relative`, `width` and `height` on the container `div`.
-- `container` & `layout: "inline"` are auto-set when using `data-*` on `div` elements.
+- The `Finish` button is hidden by default in this mode (override with `"showFinishButton": true`).
+- When using this HTML approach (i.e. `data-*` on a `div` element):
+  - The `container` & `layout: "inline"` config options are automatically set.
+  - The `data-upload-complete` callback is fired _every time_ the list of uploaded files changes.
+  - The `data-upload-finalized` callback is fired when `Finish` is clicked (if visible, see comment above).
 
 ## 🚀 SPA Support
 
@@ -281,6 +285,7 @@ uploader
     mimeTypes: ["image/jpeg"],   // Unrestricted by default.
     multi: false,                // False by default.
     onUpdate: files => {},       // Called each time the list of uploaded files change.
+    showFinishButton: true,      // Whether to show the "Finish" button in the widget.
     tags: ["profile_picture"]    // Requires an Upload.io account.
   })
   .then(files => alert(files))

@@ -28,6 +28,8 @@ export const UploaderMainScreen = ({
   const finishedUploading = submittedFiles.every(x => x.type !== "uploading");
   const canFinish = finishedUploading && uploadedFiles.length > 0;
   const { locale } = params;
+  const hasButtons = params.multi || params.showFinishButton;
+
   return (
     // Div required to break-out of flex-box layout.
     <div className="uploader__main-screen">
@@ -44,27 +46,29 @@ export const UploaderMainScreen = ({
           ))}
         </div>
       </div>
-      {params.multi && (
+      {hasButtons && (
         <div className="uploader__main-screen__buttons">
-          <UploadButton multi={params.multi} text={locale.addAnotherFile} onUpload={addFiles} />
+          {params.multi && <UploadButton multi={params.multi} text={locale.addAnotherFile} onUpload={addFiles} />}
 
-          <a
-            href="#done"
-            className={cn("btn btn--primary", { disabled: !canFinish })}
-            onClick={e => {
-              e.preventDefault();
-              if (canFinish) {
-                resolve(uploadedFiles.map(x => x.uploadedFile));
-              }
-            }}>
-            {finishedUploading ? (
-              <span className="vcenter">
-                {locale.finish} {locale.finishIcon && <RightSvg width={12} className="ml-2" />}
-              </span>
-            ) : (
-              locale.pleaseWait
-            )}
-          </a>
+          {params.showFinishButton && (
+            <a
+              href="#done"
+              className={cn("btn btn--primary", { disabled: !canFinish })}
+              onClick={e => {
+                e.preventDefault();
+                if (canFinish) {
+                  resolve(uploadedFiles.map(x => x.uploadedFile));
+                }
+              }}>
+              {finishedUploading ? (
+                <span className="vcenter">
+                  {locale.finish} {locale.finishIcon && <RightSvg width={12} className="ml-2" />}
+                </span>
+              ) : (
+                locale.pleaseWait
+              )}
+            </a>
+          )}
         </div>
       )}
     </div>

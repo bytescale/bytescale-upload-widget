@@ -11,9 +11,10 @@
   <body>
     <div id="examples"></div>
     <button>Hey!</button>
-    <a data-upload-complete="">foo</a>
+    <a data-upload-config='{"multi": false}' data-upload-complete="alert(event.files.map(x => x.fileUrl))">foo</a>
     <div
-      data-upload-complete="alert(event.files[0]?.fileUrl)"
+      data-upload-config='{"multi": true}'
+      data-upload-complete="alert(event.files.map(x => x.fileUrl))"
       style="width: 450px; height: 300px; position: relative"
     ></div>
   </body>

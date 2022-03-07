@@ -47,20 +47,9 @@ export class Uploader {
     widget.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
 
     const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
-      let isPromiseResolved = false;
-      const resolver = (files: UploadedFile[]): void => {
-        // We only resolve the promise on modals. On inline layouts, the widget never reaches a terminal state. Instead,
-        // the user should receive updates via the 'onUpdate' callback. This allows integrators to have their own
-        // "finish" button on their form, along with other form fields, and allow the inline Uploader to essentially be
-        // a mutable file control that in itself never "ends".
-        if (!isPromiseResolved && params.layout === "modal") {
-          resolve(files);
-          isPromiseResolved = true;
-        }
-      };
       const props: UploaderRootProps = {
         upload: this.upload,
-        resolve: resolver,
+        resolve,
         reject,
         params
       };

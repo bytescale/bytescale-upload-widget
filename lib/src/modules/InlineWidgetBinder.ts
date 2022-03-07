@@ -7,11 +7,14 @@ export class InlineWidgetBinder {
   private readonly elementTracker: DataTaggedElementTracker;
   private readonly attributes = {
     onUpload: "data-upload-complete",
+    onFinalize: "data-upload-finalized",
     uploadConfig: "data-upload-config"
   };
 
   constructor(private readonly uploader: Uploader) {
-    this.elementTracker = new DataTaggedElementTracker(this.attributes.onUpload, e => this.bindWidget(e));
+    this.elementTracker = new DataTaggedElementTracker([this.attributes.onUpload, this.attributes.onFinalize], e =>
+      this.bindWidget(e)
+    );
   }
 
   bindWidgetsAndMonitor(): void {
@@ -55,8 +58,8 @@ export class InlineWidgetBinder {
     );
   }
 
-  private fireUploadComplete(element: HTMLElement, f: UploadedFile[], fireIfEmpty: boolean): void {
-    if (f.length === 0 && !fireIfEmpty) {
+  private fireUploadComplete(element: HTMLElement, f: UploadedFile[], isUpdateEvent: boolean): void {
+    if (f.length === 0 && !isUpdateEvent) {
       return;
     }
 
@@ -71,6 +74,14 @@ export class InlineWidgetBinder {
 
     // eslint-disable-next-line no-eval
     eval(element.getAttribute(this.attributes.onUpload) ?? "");
+
+    // Separate event handler required because <div> elements (which render inline) will have there 'data-upload-complete'
+    // handle called on 'onUpdate' too. The 'data-upload-finalize' event gives them the ability to differentiate between
+    // the update events & the terminal events.
+    if (!isUpdateEvent) {
+      // eslint-disable-next-line no-eval
+      eval(element.getAttribute(this.attributes.onFinalize) ?? "");
+    }
   }
 
   private getConfig(element: HTMLElement): UploaderParams | undefined {

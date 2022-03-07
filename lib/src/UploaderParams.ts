@@ -12,6 +12,7 @@ export interface UploaderParams {
   mimeTypes?: string[];
   multi?: boolean;
   onUpdate?: (files: UploadedFile[]) => void;
+  showFinishButton?: boolean;
   tags?: Array<string | FileTag>;
 }
 
@@ -23,19 +24,23 @@ export interface UploaderParamsRequired {
   mimeTypes: string[] | undefined;
   multi: boolean;
   onUpdate: (files: UploadedFile[]) => void;
+  showFinishButton: boolean;
   tags: Array<string | FileTag>;
 }
 
 export namespace UploaderParamsRequired {
   export function from(params: UploaderParams): UploaderParamsRequired {
+    const layout = params.layout ?? "modal";
+    const multi = params.multi ?? false;
     return {
       container: params.container,
-      layout: params.layout ?? "modal",
+      layout,
       locale: params.locale ?? uploaderWidgetLocaleEnUs,
       maxFileSizeBytes: params.maxFileSizeBytes,
       mimeTypes: params.mimeTypes,
-      multi: params.multi ?? false,
+      multi,
       onUpdate: params.onUpdate ?? (() => {}),
+      showFinishButton: params.showFinishButton ?? (multi ? layout === "modal" : false),
       tags: params.tags ?? []
     };
   }
