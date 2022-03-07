@@ -217,7 +217,6 @@ Note:
 - You must set `position: relative`, `width` and `height` on the container `div`.
 - `container` & `layout: "inline"` are auto-set when using `data-*` on `div` elements.
 
-
 ## 🚀 SPA Support
 
 **Uploader is SPA-friendly** — even when using `data-*` attributes to render your widgets.
@@ -225,6 +224,44 @@ Note:
 Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute safe for SPAs that introduce elements at runtime.
 
 **[» React Example on CodePen «](https://codepen.io/upload-js/pen/dyZrWqK?editors=1010)**
+
+## 🌐 API Support
+
+**Uploader is powered by Upload.io's [File Upload API](https://upload.io/file-upload-api)** — an easy-to-consume API that provides:
+
+- File uploading.
+- File listing.
+- File deleting.
+- File access control.
+- File TTL rules / expiring links.
+- And more...
+
+Uploading a `"Hello World"` text file is as simple as:
+
+```shell
+curl --data "Hello World" \
+     -u apikey:free \
+     -X POST "https://api.upload.io/v1/files/basic"
+```
+
+_Note: Remember to set the `content-type` header when uploading other file types!_
+
+[Read the File Upload API docs »](https://upload.io/docs/upload-api)
+
+### ⚡ Need a Lightweight Client Library?
+
+**Uploader is built on [Upload.js](https://upload.io/upload-js)** — the fast 7KB client library for Upload.io.
+
+If you already have a file upload component / UI, then bring it to life with Upload.js!
+
+- Small 7KB package size (including all dependencies).
+- Multipart uploads (for large file support).
+- Progress events (for rendering progress wheels & bars).
+- Progress smoothing (using a built-in exponential moving average (EMA) algorithm).
+- Cancellation (for cancelling uploads mid-flight).
+- And more...
+
+[Read the Upload.js docs »](https://upload.io/docs/upload-api)
 
 ## ⚙️ Configuration
 
