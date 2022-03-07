@@ -26,14 +26,16 @@ export class Uploader {
 
   async open(paramsMaybe: UploaderParams = {}): Promise<UploadedFile[]> {
     const params = UploaderParamsRequired.from(paramsMaybe);
+
+    // Important: wait for body first, before using 'querySelector' below.
+    const body = await this.getBody();
+
     const container =
       params.container !== undefined
         ? typeof params.container === "string"
           ? document.querySelector(params.container) ?? undefined
           : params.container
         : undefined;
-
-    const body = await this.getBody();
 
     let widget: Element;
 
