@@ -187,7 +187,7 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/OJOqmOd?edito
 </button>
 ```
 
-### Using Uploader as a Dropzone
+### Creating a Dropzone
 
 You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 
