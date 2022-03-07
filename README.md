@@ -250,17 +250,18 @@ _Note: Remember to set the `content-type` header when uploading other file types
 
 ### ⚡ Need a Lightweight Client Library?
 
-**Uploader is built on [Upload.js](https://upload.io/upload-js)** — the fast 7KB client library for Upload.io's File Upload API.
+Uploader is built on [Upload.js](https://upload.io/upload-js) — the fast 7KB client library for Upload.io's File Upload API.
 
-Upload.js easily integrates into existing file upload UIs and components.
+Upload.js easily integrates into existing file upload UIs to provide:
 
+- End-to-end file upload functionality (zero config — all you need is an Upload API key, e.g. `"free"`.)
 - Small 7KB package size (including all dependencies).
 - Multipart uploads (for large file support).
-- Progress smoothing (using a built-in exponential moving average (EMA) algorithm).
+- Progress moothing (using a built-in exponential moving average (EMA) algorithm).
 - Cancellation (for cancelling uploads mid-flight).
 - And more...
 
-[Read the Upload.js docs »](https://upload.io/docs/upload-api)
+[Try Upload.js on CodePen  »](https://codepen.io/upload-js/pen/abVapaJ?editors=1010)
 
 ## ⚙️ Configuration
 
