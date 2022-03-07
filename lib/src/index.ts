@@ -7,7 +7,7 @@ if (typeof window !== "undefined") {
   const dummy: Record<keyof Uploader, () => void> = {
     open(): void {
       throw new Error(
-        "You forgot to initialize Uploader!\nPlease add:\nconst uploader = new Uploader({ apiKey: 'free'});"
+        "You forgot to initialize Uploader!\nPlease initialize 'uploader' with:\nconst uploader = new Uploader({ apiKey: 'free' });"
       );
     }
   };

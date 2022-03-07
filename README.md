@@ -198,7 +198,7 @@ uploader.open({
   multi: true,
   layout: "inline",
   container: "#example_div_id",  // Replace with the ID of an existing DOM element.
-  onUpdate: (files) => alert(JSON.stringify(files))
+  onUpdate: (files) => console.log(files)
 })
 ```
 
@@ -206,7 +206,7 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?edito
 
 ```html
 <div data-upload-config='{ "multi": true }'
-     data-upload-complete="alert(JSON.stringify(event.files))"
+     data-upload-complete="console.log(event.files)"
      style="position: relative; width: 450px; height: 300px;">
 </div>
 ```
