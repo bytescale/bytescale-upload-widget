@@ -21,7 +21,7 @@ export class InlineWidgetBinder {
   private bindWidget(element: HTMLElement): void {
     switch (element.nodeName.toLowerCase()) {
       case "div":
-        this.bindInline(element);
+        this.bindInlineWidget(element);
         break;
       case "a":
       case "button":
@@ -32,11 +32,12 @@ export class InlineWidgetBinder {
     }
   }
 
-  private bindInline(element: HTMLElement): void {
+  private bindInlineWidget(element: HTMLElement): void {
     this.openUploader(element, {
       ...this.getConfig(element),
       container: element,
-      layout: "inline"
+      layout: "inline",
+      onUpdate: f => this.fireUploadComplete(element, f)
     });
   }
 

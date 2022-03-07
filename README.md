@@ -274,12 +274,13 @@ With JavaScript:
 ```javascript
 uploader
   .open({
-    container: "body",    // "body" by default.
+    container: "body",           // "body" by default.
     layout: "modal",             // "modal" by default. "inline" also supported.
     locale: myCustomLocale,      // EN_US by default. (See "Localization" section below.)
     maxFileSizeBytes: 1024 ** 2, // Unlimited by default.
     mimeTypes: ["image/jpeg"],   // Unrestricted by default.
     multi: false,                // False by default.
+    onUpdate: files => {},       // Called each time the list of uploaded files change.
     tags: ["profile_picture"]    // Requires an Upload.io account.
   })
   .then(files => alert(files))

@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { isUploadedFile, SubmittedFile } from "uploader/components/widgets/uploader/model/SubmittedFile";
+import { SubmittedFile, UploadedFileContainer } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { SubmittedFileComponent } from "uploader/components/widgets/uploader/components/files/SubmittedFileComponent";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
 import cn from "classnames";
@@ -14,10 +14,17 @@ interface Props {
   remove: (fileIndex: number) => void;
   resolve: (files: UploadedFile[]) => void;
   submittedFiles: SubmittedFile[];
+  uploadedFiles: UploadedFileContainer[];
 }
 
-export const UploaderMainScreen = ({ addFiles, submittedFiles, params, remove, resolve }: Props): JSX.Element => {
-  const uploadedFiles = submittedFiles.filter(isUploadedFile);
+export const UploaderMainScreen = ({
+  addFiles,
+  submittedFiles,
+  uploadedFiles,
+  params,
+  remove,
+  resolve
+}: Props): JSX.Element => {
   const finishedUploading = submittedFiles.every(x => x.type !== "uploading");
   const canFinish = finishedUploading && uploadedFiles.length > 0;
   const { locale } = params;

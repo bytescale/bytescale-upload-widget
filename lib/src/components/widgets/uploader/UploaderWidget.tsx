@@ -37,16 +37,22 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const { multi, tags } = params;
 
-  useEffect(() => {
-    if (!multi && uploadedFiles.length > 0) {
-      // Just in case the user dragged-and-dropped multiple files.
-      const firstUploadedFile = uploadedFiles.map(x => x.uploadedFile).slice(0, 1);
+  useEffect(
+    () => {
+      const files = uploadedFiles.map(x => x.uploadedFile);
+      params.onUpdate(files);
 
-      setTimeout(() => {
-        resolve(firstUploadedFile);
-      }, progressWheelDelay + (progressWheelVanish - 100)); // Allow the animation to finish before closing modal. We add some time to allow the wheel to fade out.
-    }
-  }, [uploadedFiles]);
+      if (!multi && uploadedFiles.length > 0) {
+        // Just in case the user dragged-and-dropped multiple files.
+        const firstUploadedFile = files.slice(0, 1);
+
+        setTimeout(() => {
+          resolve(firstUploadedFile);
+        }, progressWheelDelay + (progressWheelVanish - 100)); // Allow the animation to finish before closing modal. We add some time to allow the wheel to fade out.
+      }
+    },
+    uploadedFiles.map(x => x.uploadedFile.fileUrl)
+  );
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles(
@@ -174,6 +180,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           params={params}
           addFiles={addFiles}
           submittedFiles={submittedFileList}
+          uploadedFiles={uploadedFiles}
           remove={removeSubmittedFile}
           resolve={resolve}
         />
