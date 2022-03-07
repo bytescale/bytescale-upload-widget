@@ -236,7 +236,7 @@ Uploader automatically observes the DOM for changes, making the `data-upload-com
 - File TTL rules / expiring links.
 - And more...
 
-Uploading a `"Hello World"` text file is as simple as:
+Uploading a `"Hello World"` file is as simple as:
 
 ```shell
 curl --data "Hello World" \
@@ -250,13 +250,12 @@ _Note: Remember to set the `content-type` header when uploading other file types
 
 ### ⚡ Need a Lightweight Client Library?
 
-**Uploader is built on [Upload.js](https://upload.io/upload-js)** — the fast 7KB client library for Upload.io.
+**Uploader is built on [Upload.js](https://upload.io/upload-js)** — the fast 7KB client library for Upload.io's File Upload API.
 
 If you already have a file upload component / UI, then bring it to life with Upload.js!
 
 - Small 7KB package size (including all dependencies).
 - Multipart uploads (for large file support).
-- Progress events (for rendering progress wheels & bars).
 - Progress smoothing (using a built-in exponential moving average (EMA) algorithm).
 - Cancellation (for cancelling uploads mid-flight).
 - And more...
