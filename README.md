@@ -227,7 +227,7 @@ Uploader automatically observes the DOM for changes, making the `data-upload-com
 
 ## 🌐 API Support
 
-**Uploader is powered by Upload.io's [File Upload API](https://upload.io/file-upload-api)** — an easy-to-consume API that provides:
+Uploader is powered by Upload.io's [File Upload API](https://upload.io/file-upload-api) — an easy-to-consume API that provides:
 
 - File uploading.
 - File listing.
