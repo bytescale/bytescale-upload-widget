@@ -194,13 +194,12 @@ You can use Uploader as a dropzone — rather than a modal — by specifying `la
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/PoOLmeL?editors=1010):
 
 ```javascript
-uploader
-  .open({
-    multi: true,
-    layout: "inline",
-    container: "#example_div_id"  // Replace with the ID of an existing DOM element.
-  })
-  .then(files => alert(JSON.stringify(files)));
+uploader.open({
+  multi: true,
+  layout: "inline",
+  container: "#example_div_id",  // Replace with the ID of an existing DOM element.
+  onUpdate: (files) => alert(JSON.stringify(files))
+})
 ```
 
 Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?editors=1010):
