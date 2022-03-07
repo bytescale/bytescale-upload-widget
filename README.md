@@ -216,7 +216,7 @@ Note:
 
 - You must set `position: relative`, `width` and `height` on the container `div`.
 - The `Finish` button is hidden by default in this mode (override with `"showFinishButton": true`).
-- When using this HTML approach (i.e. `data-*` on a `div` element):
+- When using the HTML approach (i.e. with `data-*` on a `div` element):
   - The `container` & `layout: "inline"` config options are automatically set.
   - The `data-upload-complete` callback is fired _every time_ the list of uploaded files changes.
   - The `data-upload-finalized` callback is fired when `Finish` is clicked (if visible, see comment above).
@@ -349,7 +349,7 @@ https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail-square
 
 ## 🎯 Features
 
-Uploader is the file & image uploader for [Upload.io](https://upload.io/uploader): the file upload service for developers.
+Uploader is the file & image upload widget for [Upload.io](https://upload.io/uploader): the file upload service for developers.
 
 **Core features (available without an account):**
 
