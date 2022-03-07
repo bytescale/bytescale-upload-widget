@@ -252,7 +252,7 @@ _Note: Remember to set the `content-type` header when uploading other file types
 
 **Uploader is built on [Upload.js](https://upload.io/upload-js)** — the fast 7KB client library for Upload.io's File Upload API.
 
-If you already have a file upload component / UI, then bring it to life with Upload.js!
+Upload.js easily integrates into existing file upload UIs and components.
 
 - Small 7KB package size (including all dependencies).
 - Multipart uploads (for large file support).
@@ -295,7 +295,7 @@ Or with HTML:
 </button>
 ```
 
-### Localization
+### 🏳️ Localization
 
 Default is [EN_US](https://github.com/upload-js/uploader/blob/main/lib/src/modules/locales/EN_US.ts):
 
