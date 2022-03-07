@@ -257,7 +257,7 @@ Upload.js easily integrates into existing file upload UIs to provide:
 - End-to-end file upload functionality (zero config — all you need is an Upload API key, e.g. `"free"`.)
 - Small 7KB package size (including all dependencies).
 - Multipart uploads (for large file support).
-- Progress moothing (using a built-in exponential moving average (EMA) algorithm).
+- Progress smoothing (using a built-in exponential moving average (EMA) algorithm).
 - Cancellation (for cancelling uploads mid-flight).
 - And more...
 
