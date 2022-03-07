@@ -16,9 +16,10 @@ interface Props {
   isDraggable?: boolean;
   isDragging?: boolean;
   layout: UploaderLayout;
+  multi: boolean;
 }
 
-export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout }: Props): JSX.Element => {
+export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout, multi }: Props): JSX.Element => {
   const windowSize = useWindowSize();
   const [containerId] = useState(`uploader__widget-base-${Math.round(Math.random() * 100000)}`);
   const [dimensions, setDimensions] = useState<Rect | undefined>(undefined);
@@ -52,7 +53,7 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
       )}
       <div
         className={cn("uploader__widget-base__children", {
-          "uploader__widget-base__children--has-modal": layout === "modal"
+          "uploader__widget-base__children--is-multi-file-modal": layout === "modal" && multi
         })}>
         {children}
       </div>

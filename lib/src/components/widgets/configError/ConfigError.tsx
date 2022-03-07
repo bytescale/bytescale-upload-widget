@@ -12,7 +12,7 @@ export const ConfigError = ({ error, layout }: Props): JSX.Element => {
   const errorMessage = (error.message ?? "unknown error").replace("[upload-js] ", "");
   const isApiKeyError = errorMessage.toLowerCase().includes("api key");
   return (
-    <WidgetBase layout={layout}>
+    <WidgetBase layout={layout} multi={false}>
       <h1>{isApiKeyError ? "Almost there..." : "Oops!"}</h1>
       <p>{errorMessage}</p>
       {isApiKeyError ? (

@@ -172,7 +172,12 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const { isDragging, ...rootProps } = useDragDrop(addFiles);
 
   return (
-    <WidgetBase htmlProps={rootProps} isDraggable={true} isDragging={isDragging} layout={params.layout}>
+    <WidgetBase
+      htmlProps={rootProps}
+      isDraggable={true}
+      isDragging={isDragging}
+      layout={params.layout}
+      multi={params.multi}>
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen params={params} addFiles={addFiles} />
       ) : (
