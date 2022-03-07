@@ -129,6 +129,11 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
 
   const addFiles = (files: File[]): void =>
     setNextSparseFileIndex(nextSparseFileIndex => {
+      // Ignores subsequent drag-and-drop events for single file uploaders.
+      if (!multi && submittedFileList.length > 0) {
+        return nextSparseFileIndex;
+      }
+
       files.slice(0, multi ? files.length : 1).forEach((file, i) => {
         const fileIndex = nextSparseFileIndex + i;
         doUpload(file, fileIndex).then(

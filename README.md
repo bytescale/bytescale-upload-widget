@@ -57,6 +57,12 @@ Install via NPM:
 npm install uploader
 ```
 
+Or via YARN:
+
+```shell
+yarn add uploader
+```
+
 Or via a `<script>` tag:
 
 ```html
@@ -67,7 +73,7 @@ Or via a `<script>` tag:
 
 ### Initialize
 
-Initialize once at the start of your application — required when using `data-*` attributes too:
+Initialize once at the start of your application:
 
 ```javascript
 // Ignore if installed via a script tag.
@@ -102,6 +108,8 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/OJOqmOd?edito
   Upload Files...
 </button>
 ```
+
+_Note: you still need to [initialize](#Initialize) the Uploader when using `data-*` attributes._
 
 ### Get the Result
 
