@@ -258,7 +258,7 @@ Upload.js easily integrates into existing file upload UIs to provide:
 - Small 7KB package size (including all dependencies).
 - Multipart uploads (for large file support).
 - Progress smoothing (using a built-in exponential moving average (EMA) algorithm).
-- Cancellation (for cancelling uploads mid-flight).
+- Cancellation (for in-progress file uploads).
 - And more...
 
 [Try Upload.js on CodePen  »](https://codepen.io/upload-js/pen/abVapaJ?editors=1010)
