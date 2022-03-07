@@ -32,6 +32,7 @@ interface Props {
 
 export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element => {
   const [, setNextSparseFileIndex] = useState<number>(0);
+  const [isInitialUpdate, setIsInitialUpdate] = useState(true);
   const [submittedFiles, setSubmittedFiles] = useState<SubmittedFileMap>({});
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
@@ -39,6 +40,11 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
 
   useEffect(
     () => {
+      if (isInitialUpdate) {
+        setIsInitialUpdate(false);
+        return;
+      }
+
       const files = uploadedFiles.map(x => x.uploadedFile);
       params.onUpdate(files);
 

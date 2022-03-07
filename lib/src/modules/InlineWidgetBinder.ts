@@ -37,7 +37,7 @@ export class InlineWidgetBinder {
       ...this.getConfig(element),
       container: element,
       layout: "inline",
-      onUpdate: f => this.fireUploadComplete(element, f)
+      onUpdate: f => this.fireUploadComplete(element, f, true)
     });
   }
 
@@ -50,13 +50,13 @@ export class InlineWidgetBinder {
 
   private openUploader(element: HTMLElement, params: UploaderParams | undefined): void {
     this.uploader.open(params).then(
-      f => this.fireUploadComplete(element, f),
+      f => this.fireUploadComplete(element, f, false),
       e => console.error(e)
     );
   }
 
-  private fireUploadComplete(element: HTMLElement, f: UploadedFile[]): void {
-    if (f.length === 0) {
+  private fireUploadComplete(element: HTMLElement, f: UploadedFile[], fireIfEmpty: boolean): void {
+    if (f.length === 0 && !fireIfEmpty) {
       return;
     }
 
