@@ -258,7 +258,7 @@ curl --data "Hello World" \
      -X POST "https://api.upload.io/v1/files/basic"
 ```
 
-_Note: Remember to set `-H "Content-Type: some/mime-type"` when uploading other file types!_
+_Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file types!_
 
 [Read the File Upload API docs »](https://upload.io/docs/upload-api)
 
