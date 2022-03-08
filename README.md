@@ -284,7 +284,8 @@ uploader
     mimeTypes: ["image/jpeg"],   // Unrestricted by default.
     multi: false,                // False by default.
     onUpdate: files => {},       // Called each time the list of uploaded files change.
-    showFinishButton: true,      // Whether to show the "Finish" button in the widget.
+    showFinishButton: true,      // Whether to show the "finish" button in the widget.
+    showRemoveButton: true,      // Whether to show the "remove" button next to each file.
     tags: ["profile_picture"]    // Requires an Upload.io account.
   })
   .then(files => alert(files))
