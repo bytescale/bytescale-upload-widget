@@ -1,4 +1,5 @@
-import { UploadedFile, Uploader } from "uploader";
+import { Uploader } from "uploader";
+import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 // For local development of Upload.js only: this is not an example of how you should set the API key in your app.
 const apiKey: string | undefined = (window as any).UPLOAD_JS_API_KEY;
@@ -10,7 +11,7 @@ const uploader = new Uploader({
 
 const openUploader = (): void => {
   uploader.open({ multi: true, maxFileSizeBytes: 1024 * 100, mimeTypes: ["image/jpeg"] }).then(
-    (f: UploadedFile[]) => {
+    (f: UploaderResult[]) => {
       alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
     },
     (e: Error) => console.error(e)

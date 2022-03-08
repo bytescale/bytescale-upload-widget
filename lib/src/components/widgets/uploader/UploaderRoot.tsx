@@ -6,12 +6,12 @@ import { UploaderWidget } from "uploader/components/widgets/uploader/UploaderWid
 import { JSX } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
-import { UploadedFile } from "upload-js";
+import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 export interface UploaderRootProps {
   params: UploaderParamsRequired;
   reject: (error: Error) => void;
-  resolve: (files: UploadedFile[]) => void;
+  resolve: (files: UploaderResult[]) => void;
   upload: UploadInstanceMaybe;
 }
 

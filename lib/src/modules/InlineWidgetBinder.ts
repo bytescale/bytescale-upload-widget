@@ -1,7 +1,7 @@
 import { DataTaggedElementTracker } from "uploader/common/DataTaggedElementTracker";
 import { Uploader } from "uploader";
 import { UploaderParams } from "uploader/UploaderParams";
-import { UploadedFile } from "upload-js";
+import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 export class InlineWidgetBinder {
   private readonly elementTracker: DataTaggedElementTracker;
@@ -58,7 +58,7 @@ export class InlineWidgetBinder {
     );
   }
 
-  private fireUploadComplete(element: HTMLElement, f: UploadedFile[], isUpdateEvent: boolean): void {
+  private fireUploadComplete(element: HTMLElement, f: UploaderResult[], isUpdateEvent: boolean): void {
     if (f.length === 0 && !isUpdateEvent) {
       return;
     }

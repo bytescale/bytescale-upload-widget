@@ -119,22 +119,33 @@ _Note: you still need to [initialize](#Initialize) the Uploader when using `data
 
 With JavaScript:
 
-`.open()` returns a promise of `UploadedFile[]`:
+`.open()` returns a promise of `UploaderResult[]`:
 
 ```javascript
 [
   {
-    accountId: "FW251aX",                       // The Upload.io account the file was uploaded to.
-    file: { ... },                              // DOM file object (from the <input> element).
-    fileId: "FW251aXa9ku...",                   // The uploaded file ID. Append to 'https://files.upload.io/' for the file.
-    fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
-    fileSize: 12345,                            // File size in bytes.
-    mime: "image/jpeg",                         // File MIME type.
-    tags: [                                     // Tags manually & automatically assigned to this file.
-      { name: "tag1", searchable: true },
-      { name: "tag2", searchable: true },
-      ...
-    ]
+    fileUrl: "https://files.upload.io/FW25...",   // The uploaded file URL.
+                                                  // This takes the edited file URL first, or if undefined, the original
+                                                  // file URL. If an optimization exists for this file type, the URL slug
+                                                  // for that file optimization will be appended to the URL.
+                                                  // (For images: expect "/thumbnail" to appear at the end of this URL.)
+
+    editedFile: undefined,                        // Undefined or an object with the same structure as 'originalFile' below.
+                                                  // The 'editedFile' field is present if image editing is enabled, and
+                                                  // references the cropped image.
+    originalFile: {
+      accountId: "FW251aX",                       // The Upload.io account the file was uploaded to.
+      file: { ... },                              // DOM file object (from the <input> element).
+      fileId: "FW251aXa9ku...",                   // The uploaded file ID. Append to 'https://files.upload.io/' for the file.
+      fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
+      fileSize: 12345,                            // File size in bytes.
+      mime: "image/jpeg",                         // File MIME type.
+      tags: [                                     // Tags manually & automatically assigned to this file.
+        { name: "tag1", searchable: true },
+        { name: "tag2", searchable: true },
+        ...
+      ]
+    }
   },
   ...
 ]
@@ -286,7 +297,12 @@ uploader
     onUpdate: files => {},       // Called each time the list of uploaded files change.
     showFinishButton: true,      // Whether to show the "finish" button in the widget.
     showRemoveButton: true,      // Whether to show the "remove" button next to each file.
-    tags: ["profile_picture"]    // Requires an Upload.io account.
+    tags: ["profile_picture"],   // Requires an Upload.io account.
+    editor: {
+      images: {
+        crop: true               // True by default.
+      }
+    },
   })
   .then(files => alert(files))
 ```

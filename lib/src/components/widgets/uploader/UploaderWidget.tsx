@@ -22,11 +22,12 @@ import {
   progressWheelDelay,
   progressWheelVanish
 } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
+import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 interface Props {
   params: UploaderParamsRequired;
   reject: (error: Error) => void;
-  resolve: (files: UploadedFile[]) => void;
+  resolve: (files: UploaderResult[]) => void;
   upload: Upload;
 }
 
@@ -37,6 +38,9 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const { multi, tags } = params;
+  const finalize = (): void => {
+    resolve(uploadedFiles.map(x => UploaderResult.from(x.uploadedFile)));
+  };
 
   useEffect(
     () => {
@@ -45,7 +49,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
         return;
       }
 
-      const files = uploadedFiles.map(x => x.uploadedFile);
+      const files = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile));
       params.onUpdate(files);
 
       // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
@@ -195,7 +199,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           submittedFiles={submittedFileList}
           uploadedFiles={uploadedFiles}
           remove={removeSubmittedFile}
-          resolve={resolve}
+          finalize={finalize}
         />
       )}
     </WidgetBase>

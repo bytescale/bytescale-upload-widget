@@ -2,8 +2,8 @@ import { JSX } from "preact";
 import { useState } from "preact/compat";
 import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { Modal } from "uploader/components/modal/Modal";
-import { UploadedFile } from "upload-js";
 import "./Modal.scss";
+import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 interface Props extends UploaderRootProps {
   container: Element;
@@ -13,7 +13,7 @@ export const RootModal = (props: Props): JSX.Element => {
   // NEVER call without resolving or rejecting the promise, as will cause a hanging promise.
   const [isOpen, setIsOpen] = useState(true);
 
-  const resolve = (files: UploadedFile[]): void => {
+  const resolve = (files: UploaderResult[]): void => {
     props.resolve(files);
     setIsOpen(false);
   };

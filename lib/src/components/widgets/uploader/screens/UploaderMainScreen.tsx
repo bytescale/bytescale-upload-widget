@@ -3,16 +3,15 @@ import { SubmittedFile, UploadedFileContainer } from "uploader/components/widget
 import { SubmittedFileComponent } from "uploader/components/widgets/uploader/components/files/SubmittedFileComponent";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
 import cn from "classnames";
-import { UploadedFile } from "upload-js";
 import "./UploaderMainScreen.scss";
 import { UploadButton } from "uploader/components/widgets/uploader/components/UploadButton";
 import { RightSvg } from "uploader/assets/svgs/RightSvg";
 
 interface Props {
   addFiles: (files: File[]) => void;
+  finalize: () => void;
   params: UploaderParamsRequired;
   remove: (fileIndex: number) => void;
-  resolve: (files: UploadedFile[]) => void;
   submittedFiles: SubmittedFile[];
   uploadedFiles: UploadedFileContainer[];
 }
@@ -23,7 +22,7 @@ export const UploaderMainScreen = ({
   uploadedFiles,
   params,
   remove,
-  resolve
+  finalize
 }: Props): JSX.Element => {
   const finishedUploading = submittedFiles.every(x => x.type !== "uploading");
   const canFinish = finishedUploading && uploadedFiles.length > 0;
@@ -58,7 +57,7 @@ export const UploaderMainScreen = ({
               onClick={e => {
                 e.preventDefault();
                 if (canFinish) {
-                  resolve(uploadedFiles.map(x => x.uploadedFile));
+                  finalize();
                 }
               }}>
               {finishedUploading ? (

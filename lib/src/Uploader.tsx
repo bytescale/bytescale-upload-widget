@@ -1,10 +1,11 @@
-import { Upload, UploadConfig, UploadedFile } from "upload-js";
+import { Upload, UploadConfig } from "upload-js";
 import { UploaderParams, UploaderParamsRequired } from "uploader/UploaderParams";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { RootModal } from "uploader/components/modal/RootModal";
 import { InlineWidgetBinder } from "uploader/modules/InlineWidgetBinder";
+import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 export class Uploader {
   private readonly upload: UploadInstanceMaybe;
@@ -24,7 +25,7 @@ export class Uploader {
     this.inlineWidgets.bindWidgetsAndMonitor();
   }
 
-  async open(paramsMaybe: UploaderParams = {}): Promise<UploadedFile[]> {
+  async open(paramsMaybe: UploaderParams = {}): Promise<UploaderResult[]> {
     const params = UploaderParamsRequired.from(paramsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
@@ -48,7 +49,7 @@ export class Uploader {
 
     widget.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
 
-    const uploadedFiles = await new Promise<UploadedFile[]>((resolve, reject) => {
+    const uploadedFiles = await new Promise<UploaderResult[]>((resolve, reject) => {
       const props: UploaderRootProps = {
         upload: this.upload,
         resolve,
