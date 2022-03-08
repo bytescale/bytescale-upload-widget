@@ -87,7 +87,7 @@ const uploader = new Uploader({
 
 ### Open the Modal
 
-With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/RwjdVxY?editors=1010):
+With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/oNoRmJW?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(files => {
@@ -102,7 +102,7 @@ uploader.open({ multi: true }).then(files => {
 });
 ```
 
-Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/OJOqmOd?editors=1010):
+Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXJqqz?editors=1010):
 
 ```html
 <button data-upload-config='{ "multi": true }'
