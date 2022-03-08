@@ -52,7 +52,7 @@
     "classnames": "2.2.6",
     "preact": "10.6.5",
     "react-transition-group": "4.4.2",
-    "upload-js": "1.42.0"
+    "upload-js": "1.43.0"
   },
   "devDependencies": {
     "@babel/cli": "7.12.10",

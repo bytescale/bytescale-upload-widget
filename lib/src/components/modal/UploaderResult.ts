@@ -13,11 +13,19 @@ export interface UploaderResult {
 }
 
 export namespace UploaderResult {
-  export function from(originalFile: UploadedFile): UploaderResult {
+  export function from(originalFile: UploadedFile, editedFile: UploadedFile | undefined): UploaderResult {
+    const calculateFileUrl = (): string => {
+      const processedEditedFile = editedFile?.suggestedOptimization;
+      if (processedEditedFile !== undefined) {
+        return processedEditedFile.transformationUrl;
+      }
+      return originalFile.suggestedOptimization?.transformationUrl ?? originalFile.fileUrl;
+    };
+
     return {
-      editedFile: undefined,
+      editedFile,
       originalFile,
-      fileUrl: originalFile.fileUrl
+      fileUrl: calculateFileUrl()
     };
   }
 }

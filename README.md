@@ -226,7 +226,7 @@ Note:
 
 - You must set `position: relative`, `width` and `height` on the container `div`.
 - The `Finish` button is hidden by default in this mode (override with `"showFinishButton": true`).
-- When using the HTML approach (i.e. with `data-*` on a `div` element):
+- When using the HTML approach:
   - The `container` & `layout: "inline"` config options are automatically set.
   - The `data-upload-complete` callback is fired _every time_ the list of uploaded files changes.
   - The `data-upload-finalized` callback is fired when `Finish` is clicked (if visible, see comment above).
@@ -258,7 +258,7 @@ curl --data "Hello World" \
      -X POST "https://api.upload.io/v1/files/basic"
 ```
 
-_Note: Remember to set the `content-type` header when uploading other file types!_
+_Note: Remember to set `-H "Content-Type: some/mime-type"` when uploading other file types!_
 
 [Read the File Upload API docs »](https://upload.io/docs/upload-api)
 

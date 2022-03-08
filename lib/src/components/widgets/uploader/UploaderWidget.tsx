@@ -38,8 +38,10 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const { multi, tags } = params;
+  const uploaderResult = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile, undefined));
+
   const finalize = (): void => {
-    resolve(uploadedFiles.map(x => UploaderResult.from(x.uploadedFile)));
+    resolve(uploaderResult);
   };
 
   useEffect(
@@ -49,14 +51,13 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
         return;
       }
 
-      const files = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile));
-      params.onUpdate(files);
+      params.onUpdate(uploaderResult);
 
       // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
       // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
       if (!multi && uploadedFiles.length > 0 && !params.showFinishButton && params.layout === "modal") {
         // Just in case the user dragged-and-dropped multiple files.
-        const firstUploadedFile = files.slice(0, 1);
+        const firstUploadedFile = uploaderResult.slice(0, 1);
 
         setTimeout(() => {
           resolve(firstUploadedFile);
