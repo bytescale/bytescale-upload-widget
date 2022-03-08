@@ -1,6 +1,8 @@
 import { Uploader } from "uploader/Uploader";
 
 export { Uploader } from "uploader/Uploader";
+export { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
+export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 export * from "upload-js";
 
 if (typeof window !== "undefined") {

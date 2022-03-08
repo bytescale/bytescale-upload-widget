@@ -1,6 +1,6 @@
-import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
+import { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 
-export const uploaderWidgetLocaleEnUs: UploaderWidgetLocale = {
+export const UploaderLocaleEnUs: UploaderLocale = {
   "addAnotherFile": "Add another file...",
   "cancel": "cancel",
   "cancelled!": "cancelled",

@@ -42,6 +42,7 @@ export const UploaderMainScreen = ({
               locale={locale}
               key={file.fileIndex}
               remove={() => remove(file.fileIndex)}
+              showRemoveButton={params.showRemoveButton}
             />
           ))}
         </div>

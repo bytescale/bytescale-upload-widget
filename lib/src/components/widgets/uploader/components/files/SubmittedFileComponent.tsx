@@ -6,15 +6,16 @@ import { getFileIconImageSource } from "uploader/components/widgets/uploader/com
 import unknownSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Unknown.svg";
 import "./SubmittedFileComponent.scss";
 import { useEffect, useState } from "preact/compat";
-import { UploaderWidgetLocale } from "uploader/modules/locales/UploaderWidgetLocale";
+import { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 import errorSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Error.svg";
 import cn from "classnames";
 
 interface Props {
   file: SubmittedFile;
   fileCount: number;
-  locale: UploaderWidgetLocale;
+  locale: UploaderLocale;
   remove: () => void;
+  showRemoveButton: boolean;
 }
 
 // Keep up-to-date with total animation duration in CSS.
@@ -38,7 +39,7 @@ const LinkToUpload = ({ text }: { text: string }): JSX.Element => {
   );
 };
 
-export const SubmittedFileComponent = ({ file, fileCount, remove, locale }: Props): JSX.Element => {
+export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRemoveButton }: Props): JSX.Element => {
   const [isDelayedRemove, setIsDelayedRemove] = useState(false);
 
   const delayedRemove = (): void => {
@@ -105,15 +106,19 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale }: Prop
               {file.type === "uploading" ? locale["cancelled!"] : locale["removed!"]}
             </span>
           ) : (
-            <a
-              className="uploader__submitted-file__action"
-              href="#remove"
-              onClick={e => {
-                e.preventDefault();
-                delayedRemove();
-              }}>
-              {file.type === "uploading" ? locale.cancel : locale.remove}
-            </a>
+            <>
+              {(showRemoveButton || file.type === "uploading") && (
+                <a
+                  className="uploader__submitted-file__action"
+                  href="#remove"
+                  onClick={e => {
+                    e.preventDefault();
+                    delayedRemove();
+                  }}>
+                  {file.type === "uploading" ? locale.cancel : locale.remove}
+                </a>
+              )}
+            </>
           )}
         </div>
       </div>

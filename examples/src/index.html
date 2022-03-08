@@ -13,7 +13,7 @@
     <button>Hey!</button>
     <a data-upload-config='{"multi": false}' data-upload-complete="alert(event.files.map(x => x.fileUrl))">foo</a>
     <div
-      data-upload-config='{"multi": true}'
+      data-upload-config='{"multi": true, "showRemoveButton": false }'
       data-upload-complete="alert(event.files.map(x => x.fileUrl))"
       style="width: 450px; height: 300px; position: relative"
     ></div>
