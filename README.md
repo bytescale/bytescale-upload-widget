@@ -124,23 +124,24 @@ With JavaScript:
 ```javascript
 [
   {
-    fileUrl: "https://files.upload.io/FW25...",   // The uploaded file URL.
-                                                  // This takes the edited file URL first, or if undefined, the original
-                                                  // file URL. If an optimization exists for this file type, the URL slug
-                                                  // for that file optimization will be appended to the URL.
-                                                  // (For images: expect "/thumbnail" to appear at the end of this URL.)
+    // The uploaded file URL.
+    // Note: If the file has been edited (e.g. cropped) then the edited file URL is returned,
+    // else the original file URL is returned. In both cases, if an optimization exists, the
+    // URL slug for that file optimization will be appended to the URL.
+    fileUrl: "https://files.upload.io/FW25...",
 
-    editedFile: undefined,                        // Undefined or an object with the same structure as 'originalFile' below.
-                                                  // The 'editedFile' field is present if image editing is enabled, and
-                                                  // references the cropped image.
+    // If defined, this field references the edited file (e.g. a cropped image) and has the
+    // same structure as 'originalFile' field (below).
+    editedFile: undefined,
+
     originalFile: {
-      accountId: "FW251aX",                       // The Upload.io account the file was uploaded to.
+      accountId: "FW251aX",                       // The Upload.io account that owns the file.
       file: { ... },                              // DOM file object (from the <input> element).
-      fileId: "FW251aXa9ku...",                   // The uploaded file ID. Append to 'https://files.upload.io/' for the file.
+      fileId: "FW251aXa9ku...",                   // The uploaded file ID.
       fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
       fileSize: 12345,                            // File size in bytes.
       mime: "image/jpeg",                         // File MIME type.
-      tags: [                                     // Tags manually & automatically assigned to this file.
+      tags: [                                     // Tags manually & auto-assigned to this file.
         { name: "tag1", searchable: true },
         { name: "tag2", searchable: true },
         ...
