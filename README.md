@@ -138,7 +138,7 @@ With JavaScript:
       fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
       fileSize: 12345,                            // File size in bytes.
       mime: "image/jpeg",                         // File MIME type.
-      suggestedOptimization: {                    // Undefined if no suitable optimization exists.
+      suggestedOptimization: {                    // Defined if a suitable optimization exists.
         transformationSlug: "thumbnail",          // Suggested file optimization.
         transformationUrl: "https://files.up...", // Optimized file URL.
       },
