@@ -128,7 +128,7 @@ With JavaScript:
     // file. If a suitable optimization transformation exists, its URL slug is appended the URL.
     fileUrl: "https://files.upload.io/FW25...",
 
-    // References the edited file (if one exists). Has the same schema as below.
+    // References the edited file (if one exists). Uses the same schema as 'originalFile' below.
     editedFile: undefined,
 
     originalFile: {
