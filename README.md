@@ -119,7 +119,7 @@ _Note: you still need to [initialize](#Initialize) the Uploader when using `data
 
 With JavaScript:
 
-`.open()` returns a promise of `Promise<Array<UploaderResult>>`:
+`.open()` returns `Promise<Array<UploaderResult>>`:
 
 ```javascript
 {
