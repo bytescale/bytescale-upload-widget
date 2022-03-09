@@ -124,14 +124,12 @@ With JavaScript:
 ```javascript
 [
   {
-    // The uploaded file URL.
-    // Note: If the file has been edited (e.g. cropped) then the edited file URL is returned,
-    // else the original file URL is returned. In both cases, if an optimization exists, the
-    // URL slug for that file optimization will be appended to the URL.
+    // The uploaded file URL. This is the edited file (if one exists), else the original file.
+    // If an optimization exists for this file type, the optimization's URL slug is appended.
     fileUrl: "https://files.upload.io/FW25...",
 
-    // If defined, this field references the edited file (e.g. a cropped image) and has the
-    // same structure as 'originalFile' field (below).
+    // References the edited file (e.g. a cropped image) if one exists. Uses the same structure
+    // as the 'originalFile' field (below).
     editedFile: undefined,
 
     originalFile: {
