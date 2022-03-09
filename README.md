@@ -119,38 +119,32 @@ _Note: you still need to [initialize](#Initialize) the Uploader when using `data
 
 With JavaScript:
 
-`.open()` returns a promise of `UploaderResult[]`:
+`.open()` returns a promise of `Promise<Array<UploaderResult>>`:
 
 ```javascript
-[
-  {
-    // The uploaded file URL. This is the edited file (e.g. the cropped image), else the original
-    // file. If a suitable optimization transformation exists, its URL slug is appended the URL.
-    fileUrl: "https://files.upload.io/FW25...",
+{
+  fileUrl: "https://files.upload.io/FW25...",  // The URL to use when serving this file.
 
-    // References the edited file (if one exists). Uses the same schema as 'originalFile' below.
-    editedFile: undefined,
+  editedFile: undefined,                       // The edited file (if present). Same as below.
 
-    originalFile: {
-      accountId: "FW251aX",                       // The Upload.io account that owns the file.
-      file: { ... },                              // DOM file object (from the <input> element).
-      fileId: "FW251aXa9ku...",                   // The uploaded file ID.
-      fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
-      fileSize: 12345,                            // File size in bytes.
-      mime: "image/jpeg",                         // File MIME type.
-      suggestedOptimization: {                    // Defined if a suitable optimization exists.
-        transformationSlug: "thumbnail",          // Suggested file optimization.
-        transformationUrl: "https://files.up...", // Optimized file URL.
-      },
-      tags: [                                     // Tags manually & auto-assigned to this file.
-        { name: "tag1", searchable: true },
-        { name: "tag2", searchable: true },
-        ...
-      ]
-    }
-  },
-  ...
-]
+  originalFile: {
+    accountId: "FW251aX",                       // The Upload.io account that owns the file.
+    file: { ... },                              // DOM file object (from the <input> element).
+    fileId: "FW251aXa9ku...",                   // The uploaded file ID.
+    fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
+    fileSize: 12345,                            // File size in bytes.
+    mime: "image/jpeg",                         // File MIME type.
+    suggestedOptimization: {
+      transformationUrl: "https://files.up...", // The suggested URL for serving this file.
+      transformationSlug: "thumbnail"           // Append to 'fileUrl' to produce the above URL.
+    },
+    tags: [                                     // Tags manually & auto-assigned to this file.
+      { name: "tag1", searchable: true },
+      { name: "tag2", searchable: true },
+      ...
+    ]
+  }
+}
 ```
 
 Or with HTML:
