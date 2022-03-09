@@ -124,8 +124,8 @@ With JavaScript:
 ```javascript
 [
   {
-    // The uploaded file URL. This is the edited file (if one exists), else the original file.
-    // If an optimization exists for this file type, the optimization's URL slug is appended.
+    // The uploaded file URL. This is the edited file (e.g. the cropped image), else the original
+    // file. If a suitable optimization transformation exists, its URL slug is appended the URL.
     fileUrl: "https://files.upload.io/FW25...",
 
     // References the edited file (e.g. a cropped image) if one exists. Uses the same structure
