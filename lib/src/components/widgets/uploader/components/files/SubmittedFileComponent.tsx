@@ -1,6 +1,6 @@
 import { SubmittedFile } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { JSX } from "preact";
-import { assertUnreachable } from "uploader/common/TypeUtils";
+import { assertUnreachable } from "uploader/modules/common/TypeUtils";
 import { ProgressIcon } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { getFileIconImageSource } from "uploader/components/widgets/uploader/components/fileIcons/utils/FileIconUtil";
 import unknownSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Unknown.svg";

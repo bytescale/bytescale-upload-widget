@@ -1,0 +1,37 @@
+@import "~uploader/components/widgets/uploader/Variables";
+
+.uploader__resizable-square {
+  $size: 16;
+  $offset: (0 - ($size / 2))* $px;
+  position: absolute;
+  cursor: move;
+  &__nw, &__ne, &__sw, &__se {
+    width: $size * $px;
+    height: $size * $px;
+    opacity: .75;
+    background-color: #fff;
+    border: 1 * $px solid $primary;
+    border-radius: 100%;
+    position: absolute;
+  }
+  &__nw {
+    top: $offset;
+    left: $offset;
+    cursor: nw-resize;
+  }
+  &__ne {
+    top: $offset;
+    right: $offset;
+    cursor: ne-resize;
+  }
+  &__sw {
+    bottom: $offset;
+    left: $offset;
+    cursor: sw-resize;
+  }
+  &__se {
+    bottom: $offset;
+    right: $offset;
+    cursor: se-resize;
+  }
+}

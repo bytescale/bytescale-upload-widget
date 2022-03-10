@@ -2,6 +2,8 @@ export interface UploaderLocale {
   "addAnotherFile": string;
   "cancel": string;
   "cancelled!": string;
+  "done": string;
+  "error!": string;
   "finish": string;
   "finishIcon": boolean;
   "maxSize": string;

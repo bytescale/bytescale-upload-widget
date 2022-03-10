@@ -1,7 +1,7 @@
 import { JSX } from "preact";
 import { useState } from "preact/compat";
 import cn from "classnames";
-import { FileInputChangeEvent } from "uploader/common/FileInputChangeEvent";
+import { FileInputChangeEvent } from "uploader/modules/common/FileInputChangeEvent";
 
 export const UploadButton = ({
   className,

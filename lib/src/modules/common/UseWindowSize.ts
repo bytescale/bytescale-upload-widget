@@ -1,4 +1,4 @@
-import { isBrowser } from "uploader/common/Constants";
+import { isBrowser } from "uploader/modules/common/Constants";
 import { useEffect, useState } from "preact/compat";
 
 export interface WindowSize {

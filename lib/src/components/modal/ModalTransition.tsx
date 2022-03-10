@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { CSSTransition } from "react-transition-group";
+import { ReactNode } from "uploader/modules/common/React";
 
 export const modalTransitionDuration = 250; // Actual CSS transition of 'fade' is 150ms, but we add 100ms for safety.
 export const modalTransitionClasses = {

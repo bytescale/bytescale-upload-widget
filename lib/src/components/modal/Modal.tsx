@@ -1,10 +1,9 @@
 import { JSX } from "preact";
-import { ReactNode } from "uploader/common/React";
-import { useEffect, useLayoutEffect } from "preact/compat";
+import { ReactNode } from "uploader/modules/common/React";
+import { useEffect, useLayoutEffect, useState } from "preact/compat";
 import { CloseSvg } from "uploader/assets/svgs/CloseSvg";
 import "./Modal.scss";
 import { ModalTransition, modalTransitionDuration } from "uploader/components/modal/ModalTransition";
-import { useState } from "react";
 
 interface Props {
   children: ReactNode;

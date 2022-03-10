@@ -109,6 +109,10 @@
     }
   }
 
+  .btn-group {
+    padding: $btn-group-padding * $px;
+  }
+
   /* UTILS */
 
   .text-secondary {

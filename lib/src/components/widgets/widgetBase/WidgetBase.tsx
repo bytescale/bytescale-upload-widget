@@ -1,14 +1,13 @@
-import { ReactNode } from "uploader/common/React";
+import { ReactNode } from "uploader/modules/common/React";
 import { JSX } from "preact";
 import cn from "classnames";
 import "./WidgetBase.scss";
 import { UploaderLayout } from "uploader/UploaderLayout";
 import { WidgetBaseBackground } from "uploader/components/widgets/widgetBase/WidgetBaseBackground";
-import { useState } from "preact/compat";
+import { useLayoutEffect, useState } from "preact/compat";
 import { modalCloseButtonPadding, modalCloseButtonSize } from "uploader/components/modal/Modal";
-import { useWindowSize } from "uploader/common/UseWindowSize";
-import { useLayoutEffect } from "react";
-import { Rect } from "uploader/common/Rect";
+import { useWindowSize } from "uploader/modules/common/UseWindowSize";
+import { Rect } from "uploader/modules/common/Rect";
 
 interface Props {
   children: ReactNode;
@@ -20,7 +19,6 @@ interface Props {
 }
 
 export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout, multi }: Props): JSX.Element => {
-  const windowSize = useWindowSize();
   const [containerId] = useState(`uploader__widget-base-${Math.round(Math.random() * 100000)}`);
   const [dimensions, setDimensions] = useState<Rect | undefined>(undefined);
   const breakpoints = [
@@ -32,6 +30,7 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
     (dimensions === undefined ? undefined : breakpoints.find(x => dimensions.width <= x.width)?.value) ??
     lastBreakpoint;
 
+  const windowSize = useWindowSize();
   useLayoutEffect(() => {
     setDimensions(document.querySelector(`#${containerId}`)?.getBoundingClientRect() ?? undefined);
   }, [windowSize]);

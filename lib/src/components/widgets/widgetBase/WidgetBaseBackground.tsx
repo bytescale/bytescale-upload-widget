@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { DashedBackgroundSvg } from "uploader/assets/svgs/DashedBackgroundSvg";
 import { JSX } from "preact";
-import { Rect } from "uploader/common/Rect";
+import { Rect } from "uploader/modules/common/Rect";
 
 interface Props {
   closeButtonSize: number;

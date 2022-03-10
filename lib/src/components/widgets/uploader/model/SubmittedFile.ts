@@ -16,6 +16,8 @@ export interface ErroneousFile {
 }
 
 export interface UploadedFileContainer {
+  editedFile: UploadedFile | undefined;
+  editingDone: boolean;
   fileIndex: number;
   type: "uploaded";
   uploadedFile: UploadedFile;

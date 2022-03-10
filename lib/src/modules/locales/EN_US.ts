@@ -1,6 +1,8 @@
 import { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 
 export const UploaderLocaleEnUs: UploaderLocale = {
+  "error!": "Error!",
+  "done": "Done",
   "addAnotherFile": "Add another file...",
   "cancel": "cancel",
   "cancelled!": "cancelled",

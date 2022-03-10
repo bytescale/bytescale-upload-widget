@@ -47,7 +47,7 @@ export const UploaderMainScreen = ({
         </div>
       </div>
       {hasButtons && (
-        <div className="uploader__main-screen__buttons">
+        <div className="btn-group">
           {params.multi && <UploadButton multi={params.multi} text={locale.addAnotherFile} onUpload={addFiles} />}
 
           {params.showFinishButton && (

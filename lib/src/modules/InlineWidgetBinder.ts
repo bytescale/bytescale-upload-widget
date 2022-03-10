@@ -1,4 +1,4 @@
-import { DataTaggedElementTracker } from "uploader/common/DataTaggedElementTracker";
+import { DataTaggedElementTracker } from "uploader/modules/common/DataTaggedElementTracker";
 import { Uploader } from "uploader";
 import { UploaderParams } from "uploader/UploaderParams";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";

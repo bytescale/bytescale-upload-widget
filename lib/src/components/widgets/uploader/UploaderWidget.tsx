@@ -3,7 +3,7 @@ import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
 import { useEffect, useState } from "preact/compat";
-import { isDefined } from "uploader/common/TypeUtils";
+import { isDefined } from "uploader/modules/common/TypeUtils";
 import { UploaderWelcomeScreen } from "uploader/components/widgets/uploader/screens/UploaderWelcomeScreen";
 import { UploaderMainScreen } from "uploader/components/widgets/uploader/screens/UploaderMainScreen";
 import {
@@ -15,14 +15,15 @@ import {
   UploadingFile
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
-import { useDragDrop } from "uploader/common/UseDragDrop";
+import { useDragDrop } from "uploader/modules/common/UseDragDrop";
 import "./UploaderWidget.scss";
-import { humanFileSize } from "uploader/common/FormatUtils";
+import { humanFileSize } from "uploader/modules/common/FormatUtils";
 import {
   progressWheelDelay,
   progressWheelVanish
 } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
+import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
 
 interface Props {
   params: UploaderParamsRequired;
@@ -35,37 +36,75 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const [, setNextSparseFileIndex] = useState<number>(0);
   const [isInitialUpdate, setIsInitialUpdate] = useState(true);
   const [submittedFiles, setSubmittedFiles] = useState<SubmittedFileMap>({});
+  const [showImageEditor, setShowImageEditor] = useState(false);
+  const [showImageEditorTimeout, setShowImageEditorTimeout] = useState<number | null>(null);
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
+  const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
   const { multi, tags } = params;
-  const uploaderResult = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile, undefined));
+  const uploaderResult = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile, x.editedFile));
+  const isImage = (mime: string): boolean => mime.toLowerCase().startsWith("image/");
+  const imagesToEdit = uploadedFiles.filter(
+    x => x.editedFile === undefined && !x.editingDone && params.editor.images.crop && isImage(x.uploadedFile.mime)
+  );
+
+  const onImageEdited = (editedFile: UploadedFile | undefined, sparseFileIndex: number): void => {
+    updateFile<UploadedFileContainer>(
+      sparseFileIndex,
+      "uploaded",
+      (file): UploadedFileContainer => ({
+        ...file,
+        editedFile,
+        editingDone: true
+      })
+    );
+  };
 
   const finalize = (): void => {
     resolve(uploaderResult);
   };
 
-  useEffect(
-    () => {
-      if (isInitialUpdate) {
-        setIsInitialUpdate(false);
-        return;
-      }
+  useEffect(() => {
+    if (imagesToEdit.length > 0) {
+      const timeout = (setTimeout(() => {
+        setShowImageEditor(true);
+      }, onFileUploadDelay) as any) as number;
+      setShowImageEditorTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }
+    if (showImageEditor) {
+      setShowImageEditor(false);
+    }
+    if (showImageEditorTimeout !== null) {
+      clearTimeout(showImageEditorTimeout);
+      setShowImageEditorTimeout(null);
+    }
+  }, [imagesToEdit.length, showImageEditor]);
 
-      params.onUpdate(uploaderResult);
+  useEffect(() => {
+    if (imagesToEdit.length > 0) {
+      // Do not raise update events until after the images have finished editing.
+      return;
+    }
 
-      // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
-      // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
-      if (!multi && uploadedFiles.length > 0 && !params.showFinishButton && params.layout === "modal") {
-        // Just in case the user dragged-and-dropped multiple files.
-        const firstUploadedFile = uploaderResult.slice(0, 1);
+    if (isInitialUpdate) {
+      setIsInitialUpdate(false);
+      return;
+    }
 
-        setTimeout(() => {
-          resolve(firstUploadedFile);
-        }, progressWheelDelay + (progressWheelVanish - 100)); // Allow the animation to finish before closing modal. We add some time to allow the wheel to fade out.
-      }
-    },
-    uploadedFiles.map(x => x.uploadedFile.fileUrl)
-  );
+    params.onUpdate(uploaderResult);
+
+    // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
+    // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
+    if (!multi && uploadedFiles.length > 0 && !params.showFinishButton && params.layout === "modal") {
+      // Just in case the user dragged-and-dropped multiple files.
+      const firstUploadedFile = uploaderResult.slice(0, 1);
+
+      setTimeout(() => {
+        resolve(firstUploadedFile);
+      }, onFileUploadDelay);
+    }
+  }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.fileUrl)]);
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles(
@@ -88,17 +127,21 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     );
   };
 
-  const updateUploadingFile = (fileIndex: number, file: (uploadingFile: UploadingFile) => SubmittedFile): void => {
+  const updateFile = <T extends SubmittedFile>(
+    fileIndex: number,
+    fileType: T["type"],
+    file: (uploadingFile: T) => SubmittedFile
+  ): void => {
     setSubmittedFiles(
       (x): SubmittedFileMap => {
         const oldFile = x[fileIndex];
-        if (oldFile === undefined || oldFile.type !== "uploading") {
+        if (oldFile === undefined || oldFile.type !== fileType) {
           return x;
         }
 
         return {
           ...x,
-          [fileIndex]: file(oldFile)
+          [fileIndex]: file(oldFile as T)
         };
       }
     );
@@ -136,8 +179,9 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           type: "uploading"
         }),
       onProgress: ({ bytesSent, bytesTotal }) =>
-        updateUploadingFile(
+        updateFile<UploadingFile>(
           fileIndex,
+          "uploading",
           (uploadingFile): UploadingFile => ({
             ...uploadingFile,
             progress: bytesSent / bytesTotal
@@ -157,18 +201,22 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
         const fileIndex = nextSparseFileIndex + i;
         doUpload(file, fileIndex).then(
           uploadedFile => {
-            updateUploadingFile(
+            updateFile<UploadingFile>(
               fileIndex,
+              "uploading",
               (): UploadedFileContainer => ({
                 fileIndex,
                 uploadedFile,
+                editedFile: undefined,
+                editingDone: false,
                 type: "uploaded"
               })
             );
           },
           error => {
-            updateUploadingFile(
+            updateFile<UploadingFile>(
               fileIndex,
+              "uploading",
               (uploadingFile): ErroneousFile => ({
                 fileIndex,
                 error,
@@ -193,6 +241,14 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       multi={params.multi}>
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen params={params} addFiles={addFiles} />
+      ) : showImageEditor && imagesToEdit.length > 0 ? (
+        <UploaderImageListEditor
+          cropRatio={params.editor.images.cropRatio}
+          images={imagesToEdit}
+          onImageEdited={onImageEdited}
+          upload={upload}
+          locale={params.locale}
+        />
       ) : (
         <UploaderMainScreen
           params={params}
