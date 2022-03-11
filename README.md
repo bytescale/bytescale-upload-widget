@@ -322,17 +322,23 @@ Default is [EN_US](https://github.com/upload-js/uploader/blob/main/lib/src/modul
 
 ```javascript
 const myCustomLocale = {
+  "error!":              "Error!",
+  "done":                "Done",
   "addAnotherFile":      "Add another file...",
   "cancel":              "cancel",
   "cancelled!":          "cancelled",
+  "continue":            "Continue",
+  "crop":                "Crop",
   "finish":              "Finished",
   "finishIcon":          true,
-  "maxSize":             "Max size:",
+  "maxSize":             "File size limit:",
+  "next":                "Next",
   "orDragDropFile":      "...or drag and drop a file.",
   "orDragDropFiles":     "...or drag and drop files.",
   "pleaseWait":          "Please wait...",
   "removed!":            "removed",
   "remove":              "remove",
+  "skip":                "Skip",
   "unsupportedFileType": "File type not supported.",
   "uploadFile":          "Select a File",
   "uploadFiles":         "Select Files"

@@ -40,7 +40,10 @@ export const ImageEditorLayout = ({ actions, image, originalImage, header }: Pro
 
   return (
     <div className="uploader__image-editor">
-      <div className={header === undefined ? "uploader__image-editor__empty-header" : " btn-group"}>{header}</div>
+      <div
+        className={header === undefined ? "uploader__image-editor__header--empty" : "uploader__image-editor__header"}>
+        {header}
+      </div>
       <div className="uploader__image-editor__image">
         <div className="uploader__image-editor__image-padding">
           <img id={containerId} src={imageUrl} className="uploader__image-editor__image-inner" />

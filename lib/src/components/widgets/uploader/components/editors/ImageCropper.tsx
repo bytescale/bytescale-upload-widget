@@ -10,6 +10,12 @@ import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 
 interface Props {
   locale: UploaderLocale;
+  multi:
+    | undefined
+    | {
+        imageCount: number;
+        imageIndex: number;
+      };
   onFinish: (editedFile: UploadedFile | undefined) => void;
   originalImage: UploadedFile;
   ratio: number | undefined;
@@ -46,7 +52,7 @@ function makeCropJson(
   };
 }
 
-export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio }: Props): JSX.Element => {
+export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio, multi }: Props): JSX.Element => {
   const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
 
   const submit = async (): Promise<void> => {
@@ -77,7 +83,24 @@ export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio }:
 
   return (
     <ImageEditorLayout
-      actions={<SubmitButton onSubmit={submit} locale={locale} idleText={locale.done} busyText={locale.pleaseWait} />}
+      header={
+        multi === undefined ? undefined : (
+          <span className="text-secondary">
+            {multi.imageIndex + 1} of {multi.imageCount}
+          </span>
+        )
+      }
+      actions={
+        <>
+          <SubmitButton
+            onSubmit={submit}
+            locale={locale}
+            idleText={locale.continue}
+            busyText={locale.pleaseWait}
+            showIcon={false}
+          />
+        </>
+      }
       image={({ boundary }) => <ResizableSquare boundary={boundary} onResized={setGeometry} ratio={ratio} />}
       originalImage={originalImage}
     />

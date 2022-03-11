@@ -248,6 +248,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           onImageEdited={onImageEdited}
           upload={upload}
           locale={params.locale}
+          multi={params.multi}
         />
       ) : (
         <UploaderMainScreen

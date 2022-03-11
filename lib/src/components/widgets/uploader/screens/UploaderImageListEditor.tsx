@@ -9,12 +9,22 @@ interface Props {
   cropRatio: number | undefined;
   images: UploadedFileContainer[];
   locale: UploaderLocale;
+  multi: boolean;
   onImageEdited: (editedFile: UploadedFile | undefined, sparseFileIndex: number) => void;
   upload: Upload;
 }
 
-export const UploaderImageListEditor = ({ images, onImageEdited, upload, locale, cropRatio }: Props): JSX.Element => {
+export const UploaderImageListEditor = ({
+  images,
+  onImageEdited,
+  upload,
+  locale,
+  cropRatio,
+  multi
+}: Props): JSX.Element => {
   const [currentImage, setCurrentImage] = useState<UploadedFileContainer>(images[0]);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [imageCount, setImageCount] = useState(images.length);
   const editingFileIds = images.map(x => x.uploadedFile.fileId);
   const currentFileId = currentImage.uploadedFile.fileId;
 
@@ -24,12 +34,15 @@ export const UploaderImageListEditor = ({ images, onImageEdited, upload, locale,
     const hasFinishedEditing = !editingFileIds.includes(currentFileId);
     if (hasFinishedEditing) {
       setCurrentImage(images[0]);
+      setImageIndex(i => i + 1);
     }
-  }, [currentFileId, ...editingFileIds]);
+    setImageCount(imageIndex + images.length);
+  }, [imageIndex, currentFileId, ...editingFileIds]);
 
   return (
     <>
       <ImageEditor
+        multi={multi ? { imageIndex, imageCount } : undefined}
         key={currentFileId} // Key required to reset the internal state of the editor between files.
         cropRatio={cropRatio}
         locale={locale}
