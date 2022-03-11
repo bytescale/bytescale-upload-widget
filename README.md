@@ -409,22 +409,18 @@ https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail-square
 
 Uploader is the file & image upload widget for [Upload.io](https://upload.io/uploader): the file upload service for developers.
 
-**Core features (available without an account):**
+**Core features:**
 
 - **Beautifully clean UI widget.**
-- Lightweight. (29KB gzipped including all dependencies — see [Upload.js](https://upload.io/upload-js) for an ultra-lightweight solution.)
 - Single & Multi-File Uploads.
 - Fluid Layout & Mobile-Friendly.
-- Modal & Inline Modes.
+- Image Cropping.
 - Localization.
 - Integrated File Hosting:
   - Files stored on [Upload.io](https://upload.io/uploader) for 4 hours with the `"free"` API key.
   - Files hosted via the Upload CDN: 100 locations worldwide.
-- Image Transformations:
-  - Append `/thumbnail` or `/thumbnail-square` to your image URLs.
-  - Get more transformations with a full account.
 
-**All features (available with an account):**
+**Available with an account:**
 
 - **Permanent Storage.**
 - Unlimited Daily Uploads. (The `"free"` API key allows 100 uploads per day per IP.)
