@@ -161,6 +161,46 @@ Or with HTML:
 
 ## 👀 More Examples
 
+<p align="center"><a href="https://upload.io/uploader"><img alt="Image Uploader Example" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/crop_example.png"></a></p>
+
+### Creating an Image Uploader
+
+With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
+
+```javascript
+uploader
+  .open({
+    multi: false,
+    mimeTypes: ["image/jpeg", "image/png", "image/webp"],
+    editor: {
+      images: {
+        cropShape: "circ", // "rect" also supported.
+        cropRatio: 1 / 1   // "1" is enforced for "circ".
+      }
+    }
+  })
+  .then(files => alert(JSON.stringify(files)));
+```
+
+Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/rNpBRbO?editors=1010):
+
+```html
+<button data-upload-complete='alert(JSON.stringify(event.files))'
+        data-upload-config='{
+          "multi": false,
+          "mimeTypes": ["image/jpeg", "image/png", "image/webp"],
+          "editor": {
+            "images": {
+              "cropShape": "circ",
+              "cropRatio": 1
+            }
+          }
+        }'>
+  Upload an Image...
+</button>
+```
+
+
 ### Creating a "Single File" Upload Button
 
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
@@ -262,7 +302,7 @@ _Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file 
 
 Uploader is built on [Upload.js](https://upload.io/upload-js) — the fast 7KB client library for Upload.io's File Upload API.
 
-Use Upload.js if you have your own file upload UI, and just need to implement file upload functionality.
+Use Upload.js if you have a UI already, and just need to implement file upload functionality.
 
 Upload.js provides:
 
