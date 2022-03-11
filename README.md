@@ -161,9 +161,7 @@ Or with HTML:
 
 ## 👀 More Examples
 
-<p align="center"><a href="https://upload.io/uploader"><img alt="Image Uploader Example" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/crop_example.png"></a></p>
-
-### Creating an Image Uploader
+### Creating an Image Upload Button
 
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
 
