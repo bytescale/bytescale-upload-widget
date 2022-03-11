@@ -10,12 +10,18 @@ const uploader = new Uploader({
 });
 
 const openUploader = (): void => {
-  uploader.open({ multi: false, editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } } }).then(
-    (f: UploaderResult[]) => {
-      alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
-    },
-    (e: Error) => console.error(e)
-  );
+  uploader
+    .open({
+      multi: true,
+      mimeTypes: ["image/jpeg", "image/webp"],
+      editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } }
+    })
+    .then(
+      (f: UploaderResult[]) => {
+        alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+      },
+      (e: Error) => console.error(e)
+    );
 };
 
 openUploader();

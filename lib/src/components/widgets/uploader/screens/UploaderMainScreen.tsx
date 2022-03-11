@@ -10,6 +10,7 @@ import { RightSvg } from "uploader/assets/svgs/RightSvg";
 interface Props {
   addFiles: (files: File[]) => void;
   finalize: () => void;
+  isImageUploader: boolean;
   params: UploaderParamsRequired;
   remove: (fileIndex: number) => void;
   submittedFiles: SubmittedFile[];
@@ -22,7 +23,8 @@ export const UploaderMainScreen = ({
   uploadedFiles,
   params,
   remove,
-  finalize
+  finalize,
+  isImageUploader
 }: Props): JSX.Element => {
   const finishedUploading = submittedFiles.every(x => x.type !== "uploading");
   const canFinish = finishedUploading && uploadedFiles.length > 0;
@@ -48,7 +50,13 @@ export const UploaderMainScreen = ({
       </div>
       {hasButtons && (
         <div className="btn-group">
-          {params.multi && <UploadButton multi={params.multi} text={locale.addAnotherFile} onUpload={addFiles} />}
+          {params.multi && (
+            <UploadButton
+              multi={params.multi}
+              text={isImageUploader ? locale.addAnotherImage : locale.addAnotherFile}
+              onUpload={addFiles}
+            />
+          )}
 
           {params.showFinishButton && (
             <a

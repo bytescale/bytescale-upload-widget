@@ -231,6 +231,8 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     });
 
   const { isDragging, ...rootProps } = useDragDrop(addFiles);
+  const mimeTypes = params.mimeTypes ?? [];
+  const isImageUploader = mimeTypes.length > 0 && mimeTypes.every(x => x.trim().toLowerCase().startsWith("image/"));
 
   return (
     <WidgetBase
@@ -240,7 +242,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       layout={params.layout}
       multi={params.multi}>
       {submittedFileList.length === 0 ? (
-        <UploaderWelcomeScreen params={params} addFiles={addFiles} />
+        <UploaderWelcomeScreen params={params} addFiles={addFiles} isImageUploader={isImageUploader} />
       ) : showImageEditor && imagesToEdit.length > 0 ? (
         <UploaderImageListEditor
           cropRatio={params.editor.images.cropRatio}
@@ -259,6 +261,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
           uploadedFiles={uploadedFiles}
           remove={removeSubmittedFile}
           finalize={finalize}
+          isImageUploader={isImageUploader}
         />
       )}
     </WidgetBase>

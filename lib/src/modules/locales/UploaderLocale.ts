@@ -1,5 +1,6 @@
 export interface UploaderLocale {
   "addAnotherFile": string;
+  "addAnotherImage": string;
   "cancel": string;
   "cancelled!": string;
   "continue": string;
@@ -14,6 +15,8 @@ export interface UploaderLocale {
   "of": string;
   "orDragDropFile": string;
   "orDragDropFiles": string;
+  "orDragDropImage": string;
+  "orDragDropImages": string;
   "pleaseWait": string;
   "remove": string;
   "removed!": string;
@@ -21,4 +24,6 @@ export interface UploaderLocale {
   "unsupportedFileType": string;
   "uploadFile": string;
   "uploadFiles": string;
+  "uploadImage": string;
+  "uploadImages": string;
 }
