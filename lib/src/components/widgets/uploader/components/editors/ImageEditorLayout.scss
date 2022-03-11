@@ -11,6 +11,7 @@
     width: 100%;
     img {
       user-select: none;
+      pointer-events: none;
     }
     &__header {
       padding: 0.825em 0.8em 0.75em 0.8em;
