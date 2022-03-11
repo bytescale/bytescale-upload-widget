@@ -88,6 +88,11 @@ export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Elem
     onResized(isSameAsBoundary ? undefined : { geometry, boundary });
   }, [geometry]);
 
+  useEffect(() => {
+    // Resize the cropper if the container is resized.
+    setGeometry("center", geometry);
+  }, [boundary]);
+
   return (
     <Draggable
       className="uploader__resizable-square"

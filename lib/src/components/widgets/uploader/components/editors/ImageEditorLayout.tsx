@@ -1,9 +1,9 @@
 import { JSX } from "preact";
 import { ReactNode } from "uploader/modules/common/React";
-import { useLayoutEffect, useState } from "preact/compat";
-import { Rect, RectWithPos } from "uploader/modules/common/Rect";
-import { useWindowSize } from "uploader/modules/common/UseWindowSize";
+import { useCallback, useLayoutEffect, useState } from "preact/compat";
+import { Rect } from "uploader/modules/common/Rect";
 import { UploadedFile } from "upload-js";
+import { useElementDimensions } from "uploader/modules/common/UseElementDimensions";
 import "./ImageEditorLayout.scss";
 
 interface Props {
@@ -13,26 +13,14 @@ interface Props {
   originalImage: UploadedFile;
 }
 
-export const ImageEditorLayout = ({ actions, image, originalImage, header }: Props): JSX.Element => {
+export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
   const [imageUrl, setImageUrl] = useState(originalImage.fileUrl);
   const [containerId] = useState(`uploader__image-editor__image-${Math.round(Math.random() * 100000)}`);
-  const [dimensions, setDimensions] = useState<RectWithPos | undefined>(undefined);
-  const windowSize = useWindowSize();
-
-  useLayoutEffect(() => {
-    const image = document.querySelector<HTMLImageElement>(`#${containerId}`);
-    if (image !== null) {
-      image.onload = function () {
-        const domRect = image.getBoundingClientRect();
-        setDimensions({
-          width: domRect.width,
-          height: domRect.height,
-          x: image.offsetLeft,
-          y: image.offsetTop
-        });
-      };
-    }
-  }, [windowSize]);
+  const [imgElement, setImgElement] = useState<HTMLImageElement | undefined>(undefined);
+  const imgRef = useCallback((img: HTMLImageElement | null) => {
+    setImgElement(img ?? undefined);
+  }, []);
+  const dimensions = useElementDimensions(imgElement);
 
   useLayoutEffect(() => {
     setImageUrl(URL.createObjectURL(originalImage.file));
@@ -46,7 +34,7 @@ export const ImageEditorLayout = ({ actions, image, originalImage, header }: Pro
       </div>
       <div className="uploader__image-editor__image">
         <div className="uploader__image-editor__image-padding">
-          <img id={containerId} src={imageUrl} className="uploader__image-editor__image-inner" />
+          <img id={containerId} src={imageUrl} className="uploader__image-editor__image-inner" ref={imgRef} />
           {dimensions !== undefined && (
             <div
               className="uploader__image-editor__image-overlay"
