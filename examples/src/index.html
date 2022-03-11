@@ -12,7 +12,11 @@
   <body>
     <div id="examples"></div>
     <button>Hey!</button>
-    <a data-upload-config='{"multi": false}' data-upload-complete="alert(event.files.map(x => x.fileUrl))">foo</a>
+    <a
+      data-upload-config='{"multi": false, "editor": {"images": {"cropShape": "circ"}}}'
+      data-upload-complete="alert(event.files.map(x => x.fileUrl))"
+      >foo</a
+    >
     <div
       data-upload-config='{"multi": true, "showRemoveButton": false }'
       data-upload-complete="alert(event.files.map(x => x.fileUrl))"

@@ -6,6 +6,7 @@ import { UploaderLocale } from "uploader";
 import { useLayoutEffect, useState } from "preact/compat";
 
 interface Props {
+  cropCircular: boolean;
   cropRatio: number | undefined;
   images: UploadedFileContainer[];
   locale: UploaderLocale;
@@ -19,6 +20,7 @@ export const UploaderImageListEditor = ({
   onImageEdited,
   upload,
   locale,
+  cropCircular,
   cropRatio,
   multi
 }: Props): JSX.Element => {
@@ -45,6 +47,7 @@ export const UploaderImageListEditor = ({
         multi={multi ? { imageIndex, imageCount } : undefined}
         key={currentFileId} // Key required to reset the internal state of the editor between files.
         cropRatio={cropRatio}
+        cropCircular={cropCircular}
         locale={locale}
         originalImage={currentImage.uploadedFile}
         onImageEdited={e => onImageEdited(e, currentImage.fileIndex)}

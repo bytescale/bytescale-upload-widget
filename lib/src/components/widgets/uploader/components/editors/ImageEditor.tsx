@@ -4,6 +4,7 @@ import { ImageCropper } from "uploader/components/widgets/uploader/components/ed
 import { UploaderLocale } from "uploader";
 
 interface Props {
+  cropCircular: boolean;
   cropRatio: number | undefined;
   locale: UploaderLocale;
   multi:
@@ -17,11 +18,20 @@ interface Props {
   upload: Upload;
 }
 
-export const ImageEditor = ({ originalImage, upload, onImageEdited, locale, cropRatio, multi }: Props): JSX.Element => {
+export const ImageEditor = ({
+  originalImage,
+  upload,
+  onImageEdited,
+  locale,
+  cropRatio,
+  multi,
+  cropCircular
+}: Props): JSX.Element => {
   // Currently we only provide a cropper: it would be good to provide rotation in future, too, and we can switch between
   // them here.
   return (
     <ImageCropper
+      circular={cropCircular}
       multi={multi}
       onFinish={onImageEdited}
       upload={upload}

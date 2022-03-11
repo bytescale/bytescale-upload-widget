@@ -244,6 +244,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       ) : showImageEditor && imagesToEdit.length > 0 ? (
         <UploaderImageListEditor
           cropRatio={params.editor.images.cropRatio}
+          cropCircular={params.editor.images.cropShape === "circ"}
           images={imagesToEdit}
           onImageEdited={onImageEdited}
           upload={upload}

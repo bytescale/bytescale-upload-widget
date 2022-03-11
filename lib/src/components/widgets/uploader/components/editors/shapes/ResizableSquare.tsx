@@ -52,13 +52,13 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props)
       height,
       width,
       x:
-        fixed === "nw" || fixed === "sw"
+        fixed === "ne" || fixed === "se"
           ? g.x
           : fixed === "center"
           ? g.x + g.width / 2 - width / 2
           : g.x + (g.width - width),
       y:
-        fixed === "nw" || fixed === "ne"
+        fixed === "sw" || fixed === "se"
           ? g.y
           : fixed === "center"
           ? g.y + g.height / 2 - height / 2

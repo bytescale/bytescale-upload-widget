@@ -8,8 +8,10 @@ import { SubmitButton } from "uploader/components/widgets/uploader/components/bu
 import { UploaderLocale } from "uploader";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import "./ImageCropper.scss";
+import cn from "classnames";
 
 interface Props {
+  circular: boolean;
   locale: UploaderLocale;
   multi:
     | undefined
@@ -53,7 +55,15 @@ function makeCropJson(
   };
 }
 
-export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio, multi }: Props): JSX.Element => {
+export const ImageCropper = ({
+  locale,
+  originalImage,
+  upload,
+  onFinish,
+  ratio,
+  multi,
+  circular
+}: Props): JSX.Element => {
   const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
 
   const submit = async (): Promise<void> => {
@@ -105,7 +115,7 @@ export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio, m
       image={({ imgDimensions, imageUrl }) => (
         <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={ratio}>
           <div
-            className="uploader__image-cropper__clip"
+            className={cn("uploader__image-cropper__clip", { "uploader__image-cropper__clip--circular": circular })}
             style={{
               width: geometry?.geometry.width ?? imgDimensions.width,
               height: geometry?.geometry.height ?? imgDimensions.height
