@@ -7,6 +7,7 @@ import { useState } from "preact/compat";
 import { SubmitButton } from "uploader/components/widgets/uploader/components/buttons/SubmitButton";
 import { UploaderLocale } from "uploader";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
+import "./ImageCropper.scss";
 
 interface Props {
   locale: UploaderLocale;
@@ -86,7 +87,7 @@ export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio, m
       header={
         multi === undefined || multi.imageCount === 1 ? undefined : (
           <span className="text-secondary">
-            {multi.imageIndex + 1} of {multi.imageCount}
+            {locale.image} {multi.imageIndex + 1} {locale.of} {multi.imageCount}
           </span>
         )
       }
@@ -101,7 +102,28 @@ export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio, m
           />
         </>
       }
-      image={({ boundary }) => <ResizableSquare boundary={boundary} onResized={setGeometry} ratio={ratio} />}
+      image={({ imgDimensions, imageUrl }) => (
+        <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={ratio}>
+          <div
+            className="uploader__image-cropper__clip"
+            style={{
+              width: geometry?.geometry.width ?? imgDimensions.width,
+              height: geometry?.geometry.height ?? imgDimensions.height
+            }}>
+            <img
+              src={imageUrl}
+              draggable={false}
+              style={{
+                width: imgDimensions.width,
+                height: imgDimensions.height,
+                transform: `translateX(${(geometry?.geometry.x ?? 0) * -1}px) translateY(${
+                  (geometry?.geometry.y ?? 0) * -1
+                }px)`
+              }}
+            />
+          </div>
+        </ResizableSquare>
+      )}
       originalImage={originalImage}
     />
   );

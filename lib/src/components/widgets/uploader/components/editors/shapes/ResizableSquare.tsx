@@ -1,11 +1,12 @@
 import { JSX } from "preact";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
-import { useEffect, useState } from "preact/compat";
+import { useLayoutEffect, useState } from "preact/compat";
 import "./ResizableSquare.scss";
 import { Draggable } from "uploader/components/common/Draggable";
 
 interface Props {
   boundary: Rect;
+  children: JSX.Element;
   onResized: (geometry: { boundary: Rect; geometry: RectWithPos } | undefined) => void;
   ratio: number | undefined; // width / height | undefined for free-form
 }
@@ -38,7 +39,7 @@ const CornerDragger = ({
   );
 };
 
-export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Element => {
+export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props): JSX.Element => {
   const minSize = 50;
   const reRatio = (g: RectWithPos, fixed: ReRatioMode): RectWithPos => {
     if (ratio === undefined) {
@@ -82,21 +83,24 @@ export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Elem
   );
   const setGeometry = (corner: ReRatioMode, set: RectWithPos): void => setGeometryUnsafe(clipAndReRatio(set, corner));
 
-  useEffect(() => {
+  const onGeometryChange = (): void => {
     const isSameAsBoundary =
       geometry.x === 0 && geometry.y === 0 && geometry.width === boundary.width && geometry.height === boundary.height;
     onResized(isSameAsBoundary ? undefined : { geometry, boundary });
-  }, [geometry]);
+  };
 
-  useEffect(() => {
+  useLayoutEffect(onGeometryChange, [geometry]);
+
+  useLayoutEffect(() => {
     // Resize the cropper if the container is resized.
     setGeometry("center", geometry);
+    onGeometryChange();
   }, [boundary]);
 
   return (
     <Draggable
       className="uploader__resizable-square"
-      style={{ left: geometry.x, top: geometry.y, width: geometry.width, height: geometry.height }}
+      style={RectWithPos.toCssProps(geometry)}
       startingValue={geometry}
       onMove={(x, y, g) =>
         setGeometry("center", {
@@ -106,6 +110,7 @@ export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Elem
           height: g.height
         })
       }>
+      {children}
       <CornerDragger corner="nw" setGeometry={setGeometry} geometry={geometry} />
       <CornerDragger corner="ne" setGeometry={setGeometry} geometry={geometry} />
       <CornerDragger corner="se" setGeometry={setGeometry} geometry={geometry} />

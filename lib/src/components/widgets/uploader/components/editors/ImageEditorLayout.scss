@@ -9,6 +9,9 @@
     align-content: space-between;
     height: 100%;
     width: 100%;
+    img {
+      user-select: none;
+    }
     &__header {
       padding: 0.825em 0.8em 0.75em 0.8em;
       &--empty {
@@ -36,6 +39,7 @@
       }
       &-overlay {
         position: absolute;
+        background: rgba(255,255,255,0.5);
       }
     }
   }

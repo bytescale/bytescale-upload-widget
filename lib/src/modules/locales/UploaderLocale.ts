@@ -8,8 +8,10 @@ export interface UploaderLocale {
   "error!": string;
   "finish": string;
   "finishIcon": boolean;
+  "image": string;
   "maxSize": string;
   "next": string;
+  "of": string;
   "orDragDropFile": string;
   "orDragDropFiles": string;
   "pleaseWait": string;
