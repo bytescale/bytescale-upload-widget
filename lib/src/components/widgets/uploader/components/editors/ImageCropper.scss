@@ -1,3 +1,13 @@
 .uploader__image-cropper__clip {
   overflow: hidden;
+  &:before {
+    content: " ";
+    display: block;
+    background: rgba(255, 255, 255, 0.15);
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+  }
 }
