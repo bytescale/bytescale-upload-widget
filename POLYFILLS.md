@@ -58,6 +58,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/web.dom-collections.for-each
   - core-js/modules/web.dom-collections.iterator
   - core-js/modules/web.timers
+  - core-js/modules/web.url
 
 ## No Transpiling Required
 
