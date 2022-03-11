@@ -4,10 +4,8 @@ import cn from "classnames";
 import "./WidgetBase.scss";
 import { UploaderLayout } from "uploader/UploaderLayout";
 import { WidgetBaseBackground } from "uploader/components/widgets/widgetBase/WidgetBaseBackground";
-import { useLayoutEffect, useState } from "preact/compat";
 import { modalCloseButtonPadding, modalCloseButtonSize } from "uploader/components/modal/Modal";
-import { useWindowSize } from "uploader/modules/common/UseWindowSize";
-import { Rect } from "uploader/modules/common/Rect";
+import { useElementDimensions } from "uploader/modules/common/UseDimensionsFromElement";
 
 interface Props {
   children: ReactNode;
@@ -19,8 +17,7 @@ interface Props {
 }
 
 export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout, multi }: Props): JSX.Element => {
-  const [containerId] = useState(`uploader__widget-base-${Math.round(Math.random() * 100000)}`);
-  const [dimensions, setDimensions] = useState<Rect | undefined>(undefined);
+  const [dimensions, containerRef] = useElementDimensions();
   const breakpoints = [
     { width: 650, value: "md" },
     { width: 930, value: "lg" }
@@ -30,14 +27,9 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
     (dimensions === undefined ? undefined : breakpoints.find(x => dimensions.width <= x.width)?.value) ??
     lastBreakpoint;
 
-  const windowSize = useWindowSize();
-  useLayoutEffect(() => {
-    setDimensions(document.querySelector(`#${containerId}`)?.getBoundingClientRect() ?? undefined);
-  }, [windowSize]);
-
   return (
     <div
-      id={containerId}
+      ref={containerRef}
       className={cn("uploader__widget-base", `breakpoint-${breakpoint}`, {
         "uploader__widget-base--draggable": isDraggable === true && layout !== "modal",
         "uploader__widget-base--dragging": isDragging === true && layout !== "modal"

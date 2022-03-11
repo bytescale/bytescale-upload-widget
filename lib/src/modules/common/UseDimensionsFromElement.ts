@@ -1,7 +1,16 @@
-import { useLayoutEffect, useState } from "preact/compat";
+import { useCallback, useLayoutEffect, useState } from "preact/compat";
 import { RectWithPos } from "uploader/modules/common/Rect";
 
-export function useElementDimensions(element: HTMLElement | undefined): RectWithPos | undefined {
+export function useElementDimensions(): [RectWithPos | undefined, (element: HTMLElement | null) => void] {
+  const [element, setElement] = useState<HTMLElement | undefined>(undefined);
+  const elementRef = useCallback((e: HTMLElement | null) => {
+    setElement(e ?? undefined);
+  }, []);
+  const dimensions = useDimensionsFromElement(element);
+  return [dimensions, elementRef];
+}
+
+function useDimensionsFromElement(element: HTMLElement | undefined): RectWithPos | undefined {
   const getLatestSize = (): RectWithPos | undefined => {
     if (element === undefined) {
       return undefined;
