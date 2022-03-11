@@ -84,7 +84,7 @@ export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio, m
   return (
     <ImageEditorLayout
       header={
-        multi === undefined ? undefined : (
+        multi === undefined || multi.imageCount === 1 ? undefined : (
           <span className="text-secondary">
             {multi.imageIndex + 1} of {multi.imageCount}
           </span>
