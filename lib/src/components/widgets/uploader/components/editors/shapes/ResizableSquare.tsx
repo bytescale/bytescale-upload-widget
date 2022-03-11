@@ -1,13 +1,12 @@
 import { JSX } from "preact";
-import { CropGeometry } from "uploader/components/widgets/uploader/model/CropGeometry";
-import { Rect } from "uploader/modules/common/Rect";
+import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import { useEffect, useState } from "preact/compat";
 import "./ResizableSquare.scss";
 import { Draggable } from "uploader/components/common/Draggable";
 
 interface Props {
   boundary: Rect;
-  onResized: (geometry: { boundary: Rect; geometry: CropGeometry } | undefined) => void;
+  onResized: (geometry: { boundary: Rect; geometry: RectWithPos } | undefined) => void;
   ratio: number | undefined; // width / height | undefined for free-form
 }
 
@@ -20,8 +19,8 @@ const CornerDragger = ({
   setGeometry
 }: {
   corner: Corner;
-  geometry: CropGeometry;
-  setGeometry: (corner: Corner, geometry: CropGeometry) => void;
+  geometry: RectWithPos;
+  setGeometry: (corner: Corner, geometry: RectWithPos) => void;
 }): JSX.Element => {
   return (
     <Draggable
@@ -41,7 +40,7 @@ const CornerDragger = ({
 
 export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Element => {
   const minSize = 50;
-  const reRatio = (g: CropGeometry, fixed: ReRatioMode): CropGeometry => {
+  const reRatio = (g: RectWithPos, fixed: ReRatioMode): RectWithPos => {
     if (ratio === undefined) {
       return g;
     }
@@ -65,7 +64,7 @@ export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Elem
           : g.y + (g.height - height)
     };
   };
-  const clip = (g: CropGeometry): CropGeometry => {
+  const clip = (g: RectWithPos): RectWithPos => {
     const x = Math.min(boundary.width - minSize, Math.max(0, g.x)); // x is clipped, but width may continue to grow. We should deduct from width the amount that's clipped?
     const y = Math.min(boundary.height - minSize, Math.max(0, g.y));
     const xClip = Math.min(0, g.x);
@@ -77,11 +76,11 @@ export const ResizableSquare = ({ boundary, ratio, onResized }: Props): JSX.Elem
       height: Math.max(minSize, Math.min(g.height + yClip, boundary.height - y))
     };
   };
-  const clipAndReRatio = (g: CropGeometry, fixed: ReRatioMode): CropGeometry => reRatio(clip(g), fixed);
+  const clipAndReRatio = (g: RectWithPos, fixed: ReRatioMode): RectWithPos => reRatio(clip(g), fixed);
   const [geometry, setGeometryUnsafe] = useState(
     clipAndReRatio({ x: 0, y: 0, width: boundary.width, height: boundary.height }, "center")
   );
-  const setGeometry = (corner: ReRatioMode, set: CropGeometry): void => setGeometryUnsafe(clipAndReRatio(set, corner));
+  const setGeometry = (corner: ReRatioMode, set: RectWithPos): void => setGeometryUnsafe(clipAndReRatio(set, corner));
 
   useEffect(() => {
     const isSameAsBoundary =

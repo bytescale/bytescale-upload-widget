@@ -15,11 +15,11 @@ export interface UploaderResult {
 export namespace UploaderResult {
   export function from(originalFile: UploadedFile, editedFile: UploadedFile | undefined): UploaderResult {
     const calculateFileUrl = (): string => {
-      const processedEditedFile = editedFile?.suggestedOptimization;
-      if (processedEditedFile !== undefined) {
-        return processedEditedFile.transformationUrl;
+      const suggestedOptimization = originalFile.suggestedOptimization;
+      if (editedFile !== undefined && suggestedOptimization !== undefined) {
+        return `${editedFile.fileUrl}/${suggestedOptimization.transformationSlug}`;
       }
-      return originalFile.suggestedOptimization?.transformationUrl ?? originalFile.fileUrl;
+      return suggestedOptimization?.transformationUrl ?? originalFile.fileUrl;
     };
 
     return {

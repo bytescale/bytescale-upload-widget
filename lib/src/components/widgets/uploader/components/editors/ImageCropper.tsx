@@ -1,5 +1,4 @@
 import { JSX } from "preact";
-import { CropGeometry } from "uploader/components/widgets/uploader/model/CropGeometry";
 import { ResizableSquare } from "uploader/components/widgets/uploader/components/editors/shapes/ResizableSquare";
 import { ParamsFromFile } from "uploader/components/widgets/uploader/model/ParamsFromFile";
 import { Upload, UploadedFile } from "upload-js";
@@ -7,7 +6,7 @@ import { ImageEditorLayout } from "uploader/components/widgets/uploader/componen
 import { useState } from "preact/compat";
 import { SubmitButton } from "uploader/components/widgets/uploader/components/buttons/SubmitButton";
 import { UploaderLocale } from "uploader";
-import { Rect } from "uploader/modules/common/Rect";
+import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 
 interface Props {
   locale: UploaderLocale;
@@ -19,7 +18,7 @@ interface Props {
 
 function makeCropJson(
   originalFileId: string,
-  geometry: CropGeometry,
+  geometry: RectWithPos,
   boundary: Rect,
   nativeImageSize: Rect
 ): ParamsFromFile {
@@ -31,12 +30,12 @@ function makeCropJson(
         {
           geometry: {
             offset: {
-              x: geometry.x * scale,
-              y: geometry.y * scale
+              x: Math.round(geometry.x * scale),
+              y: Math.round(geometry.y * scale)
             },
             size: {
-              width: geometry.width * scale,
-              height: geometry.height * scale,
+              width: Math.round(geometry.width * scale),
+              height: Math.round(geometry.height * scale),
               type: "widthxheight!"
             }
           },
@@ -48,7 +47,7 @@ function makeCropJson(
 }
 
 export const ImageCropper = ({ locale, originalImage, upload, onFinish, ratio }: Props): JSX.Element => {
-  const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: CropGeometry } | undefined>(undefined);
+  const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
 
   const submit = async (): Promise<void> => {
     if (geometry === undefined) {
