@@ -300,7 +300,7 @@ _Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file 
 
 Uploader is built on [Upload.js](https://upload.io/upload-js) — the fast 7KB client library for Upload.io's File Upload API.
 
-Use Upload.js if you have a UI already, and just need to implement file upload functionality.
+Use Upload.js if you already have a UI, and just need to implement file upload functionality.
 
 Upload.js provides:
 
