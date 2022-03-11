@@ -296,7 +296,9 @@ uploader
     tags: ["profile_picture"],   // Requires an Upload.io account.
     editor: {
       images: {
-        crop: true               // True by default.
+        crop: true,              // True by default.
+        cropRatio: 4 / 3,        // width / height. undefined enables freeform (default).
+        cropShape: "rect"        // "rect" (default) or "circ".
       }
     },
   })
