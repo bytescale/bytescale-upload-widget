@@ -5,7 +5,7 @@ import "./WidgetBase.scss";
 import { UploaderLayout } from "uploader/UploaderLayout";
 import { WidgetBaseBackground } from "uploader/components/widgets/widgetBase/WidgetBaseBackground";
 import { modalCloseButtonPadding, modalCloseButtonSize } from "uploader/components/modal/Modal";
-import { useElementDimensions } from "uploader/modules/common/UseDimensionsFromElement";
+import { getElementDimensionsOnResize } from "uploader/modules/common/UseDimensionsFromElement";
 
 interface Props {
   children: ReactNode;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout, multi }: Props): JSX.Element => {
-  const [dimensions, containerRef] = useElementDimensions();
+  const [dimensions, containerRef] = getElementDimensionsOnResize();
   const breakpoints = [
     { width: 650, value: "md" },
     { width: 930, value: "lg" }

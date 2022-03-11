@@ -3,7 +3,7 @@ import { ReactNode } from "uploader/modules/common/React";
 import { useLayoutEffect, useState } from "preact/compat";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import { UploadedFile } from "upload-js";
-import { useElementDimensions } from "uploader/modules/common/UseDimensionsFromElement";
+import { getElementDimensionsOnParentResize } from "uploader/modules/common/UseDimensionsFromElement";
 import "./ImageEditorLayout.scss";
 
 interface Props {
@@ -16,14 +16,14 @@ interface Props {
 export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
   const [imageUrl, setImageUrl] = useState(originalImage.fileUrl);
   const [containerId] = useState(`uploader__image-editor__image-${Math.round(Math.random() * 100000)}`);
-  const [imgDimensions, imgRef] = useElementDimensions();
+  const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize();
 
   useLayoutEffect(() => {
     setImageUrl(URL.createObjectURL(originalImage.file));
   }, [originalImage.fileUrl]);
 
   return (
-    <div className="uploader__image-editor">
+    <div className="uploader__image-editor" ref={containerRef}>
       <div
         className={header === undefined ? "uploader__image-editor__header--empty" : "uploader__image-editor__header"}>
         {header}
