@@ -2,7 +2,7 @@
 import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
-import { useEffect, useState } from "preact/compat";
+import { useEffect, useLayoutEffect, useState } from "preact/compat";
 import { isDefined } from "uploader/modules/common/TypeUtils";
 import { UploaderWelcomeScreen } from "uploader/components/widgets/uploader/screens/UploaderWelcomeScreen";
 import { UploaderMainScreen } from "uploader/components/widgets/uploader/screens/UploaderMainScreen";
@@ -81,7 +81,9 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     }
   }, [imagesToEdit.length, showImageEditor]);
 
-  useEffect(() => {
+  // We want to use a 'layout effect' since if the cropper has just been closed in 'single file mode', we want to
+  // immediately resolve the uploader, rather than momentarily showing the main screen.
+  useLayoutEffect(() => {
     if (imagesToEdit.length > 0) {
       // Do not raise update events until after the images have finished editing.
       return;
@@ -99,10 +101,15 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     if (!multi && uploadedFiles.length > 0 && !params.showFinishButton && params.layout === "modal") {
       // Just in case the user dragged-and-dropped multiple files.
       const firstUploadedFile = uploaderResult.slice(0, 1);
+      const doResolve = (): void => resolve(firstUploadedFile);
+      const previousScreenWasEditor = uploadedFiles[0].editingDone;
 
-      setTimeout(() => {
-        resolve(firstUploadedFile);
-      }, onFileUploadDelay);
+      if (previousScreenWasEditor) {
+        doResolve();
+      } else {
+        const timeout = setTimeout(doResolve, onFileUploadDelay);
+        return () => clearTimeout(timeout);
+      }
     }
   }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.fileUrl)]);
 

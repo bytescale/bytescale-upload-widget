@@ -27,5 +27,5 @@ export const UploaderLocaleEnUs: UploaderLocale = {
   "uploadFile": "Select a File",
   "uploadFiles": "Select a File", // We've now chosen to use singular tense for the upload button.
   "uploadImage": "Select an Image",
-  "uploadImages": "Select a Image" // We've now chosen to use singular tense for the upload button.
+  "uploadImages": "Select an Image" // We've now chosen to use singular tense for the upload button.
 };

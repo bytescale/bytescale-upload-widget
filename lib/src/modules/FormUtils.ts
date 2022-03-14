@@ -4,6 +4,7 @@ const transientFlagTimeout = 1500;
 
 export function useTransientFlag(): [boolean, (onTimeout?: () => void) => void] {
   const [onTimeout, setOnTimeout] = useState<undefined | (() => void)>(undefined);
+  const flag = onTimeout !== undefined;
 
   useEffect(() => {
     if (onTimeout !== undefined) {
@@ -15,7 +16,7 @@ export function useTransientFlag(): [boolean, (onTimeout?: () => void) => void] 
       return () => clearTimeout(handle);
     }
     return () => {};
-  }, [onTimeout]);
+  }, [flag]);
 
-  return [onTimeout !== undefined, onTimeout => setOnTimeout(onTimeout ?? (() => {}))];
+  return [flag, onTimeout => setOnTimeout(onTimeout ?? (() => {}))];
 }

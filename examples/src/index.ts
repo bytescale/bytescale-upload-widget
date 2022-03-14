@@ -12,7 +12,7 @@ const uploader = new Uploader({
 const openUploader = (): void => {
   uploader
     .open({
-      multi: true,
+      multi: false,
       mimeTypes: ["image/jpeg", "image/webp"],
       editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } }
     })
