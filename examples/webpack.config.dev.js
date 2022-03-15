@@ -87,11 +87,7 @@ module.exports = {
     alias: {
       // Remember to keep in sync with `tsconfig.json`
       "@upload.io/uploader-examples": path.resolve(__dirname, "../examples/src"),
-      "uploader": path.resolve(__dirname, "../lib/src"),
-      "react": "preact/compat",
-      "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",
-      "react/jsx-runtime": "preact/jsx-runtime"
+      "uploader": path.resolve(__dirname, "../lib/src")
     },
     modules: [
       // Default value (resolve relative 'node_modules' from current dir, and up the ancestors).
