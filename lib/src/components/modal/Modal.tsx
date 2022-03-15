@@ -2,11 +2,8 @@ import { JSX } from "preact";
 import { ReactNode } from "uploader/modules/common/React";
 import { useEffect, useLayoutEffect, useState } from "preact/compat";
 import { CloseSvg } from "uploader/assets/svgs/CloseSvg";
-import styles from "./Modal.scss";
+import "./Modal.scss";
 import cn from "classnames";
-import { loadStyles } from "uploader/modules/StyleLoader";
-
-loadStyles(styles);
 
 interface Props {
   children: ReactNode;

@@ -10,7 +10,6 @@ const cssLoaders = [
   {
     loader: "style-loader",
     options: {
-      injectType: "lazyStyleTag",
       // Do not forget that this code will be used in the browser and not all browsers
       // support latest ECMA features like `let`, `const`, `arrow function expression` and etc,
       // we recommend use only ECMA 5 features, but it is depends what browsers you want to support.

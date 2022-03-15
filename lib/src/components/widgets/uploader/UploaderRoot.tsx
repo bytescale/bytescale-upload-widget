@@ -1,5 +1,6 @@
 // Put this first, so other components' stylesheets can override the default styles.
-import "./UploaderRootStyles";
+import "./UploaderRoot.scss";
+
 import { ConfigError } from "uploader/components/widgets/configError/ConfigError";
 import { UploaderWidget } from "uploader/components/widgets/uploader/UploaderWidget";
 import { JSX } from "preact";

@@ -16,7 +16,7 @@ import {
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
 import { useDragDrop } from "uploader/modules/common/UseDragDrop";
-import styles from "./UploaderWidget.scss";
+import "./UploaderWidget.scss";
 import { humanFileSize } from "uploader/modules/common/FormatUtils";
 import {
   progressWheelDelay,
@@ -24,9 +24,6 @@ import {
 } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
 import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
-import { loadStyles } from "uploader/modules/StyleLoader";
-
-loadStyles(styles);
 
 interface Props {
   params: UploaderParamsRequired;

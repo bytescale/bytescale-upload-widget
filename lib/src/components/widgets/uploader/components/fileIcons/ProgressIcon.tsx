@@ -1,10 +1,7 @@
 import { JSX } from "preact";
-import styles from "./ProgressIcon.scss";
+import "./ProgressIcon.scss";
 import { useEffect, useState } from "preact/compat";
 import cn from "classnames";
-import { loadStyles } from "uploader/modules/StyleLoader";
-
-loadStyles(styles);
 
 interface Props {
   height: number;

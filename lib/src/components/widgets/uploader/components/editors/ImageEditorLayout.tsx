@@ -4,10 +4,7 @@ import { useLayoutEffect, useState } from "preact/compat";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import { UploadedFile } from "upload-js";
 import { getElementDimensionsOnParentResize } from "uploader/modules/common/UseDimensionsFromElement";
-import styles from "./ImageEditorLayout.scss";
-import { loadStyles } from "uploader/modules/StyleLoader";
-
-loadStyles(styles);
+import "./ImageEditorLayout.scss";
 
 interface Props {
   actions: ReactNode;

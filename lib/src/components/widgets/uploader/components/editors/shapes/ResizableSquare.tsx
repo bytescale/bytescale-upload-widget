@@ -1,11 +1,8 @@
 import { JSX } from "preact";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import { useLayoutEffect, useState } from "preact/compat";
-import styles from "./ResizableSquare.scss";
+import "./ResizableSquare.scss";
 import { Draggable } from "uploader/components/common/Draggable";
-import { loadStyles } from "uploader/modules/StyleLoader";
-
-loadStyles(styles);
 
 interface Props {
   boundary: Rect;

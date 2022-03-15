@@ -4,14 +4,11 @@ import { assertUnreachable } from "uploader/modules/common/TypeUtils";
 import { ProgressIcon } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { getFileIconImageSource } from "uploader/components/widgets/uploader/components/fileIcons/utils/FileIconUtil";
 import unknownSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Unknown.svg";
-import styles from "./SubmittedFileComponent.scss";
+import "./SubmittedFileComponent.scss";
 import { useEffect, useState } from "preact/compat";
 import { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 import errorSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Error.svg";
 import cn from "classnames";
-import { loadStyles } from "uploader/modules/StyleLoader";
-
-loadStyles(styles);
 
 interface Props {
   file: SubmittedFile;
