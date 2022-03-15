@@ -7,8 +7,11 @@ import { useState } from "preact/compat";
 import { SubmitButton } from "uploader/components/widgets/uploader/components/buttons/SubmitButton";
 import { UploaderLocale } from "uploader";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
-import "./ImageCropper.scss";
+import styles from "./ImageCropper.scss";
 import cn from "classnames";
+import { loadStyles } from "uploader/modules/StyleLoader";
+
+loadStyles(styles);
 
 interface Props {
   circular: boolean;

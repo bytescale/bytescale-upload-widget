@@ -3,9 +3,12 @@ import { SubmittedFile, UploadedFileContainer } from "uploader/components/widget
 import { SubmittedFileComponent } from "uploader/components/widgets/uploader/components/files/SubmittedFileComponent";
 import { UploaderParamsRequired } from "uploader/UploaderParams";
 import cn from "classnames";
-import "./UploaderMainScreen.scss";
+import styles from "./UploaderMainScreen.scss";
 import { UploadButton } from "uploader/components/widgets/uploader/components/UploadButton";
 import { RightSvg } from "uploader/assets/svgs/RightSvg";
+import { loadStyles } from "uploader/modules/StyleLoader";
+
+loadStyles(styles);
 
 interface Props {
   addFiles: (files: File[]) => void;

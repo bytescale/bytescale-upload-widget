@@ -2,7 +2,6 @@ import { JSX } from "preact";
 import { useState } from "preact/compat";
 import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { Modal } from "uploader/components/modal/Modal";
-import "./Modal.scss";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 interface Props extends UploaderRootProps {

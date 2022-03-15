@@ -1,11 +1,14 @@
 import { ReactNode } from "uploader/modules/common/React";
 import { JSX } from "preact";
 import cn from "classnames";
-import "./WidgetBase.scss";
+import styles from "./WidgetBase.scss";
 import { UploaderLayout } from "uploader/UploaderLayout";
 import { WidgetBaseBackground } from "uploader/components/widgets/widgetBase/WidgetBaseBackground";
 import { modalCloseButtonPadding, modalCloseButtonSize } from "uploader/components/modal/Modal";
 import { getElementDimensionsOnResize } from "uploader/modules/common/UseDimensionsFromElement";
+import { loadStyles } from "uploader/modules/StyleLoader";
+
+loadStyles(styles);
 
 interface Props {
   children: ReactNode;
