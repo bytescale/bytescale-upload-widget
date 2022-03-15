@@ -7,19 +7,7 @@ const port = 3001;
 const srcs = [path.resolve(__dirname, "src"), path.resolve(__dirname, "../lib/src")];
 
 const cssLoaders = [
-  {
-    loader: "style-loader",
-    options: {
-      // Do not forget that this code will be used in the browser and not all browsers
-      // support latest ECMA features like `let`, `const`, `arrow function expression` and etc,
-      // we recommend use only ECMA 5 features, but it is depends what browsers you want to support.
-      insert: function insertIntoTarget(element) {
-        if (typeof document !== "undefined") {
-          document.head.appendChild(element);
-        }
-      }
-    }
-  },
+  "style-loader",
   "css-loader",
   {
     loader: "postcss-loader",
