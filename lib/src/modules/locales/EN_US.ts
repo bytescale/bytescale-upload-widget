@@ -24,8 +24,8 @@ export const UploaderLocaleEnUs: UploaderLocale = {
   "remove": "remove",
   "skip": "Skip",
   "unsupportedFileType": "File type not supported.",
-  "uploadFile": "Select a File",
-  "uploadFiles": "Select a File", // We've now chosen to use singular tense for the upload button.
-  "uploadImage": "Select an Image",
-  "uploadImages": "Select an Image" // We've now chosen to use singular tense for the upload button.
+  "uploadFile": "Upload a File",
+  "uploadFiles": "Upload a File", // We've now chosen to use singular tense for the upload button.
+  "uploadImage": "Upload an Image",
+  "uploadImages": "Upload an Image" // We've now chosen to use singular tense for the upload button.
 };
