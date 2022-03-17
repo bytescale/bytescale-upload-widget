@@ -25,10 +25,10 @@ export const DashedBackgroundSvg = ({
           d={`M76 99h${536 - (widthDelta - notchDelta)}a7 7 0 0 1 7 7v${36 - notchDelta}a7 7 0 0 0 7 7h${
             36 - notchDelta
           }a7 7 0 0 1 7 7v${336 - (heightDelta - notchDelta)}a7 7 0 0 1-7 7H76a7 7 0 0 1-7-7V106a7 7 0 0 1 7-7Z`}
-          id="a"
+          id="rectWithNotch"
         />
         <mask
-          id="b"
+          id="rectWithNotchMask"
           maskContentUnits="userSpaceOnUse"
           maskUnits="objectBoundingBox"
           x="0"
@@ -36,12 +36,12 @@ export const DashedBackgroundSvg = ({
           width={width}
           height={height}
           fill="#fff">
-          <use xlinkHref="#a" />
+          <use xlinkHref="#rectWithNotch" />
         </mask>
       </defs>
       <use
-        mask="url(#b)"
-        xlinkHref="#a"
+        mask="url(#rectWithNotchMask)"
+        xlinkHref="#rectWithNotch"
         transform="translate(-69 -99)"
         stroke="currentColor"
         strokeWidth="4"
