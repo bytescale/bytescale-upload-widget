@@ -22,7 +22,9 @@ export class Uploader {
       }
     }
 
-    this.inlineWidgets.bindWidgetsAndMonitor();
+    if (typeof document !== "undefined") {
+      this.inlineWidgets.bindWidgetsAndMonitor();
+    }
   }
 
   async open(paramsMaybe: UploaderParams = {}): Promise<UploaderResult[]> {
