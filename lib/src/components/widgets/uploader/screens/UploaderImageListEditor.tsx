@@ -2,28 +2,17 @@ import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
 import { UploadedFileContainer } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { ImageEditor } from "uploader/components/widgets/uploader/components/editors/ImageEditor";
-import { UploaderLocale } from "uploader";
 import { useLayoutEffect, useState } from "preact/compat";
+import { UploaderParamsRequired } from "uploader/UploaderParams";
 
 interface Props {
-  cropCircular: boolean;
-  cropRatio: number | undefined;
   images: UploadedFileContainer[];
-  locale: UploaderLocale;
-  multi: boolean;
   onImageEdited: (editedFile: UploadedFile | undefined, sparseFileIndex: number) => void;
+  params: UploaderParamsRequired;
   upload: Upload;
 }
 
-export const UploaderImageListEditor = ({
-  images,
-  onImageEdited,
-  upload,
-  locale,
-  cropCircular,
-  cropRatio,
-  multi
-}: Props): JSX.Element => {
+export const UploaderImageListEditor = ({ images, onImageEdited, upload, params }: Props): JSX.Element => {
   const [currentImage, setCurrentImage] = useState<UploadedFileContainer>(images[0]);
   const [imageIndex, setImageIndex] = useState(0);
   const [imageCount, setImageCount] = useState(images.length);
@@ -44,11 +33,10 @@ export const UploaderImageListEditor = ({
   return (
     <>
       <ImageEditor
-        multi={multi ? { imageIndex, imageCount } : undefined}
         key={currentFileId} // Key required to reset the internal state of the editor between files.
-        cropRatio={cropRatio}
-        cropCircular={cropCircular}
-        locale={locale}
+        params={params}
+        imageCount={imageCount}
+        imageIndex={imageIndex}
         originalImage={currentImage.uploadedFile}
         onImageEdited={e => onImageEdited(e, currentImage.fileIndex)}
         upload={upload}

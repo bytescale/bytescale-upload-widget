@@ -5,23 +5,17 @@ import { Upload, UploadedFile } from "upload-js";
 import { ImageEditorLayout } from "uploader/components/widgets/uploader/components/editors/ImageEditorLayout";
 import { useState } from "preact/compat";
 import { SubmitButton } from "uploader/components/widgets/uploader/components/buttons/SubmitButton";
-import { UploaderLocale } from "uploader";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import "./ImageCropper.scss";
 import cn from "classnames";
+import { UploaderParamsRequired } from "uploader/UploaderParams";
 
 interface Props {
-  circular: boolean;
-  locale: UploaderLocale;
-  multi:
-    | undefined
-    | {
-        imageCount: number;
-        imageIndex: number;
-      };
+  imageCount: number;
+  imageIndex: number;
   onFinish: (editedFile: UploadedFile | undefined) => void;
   originalImage: UploadedFile;
-  ratio: number | undefined;
+  params: UploaderParamsRequired;
   upload: Upload;
 }
 
@@ -56,15 +50,16 @@ function makeCropJson(
 }
 
 export const ImageCropper = ({
-  locale,
+  imageCount,
+  imageIndex,
+  params,
   originalImage,
   upload,
-  onFinish,
-  ratio,
-  multi,
-  circular
+  onFinish
 }: Props): JSX.Element => {
+  const { locale } = params;
   const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
+  const multi = params.multi ? { imageIndex, imageCount } : undefined;
 
   const submit = async (): Promise<void> => {
     if (geometry === undefined) {
@@ -106,16 +101,18 @@ export const ImageCropper = ({
           <SubmitButton
             onSubmit={submit}
             locale={locale}
-            idleText={locale.continue}
+            idleText={params.multi ? locale.continue : locale.done}
             busyText={locale.pleaseWait}
             showIcon={false}
           />
         </>
       }
       image={({ imgDimensions, imageUrl }) => (
-        <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={ratio}>
+        <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={params.editor.images.cropRatio}>
           <div
-            className={cn("uploader__image-cropper__clip", { "uploader__image-cropper__clip--circular": circular })}
+            className={cn("uploader__image-cropper__clip", {
+              "uploader__image-cropper__clip--circular": params.editor.images.cropShape === "circ"
+            })}
             style={{
               width: geometry?.geometry.width ?? imgDimensions.width,
               height: geometry?.geometry.height ?? imgDimensions.height

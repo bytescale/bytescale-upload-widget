@@ -251,15 +251,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen params={params} addFiles={addFiles} isImageUploader={isImageUploader} />
       ) : showImageEditor && imagesToEdit.length > 0 ? (
-        <UploaderImageListEditor
-          cropRatio={params.editor.images.cropRatio}
-          cropCircular={params.editor.images.cropShape === "circ"}
-          images={imagesToEdit}
-          onImageEdited={onImageEdited}
-          upload={upload}
-          locale={params.locale}
-          multi={params.multi}
-        />
+        <UploaderImageListEditor images={imagesToEdit} onImageEdited={onImageEdited} upload={upload} params={params} />
       ) : (
         <UploaderMainScreen
           params={params}
