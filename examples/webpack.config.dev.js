@@ -7,7 +7,7 @@ const port = 3001;
 const srcs = [path.resolve(__dirname, "src"), path.resolve(__dirname, "../lib/src")];
 
 const cssLoaders = [
-  "style-loader",
+  "@upload-io/style-loader",
   "css-loader",
   {
     loader: "postcss-loader",
