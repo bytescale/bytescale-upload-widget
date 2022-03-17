@@ -61,7 +61,7 @@
     "@types/classnames": "2.2.11",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",
-    "@upload-io/style-loader": "3.3.1-forked-1",
+    "@upload-io/style-loader": "3.3.1-forked-2",
     "babel-loader": "8.2.1",
     "babel-plugin-transform-async-to-promises": "0.8.15",
     "css-loader": "5.0.1",
