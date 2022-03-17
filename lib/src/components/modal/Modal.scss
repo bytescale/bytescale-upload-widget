@@ -17,6 +17,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: $modal-index - 1;
   }
 
   &__modal {
