@@ -123,19 +123,19 @@ With JavaScript:
 
 ```javascript
 {
-  fileUrl: "https://files.upload.io/FW25...",  // The URL to use when serving this file.
+  fileUrl: "https://upcdn.io/FW25...",          // The URL to use when serving this file.
 
-  editedFile: undefined,                       // The edited file (if present). Same as below.
+  editedFile: undefined,                        // The edited file (if present). Same as below.
 
   originalFile: {
     accountId: "FW251aX",                       // The Upload.io account that owns the file.
     file: { ... },                              // DOM file object (from the <input> element).
     fileId: "FW251aXa9ku...",                   // The uploaded file ID.
-    fileUrl: "https://files.upload.io/FW25...", // The uploaded file URL.
+    fileUrl: "https://upcdn.io/FW25...",        // The uploaded file URL.
     fileSize: 12345,                            // File size in bytes.
     mime: "image/jpeg",                         // File MIME type.
     suggestedOptimization: {
-      transformationUrl: "https://files.up...", // The suggested URL for serving this file.
+      transformationUrl: "https://upcdn.io/..", // The suggested URL for serving this file.
       transformationSlug: "thumbnail"           // Append to 'fileUrl' to produce the above URL.
     },
     tags: [                                     // Tags manually & auto-assigned to this file.
@@ -390,19 +390,19 @@ const myCustomLocale = {
 Given an uploaded image URL:
 
 ```
-https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ
+https://upcdn.io/W142hJkHhVSQ5ZQ5bfqvanQ
 ```
 
 Resize with:
 
 ```
-https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail
+https://upcdn.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail
 ```
 
 Auto-crop with:
 
 ```
-https://files.upload.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail-square
+https://upcdn.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail-square
 ```
 
 ## 🎯 Features
