@@ -439,6 +439,10 @@ Uploader is the file & image upload widget for [Upload.io](https://upload.io/upl
 
 **[Create an Upload.io account »](https://upload.io/pricing)**
 
+## Building From Source
+
+Please see [`BUILD.md`](BUILD.md).
+
 ## Contribute
 
 If you would like to contribute to Uploader:
