@@ -1,6 +1,6 @@
 # Building From Source
 
-This repository contains a hot-reloading sandbox for developing the `uploader` package.
+This repository contains a hot-reloading sandbox for developing the `uploader` NPM package.
 
 ## Prerequisites
 
