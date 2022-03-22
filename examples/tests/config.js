@@ -17,7 +17,7 @@ const chromeDriverLocation = process.env.CHROMEWEBDRIVER; // CI may provide its 
 
 exports.config = {
   specs: ["homepage.js"],
-  baseUrl: "http://localhost:3001/",
+  baseUrl: "http://localhost:3010/",
   directConnect: true,
   ...(chromeDriverLocation ? { chromeDriver: `${chromeDriverLocation}/chromedriver` } : {}),
   capabilities: {
