@@ -4,7 +4,7 @@ This repository contains a hot-reloading sandbox for developing the `uploader` N
 
 ## Prerequisites
 
-Building from source requires the following prerequisites:
+`node` and `npm` are required — we actively support the following versions:
 
 | Package | Version  |
 | ------- | -------- |
