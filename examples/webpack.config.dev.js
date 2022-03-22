@@ -100,7 +100,6 @@ module.exports = {
   devServer: {
     hot: true,
     open: true,
-    port,
-    contentBase: [path.join(__dirname, "dist")]
+    port
   }
 };

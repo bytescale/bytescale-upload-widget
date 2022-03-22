@@ -441,7 +441,7 @@ Uploader is the file & image upload widget for [Upload.io](https://upload.io/upl
 
 ## Building From Source
 
-Please see [`BUILD.md`](BUILD.md).
+Please read: [`BUILD.md`](BUILD.md)
 
 ## Contribute
 
