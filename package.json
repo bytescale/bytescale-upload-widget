@@ -11,7 +11,8 @@
     "typecheck-e2e": "(cd e2e_test && npm run typecheck)",
     "prettier": "prettier . --check",
     "prettier-fix": "prettier . --write --loglevel=silent",
-    "test": "(cd e2e_test && npm run test)"
+    "test": "(cd e2e_test && npm run test)",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -30,7 +31,7 @@
     ]
   },
   "devDependencies": {
-    "husky": "^7.0.4",
+    "husky": "7.0.4",
     "lint-staged": "10.5.1",
     "prettier": "2.1.2"
   }
