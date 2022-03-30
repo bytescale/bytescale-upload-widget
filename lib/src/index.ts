@@ -1,9 +1,12 @@
 import { Uploader } from "uploader/Uploader";
 
 export { Uploader } from "uploader/Uploader";
+export { UploaderResult } from "uploader/components/modal/UploaderResult";
 export { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
+export { UploaderLayout } from "uploader/UploaderLayout";
+export { UploaderEditorParams } from "uploader/UploaderEditorParams";
+export { UploaderParams } from "uploader/UploaderParams";
 export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
-export * from "upload-js";
 
 if (typeof window !== "undefined") {
   const dummy: Record<keyof Uploader, () => void> = {
