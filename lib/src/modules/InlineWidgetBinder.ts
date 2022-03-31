@@ -1,6 +1,6 @@
 import { DataTaggedElementTracker } from "uploader/modules/common/DataTaggedElementTracker";
 import { Uploader } from "uploader";
-import { UploaderParams } from "uploader/UploaderParams";
+import { UploaderOptions } from "uploader/UploaderOptions";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
 
 export class InlineWidgetBinder {
@@ -51,8 +51,8 @@ export class InlineWidgetBinder {
     };
   }
 
-  private openUploader(element: HTMLElement, params: UploaderParams | undefined): void {
-    this.uploader.open(params).then(
+  private openUploader(element: HTMLElement, options: UploaderOptions | undefined): void {
+    this.uploader.open(options).then(
       f => this.fireUploadComplete(element, f, false),
       e => console.error(e)
     );
@@ -84,7 +84,7 @@ export class InlineWidgetBinder {
     }
   }
 
-  private getConfig(element: HTMLElement): UploaderParams | undefined {
+  private getConfig(element: HTMLElement): UploaderOptions | undefined {
     const config = element.getAttribute(this.attributes.uploadConfig);
     if (config === null) {
       return undefined;

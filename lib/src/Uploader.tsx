@@ -1,5 +1,5 @@
 import { Upload, UploadConfig } from "upload-js";
-import { UploaderParams, UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptions, UploaderOptionsRequired } from "uploader/UploaderOptions";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
@@ -27,45 +27,45 @@ export class Uploader {
     }
   }
 
-  async open(paramsMaybe: UploaderParams = {}): Promise<UploaderResult[]> {
-    const params = UploaderParamsRequired.from(paramsMaybe);
+  async open(optionsMaybe: UploaderOptions = {}): Promise<UploaderResult[]> {
+    const options = UploaderOptionsRequired.from(optionsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
     const body = await this.getBody();
 
     const container =
-      params.container !== undefined
-        ? typeof params.container === "string"
-          ? document.querySelector(params.container) ?? undefined
-          : params.container
+      options.container !== undefined
+        ? typeof options.container === "string"
+          ? document.querySelector(options.container) ?? undefined
+          : options.container
         : undefined;
 
     let widget: Element;
 
-    if (params.layout === "modal") {
+    if (options.layout === "modal") {
       widget = document.createElement("div");
       (container ?? body).appendChild(widget);
     } else {
       widget = container ?? document.createElement("div");
     }
 
-    widget.className = `uploader${params.layout === "modal" ? " uploader--with-modal" : ""}`;
+    widget.className = `uploader${options.layout === "modal" ? " uploader--with-modal" : ""}`;
 
     const uploadedFiles = await new Promise<UploaderResult[]>((resolve, reject) => {
       const props: UploaderRootProps = {
         upload: this.upload,
         resolve,
         reject,
-        params
+        options
       };
 
       render(
-        params.layout === "modal" ? <RootModal {...props} container={widget} /> : <UploaderRoot {...props} />,
+        options.layout === "modal" ? <RootModal {...props} container={widget} /> : <UploaderRoot {...props} />,
         widget
       );
     });
 
-    if (params.layout === "modal") {
+    if (options.layout === "modal") {
       widget.remove();
     }
 

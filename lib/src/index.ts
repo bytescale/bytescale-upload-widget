@@ -4,8 +4,8 @@ export { Uploader } from "uploader/Uploader";
 export { UploaderResult } from "uploader/components/modal/UploaderResult";
 export { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 export { UploaderLayout } from "uploader/UploaderLayout";
-export { UploaderEditorParams } from "uploader/UploaderEditorParams";
-export { UploaderParams } from "uploader/UploaderParams";
+export { UploaderEditorOptions } from "uploader/UploaderEditorOptions";
+export { UploaderOptions } from "uploader/UploaderOptions";
 export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 
 if (typeof window !== "undefined") {

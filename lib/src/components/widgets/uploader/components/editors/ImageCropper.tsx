@@ -8,14 +8,14 @@ import { SubmitButton } from "uploader/components/widgets/uploader/components/bu
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import "./ImageCropper.scss";
 import cn from "classnames";
-import { UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 
 interface Props {
   imageCount: number;
   imageIndex: number;
   onFinish: (editedFile: UploadedFile | undefined) => void;
   originalImage: UploadedFile;
-  params: UploaderParamsRequired;
+  options: UploaderOptionsRequired;
   upload: Upload;
 }
 
@@ -52,14 +52,14 @@ function makeCropJson(
 export const ImageCropper = ({
   imageCount,
   imageIndex,
-  params,
+  options,
   originalImage,
   upload,
   onFinish
 }: Props): JSX.Element => {
-  const { locale } = params;
+  const { locale } = options;
   const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
-  const multi = params.multi ? { imageIndex, imageCount } : undefined;
+  const multi = options.multi ? { imageIndex, imageCount } : undefined;
 
   const submit = async (): Promise<void> => {
     if (geometry === undefined) {
@@ -101,17 +101,17 @@ export const ImageCropper = ({
           <SubmitButton
             onSubmit={submit}
             locale={locale}
-            idleText={params.multi ? locale.continue : locale.done}
+            idleText={options.multi ? locale.continue : locale.done}
             busyText={locale.pleaseWait}
             showIcon={false}
           />
         </>
       }
       image={({ imgDimensions, imageUrl }) => (
-        <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={params.editor.images.cropRatio}>
+        <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={options.editor.images.cropRatio}>
           <div
             className={cn("uploader__image-cropper__clip", {
-              "uploader__image-cropper__clip--circular": params.editor.images.cropShape === "circ"
+              "uploader__image-cropper__clip--circular": options.editor.images.cropShape === "circ"
             })}
             style={{
               width: geometry?.geometry.width ?? imgDimensions.width,

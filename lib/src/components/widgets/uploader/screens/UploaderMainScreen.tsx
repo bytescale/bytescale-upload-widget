@@ -1,7 +1,7 @@
 import { JSX } from "preact";
 import { SubmittedFile, UploadedFileContainer } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { SubmittedFileComponent } from "uploader/components/widgets/uploader/components/files/SubmittedFileComponent";
-import { UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 import cn from "classnames";
 import "./UploaderMainScreen.scss";
 import { UploadButton } from "uploader/components/widgets/uploader/components/UploadButton";
@@ -11,7 +11,7 @@ interface Props {
   addFiles: (files: File[]) => void;
   finalize: () => void;
   isImageUploader: boolean;
-  params: UploaderParamsRequired;
+  options: UploaderOptionsRequired;
   remove: (fileIndex: number) => void;
   submittedFiles: SubmittedFile[];
   uploadedFiles: UploadedFileContainer[];
@@ -21,15 +21,15 @@ export const UploaderMainScreen = ({
   addFiles,
   submittedFiles,
   uploadedFiles,
-  params,
+  options,
   remove,
   finalize,
   isImageUploader
 }: Props): JSX.Element => {
   const finishedUploading = submittedFiles.every(x => x.type !== "uploading");
   const canFinish = finishedUploading && uploadedFiles.length > 0;
-  const { locale } = params;
-  const hasButtons = params.multi || params.showFinishButton;
+  const { locale } = options;
+  const hasButtons = options.multi || options.showFinishButton;
 
   return (
     // Div required to break-out of flex-box layout.
@@ -43,22 +43,22 @@ export const UploaderMainScreen = ({
               locale={locale}
               key={file.fileIndex}
               remove={() => remove(file.fileIndex)}
-              showRemoveButton={params.showRemoveButton}
+              showRemoveButton={options.showRemoveButton}
             />
           ))}
         </div>
       </div>
       {hasButtons && (
         <div className="btn-group">
-          {params.multi && (
+          {options.multi && (
             <UploadButton
-              multi={params.multi}
+              multi={options.multi}
               text={isImageUploader ? locale.addAnotherImage : locale.addAnotherFile}
               onUpload={addFiles}
             />
           )}
 
-          {params.showFinishButton && (
+          {options.showFinishButton && (
             <a
               href="#done"
               className={cn("btn btn--primary", { disabled: !canFinish })}

@@ -1,14 +1,18 @@
 import { UploadButton } from "uploader/components/widgets/uploader/components/UploadButton";
 import { JSX } from "preact";
-import { UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 
 interface Props {
   addFiles: (files: File[]) => void;
   isImageUploader: boolean;
-  params: UploaderParamsRequired;
+  options: UploaderOptionsRequired;
 }
 
-export const UploaderWelcomeScreen = ({ addFiles, params: { multi, locale }, isImageUploader }: Props): JSX.Element => {
+export const UploaderWelcomeScreen = ({
+  addFiles,
+  options: { multi, locale },
+  isImageUploader
+}: Props): JSX.Element => {
   return (
     <>
       <UploadButton

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
-import { UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 import { useEffect, useLayoutEffect, useState } from "preact/compat";
 import { isDefined } from "uploader/modules/common/TypeUtils";
 import { UploaderWelcomeScreen } from "uploader/components/widgets/uploader/screens/UploaderWelcomeScreen";
@@ -26,13 +26,13 @@ import { UploaderResult } from "uploader/components/modal/UploaderResult";
 import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
 
 interface Props {
-  params: UploaderParamsRequired;
+  options: UploaderOptionsRequired;
   reject: (error: Error) => void;
   resolve: (files: UploaderResult[]) => void;
   upload: Upload;
 }
 
-export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element => {
+export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element => {
   const [, setNextSparseFileIndex] = useState<number>(0);
   const [isInitialUpdate, setIsInitialUpdate] = useState(true);
   const [submittedFiles, setSubmittedFiles] = useState<SubmittedFileMap>({});
@@ -41,11 +41,11 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
-  const { multi, tags } = params;
+  const { multi, tags } = options;
   const uploaderResult = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile, x.editedFile));
   const isImage = (mime: string): boolean => mime.toLowerCase().startsWith("image/");
   const imagesToEdit = uploadedFiles.filter(
-    x => x.editedFile === undefined && !x.editingDone && params.editor.images.crop && isImage(x.uploadedFile.mime)
+    x => x.editedFile === undefined && !x.editingDone && options.editor.images.crop && isImage(x.uploadedFile.mime)
   );
 
   const onImageEdited = (editedFile: UploadedFile | undefined, sparseFileIndex: number): void => {
@@ -94,11 +94,11 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       return;
     }
 
-    params.onUpdate(uploaderResult);
+    options.onUpdate(uploaderResult);
 
     // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
     // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
-    if (!multi && uploadedFiles.length > 0 && !params.showFinishButton && params.layout === "modal") {
+    if (!multi && uploadedFiles.length > 0 && !options.showFinishButton && options.layout === "modal") {
       // Just in case the user dragged-and-dropped multiple files.
       const firstUploadedFile = uploaderResult.slice(0, 1);
       const doResolve = (): void => resolve(firstUploadedFile);
@@ -166,12 +166,12 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       throw error;
     };
 
-    const { maxFileSizeBytes, mimeTypes } = params;
+    const { maxFileSizeBytes, mimeTypes } = options;
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
-      raiseError(new Error(`${params.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
+      raiseError(new Error(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
     }
     if (mimeTypes !== undefined && !mimeTypes.includes(file.type)) {
-      raiseError(new Error(params.locale.unsupportedFileType));
+      raiseError(new Error(options.locale.unsupportedFileType));
     }
 
     return await upload.uploadFile({
@@ -238,7 +238,7 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
     });
 
   const { isDragging, ...rootProps } = useDragDrop(addFiles);
-  const mimeTypes = params.mimeTypes ?? [];
+  const mimeTypes = options.mimeTypes ?? [];
   const isImageUploader = mimeTypes.length > 0 && mimeTypes.every(x => x.trim().toLowerCase().startsWith("image/"));
 
   return (
@@ -246,15 +246,20 @@ export const UploaderWidget = ({ resolve, params, upload }: Props): JSX.Element 
       htmlProps={rootProps}
       isDraggable={true}
       isDragging={isDragging}
-      layout={params.layout}
-      multi={params.multi}>
+      layout={options.layout}
+      multi={options.multi}>
       {submittedFileList.length === 0 ? (
-        <UploaderWelcomeScreen params={params} addFiles={addFiles} isImageUploader={isImageUploader} />
+        <UploaderWelcomeScreen options={options} addFiles={addFiles} isImageUploader={isImageUploader} />
       ) : showImageEditor && imagesToEdit.length > 0 ? (
-        <UploaderImageListEditor images={imagesToEdit} onImageEdited={onImageEdited} upload={upload} params={params} />
+        <UploaderImageListEditor
+          images={imagesToEdit}
+          onImageEdited={onImageEdited}
+          upload={upload}
+          options={options}
+        />
       ) : (
         <UploaderMainScreen
-          params={params}
+          options={options}
           addFiles={addFiles}
           submittedFiles={submittedFileList}
           uploadedFiles={uploadedFiles}

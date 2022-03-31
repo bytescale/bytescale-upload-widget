@@ -3,16 +3,16 @@ import { Upload, UploadedFile } from "upload-js";
 import { UploadedFileContainer } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { ImageEditor } from "uploader/components/widgets/uploader/components/editors/ImageEditor";
 import { useLayoutEffect, useState } from "preact/compat";
-import { UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 
 interface Props {
   images: UploadedFileContainer[];
   onImageEdited: (editedFile: UploadedFile | undefined, sparseFileIndex: number) => void;
-  params: UploaderParamsRequired;
+  options: UploaderOptionsRequired;
   upload: Upload;
 }
 
-export const UploaderImageListEditor = ({ images, onImageEdited, upload, params }: Props): JSX.Element => {
+export const UploaderImageListEditor = ({ images, onImageEdited, upload, options }: Props): JSX.Element => {
   const [currentImage, setCurrentImage] = useState<UploadedFileContainer>(images[0]);
   const [imageIndex, setImageIndex] = useState(0);
   const [imageCount, setImageCount] = useState(images.length);
@@ -34,7 +34,7 @@ export const UploaderImageListEditor = ({ images, onImageEdited, upload, params 
     <>
       <ImageEditor
         key={currentFileId} // Key required to reset the internal state of the editor between files.
-        params={params}
+        options={options}
         imageCount={imageCount}
         imageIndex={imageIndex}
         originalImage={currentImage.uploadedFile}

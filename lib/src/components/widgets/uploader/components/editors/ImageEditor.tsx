@@ -1,14 +1,14 @@
 import { JSX } from "preact";
 import { Upload, UploadedFile } from "upload-js";
 import { ImageCropper } from "uploader/components/widgets/uploader/components/editors/ImageCropper";
-import { UploaderParamsRequired } from "uploader/UploaderParams";
+import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 
 interface Props {
   imageCount: number;
   imageIndex: number;
   onImageEdited: (editedFile: UploadedFile | undefined) => void;
   originalImage: UploadedFile;
-  params: UploaderParamsRequired;
+  options: UploaderOptionsRequired;
   upload: Upload;
 }
 
@@ -18,7 +18,7 @@ export const ImageEditor = ({
   originalImage,
   upload,
   onImageEdited,
-  params
+  options
 }: Props): JSX.Element => {
   // Currently we only provide a cropper: it would be good to provide rotation in future, too, and we can switch between
   // them here.
@@ -26,7 +26,7 @@ export const ImageEditor = ({
     <ImageCropper
       imageCount={imageCount}
       imageIndex={imageIndex}
-      params={params}
+      options={options}
       onFinish={onImageEdited}
       upload={upload}
       originalImage={originalImage}
