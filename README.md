@@ -267,14 +267,6 @@ Note:
   - The `data-upload-complete` callback is fired _every time_ the list of uploaded files changes.
   - The `data-upload-finalized` callback is fired when `Finish` is clicked (if visible, see comment above).
 
-## 🚀 SPA Support
-
-**Uploader is SPA-friendly** — even when using `data-*` attributes to render your widgets.
-
-Uploader automatically observes the DOM for changes, making the `data-upload-complete` attribute safe for SPAs that introduce elements at runtime.
-
-**[» React Example on CodePen «](https://codepen.io/upload-js/pen/dyZrWqK?editors=1010)**
-
 ## 🌐 API Support
 
 Uploader is powered by Upload.io's [File Upload API](https://upload.io/file-upload-api) — an easy-to-consume API that provides:
