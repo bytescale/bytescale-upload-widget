@@ -47,7 +47,9 @@
 
 <p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/uploader/main/.github/assets/demo.gif"></a></p>
 
-<p align="center"><b>Supports:</b> single & multi-file uploads, modal & inline views, localization, mobile, and more...<br/><br/></p>
+<p align="center" style="font-weight: 600;">Supported Frameworks:<br> <b><a href="https://github.com/upload-io/react-uploader">React</a> • <a href="https://github.com/upload-io/angular-uploader">Angular</a> • <a href="https://github.com/upload-io/uploader#installation">Plain JS</a></b><br></p>
+
+<p align="center" dir="auto"><b>Supported Features:</b><br>Image Cropping • Image Uploads • Multi-file Uploads • Drag-and-Drop • More...<br><br></p>
 
 ## Installation
 
