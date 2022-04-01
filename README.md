@@ -7,7 +7,7 @@
 <p align="center"><b>File & Image Uploader</b><br/> (With Integrated Cloud Storage)</p>
 <br/>
 <p align="center">
-  <a href="https://github.com/upload-js/uploader/">
+  <a href="https://github.com/upload-io/uploader/">
     <img src="https://img.shields.io/badge/gzipped-29%20kb-4ba0f6" />
   </a>
 
@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/badge/uploader-npm-4ba0f6" />
   </a>
 
-  <a href="https://github.com/upload-js/uploader/actions/workflows/ci.yml">
+  <a href="https://github.com/upload-io/uploader/actions/workflows/ci.yml">
     <img src="https://img.shields.io/badge/build-passing-4ba0f6" />
   </a>
 
@@ -28,7 +28,7 @@
     <img src="https://img.shields.io/badge/TypeScript-included-4ba0f6" />
   </a>
 
-  <a href="https://github.com/upload-js/uploader/actions/workflows/ci.yml">
+  <a href="https://github.com/upload-io/uploader/actions/workflows/ci.yml">
     <img src="https://img.shields.io/npms-io/maintenance-score/upload-js?color=4ba0f6" />
   </a>
 
@@ -45,7 +45,7 @@
   </a>
 </h1>
 
-<p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-js/uploader/main/.github/assets/demo.gif"></a></p>
+<p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/uploader/main/.github/assets/demo.gif"></a></p>
 
 <p align="center"><b>Supports:</b> single & multi-file uploads, modal & inline views, localization, mobile, and more...<br/><br/></p>
 
@@ -358,7 +358,7 @@ Or with HTML:
 
 ### 🏳️ Localization
 
-Default is [EN_US](https://github.com/upload-js/uploader/blob/main/lib/src/modules/locales/EN_US.ts):
+Default is [EN_US](https://github.com/upload-io/uploader/blob/main/lib/src/modules/locales/EN_US.ts):
 
 ```javascript
 const myCustomLocale = {
@@ -447,7 +447,7 @@ Please read: [`BUILD.md`](BUILD.md)
 
 If you would like to contribute to Uploader:
 
-1. Add a [GitHub Star](https://github.com/upload-js/uploader/stargazers) to the project (if you're feeling generous!).
+1. Add a [GitHub Star](https://github.com/upload-io/uploader/stargazers) to the project (if you're feeling generous!).
 2. Determine whether you're raising a bug, feature request or question.
 3. Raise your issue or PR.
 

@@ -24,7 +24,7 @@ This repository comprises 3 packages:
 ### 1. Clone
 
 ```shell
-git clone git@github.com:upload-js/uploader.git
+git clone git@github.com:upload-io/uploader.git
 cd uploader
 ```
 

@@ -1,4 +1,4 @@
-// Full Definition: https://github.com/upload-js/upload-image-plugin/blob/main/src/types/ParamsFromFile.ts
+// Full Definition: https://github.com/upload-io/upload-image-plugin/blob/main/src/types/ParamsFromFile.ts
 export interface ParamsFromFile {
   input: string;
   pipeline: {
