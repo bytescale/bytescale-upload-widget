@@ -445,6 +445,8 @@ If you would like to contribute to Uploader:
 2. Determine whether you're raising a bug, feature request or question.
 3. Raise your issue or PR.
 
+For more examples, see [CodePen](https://codepen.io/collection/NqbwQZ) and [CodeSandbox](https://codesandbox.io/examples/package/uploader).
+
 ## License
 
 [MIT](LICENSE)
