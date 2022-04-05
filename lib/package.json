@@ -1,6 +1,6 @@
 {
   "name": "uploader",
-  "version": "1.37.8",
+  "version": "1.37.9",
   "author": "Upload <hello@upload.io> (https://upload.io)",
   "description": "Uploader | File & Image Uploader | With Integrated Cloud Storage 🚀",
   "license": "MIT",
@@ -20,10 +20,12 @@
   ],
   "keywords": [
     "front-end",
+    "file-upload",
     "uploader",
     "file uploader",
     "image uploader",
     "html5 uploader",
+    "image",
     "file",
     "upload",
     "component",
