@@ -1,7 +1,7 @@
 @import "~uploader/components/widgets/uploader/Variables";
 
 .uploader {
-  $modal-index: 10000;
+  $modal-index: 100000;
   &--with-modal, &__body, &__html {
     width: auto;
     height: 100%;
