@@ -4,6 +4,7 @@ import { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 import { UploaderLayout } from "uploader/UploaderLayout";
 import { UploaderEditorOptions, UploaderEditorOptionsRequired } from "uploader/UploaderEditorOptions";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
+import { UploaderStyleOptions, UploaderStyleOptionsRequired } from "uploader/UploaderStyleOptions";
 
 export interface UploaderOptions {
   container?: string | HTMLElement;
@@ -16,6 +17,7 @@ export interface UploaderOptions {
   onUpdate?: (files: UploaderResult[]) => void;
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
+  styles?: UploaderStyleOptions;
   tags?: Array<string | FileTag>;
 }
 
@@ -30,6 +32,7 @@ export interface UploaderOptionsRequired {
   onUpdate: (files: UploaderResult[]) => void;
   showFinishButton: boolean;
   showRemoveButton: boolean;
+  styles: UploaderStyleOptionsRequired;
   tags: Array<string | FileTag>;
 }
 
@@ -48,6 +51,7 @@ export namespace UploaderOptionsRequired {
       onUpdate: options.onUpdate ?? (() => {}),
       showFinishButton: options.showFinishButton ?? (multi ? layout === "modal" : false),
       showRemoveButton: options.showRemoveButton ?? true,
+      styles: UploaderStyleOptionsRequired.from(options.styles),
       tags: options.tags ?? []
     };
   }

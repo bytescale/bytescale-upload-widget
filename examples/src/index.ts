@@ -14,7 +14,15 @@ const openUploader = (): void => {
     .open({
       multi: false,
       mimeTypes: ["image/jpeg", "image/webp", "image/png"],
-      editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } }
+      editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } },
+      styles: {
+        colors: {
+          primary: "#377dff"
+        },
+        fontSizes: {
+          base: 16
+        }
+      }
     })
     .then(
       (f: UploaderResult[]) => {

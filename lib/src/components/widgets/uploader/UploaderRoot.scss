@@ -5,10 +5,17 @@
  */
 
 .uploader {
-  $base-size: 16;
+  // Set inline on element.
+  //--primary-color: #377dff;
+  //--primary-active-color: #528fff;
+  --error-color: #d23f4d;
+
+  $base-size: 16; // When this base font size is used, borders will be 1px thick.
   $px: (1 / $base-size) * 1em;
 
-  font-size: $base-size * 1px;
+  // Set inline on element.
+  // font-size: $base-size * 1px;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -32,13 +39,13 @@
   // ---------------------------------------------------------------------
 
   a {
-    color: $primary;
+    color: var(--primary-color);
     &, &:hover, &:active, &:focus {
       text-decoration: underline;
     }
     &:hover {
       &:not(:disabled):not(.disabled) {
-        color: $primary-light;
+        color: var(--primary-active-color);
       }
     }
   }
@@ -73,19 +80,19 @@
     }
     &--primary {
       color: #fff;
-      background-color: $primary;
-      border-color: $primary;
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
       &:hover {
         &:not(:disabled):not(.disabled) {
-          background-color: $primary-light;
-          border-color: $primary-light;
+          background-color: var(--primary-active-color);
+          border-color: var(--primary-active-color);
           color: #fff;
         }
       }
     }
     &--primary-outline {
-      color: $primary;
-      border-color: $primary;
+      color: var(--primary-color);
+      border-color: var(--primary-color);
     }
     &.disabled {
       opacity: 0.5;
@@ -107,7 +114,7 @@
     }
     &--upload {
       font-size: 1.11em;
-      padding: 0 1.6em;
+      padding: 0.2em 1.6em;
       margin-bottom: 1.5em;
     }
   }

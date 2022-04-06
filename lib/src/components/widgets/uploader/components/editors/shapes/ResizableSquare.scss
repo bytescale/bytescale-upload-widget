@@ -10,7 +10,7 @@
     height: $size * $px;
     opacity: .75;
     background-color: #fff;
-    border: 1 * $px solid $primary;
+    border: 1 * $px solid var(--primary-color);
     border-radius: 100%;
     position: absolute;
   }

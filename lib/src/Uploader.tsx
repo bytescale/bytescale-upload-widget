@@ -50,6 +50,10 @@ export class Uploader {
     }
 
     widget.className = `uploader${options.layout === "modal" ? " uploader--with-modal" : ""}`;
+    widget.setAttribute(
+      "style",
+      `--primary-color: ${options.styles.colors.primary}; --primary-active-color: ${options.styles.colors.active}; font-size: ${options.styles.fontSizes.base}px;`
+    );
 
     const uploadedFiles = await new Promise<UploaderResult[]>((resolve, reject) => {
       const props: UploaderRootProps = {

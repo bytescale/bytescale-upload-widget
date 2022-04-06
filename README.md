@@ -325,6 +325,15 @@ uploader
     onUpdate: files => {},       // Called each time the list of uploaded files change.
     showFinishButton: true,      // Whether to show the "finish" button in the widget.
     showRemoveButton: true,      // Whether to show the "remove" button next to each file.
+    styles: {
+      colors: {
+        primary: "#377dff",      // Primary color (e.g. buttons).
+        active: "#528fff"        // Active/hover color (inferred from primary by default).
+      },
+      fontSizes: {
+        base: 16                 // Base font size (px).
+      }
+    },
     tags: ["profile_picture"],   // Requires an Upload.io account.
     editor: {
       images: {

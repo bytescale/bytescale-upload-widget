@@ -15,13 +15,13 @@
     transition: $rotateSpeed stroke-dashoffset $rotateEase, $shrinkSpeed stroke-width $shrinkEase, $shrinkSpeed r $shrinkEase, $circleVanishSpeed opacity linear;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
-    stroke: $primary;
+    stroke: var(--primary-color);
     &__bg {
       transition: $circleVanishSpeed opacity linear;
       fill: #f0f0f0;
     }
     &--error {
-      stroke: $error;
+      stroke: var(--error-color);
     }
   }
   &__thumbnail {

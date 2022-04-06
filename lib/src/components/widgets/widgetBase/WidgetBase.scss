@@ -21,7 +21,7 @@
     position: absolute;
     z-index: $modal-bg-z-index;
     &--dragging {
-      color: $primary;
+      color: var(--primary-color);
     }
   }
 
@@ -47,6 +47,6 @@
     border: 2 * $px dashed $border-color;
   }
   &--dragging {
-    border-color: $primary;
+    border-color: var(--primary-color);
   }
 }
