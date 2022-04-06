@@ -41,6 +41,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.object.set-prototype-of
   - core-js/modules/es.object.to-string
   - core-js/modules/es.object.values
+  - core-js/modules/es.parse-int
   - core-js/modules/es.promise
   - core-js/modules/es.reflect.construct
   - core-js/modules/es.regexp.exec
