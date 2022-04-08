@@ -40,14 +40,8 @@ export class Uploader {
           : options.container
         : undefined;
 
-    let widget: Element;
-
-    if (options.layout === "modal") {
-      widget = document.createElement("div");
-      (container ?? body).appendChild(widget);
-    } else {
-      widget = container ?? document.createElement("div");
-    }
+    const widget = document.createElement("div");
+    (container ?? body).appendChild(widget);
 
     widget.className = `uploader${options.layout === "modal" ? " uploader--with-modal" : ""}`;
     widget.setAttribute(
