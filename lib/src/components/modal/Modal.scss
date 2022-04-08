@@ -36,9 +36,13 @@
     max-height: 660 * $px;
 
     @media (max-width: $mobile-width-max), (max-height: $mobile-height-max) {
+      position: fixed;
       top:0;
-      height: 100%;
-      width: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: initial;
+      height: initial;
       max-width: none;
       max-height: none;
       border-radius: 0;
