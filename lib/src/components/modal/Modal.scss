@@ -2,7 +2,9 @@
 
 .uploader {
   $modal-index: 100000;
-
+  &__body {
+    overflow: hidden;
+  }
   &--with-modal {
     justify-content: center;
     align-items: center;
