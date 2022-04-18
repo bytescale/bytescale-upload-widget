@@ -20,6 +20,7 @@
   ],
   "keywords": [
     "file-upload",
+    "upload",
     "front-end",
     "multipart-upload",
     "file-uploader",
@@ -27,7 +28,6 @@
     "file-picker",
     "image-picker",
     "upload-component",
-    "upload",
     "html5-uploader",
     "multi",
     "multipart",
