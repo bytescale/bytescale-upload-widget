@@ -76,7 +76,7 @@ jobs:
       # Note: we put other steps between the 'npm start' and the test runs, just to make time for the server to spin-up.
       - name: "Acceptance tests"
         run: npm test
-        working-directory: ./examples
+        working-directory: ./lib
 
       - name: Save test report
         if: always()

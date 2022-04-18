@@ -26,19 +26,16 @@ const openUploader = (): void => {
     })
     .then(
       (f: UploaderResult[]) => {
-        alert(`-- JAVASCRIPT CALLBACK --\n\nFiles uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+        alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
       },
       (e: Error) => console.error(e)
     );
 };
 
-openUploader();
-
-const button = document.createElement("a");
-button.innerHTML = "Try Me Out!";
-button.href = "#open";
+const button = document.createElement("button");
+button.innerHTML = "Upload an Image...";
 button.onclick = e => {
   e.preventDefault();
   openUploader();
 };
-document.body.appendChild(button);
+document.body.prepend(button);
