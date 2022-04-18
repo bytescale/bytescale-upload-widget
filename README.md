@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://upload.io/uploader">
-    <img alt="Uploader" width="313" height="95" src="https://raw.githubusercontent.com/upload-io/uploader/main/.github/assets/logo.svg">
+    <img alt="Uploader" width="313" height="93" src="https://raw.githubusercontent.com/upload-io/uploader/main/.github/assets/logo.svg">
   </a>
 </h1>
 
