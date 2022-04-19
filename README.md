@@ -373,15 +373,14 @@ Uploader's USP is to provide developers with the least amount of work possible, 
 
 ### 🌐 API Support
 
-You can Upload.io's [File Upload API](https://upload.io/file-upload-api) directly to achieve:
+You can use Upload.io's [File Upload API](https://upload.io/file-upload-api) directly to achieve:
 
 - File uploading.
 - File listing.
 - File deleting.
-
 - And more...
 
-Uploading a `"Hello World"` file is as simple as:
+Uploading a `"Hello World"` text file is as simple as:
 
 ```shell
 curl --data "Hello World" \
