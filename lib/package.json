@@ -30,6 +30,7 @@
     "upload-component",
     "html5-uploader",
     "cropper",
+    "crop",
     "multi",
     "multipart",
     "ajax",
