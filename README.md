@@ -169,7 +169,7 @@ Uploader contains a built-in image cropper:
 
 <p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/jquery-uploader/main/.github/assets/demo.webp"></a></p>
 
-The cropper appears by default, but can be disabled by setting `crop: false` (see image uploader examples below)...
+The cropper appears by default, but can be disabled with `crop: false` (see image uploader examples below):
 
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
 
