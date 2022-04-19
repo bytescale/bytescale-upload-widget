@@ -1,6 +1,6 @@
 {
   "name": "uploader",
-  "version": "1.45.7",
+  "version": "1.45.8",
   "author": "Upload <hello@upload.io> (https://upload.io)",
   "description": "File Upload UI Widget — Lightweight & supports: drag and drop, multiple file uploads, image cropping, customization, and more 🚀 Comes with Cloud Storage 🌐",
   "license": "MIT",
