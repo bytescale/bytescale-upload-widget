@@ -29,6 +29,8 @@
     "image-picker",
     "upload-component",
     "html5-uploader",
+    "crop",
+    "cropper",
     "multi",
     "multipart",
     "ajax",
