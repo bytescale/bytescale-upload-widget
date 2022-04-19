@@ -200,7 +200,6 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/rNpBRbO?edito
 </button>
 ```
 
-
 ### Creating a "Single File" Upload Button
 
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
@@ -266,46 +265,6 @@ Note:
   - The `container` & `layout: "inline"` config options are automatically set.
   - The `data-upload-complete` callback is fired _every time_ the list of uploaded files changes.
   - The `data-upload-finalized` callback is fired when `Finish` is clicked (if visible, see comment above).
-
-## 🌐 API Support
-
-Uploader is powered by Upload.io's [File Upload API](https://upload.io/file-upload-api) — an easy-to-consume API that provides:
-
-- File uploading.
-- File listing.
-- File deleting.
-- File access control.
-- File TTL rules / expiring links.
-- And more...
-
-Uploading a `"Hello World"` file is as simple as:
-
-```shell
-curl --data "Hello World" \
-     -u apikey:free \
-     -X POST "https://api.upload.io/v1/files/basic"
-```
-
-_Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file types!_
-
-[Read the File Upload API docs »](https://upload.io/docs/upload-api)
-
-### ⚡ Need a Lightweight Client Library?
-
-Uploader is built on [Upload.js](https://upload.io/upload-js) — the fast 7KB client library for Upload.io's File Upload API.
-
-Use Upload.js if you already have a UI, and just need to implement file upload functionality.
-
-Upload.js provides:
-
-- End-to-end file upload functionality (zero config — all you need is an Upload API key, e.g. `"free"`.)
-- Small 7KB package size (including all dependencies).
-- Progress smoothing (using a built-in exponential moving average (EMA) algorithm).
-- Automatic file chunking (for large file support).
-- Cancellation (for in-progress file uploads).
-- And more...
-
-[Try Upload.js on CodePen  »](https://codepen.io/upload-js/pen/abVapaJ?editors=1010)
 
 ## ⚙️ Configuration
 
@@ -388,59 +347,43 @@ const myCustomLocale = {
 }
 ```
 
-## 📷 Resizing & Cropping Images
+## Where are my files stored?
 
-Given an uploaded image URL:
+Uploader uses [Upload.io](https://upload.io) as a storage and file hosting backend.
 
+Upload.io benefits developers with:
+
+- Zero Setup (Start uploading in the next few minutes!)
+- Pre-Integrated Storage (All you need is an Upload API key)
+- Fast File Hosting (Worldwide CDN, 300 Nodes)
+- Powerful Rules Engine (Rate Limiting, Traffic Limiting, IP Blacklisting, Expiring Links, etc)
+- File Transformations (Image Resizing, Cropping, Optimization, etc)
+
+### 🔧 Can I bring my own file storage?
+
+Uploader's USP is to provide developers with the least amount of work possible, while remaining customizable. As such, Uploader will always be closely integrated with the Upload.io platform, and there are currently no plans to support custom backends. You may, however, sync files from your Upload.io account to a custom storage target.
+
+### 🌐 API Support
+
+You can Upload.io's [File Upload API](https://upload.io/file-upload-api) directly to achieve:
+
+- File uploading.
+- File listing.
+- File deleting.
+
+- And more...
+
+Uploading a `"Hello World"` file is as simple as:
+
+```shell
+curl --data "Hello World" \
+     -u apikey:free \
+     -X POST "https://api.upload.io/v1/files/basic"
 ```
-https://upcdn.io/W142hJkHhVSQ5ZQ5bfqvanQ
-```
 
-Resize with:
+_Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file types!_
 
-```
-https://upcdn.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail
-```
-
-Auto-crop with:
-
-```
-https://upcdn.io/W142hJkHhVSQ5ZQ5bfqvanQ/thumbnail-square
-```
-
-## 🎯 Features
-
-Uploader is the file & image upload widget for [Upload.io](https://upload.io/uploader): the file upload service for developers.
-
-**Core features:**
-
-- **Beautifully clean UI widget.**
-- Single & Multi-File Uploads.
-- Fluid Layout & Mobile-Friendly.
-- Image Cropping.
-- Localization.
-- Integrated File Hosting:
-  - Files stored on [Upload.io](https://upload.io/uploader) for 4 hours with the `"free"` API key.
-  - Files hosted via the Upload CDN: 100 locations worldwide.
-
-**Available with an account:**
-
-- **Permanent Storage.**
-- Unlimited Daily Uploads. (The `"free"` API key allows 100 uploads per day per IP.)
-- Extended CDN Coverage. (Files served from 300+ locations worldwide.)
-- Upload & Download Authentication. (Supports federated auth via your own JWT authorizer.)
-- File & Folder Management Console.
-- Expiring Links.
-- Custom CNAME.
-- Advanced Upload Control:
-  - Rate Limiting.
-  - Traffic Limiting.
-  - File Size Limiting.
-  - IP Blacklisting.
-  - File Type Blacklisting.
-  - And More...
-
-**[Create an Upload.io account »](https://upload.io/pricing)**
+[Read the File Upload API docs »](https://upload.io/docs/upload-api)
 
 ## Building From Source
 
