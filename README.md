@@ -163,7 +163,13 @@ Or with HTML:
 
 ## 👀 More Examples
 
-### Creating an Image Upload Button
+### Creating an Image Uploader
+
+Uploader contains a built-in image cropper:
+
+<p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/jquery-uploader/main/.github/assets/demo.webp"></a></p>
+
+The cropper appears by default, but can be disabled by setting `crop: false` (see image uploader examples below)...
 
 With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
 
@@ -174,6 +180,7 @@ uploader
     mimeTypes: ["image/jpeg", "image/png", "image/webp"],
     editor: {
       images: {
+        crop: true,
         cropShape: "circ", // "rect" also supported.
         cropRatio: 1 / 1   // "1" is enforced for "circ".
       }
@@ -191,6 +198,7 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/rNpBRbO?edito
           "mimeTypes": ["image/jpeg", "image/png", "image/webp"],
           "editor": {
             "images": {
+              "crop": true,
               "cropShape": "circ",
               "cropRatio": 1
             }
