@@ -357,7 +357,7 @@ const myCustomLocale = {
 
 ## Where are my files stored?
 
-Uploader uses [Upload.io](https://upload.io) as a storage and file hosting backend.
+Uploader uses [Upload.io](https://upload.io) as a file storage & file hosting backend.
 
 Upload.io benefits developers with:
 
@@ -369,7 +369,7 @@ Upload.io benefits developers with:
 
 ### 🔧 Can I bring my own file storage?
 
-Uploader's USP is to provide developers with the least amount of work possible, while remaining customizable. As such, Uploader will always be closely integrated with the Upload.io platform, and there are currently no plans to support custom backends. You may, however, sync files from your Upload.io account to a custom storage target.
+Uploader's USP is to provide the fastest way to integrate end-to-end file uploads into a web app, while remaining customizable. As such, Uploader will always be closely integrated with the Upload.io platform, and there are currently no plans to support custom backends. You may, however, sync files from your Upload.io account to a custom storage target.
 
 ### 🌐 API Support
 
