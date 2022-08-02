@@ -10,6 +10,8 @@ export interface UploaderLocale {
   "finish": string;
   "finishIcon": boolean;
   "image": string;
+  "maxFilesReached": string;
+  "maxImagesReached": string;
   "maxSize": string;
   "next": string;
   "of": string;

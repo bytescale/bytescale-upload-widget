@@ -50,13 +50,18 @@ export const UploaderMainScreen = ({
       </div>
       {hasButtons && (
         <div className="btn-group">
-          {options.multi && (
-            <UploadButton
-              multi={options.multi}
-              text={isImageUploader ? locale.addAnotherImage : locale.addAnotherFile}
-              onUpload={addFiles}
-            />
-          )}
+          {options.multi &&
+            (options.maxFileCount === undefined || submittedFiles.length < options.maxFileCount ? (
+              <UploadButton
+                multi={options.multi}
+                text={isImageUploader ? locale.addAnotherImage : locale.addAnotherFile}
+                onUpload={addFiles}
+              />
+            ) : (
+              <div className="uploader__main-screen__info">
+                {isImageUploader ? locale.maxImagesReached : locale.maxFilesReached} {options.maxFileCount}
+              </div>
+            ))}
 
           {options.showFinishButton && (
             <a
@@ -69,7 +74,7 @@ export const UploaderMainScreen = ({
                 }
               }}>
               {finishedUploading ? (
-                <span className="vcenter">
+                <span className="vcenter hcenter">
                   {locale.finish} {locale.finishIcon && <RightSvg width={12} className="ml-2" />}
                 </span>
               ) : (

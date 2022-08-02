@@ -22,7 +22,7 @@
       </button>
       <div
         id="dropzone"
-        data-upload-config='{ "multi": true }'
+        data-upload-config='{ "multi": true, "maxFileCount": 2 }'
         data-upload-complete='alert(
                 `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.fileUrl).join("\n")}`
               )'

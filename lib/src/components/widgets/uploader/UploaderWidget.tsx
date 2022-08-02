@@ -199,8 +199,10 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
 
   const addFiles = (files: File[]): void =>
     setNextSparseFileIndex(nextSparseFileIndex => {
+      const maxFiles = multi ? options.maxFileCount : 1;
+
       // Ignores subsequent drag-and-drop events for single file uploaders.
-      if (!multi && submittedFileList.length > 0) {
+      if (maxFiles !== undefined && submittedFileList.length >= maxFiles) {
         return nextSparseFileIndex;
       }
 

@@ -9,6 +9,7 @@
   //--primary-color: #377dff;
   //--primary-active-color: #528fff;
   --error-color: #d23f4d;
+  --btn-text-color: #677788;
 
   $base-size: 16; // When this base font size is used, borders will be 1px thick.
   $px: (1 / $base-size) * 1em;
@@ -54,7 +55,7 @@
     transition: 0.1s border-color linear, 0.1s background-color linear;
     display: inline-block;
     font-weight: 400;
-    color: #677788;
+    color: var(--btn-text-color);
     text-align: center;
     vertical-align: middle;
     -webkit-user-select: none;
@@ -132,6 +133,10 @@
   .vcenter {
     display: flex;
     align-items: center;
+  }
+  .hcenter {
+    display: flex;
+    justify-content: center;
   }
   .nudge-up-1 {
     position: relative;

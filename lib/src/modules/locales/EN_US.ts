@@ -12,6 +12,8 @@ export const UploaderLocaleEnUs: UploaderLocale = {
   "finish": "Finished",
   "finishIcon": true,
   "image": "Image",
+  "maxFilesReached": "Maximum number of files:",
+  "maxImagesReached": "Maximum number of images:",
   "maxSize": "File size limit:",
   "next": "Next",
   "of": "of",

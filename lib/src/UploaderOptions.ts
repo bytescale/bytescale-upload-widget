@@ -11,6 +11,7 @@ export interface UploaderOptions {
   editor?: UploaderEditorOptions;
   layout?: UploaderLayout;
   locale?: UploaderLocale;
+  maxFileCount?: number;
   maxFileSizeBytes?: number;
   mimeTypes?: string[];
   multi?: boolean;
@@ -26,6 +27,7 @@ export interface UploaderOptionsRequired {
   editor: UploaderEditorOptionsRequired;
   layout: UploaderLayout;
   locale: UploaderLocale;
+  maxFileCount: number | undefined;
   maxFileSizeBytes: number | undefined;
   mimeTypes: string[] | undefined;
   multi: boolean;
@@ -45,6 +47,7 @@ export namespace UploaderOptionsRequired {
       editor: UploaderEditorOptionsRequired.from(options.editor),
       layout,
       locale: options.locale ?? UploaderLocaleEnUs,
+      maxFileCount: options.maxFileCount,
       maxFileSizeBytes: options.maxFileSizeBytes,
       mimeTypes: options.mimeTypes,
       multi,

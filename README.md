@@ -286,6 +286,7 @@ uploader
     container: "body",           // "body" by default.
     layout: "modal",             // "modal" by default. "inline" also supported.
     locale: myCustomLocale,      // EN_US by default. (See "Localization" section below.)
+    maxFileCount: 5,             // Unlimited by default (or 1 if multi: false).
     maxFileSizeBytes: 1024 ** 2, // Unlimited by default.
     mimeTypes: ["image/jpeg"],   // Unrestricted by default.
     multi: false,                // False by default.
@@ -332,26 +333,35 @@ Default is [EN_US](https://github.com/upload-io/uploader/blob/main/lib/src/modul
 
 ```javascript
 const myCustomLocale = {
-  "error!":              "Error!",
-  "done":                "Done",
-  "addAnotherFile":      "Add another file...",
-  "cancel":              "cancel",
-  "cancelled!":          "cancelled",
-  "continue":            "Continue",
-  "crop":                "Crop",
-  "finish":              "Finished",
-  "finishIcon":          true,
-  "maxSize":             "File size limit:",
-  "next":                "Next",
-  "orDragDropFile":      "...or drag and drop a file.",
-  "orDragDropFiles":     "...or drag and drop files.",
-  "pleaseWait":          "Please wait...",
-  "removed!":            "removed",
-  "remove":              "remove",
-  "skip":                "Skip",
+  "error!": "Error!",
+  "done": "Done",
+  "addAnotherFile": "Add another file...",
+  "addAnotherImage": "Add another image...",
+  "cancel": "cancel",
+  "cancelled!": "cancelled",
+  "continue": "Continue",
+  "crop": "Crop",
+  "finish": "Finished",
+  "finishIcon": true,
+  "image": "Image",
+  "maxFilesReached": "Maximum number of files:",
+  "maxImagesReached": "Maximum number of images:",
+  "maxSize": "File size limit:",
+  "next": "Next",
+  "of": "of",
+  "orDragDropFile": "...or drag and drop a file.",
+  "orDragDropFiles": "...or drag and drop files.",
+  "orDragDropImage": "...or drag and drop an image.",
+  "orDragDropImages": "...or drag and drop images.",
+  "pleaseWait": "Please wait...",
+  "removed!": "removed",
+  "remove": "remove",
+  "skip": "Skip",
   "unsupportedFileType": "File type not supported.",
-  "uploadFile":          "Select a File",
-  "uploadFiles":         "Select Files"
+  "uploadFile": "Upload a File",
+  "uploadFiles": "Upload Files",
+  "uploadImage": "Upload an Image",
+  "uploadImages": "Upload Images"
 }
 ```
 
