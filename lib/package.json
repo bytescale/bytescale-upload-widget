@@ -52,7 +52,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "preact": "^10.6.5",
-    "upload-js": "^1.44.3"
+    "upload-js": "^1.48.21"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
