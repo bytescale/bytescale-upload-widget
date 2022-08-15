@@ -23,12 +23,12 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image }: Pro
   }, [originalImage.fileUrl]);
 
   return (
-    <div className="uploader__image-editor" ref={containerRef}>
+    <div className="uploader__image-editor">
       <div
         className={header === undefined ? "uploader__image-editor__header--empty" : "uploader__image-editor__header"}>
         {header}
       </div>
-      <div className="uploader__image-editor__image">
+      <div className="uploader__image-editor__image" ref={containerRef}>
         <div className="uploader__image-editor__image-padding">
           <img
             id={containerId}
