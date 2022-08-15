@@ -78,9 +78,9 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props)
     };
   };
   const clipAndReRatio = (g: RectWithPos, fixed: ReRatioMode): RectWithPos => reRatio(clip(g), fixed);
-  const [geometry, setGeometryUnsafe] = useState(
-    clipAndReRatio({ x: 0, y: 0, width: boundary.width, height: boundary.height }, "center")
-  );
+  const calculateInitialGeometry = (): RectWithPos =>
+    clipAndReRatio({ x: 0, y: 0, width: boundary.width, height: boundary.height }, "center");
+  const [geometry, setGeometryUnsafe] = useState(calculateInitialGeometry);
   const setGeometry = (corner: ReRatioMode, set: RectWithPos): void => setGeometryUnsafe(clipAndReRatio(set, corner));
 
   const onGeometryChange = (): void => {
@@ -92,8 +92,7 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props)
   useLayoutEffect(onGeometryChange, [geometry]);
 
   useLayoutEffect(() => {
-    // Resize the cropper if the container is resized.
-    setGeometry("center", geometry);
+    setGeometryUnsafe(calculateInitialGeometry());
     onGeometryChange();
   }, [boundary]);
 
