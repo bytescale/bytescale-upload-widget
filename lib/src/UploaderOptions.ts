@@ -41,7 +41,7 @@ export interface UploaderOptionsRequired {
 export namespace UploaderOptionsRequired {
   export function from(options: UploaderOptions): UploaderOptionsRequired {
     const layout = options.layout ?? "modal";
-    const multi = options.multi ?? false;
+    const multi = options.multi ?? (options.maxFileCount !== undefined && options.maxFileCount > 1);
     return {
       container: options.container,
       editor: UploaderEditorOptionsRequired.from(options.editor),
