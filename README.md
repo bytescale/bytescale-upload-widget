@@ -125,9 +125,9 @@ With JavaScript:
 
 ```javascript
 {
-  url: "https://upcdn.io/FW25...",   // The URL to use when serving this file.
+  url: "https://upcdn.io/FW25...",   // URL to use when serving this file.
 
-  editedFile: undefined,             // The edited file (if present). Same structure as below.
+  editedFile: undefined,             // Edited file (for image crops). Same structure as below.
 
   originalFile: {
     url: "https://upcdn.io/FW25...", // Uploaded file URL.
