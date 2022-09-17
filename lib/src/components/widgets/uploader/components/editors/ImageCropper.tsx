@@ -1,7 +1,7 @@
 import { JSX } from "preact";
 import { ResizableSquare } from "uploader/components/widgets/uploader/components/editors/shapes/ResizableSquare";
 import { ParamsFromFile } from "uploader/components/widgets/uploader/model/ParamsFromFile";
-import { Upload, UploadedFile } from "upload-js";
+import { UploadedFile, UploadInterface } from "upload-js";
 import { ImageEditorLayout } from "uploader/components/widgets/uploader/components/editors/ImageEditorLayout";
 import { useState } from "preact/compat";
 import { SubmitButton } from "uploader/components/widgets/uploader/components/buttons/SubmitButton";
@@ -14,20 +14,20 @@ interface Props {
   imageCount: number;
   imageIndex: number;
   onFinish: (editedFile: UploadedFile | undefined) => void;
-  originalImage: UploadedFile;
   options: UploaderOptionsRequired;
-  upload: Upload;
+  originalImage: UploadedFile;
+  upload: UploadInterface;
 }
 
 function makeCropJson(
-  originalFileId: string,
+  originalFilePathRelative: string,
   geometry: RectWithPos,
   boundary: Rect,
   nativeImageSize: Rect
 ): ParamsFromFile {
   const scale = nativeImageSize.width / boundary.width;
   return {
-    input: originalFileId,
+    inputPath: originalFilePathRelative,
     pipeline: {
       steps: [
         {
@@ -73,16 +73,20 @@ export const ImageCropper = ({
         img.src = URL.createObjectURL(originalImage.file);
       });
 
-      const cropJson = makeCropJson(originalImage.fileId, geometry.geometry, geometry.boundary, nativeImageSize);
+      const originalImageUploadedName = originalImage.path.substring(originalImage.path.lastIndexOf("/") + 1);
+      const cropJson = makeCropJson(originalImageUploadedName, geometry.geometry, geometry.boundary, nativeImageSize);
       const blob = new Blob([JSON.stringify(cropJson)], { type: "application/json" });
-      const editedFile = await upload.uploadFile({
-        file: {
-          name: `${originalImage.file.name ?? originalImage.fileId}.crop`,
+      const editedFile = await upload.uploadFile(
+        {
+          name: `${originalImage.originalFileName ?? "image"}.crop`,
           type: blob.type,
           size: blob.size,
           slice: (start, end) => blob.slice(start, end)
+        },
+        {
+          filePath: `${originalImage.path}.crop`
         }
-      });
+      );
       onFinish(editedFile);
     }
   };

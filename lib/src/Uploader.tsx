@@ -1,4 +1,4 @@
-import { Upload, UploadConfig } from "upload-js";
+import { Upload, UploadInterface, UploadConfig } from "upload-js";
 import { UploaderOptions, UploaderOptionsRequired } from "uploader/UploaderOptions";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
@@ -11,12 +11,12 @@ export class Uploader {
   private readonly upload: UploadInstanceMaybe;
   private readonly inlineWidgets = new InlineWidgetBinder(this);
 
-  constructor(uploadOrConfig: UploadConfig | Upload) {
-    if (uploadOrConfig instanceof Upload) {
+  constructor(uploadOrConfig: UploadConfig | UploadInterface) {
+    if (UploadInstanceMaybe.isUploadInstance(uploadOrConfig)) {
       this.upload = { type: "upload", value: uploadOrConfig };
     } else {
       try {
-        this.upload = { type: "upload", value: new Upload(uploadOrConfig) };
+        this.upload = { type: "upload", value: Upload(uploadOrConfig) };
       } catch (e) {
         this.upload = { type: "error", value: e };
       }

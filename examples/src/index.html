@@ -15,7 +15,7 @@
         id="uploadButton"
         data-upload-config='{ "multi": true }'
         data-upload-complete='alert(
-                `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.fileUrl).join("\n")}`
+                `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.url).join("\n")}`
               )'
       >
         Upload a File...
@@ -24,7 +24,7 @@
         id="dropzone"
         data-upload-config='{ "multi": true, "maxFileCount": 2 }'
         data-upload-complete='alert(
-                `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.fileUrl).join("\n")}`
+                `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.url).join("\n")}`
               )'
         style="position: relative; width: 450px; height: 300px"
       ></div>

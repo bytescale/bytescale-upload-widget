@@ -1,4 +1,3 @@
-import { FileTag } from "@upload-io/upload-api-client-upload-js";
 import { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 import { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 import { UploaderLayout } from "uploader/UploaderLayout";
@@ -19,7 +18,7 @@ export interface UploaderOptions {
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
   styles?: UploaderStyleOptions;
-  tags?: Array<string | FileTag>;
+  tags?: string[];
 }
 
 export interface UploaderOptionsRequired {
@@ -35,7 +34,7 @@ export interface UploaderOptionsRequired {
   showFinishButton: boolean;
   showRemoveButton: boolean;
   styles: UploaderStyleOptionsRequired;
-  tags: Array<string | FileTag>;
+  tags: string[];
 }
 
 export namespace UploaderOptionsRequired {

@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { Upload, UploadedFile } from "upload-js";
+import { UploadedFile, UploadInterface } from "upload-js";
 import { ImageCropper } from "uploader/components/widgets/uploader/components/editors/ImageCropper";
 import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 
@@ -7,9 +7,9 @@ interface Props {
   imageCount: number;
   imageIndex: number;
   onImageEdited: (editedFile: UploadedFile | undefined) => void;
-  originalImage: UploadedFile;
   options: UploaderOptionsRequired;
-  upload: Upload;
+  originalImage: UploadedFile;
+  upload: UploadInterface;
 }
 
 export const ImageEditor = ({

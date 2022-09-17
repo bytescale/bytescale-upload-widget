@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { JSX } from "preact";
-import { Upload, UploadedFile } from "upload-js";
+import { UploadedFile, UploadInterface } from "upload-js";
 import { UploaderOptionsRequired } from "uploader/UploaderOptions";
 import { useEffect, useLayoutEffect, useState } from "preact/compat";
 import { isDefined } from "uploader/modules/common/TypeUtils";
@@ -29,7 +29,7 @@ interface Props {
   options: UploaderOptionsRequired;
   reject: (error: Error) => void;
   resolve: (files: UploaderResult[]) => void;
-  upload: Upload;
+  upload: UploadInterface;
 }
 
 export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element => {
@@ -111,7 +111,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
         return () => clearTimeout(timeout);
       }
     }
-  }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.fileUrl)]);
+  }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.url)]);
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles(
@@ -174,8 +174,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
       raiseError(new Error(options.locale.unsupportedFileType));
     }
 
-    return await upload.uploadFile({
-      file,
+    return await upload.uploadFile(file, {
       tags,
       onBegin: ({ cancel }) =>
         setSubmittedFile(fileIndex, {

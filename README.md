@@ -97,7 +97,7 @@ uploader.open({ multi: true }).then(files => {
     console.log('No files selected.')
   } else {
     console.log('Files uploaded:');
-    console.log(files.map(f => f.fileUrl));
+    console.log(files.map(f => f.url));
   }
 }).catch(err => {
   console.error(err);
@@ -109,7 +109,7 @@ Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXJqqz?edito
 ```html
 <button data-upload-config='{ "multi": true }'
         data-upload-complete='alert(
-          `Files uploaded:\n${event.files.map(x => x.fileUrl).join("\n")}`
+          `Files uploaded:\n${event.files.map(x => x.url).join("\n")}`
         )'>
   Upload Files...
 </button>
