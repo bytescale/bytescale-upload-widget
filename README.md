@@ -134,7 +134,7 @@ With JavaScript:
     path: "/uploads/example.jpg",    // Uploaded file path (relative to your raw file directory).
     accountId: "FW251aX",            // Upload.io account the file was uploaded to.
     originalFileName: "example.jpg", // Original file name from the user's machine.
-    file: { ... },                   // Original DOM file object (from the <input> element).
+    file: { ... },                   // Original DOM file object from the <input> element.
     size: 12345,                     // File size in bytes.
     lastModified: 1663410542397,     // Epoch timestamp of when the file was uploaded or updated.
     mime: "image/jpeg",              // File MIME type.
