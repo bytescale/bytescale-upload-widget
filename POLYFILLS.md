@@ -18,6 +18,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.array.is-array
   - core-js/modules/es.array.iterator
   - core-js/modules/es.array.join
+  - core-js/modules/es.array.last-index-of
   - core-js/modules/es.array.map
   - core-js/modules/es.array.reduce
   - core-js/modules/es.array.reverse
