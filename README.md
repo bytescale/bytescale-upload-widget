@@ -132,7 +132,7 @@ With JavaScript:
   originalFile: {
     url: "https://upcdn.io/FW25...", // Uploaded file URL.
     path: "/uploads/example.jpg",    // Uploaded file path (relative to your raw file directory).
-    originalFileName: "example.jpg", // Uploaded file path (relative to your raw file directory).
+    originalFileName: "example.jpg", // Original file name from the user's machine.
     accountId: "FW251aX",            // Upload.io account the file belongs to.
     file: { ... },                   // DOM file object (from the <input> element).
     size: 12345,                     // File size in bytes.
