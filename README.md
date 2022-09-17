@@ -139,7 +139,7 @@ With JavaScript:
     lastModified: 1663410542397,     // Epoch timestamp of when the file was uploaded or updated.
     mime: "image/jpeg",              // File MIME type.
     metadata: {
-      ...                            // User-provided arbitrary JSON object.
+      ...                            // User-provided JSON object.
     },
     tags: [
       "tag1",                        // User-provided & auto-generated tags.
