@@ -8,7 +8,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/upload-io/uploader/">
-    <img src="https://img.shields.io/badge/gzipped-29%20kb-4ba0f6" />
+    <img src="https://img.shields.io/badge/gzipped-31%20kb-4ba0f6" />
   </a>
 
   <a href="https://www.npmjs.com/package/uploader">
