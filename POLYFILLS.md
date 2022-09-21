@@ -54,7 +54,6 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.string.starts-with
   - core-js/modules/es.string.trim
   - core-js/modules/es.string.sub
-  - core-js/modules/es.weak-set
   - core-js/modules/web.dom-collections.for-each
   - core-js/modules/web.dom-collections.iterator
   - core-js/modules/web.timers
