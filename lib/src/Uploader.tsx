@@ -4,34 +4,39 @@ import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
 import { RootModal } from "uploader/components/modal/RootModal";
-import { InlineWidgetBinder } from "uploader/modules/InlineWidgetBinder";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
+import { UploaderInterface } from "uploader/UploaderInterface";
 
-export class Uploader {
-  private readonly upload: UploadInstanceMaybe;
-  private readonly inlineWidgets = new InlineWidgetBinder(this);
+export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): UploaderInterface {
+  // ----------------
+  // READONLY MEMBERS
+  // ----------------
 
-  constructor(uploadOrConfig: UploadConfig | UploadInterface) {
-    if (UploadInstanceMaybe.isUploadInstance(uploadOrConfig)) {
-      this.upload = { type: "upload", value: uploadOrConfig };
-    } else {
-      try {
-        this.upload = { type: "upload", value: Upload(uploadOrConfig) };
-      } catch (e) {
-        this.upload = { type: "error", value: e };
-      }
-    }
+  let upload: UploadInstanceMaybe;
 
-    if (typeof document !== "undefined") {
-      this.inlineWidgets.bindWidgetsAndMonitor();
+  // ----------------
+  // CONSTRUCTOR
+  // ----------------
+
+  if (UploadInstanceMaybe.isUploadInstance(uploadOrConfig)) {
+    upload = { type: "upload", value: uploadOrConfig };
+  } else {
+    try {
+      upload = { type: "upload", value: Upload(uploadOrConfig) };
+    } catch (e) {
+      upload = { type: "error", value: e };
     }
   }
 
-  async open(optionsMaybe: UploaderOptions = {}): Promise<UploaderResult[]> {
+  // ----------------
+  // PUBLIC METHODS
+  // ----------------
+
+  const open = async (optionsMaybe: UploaderOptions = {}): Promise<UploaderResult[]> => {
     const options = UploaderOptionsRequired.from(optionsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
-    const body = await this.getBody();
+    const body = await getBody();
 
     const container =
       options.container !== undefined
@@ -51,7 +56,7 @@ export class Uploader {
 
     const uploadedFiles = await new Promise<UploaderResult[]>((resolve, reject) => {
       const props: UploaderRootProps = {
-        upload: this.upload,
+        upload,
         resolve,
         reject,
         options
@@ -68,12 +73,16 @@ export class Uploader {
     }
 
     return uploadedFiles;
-  }
+  };
+
+  // ----------------
+  // PRIVATE METHODS
+  // ----------------
 
   /**
    * Required when the 'uploader.open()' method is called from within '<head>'.
    */
-  private async getBody(): Promise<HTMLElement> {
+  const getBody = async (): Promise<HTMLElement> => {
     return await new Promise(resolve => {
       const attempt = (): void => {
         const bodyMaybe = document.body ?? undefined;
@@ -85,5 +94,9 @@ export class Uploader {
 
       attempt();
     });
-  }
+  };
+
+  return {
+    open
+  };
 }

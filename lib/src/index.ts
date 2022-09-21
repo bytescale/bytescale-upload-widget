@@ -1,6 +1,7 @@
-import { Uploader } from "uploader/Uploader";
+import { UploaderInterface } from "uploader/UploaderInterface";
 
 export { Uploader } from "uploader/Uploader";
+export { UploaderInterface } from "uploader/UploaderInterface";
 export { UploaderResult } from "uploader/components/modal/UploaderResult";
 export { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
 export { UploaderLayout } from "uploader/UploaderLayout";
@@ -9,10 +10,10 @@ export { UploaderOptions } from "uploader/UploaderOptions";
 export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 
 if (typeof window !== "undefined") {
-  const dummy: Record<keyof Uploader, () => void> = {
+  const dummy: Record<keyof UploaderInterface, () => void> = {
     open(): void {
       throw new Error(
-        "You forgot to initialize Uploader!\nPlease initialize 'uploader' with:\nconst uploader = new Uploader({ apiKey: 'free' });"
+        "You forgot to initialize Uploader!\nPlease initialize 'uploader' with:\nconst uploader = Uploader({ apiKey: 'free' });"
       );
     }
   };

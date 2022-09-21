@@ -10,24 +10,6 @@
   </head>
 
   <body>
-    <div style="padding-top: 15px">
-      <button
-        id="uploadButton"
-        data-upload-config='{ "multi": true }'
-        data-upload-complete='alert(
-                `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.url).join("\n")}`
-              )'
-      >
-        Upload a File...
-      </button>
-      <div
-        id="dropzone"
-        data-upload-config='{ "multi": true, "maxFileCount": 2 }'
-        data-upload-complete='alert(
-                `-- JAVASCRIPT CALLBACK --\n\nFile(s) uploaded:\n\n${event.files.map(x => x.url).join("\n")}`
-              )'
-        style="position: relative; width: 750px; height: 500px"
-      ></div>
-    </div>
+    <div style="padding-top: 15px"></div>
   </body>
 </html>

@@ -82,14 +82,12 @@ Initialize once at the start of your application:
 const { Uploader } = require("uploader");
 
 // Get production API keys from Upload.io
-const uploader = new Uploader({
+const uploader = Uploader({
   apiKey: "free"
 });
 ```
 
-### Open the Modal
-
-With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/oNoRmJW?editors=1010):
+### Open the Modal — [Try on CodePen](https://codepen.io/upload-js/pen/oNoRmJW?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(files => {
@@ -104,22 +102,7 @@ uploader.open({ multi: true }).then(files => {
 });
 ```
 
-Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXJqqz?editors=1010):
-
-```html
-<button data-upload-config='{ "multi": true }'
-        data-upload-complete='alert(
-          `Files uploaded:\n${event.files.map(x => x.url).join("\n")}`
-        )'>
-  Upload Files...
-</button>
-```
-
-_Note: you still need to [initialize](#Initialize) the Uploader when using `data-*` attributes._
-
 ### Get the Result
-
-With JavaScript:
 
 `.open()` returns `Promise<Array<UploaderResult>>`:
 
@@ -150,29 +133,15 @@ With JavaScript:
 }
 ```
 
-Or with HTML:
-
-```html
-<a data-upload-complete="console.log(JSON.stringify(event.files))">
-  Upload a file...
-</a>
-```
-
-- The `data-upload-complete` attribute is fired on completion.
-- The `event.files` array contains the uploaded files.
-- The above example opens an Uploader which logs the same output as the JavaScript example.
-
 ## 👀 More Examples
 
-### Creating an Image Uploader
+### Creating an Image Uploader — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
 
 Uploader contains a built-in image cropper:
 
 <p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/jquery-uploader/main/.github/assets/demo.webp"></a></p>
 
 The cropper appears by default, but can be disabled with `crop: false` (see examples below):
-
-With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
 
 ```javascript
 uploader
@@ -190,63 +159,21 @@ uploader
   .then(files => alert(JSON.stringify(files)));
 ```
 
-Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/rNpBRbO?editors=1010):
-
-```html
-<button data-upload-complete='alert(JSON.stringify(event.files))'
-        data-upload-config='{
-          "multi": false,
-          "mimeTypes": ["image/jpeg", "image/png", "image/webp"],
-          "editor": {
-            "images": {
-              "crop": true,
-              "cropShape": "circ",
-              "cropRatio": 1
-            }
-          }
-        }'>
-  Upload an Image...
-</button>
-```
-
-### Creating a "Single File" Upload Button
-
-With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
+### Creating a "Single File" Upload Button — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
 
 ```javascript
 uploader.open().then(files => alert(JSON.stringify(files)));
 ```
 
-Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWxQ?editors=1010):
-
-```html
-<button data-upload-complete='alert(JSON.stringify(event.files))'>
-  Upload a Single File...
-</button>
-```
-
-### Creating a "Multi File" Upload Button
-
-With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/RwjdVxY?editors=1010):
+### Creating a "Multi File" Upload Button — [Try on CodePen](https://codepen.io/upload-js/pen/RwjdVxY?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 ```
 
-Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/OJOqmOd?editors=1010):
-
-```html
-<button data-upload-config='{ "multi": true }'
-        data-upload-complete='alert(JSON.stringify(event.files))'>
-  Upload Multiple Files...
-</button>
-```
-
-### Creating a Dropzone
+### Creating a Dropzone — [Try on CodePen](https://codepen.io/upload-js/pen/PoOLmeL?editors=1010):
 
 You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
-
-With JavaScript — [Try on CodePen](https://codepen.io/upload-js/pen/PoOLmeL?editors=1010):
 
 ```javascript
 uploader.open({
@@ -257,29 +184,14 @@ uploader.open({
 })
 ```
 
-Or with HTML — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWeZ?editors=1010):
-
-```html
-<div data-upload-config='{ "multi": true }'
-     data-upload-complete="console.log(event.files)"
-     style="position: relative; width: 450px; height: 300px;">
-</div>
-```
-
 Note:
 
 - You must set `position: relative`, `width` and `height` on the container `div`.
 - The `Finish` button is hidden by default in this mode (override with `"showFinishButton": true`).
-- When using the HTML approach:
-  - The `container` & `layout: "inline"` config options are automatically set.
-  - The `data-upload-complete` callback is fired _every time_ the list of uploaded files changes.
-  - The `data-upload-finalized` callback is fired when `Finish` is clicked (if visible, see comment above).
 
 ## ⚙️ Configuration
 
 All configuration is optional.
-
-With JavaScript:
 
 ```javascript
 uploader
@@ -313,19 +225,6 @@ uploader
     },
   })
   .then(files => alert(files))
-```
-
-Or with HTML:
-
-```html
-<button data-upload-complete='alert(event.files)'
-        data-upload-config='{
-          "container": "body",
-          "layout": "modal",
-          "multi": false
-        }'>
-  Upload a File...
-</button>
 ```
 
 ### 🏳️ Localization
