@@ -14,7 +14,7 @@ const openUploader = (): void => {
     .open({
       multi: true,
       mimeTypes: ["image/jpeg", "image/webp", "image/png"],
-      maxFileCount: 2,
+      maxFileCount: 10,
       editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } },
       styles: {
         colors: {
