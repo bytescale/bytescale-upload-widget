@@ -11,14 +11,17 @@ export function useDragDrop(
 } {
   const [isDragging, setIsDragging] = useState(false);
 
-  const handleDragEnter = (e: Event): void => {
+  const handleDragEnter = (e: DragEvent): void => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
   };
-  const handleDragLeave = (e: Event): void => {
+  const handleDragLeave = (e: DragEvent): void => {
     e.preventDefault();
     e.stopPropagation();
+    if (e.relatedTarget !== null && (e?.currentTarget as any)?.contains(e.relatedTarget) === true) {
+      return;
+    }
     setIsDragging(false);
   };
   const handleDragOver = (e: DragEvent): void => {

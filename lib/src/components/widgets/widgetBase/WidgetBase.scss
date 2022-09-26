@@ -22,6 +22,10 @@
     z-index: $modal-bg-z-index;
     &--dragging {
       color: var(--primary-color);
+      * {
+        // Prevents 'onDragLeave' firing when dragging over children.
+        pointer-events: none;
+      }
     }
   }
 
@@ -48,5 +52,9 @@
   }
   &--dragging {
     border-color: var(--primary-color);
+    * {
+      // Prevents 'onDragLeave' firing when dragging over children.
+      pointer-events: none;
+    }
   }
 }
