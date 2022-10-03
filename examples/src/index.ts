@@ -34,6 +34,7 @@ const openUploader = (): void => {
 };
 
 const button = document.createElement("button");
+button.id = "uploadButton";
 button.innerHTML = "Upload an Image...";
 button.onclick = e => {
   e.preventDefault();

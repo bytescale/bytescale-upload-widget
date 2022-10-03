@@ -8,10 +8,6 @@ class App {
     return $("h1");
   }
 
-  get dropzoneUploadButton() {
-    return $("#dropzone .btn");
-  }
-
   get modalLauncher() {
     return $("#uploadButton");
   }
