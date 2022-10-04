@@ -73,7 +73,7 @@ export const ImageCropper = ({
         img.src = URL.createObjectURL(originalImage.file);
       });
 
-      const originalImageUploadedName = originalImage.path.substring(originalImage.path.lastIndexOf("/") + 1);
+      const originalImageUploadedName = originalImage.filePath.substring(originalImage.filePath.lastIndexOf("/") + 1);
       const cropJson = makeCropJson(originalImageUploadedName, geometry.geometry, geometry.boundary, nativeImageSize);
       const blob = new Blob([JSON.stringify(cropJson)], { type: "application/json" });
       const editedFile = await upload.uploadFile(
@@ -84,7 +84,7 @@ export const ImageCropper = ({
           slice: (start, end) => blob.slice(start, end)
         },
         {
-          path: `${originalImage.path}.crop`
+          path: `${originalImage.filePath}.crop`
         }
       );
       onFinish(editedFile);

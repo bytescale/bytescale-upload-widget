@@ -2,13 +2,14 @@ import { UploadedFile } from "upload-js";
 
 export interface UploaderResult {
   editedFile: UploadedFile | undefined;
-  originalFile: UploadedFile;
 
   /**
    * If editedFile is defined, returns its URL, appended with the first suitable transformation (if any).
    * If editedFile is undefined, returns the original file URL, appended with the first suitable transformation (if any).
    */
-  url: string;
+  fileUrl: string;
+
+  originalFile: UploadedFile;
 }
 
 export namespace UploaderResult {
@@ -17,17 +18,17 @@ export namespace UploaderResult {
       const find = "/raw/";
       const replace = "/thumbnail/"; // Will be the "auto" transformation in future.
 
-      if (editedFile === undefined || !editedFile.url.includes(find)) {
-        return originalFile.url;
+      if (editedFile === undefined || !editedFile.fileUrl.includes(find)) {
+        return originalFile.fileUrl;
       }
 
-      return editedFile.url.replace(find, replace);
+      return editedFile.fileUrl.replace(find, replace);
     };
 
     return {
       editedFile,
       originalFile,
-      url: calculateFileUrl()
+      fileUrl: calculateFileUrl()
     };
   }
 }

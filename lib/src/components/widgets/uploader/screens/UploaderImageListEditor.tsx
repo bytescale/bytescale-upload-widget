@@ -16,8 +16,8 @@ export const UploaderImageListEditor = ({ images, onImageEdited, upload, options
   const [currentImage, setCurrentImage] = useState<UploadedFileContainer>(images[0]);
   const [imageIndex, setImageIndex] = useState(0);
   const [imageCount, setImageCount] = useState(images.length);
-  const editingFiles = images.map(x => x.uploadedFile.path);
-  const currentFile = currentImage.uploadedFile.path;
+  const editingFiles = images.map(x => x.uploadedFile.filePath);
+  const currentFile = currentImage.uploadedFile.filePath;
 
   // Prevents image being swapped-out mid-edit if an upload that was started _before_ this image finishes _after_ this
   // image has uploaded.

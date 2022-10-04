@@ -14,13 +14,13 @@ interface Props {
 }
 
 export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
-  const [imageUrl, setImageUrl] = useState(originalImage.url);
+  const [imageUrl, setImageUrl] = useState(originalImage.fileUrl);
   const [containerId] = useState(`uploader__image-editor__image-${Math.round(Math.random() * 100000)}`);
   const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize();
 
   useLayoutEffect(() => {
     setImageUrl(URL.createObjectURL(originalImage.file));
-  }, [originalImage.url]);
+  }, [originalImage.fileUrl]);
 
   return (
     <div className="uploader__image-editor">

@@ -111,7 +111,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
         return () => clearTimeout(timeout);
       }
     }
-  }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.url)]);
+  }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.fileUrl)]);
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles(

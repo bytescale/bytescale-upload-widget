@@ -95,7 +95,7 @@ uploader.open({ multi: true }).then(files => {
     console.log('No files selected.')
   } else {
     console.log('Files uploaded:');
-    console.log(files.map(f => f.url));
+    console.log(files.map(f => f.fileUrl));
   }
 }).catch(err => {
   console.error(err);
@@ -108,24 +108,24 @@ uploader.open({ multi: true }).then(files => {
 
 ```javascript
 {
-  url: "https://upcdn.io/FW25...",   // URL to use when serving this file.
+  fileUrl: "https://upcdn.io/FW25...",   // URL to use when serving this file.
 
-  editedFile: undefined,             // Edited file (for image crops). Same structure as below.
+  editedFile: undefined,                 // Edited file (for image crops). Same structure as below.
 
   originalFile: {
-    url: "https://upcdn.io/FW25...", // Uploaded file URL.
-    path: "/uploads/example.jpg",    // Uploaded file path (relative to your raw file directory).
-    accountId: "FW251aX",            // Upload.io account the file was uploaded to.
-    originalFileName: "example.jpg", // Original file name from the user's machine.
-    file: { ... },                   // Original DOM file object from the <input> element.
-    size: 12345,                     // File size in bytes.
-    lastModified: 1663410542397,     // Epoch timestamp of when the file was uploaded or updated.
-    mime: "image/jpeg",              // File MIME type.
+    fileUrl: "https://upcdn.io/FW25...", // Uploaded file URL.
+    filePath: "/uploads/example.jpg",    // Uploaded file path (relative to your raw file directory).
+    accountId: "FW251aX",                // Upload.io account the file was uploaded to.
+    originalFileName: "example.jpg",     // Original file name from the user's machine.
+    file: { ... },                       // Original DOM file object from the <input> element.
+    size: 12345,                         // File size in bytes.
+    lastModified: 1663410542397,         // Epoch timestamp of when the file was uploaded or updated.
+    mime: "image/jpeg",                  // File MIME type.
     metadata: {
-      ...                            // User-provided JSON object.
+      ...                                // User-provided JSON object.
     },
     tags: [
-      "tag1",                        // User-provided & auto-generated tags.
+      "tag1",                            // User-provided & auto-generated tags.
       "tag2",
       ...
     ]

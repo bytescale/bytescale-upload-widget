@@ -27,7 +27,7 @@ const openUploader = (): void => {
     })
     .then(
       (f: UploaderResult[]) => {
-        alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.url).join("\n")}`);
+        alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
       },
       (e: Error) => console.error(e)
     );
