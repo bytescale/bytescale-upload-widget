@@ -215,6 +215,13 @@ uploader
         base: 16                 // Base font size (px).
       }
     },
+    path: {                      // Can be a string (full file path) or an object like so:
+      fileName: "Example.jpg",   // Optional file name.
+      folderPath: "/uploads",    // Optional folder path.
+    },
+    metadata: {
+      hello: "world"             // Arbitrary JSON metadata (saved against the file).
+    },
     tags: ["profile_picture"],   // Requires an Upload.io account.
     editor: {
       images: {

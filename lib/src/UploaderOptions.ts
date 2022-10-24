@@ -4,6 +4,7 @@ import { UploaderLayout } from "uploader/UploaderLayout";
 import { UploaderEditorOptions, UploaderEditorOptionsRequired } from "uploader/UploaderEditorOptions";
 import { UploaderResult } from "uploader/components/modal/UploaderResult";
 import { UploaderStyleOptions, UploaderStyleOptionsRequired } from "uploader/UploaderStyleOptions";
+import { FilePathDefinition, JsonObject } from "@upload-io/upload-api-client-upload-js";
 
 export interface UploaderOptions {
   container?: string | HTMLElement;
@@ -12,9 +13,11 @@ export interface UploaderOptions {
   locale?: UploaderLocale;
   maxFileCount?: number;
   maxFileSizeBytes?: number;
+  metadata?: JsonObject;
   mimeTypes?: string[];
   multi?: boolean;
   onUpdate?: (files: UploaderResult[]) => void;
+  path?: FilePathDefinition;
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
   styles?: UploaderStyleOptions;
@@ -28,9 +31,11 @@ export interface UploaderOptionsRequired {
   locale: UploaderLocale;
   maxFileCount: number | undefined;
   maxFileSizeBytes: number | undefined;
+  metadata: JsonObject | undefined;
   mimeTypes: string[] | undefined;
   multi: boolean;
   onUpdate: (files: UploaderResult[]) => void;
+  path: FilePathDefinition | undefined;
   showFinishButton: boolean;
   showRemoveButton: boolean;
   styles: UploaderStyleOptionsRequired;
@@ -48,9 +53,11 @@ export namespace UploaderOptionsRequired {
       locale: options.locale ?? UploaderLocaleEnUs,
       maxFileCount: options.maxFileCount,
       maxFileSizeBytes: options.maxFileSizeBytes,
+      metadata: options.metadata,
       mimeTypes: options.mimeTypes,
       multi,
       onUpdate: options.onUpdate ?? (() => {}),
+      path: options.path,
       showFinishButton: options.showFinishButton ?? (multi ? layout === "modal" : false),
       showRemoveButton: options.showRemoveButton ?? true,
       styles: UploaderStyleOptionsRequired.from(options.styles),

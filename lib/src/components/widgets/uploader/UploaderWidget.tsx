@@ -41,7 +41,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
-  const { multi, tags } = options;
+  const { multi, tags, metadata, path } = options;
   const uploaderResult = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile, x.editedFile));
   const isImage = (mime: string): boolean => mime.toLowerCase().startsWith("image/");
   const imagesToEdit = uploadedFiles.filter(
@@ -175,6 +175,8 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
     }
 
     return await upload.uploadFile(file, {
+      path,
+      metadata,
       tags,
       onBegin: ({ cancel }) =>
         setSubmittedFile(fileIndex, {
