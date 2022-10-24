@@ -217,7 +217,7 @@ uploader
     },
     path: {                      // Optional: a string (full file path) or an object like so:
       fileName: "Example.jpg",   // Each supports path variables (e.g. {ORIGINAL_FILE_EXT}).
-      folderPath: "/uploads"     // Refer to docs for all path variables.
+      folderPath: "/uploads"     // Please refer to docs for all path variables.
     },
     metadata: {
       hello: "world"             // Arbitrary JSON metadata (saved against the file).
