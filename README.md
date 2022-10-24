@@ -215,9 +215,9 @@ uploader
         base: 16                 // Base font size (px).
       }
     },
-    path: {                      // Can be a string (full file path) or an object like so:
-      fileName: "Example.jpg",   // Optional file name.
-      folderPath: "/uploads",    // Optional folder path.
+    path: {                      // Optional: can be a string (full file path) or an object like so:
+      fileName: "Example.jpg",   // Each supports path variables (e.g. {ORIGINAL_FILE_EXT}). See your
+      folderPath: "/uploads"     // API key's config in the Upload Dashboard for all path variables.
     },
     metadata: {
       hello: "world"             // Arbitrary JSON metadata (saved against the file).
