@@ -35,6 +35,8 @@ jobs:
       - name: "Uploader (npm pack)"
         run: npm pack
         working-directory: ./lib
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
 
       - name: "Acceptance tests (npm install)"
         run:
@@ -53,6 +55,8 @@ jobs:
           # rather than loading 'uploader' from source (for a better end-to-end test).
           npm run start:dist &
         working-directory: ./examples
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
 
       - name: "Documentation (npm install)"
         run: npm ci
