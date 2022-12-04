@@ -24,7 +24,7 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
     try {
       upload = { type: "upload", value: Upload(uploadOrConfig) };
     } catch (e) {
-      upload = { type: "error", value: e };
+      upload = { type: "error", value: e as Error };
     }
   }
 

@@ -20,7 +20,7 @@ jobs:
       - name: "Install node & npm"
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 18.x
 
       - name: "Install repository dependencies"
         run: npm ci
@@ -28,8 +28,12 @@ jobs:
       - name: "Check code style"
         run: find . -type f \( -iname \*.js -o -iname \*.jsx -o -iname \*.ts -o -iname \*.tsx \) | grep -v node_modules | grep -v /dist/ | xargs ./node_modules/.bin/prettier --check
 
-      - name: "Upload.js (npm install)"
+      - name: "Uploader (npm install)"
         run: npm ci
+        working-directory: ./lib
+
+      - name: "Uploader (npm pack)"
+        run: npm pack
         working-directory: ./lib
 
       - name: "Acceptance tests (npm install)"

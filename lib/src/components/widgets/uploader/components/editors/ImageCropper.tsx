@@ -70,7 +70,7 @@ export const ImageCropper = ({
         img.onload = function () {
           resolve({ width: img.naturalWidth, height: img.naturalHeight });
         };
-        img.src = URL.createObjectURL(originalImage.file);
+        img.src = URL.createObjectURL(originalImage.file as any);
       });
 
       const originalImageUploadedName = originalImage.filePath.substring(originalImage.filePath.lastIndexOf("/") + 1);

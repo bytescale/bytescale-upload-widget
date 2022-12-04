@@ -8,8 +8,8 @@ This repository contains a hot-reloading sandbox for developing the `uploader` N
 
 | Package | Version  |
 | ------- | -------- |
-| Node    | v12.22.0 |
-| NPM     | v6.14.11 |
+| Node    | v18.12.1 |
+| NPM     | v8.19.2  |
 
 ## Repository Structure
 
@@ -28,15 +28,21 @@ git clone git@github.com:upload-io/uploader.git
 cd uploader
 ```
 
-### 2. Install Dependencies
+### 2. Setup Environment
+
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+### 3. Install Dependencies
 
 ```shell
 npm install
-(cd lib && npm install)
+(cd lib && npm install && npm pack)
 (cd examples && npm install)
 ```
 
-### 3. Run The Examples
+### 4. Run The Examples
 
 ```shell
 (cd examples && npm start)

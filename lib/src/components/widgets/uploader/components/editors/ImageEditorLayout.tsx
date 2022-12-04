@@ -19,7 +19,7 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image }: Pro
   const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize();
 
   useLayoutEffect(() => {
-    setImageUrl(URL.createObjectURL(originalImage.file));
+    setImageUrl(URL.createObjectURL(originalImage.file as any));
   }, [originalImage.fileUrl]);
 
   return (
