@@ -10,7 +10,7 @@ export { UploaderOptions } from "uploader/UploaderOptions";
 export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 
 if (typeof window !== "undefined") {
-  const dummy: Record<keyof UploaderInterface, () => void> = {
+  const dummy: Partial<Record<keyof UploaderInterface, () => void>> = {
     open(): void {
       throw new Error(
         "You forgot to initialize Uploader!\nPlease initialize 'uploader' with:\nconst uploader = Uploader({ apiKey: 'free' });"

@@ -12,19 +12,19 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
   // READONLY MEMBERS
   // ----------------
 
-  let upload: UploadInstanceMaybe;
+  let uploadMaybe: UploadInstanceMaybe;
 
   // ----------------
   // CONSTRUCTOR
   // ----------------
 
   if (UploadInstanceMaybe.isUploadInstance(uploadOrConfig)) {
-    upload = { type: "upload", value: uploadOrConfig };
+    uploadMaybe = { type: "upload", value: uploadOrConfig };
   } else {
     try {
-      upload = { type: "upload", value: Upload(uploadOrConfig) };
+      uploadMaybe = { type: "upload", value: Upload(uploadOrConfig) };
     } catch (e) {
-      upload = { type: "error", value: e as Error };
+      uploadMaybe = { type: "error", value: e as Error };
     }
   }
 
@@ -56,7 +56,7 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
 
     const uploadedFiles = await new Promise<UploaderResult[]>((resolve, reject) => {
       const props: UploaderRootProps = {
-        upload,
+        upload: uploadMaybe,
         resolve,
         reject,
         options
@@ -96,7 +96,12 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
     });
   };
 
+  // If this isn't a valid upload instance, then the user will experience errors when attempting to use it as one, but
+  // they'll also be aware there's a problem as we'll render one on screen.
+  const upload: UploadInterface = uploadMaybe.type === "upload" ? uploadMaybe.value : ({} as any);
+
   return {
+    ...upload,
     open
   };
 }
