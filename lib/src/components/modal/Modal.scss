@@ -33,6 +33,11 @@
     max-width: 1050 * $px;
     max-height: 660 * $px;
 
+    @media (max-height: $desktop-short-height) {
+      top: -1%;
+      height: 80%;
+    }
+
     @media (max-width: $mobile-width-max), (max-height: $mobile-height-max) {
       top:0;
       height: 100%;
