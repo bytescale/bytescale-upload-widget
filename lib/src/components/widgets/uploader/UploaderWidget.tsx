@@ -98,10 +98,10 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
 
     // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
     // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
-    const shouldResolveOnUpload =
+    const shouldCloseModalImmediatelyAfterUpload =
       !multi && uploadedFiles.length > 0 && !options.showFinishButton && options.layout === "modal";
 
-    if (shouldResolveOnUpload) {
+    if (shouldCloseModalImmediatelyAfterUpload) {
       // Just in case the user dragged-and-dropped multiple files.
       const firstUploadedFile = uploaderResult.slice(0, 1);
       const doResolve = (): void => resolve(firstUploadedFile);
