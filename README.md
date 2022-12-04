@@ -109,6 +109,7 @@ uploader.open({ multi: true }).then(files => {
 ```javascript
 {
   fileUrl: "https://upcdn.io/FW25...",   // URL to use when serving this file.
+  filePath: "/uploads/example.jpg",      // File path (we recommend saving this to your database).
 
   editedFile: undefined,                 // Edited file (for image crops). Same structure as below.
 

@@ -4,8 +4,12 @@ export interface UploaderResult {
   editedFile: UploadedFile | undefined;
 
   /**
-   * If editedFile is defined, returns its URL, appended with the first suitable transformation (if any).
-   * If editedFile is undefined, returns the original file URL, appended with the first suitable transformation (if any).
+   * The `filePath` of `editedFile` (if it exists) else the `filePath` of `originalFile`.
+   */
+  filePath: string;
+
+  /**
+   * The browser-loadable URL for `filePath`, using the most suitable transformation available from the file owner's Upload account, else uses `raw`.
    */
   fileUrl: string;
 
@@ -28,7 +32,8 @@ export namespace UploaderResult {
     return {
       editedFile,
       originalFile,
-      fileUrl: calculateFileUrl()
+      fileUrl: calculateFileUrl(),
+      filePath: editedFile?.filePath ?? originalFile.filePath
     };
   }
 }
