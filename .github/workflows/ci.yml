@@ -80,6 +80,8 @@ jobs:
             exit 1
           fi
         working-directory: ./docs
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
 
       # Note: we put other steps between the 'npm start' and the test runs, just to make time for the server to spin-up.
       - name: "Acceptance tests"
