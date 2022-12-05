@@ -3,16 +3,15 @@
     <img alt="Uploader" width="313" height="93" src="https://raw.githubusercontent.com/upload-io/uploader/main/.github/assets/logo.svg">
   </a>
 </h1>
-
 <p align="center"><b>File & Image Upload Widget</b><br/> (With Integrated Cloud Storage)</p>
 <br/>
 <p align="center">
   <a href="https://github.com/upload-io/uploader/">
-    <img src="https://img.shields.io/badge/gzipped-31%20kb-4ba0f6" />
+    <img src="https://img.shields.io/badge/gzipped-6%20kb-4ba0f6" />
   </a>
 
   <a href="https://www.npmjs.com/package/uploader">
-    <img src="https://img.shields.io/badge/uploader-npm-4ba0f6" />
+    <img src="https://img.shields.io/badge/upload--js-npm-4ba0f6" />
   </a>
 
   <a href="https://github.com/upload-io/uploader/actions/workflows/ci.yml">
@@ -37,19 +36,28 @@
   </a>
 
 </p>
-
 <h1 align="center">
   Get Started —
-  <a href="https://codepen.io/upload-js/pen/QWOZWZR?editors=1010">
+  <a href="https://codepen.io/upload-js/pen/QWOZWZR?editors=0010">
     Try on CodePen
   </a>
 </h1>
 
 <p align="center"><a href="https://upload.io/uploader"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/upload-io/uploader/main/.github/assets/demo.gif"></a></p>
 
-<p align="center"><b>Supported Frameworks:<br> <a href="https://github.com/upload-io/react-uploader#readme">React</a> • <a href="https://github.com/upload-io/vue-uploader#readme">Vue</a> • <a href="https://github.com/upload-io/angular-uploader#readme">Angular</a> • <a href="https://github.com/upload-io/jquery-uploader#installation">jQuery</a> • <a href="https://github.com/upload-io/uploader#installation">Plain JS</a></b><br></p>
+<p align="center">100% Serverless File Upload Widget  <br /> Powered by <a href="https://upload.io/">Upload.io</a><br/><br/></p>
 
-<p align="center"><b>Supported Features:</b><br>Image Cropping • Image Uploads • Multi-file Uploads • Drag-and-Drop • More...<br><br></p>
+<hr/>
+
+<p align="center"><a href="https://upload.io/dmca" rel="nofollow">DMCA Compliant</a> • <a href="https://upload.io/dpa" rel="nofollow">GDPR Compliant</a> • <a href="https://upload.io/sla" rel="nofollow">99.9% Uptime SLA</a>
+  <br/>
+  <b>Supports:</b> Rate Limiting, Volume Limiting, File Size &amp; Type Limiting, JWT Auth, and more...
+  <br />
+</p>
+
+<hr/>
+<br />
+<br />
 
 ## Installation
 
