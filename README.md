@@ -297,7 +297,7 @@ Upload.io benefits developers with:
 
 **Yes!** [Upload.io](https://upload.io) supports custom S3 buckets.
 
-You will still need to [create an Upload.io account](https://upload.io).
+You still need [an Upload.io account](https://upload.io) to use the widget.
 
 ## 🌐 API Support
 
