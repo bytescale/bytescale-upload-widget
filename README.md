@@ -299,7 +299,7 @@ Upload.io benefits developers with:
 
 You will still need to [create an Upload.io account](https://upload.io).
 
-### 🌐 API Support
+## 🌐 API Support
 
 You can use Upload.io's [File Upload API](https://upload.io/file-upload-api) directly to achieve:
 
