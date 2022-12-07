@@ -76,7 +76,7 @@ yarn add uploader
 Or via a `<script>` tag:
 
 ```html
-<script src="https://js.upload.io/uploader/v2"></script>
+<script src="https://js.upload.io/uploader/v3"></script>
 ```
 
 ## Usage
