@@ -3,12 +3,12 @@ import { UploadedFile, UploadInterface } from "upload-js";
 import { UploadedFileContainer } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { ImageEditor } from "uploader/components/widgets/uploader/components/editors/ImageEditor";
 import { useLayoutEffect, useState } from "preact/compat";
-import { UploaderOptionsRequired } from "uploader/UploaderOptions";
+import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 
 interface Props {
   images: UploadedFileContainer[];
   onImageEdited: (editedFile: UploadedFile | undefined, sparseFileIndex: number) => void;
-  options: UploaderOptionsRequired;
+  options: UploadWidgetConfigRequired;
   upload: UploadInterface;
 }
 

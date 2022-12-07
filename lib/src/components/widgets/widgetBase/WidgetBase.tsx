@@ -2,7 +2,7 @@ import { ReactNode } from "uploader/modules/common/React";
 import { JSX } from "preact";
 import cn from "classnames";
 import "./WidgetBase.scss";
-import { UploaderLayout } from "uploader/UploaderLayout";
+import { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
 import { WidgetBaseBackground } from "uploader/components/widgets/widgetBase/WidgetBaseBackground";
 import { modalCloseButtonPadding, modalCloseButtonSize } from "uploader/components/modal/Modal";
 import { getElementDimensionsOnResize } from "uploader/modules/common/UseDimensionsFromElement";
@@ -12,7 +12,7 @@ interface Props {
   htmlProps?: any;
   isDraggable?: boolean;
   isDragging?: boolean;
-  layout: UploaderLayout;
+  layout: UploadWidgetLayout;
   multi: boolean;
 }
 

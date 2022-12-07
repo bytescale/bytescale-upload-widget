@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { JSX } from "preact";
 import { UploadedFile, UploadInterface } from "upload-js";
-import { UploaderOptionsRequired } from "uploader/UploaderOptions";
+import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 import { useEffect, useLayoutEffect, useState } from "preact/compat";
 import { isDefined } from "uploader/modules/common/TypeUtils";
 import { UploaderWelcomeScreen } from "uploader/components/widgets/uploader/screens/UploaderWelcomeScreen";
@@ -16,23 +16,23 @@ import {
 } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
 import { useDragDrop } from "uploader/modules/common/UseDragDrop";
-import "./UploaderWidget.scss";
+import "./UploadWidget.scss";
 import { humanFileSize } from "uploader/modules/common/FormatUtils";
 import {
   progressWheelDelay,
   progressWheelVanish
 } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
-import { UploaderResult } from "uploader/components/modal/UploaderResult";
+import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
 
 interface Props {
-  options: UploaderOptionsRequired;
+  options: UploadWidgetConfigRequired;
   reject: (error: Error) => void;
-  resolve: (files: UploaderResult[]) => void;
+  resolve: (files: UploadWidgetResult[]) => void;
   upload: UploadInterface;
 }
 
-export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element => {
+export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element => {
   const [, setNextSparseFileIndex] = useState<number>(0);
   const [isInitialUpdate, setIsInitialUpdate] = useState(true);
   const [submittedFiles, setSubmittedFiles] = useState<SubmittedFileMap>({});
@@ -42,7 +42,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
   const { multi, tags, metadata, path } = options;
-  const uploaderResult = uploadedFiles.map(x => UploaderResult.from(x.uploadedFile, x.editedFile));
+  const uploadWidgetResult = uploadedFiles.map(x => UploadWidgetResult.from(x.uploadedFile, x.editedFile));
   const isImage = (mime: string): boolean => mime.toLowerCase().startsWith("image/");
   const imagesToEdit = uploadedFiles.filter(
     x => x.editedFile === undefined && !x.editingDone && options.editor.images.crop && isImage(x.uploadedFile.mime)
@@ -61,7 +61,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
   };
 
   const finalize = (): void => {
-    resolve(uploaderResult);
+    resolve(uploadWidgetResult);
   };
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
       return;
     }
 
-    options.onUpdate(uploaderResult);
+    options.onUpdate(uploadWidgetResult);
 
     // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
     // user to add/remove their file, and the caller should instead rely on the 'onUpdate' method above.
@@ -103,7 +103,7 @@ export const UploaderWidget = ({ resolve, options, upload }: Props): JSX.Element
 
     if (shouldCloseModalImmediatelyAfterUpload) {
       // Just in case the user dragged-and-dropped multiple files.
-      const firstUploadedFile = uploaderResult.slice(0, 1);
+      const firstUploadedFile = uploadWidgetResult.slice(0, 1);
       const doResolve = (): void => resolve(firstUploadedFile);
       const previousScreenWasEditor = uploadedFiles[0].editingDone;
 

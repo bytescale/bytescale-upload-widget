@@ -1,4 +1,4 @@
-export interface UploaderEditorOptions {
+export interface UploadWidgetEditor {
   images?: {
     crop?: boolean;
     cropRatio?: number;
@@ -6,7 +6,7 @@ export interface UploaderEditorOptions {
   };
 }
 
-export interface UploaderEditorOptionsRequired {
+export interface UploadWidgetEditorRequired {
   images: {
     crop: boolean;
     cropRatio: number | undefined;
@@ -14,8 +14,8 @@ export interface UploaderEditorOptionsRequired {
   };
 }
 
-export namespace UploaderEditorOptionsRequired {
-  export function from(options: UploaderEditorOptions | undefined): UploaderEditorOptionsRequired {
+export namespace UploadWidgetEditorRequired {
+  export function from(options: UploadWidgetEditor | undefined): UploadWidgetEditorRequired {
     const cropShape = options?.images?.cropShape ?? "rect";
     return {
       images: {

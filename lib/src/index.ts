@@ -2,11 +2,11 @@ import { UploaderInterface } from "uploader/UploaderInterface";
 
 export { Uploader } from "uploader/Uploader";
 export { UploaderInterface } from "uploader/UploaderInterface";
-export { UploaderResult } from "uploader/components/modal/UploaderResult";
-export { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
-export { UploaderLayout } from "uploader/UploaderLayout";
-export { UploaderEditorOptions } from "uploader/UploaderEditorOptions";
-export { UploaderOptions } from "uploader/UploaderOptions";
+export { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
+export { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale";
+export { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
+export { UploadWidgetEditor } from "uploader/config/UploadWidgetEditor";
+export { UploadWidgetConfig } from "uploader/config/UploadWidgetConfig";
 export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 
 if (typeof window !== "undefined") {

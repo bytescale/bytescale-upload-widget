@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { UploaderLocale } from "uploader";
+import { UploadWidgetLocale } from "uploader";
 import { useState } from "preact/compat";
 import { useTransientFlag } from "uploader/modules/FormUtils";
 import cn from "classnames";
@@ -8,7 +8,7 @@ import { RightSvg } from "uploader/assets/svgs/RightSvg";
 interface Props {
   busyText: string;
   idleText: string;
-  locale: UploaderLocale;
+  locale: UploadWidgetLocale;
   onSubmit: () => Promise<void>;
   showIcon: boolean;
 }

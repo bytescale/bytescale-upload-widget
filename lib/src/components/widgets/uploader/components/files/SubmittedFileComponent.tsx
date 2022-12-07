@@ -6,14 +6,14 @@ import { getFileIconImageSource } from "uploader/components/widgets/uploader/com
 import unknownSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Unknown.svg";
 import "./SubmittedFileComponent.scss";
 import { useEffect, useState } from "preact/compat";
-import { UploaderLocale } from "uploader/modules/locales/UploaderLocale";
+import { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale";
 import errorSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Error.svg";
 import cn from "classnames";
 
 interface Props {
   file: SubmittedFile;
   fileCount: number;
-  locale: UploaderLocale;
+  locale: UploadWidgetLocale;
   remove: () => void;
   showRemoveButton: boolean;
 }

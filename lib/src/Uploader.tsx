@@ -1,10 +1,10 @@
 import { Upload, UploadInterface, UploadConfig } from "upload-js";
-import { UploaderOptions, UploaderOptionsRequired } from "uploader/UploaderOptions";
+import { UploadWidgetConfig, UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
-import { UploaderRoot, UploaderRootProps } from "uploader/components/widgets/uploader/UploaderRoot";
+import { UploadWidgetContainer, UploaderRootProps } from "uploader/components/widgets/uploader/UploadWidgetContainer";
 import { RootModal } from "uploader/components/modal/RootModal";
-import { UploaderResult } from "uploader/components/modal/UploaderResult";
+import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploaderInterface } from "uploader/UploaderInterface";
 
 export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): UploaderInterface {
@@ -32,8 +32,8 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
   // PUBLIC METHODS
   // ----------------
 
-  const open = async (optionsMaybe: UploaderOptions = {}): Promise<UploaderResult[]> => {
-    const options = UploaderOptionsRequired.from(optionsMaybe);
+  const open = async (optionsMaybe: UploadWidgetConfig = {}): Promise<UploadWidgetResult[]> => {
+    const options = UploadWidgetConfigRequired.from(optionsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
     const body = await getBody();
@@ -54,7 +54,7 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
       `--primary-color: ${options.styles.colors.primary}; --primary-active-color: ${options.styles.colors.active}; font-size: ${options.styles.fontSizes.base}px;`
     );
 
-    const uploadedFiles = await new Promise<UploaderResult[]>((resolve, reject) => {
+    const uploadedFiles = await new Promise<UploadWidgetResult[]>((resolve, reject) => {
       const props: UploaderRootProps = {
         upload: uploadMaybe,
         resolve,
@@ -63,7 +63,7 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
       };
 
       render(
-        options.layout === "modal" ? <RootModal {...props} container={widget} /> : <UploaderRoot {...props} />,
+        options.layout === "modal" ? <RootModal {...props} container={widget} /> : <UploadWidgetContainer {...props} />,
         widget
       );
     });

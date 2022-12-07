@@ -8,13 +8,13 @@ import { SubmitButton } from "uploader/components/widgets/uploader/components/bu
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import "./ImageCropper.scss";
 import cn from "classnames";
-import { UploaderOptionsRequired } from "uploader/UploaderOptions";
+import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 
 interface Props {
   imageCount: number;
   imageIndex: number;
   onFinish: (editedFile: UploadedFile | undefined) => void;
-  options: UploaderOptionsRequired;
+  options: UploadWidgetConfigRequired;
   originalImage: UploadedFile;
   upload: UploadInterface;
 }

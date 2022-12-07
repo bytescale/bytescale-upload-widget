@@ -4,6 +4,8 @@
   "author": "Upload.io <hello@upload.io> (https://upload.io)",
   "private": true,
   "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit",
     "start": "npm run start:dev",
     "start:dev": "webpack serve --config webpack.config.dev.js",
     "start:dist": "webpack serve",
@@ -31,6 +33,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.1.0",
+    "eslint-plugin-protractor": "2.1.1",
     "file-loader": "6.2.0",
     "node-sass": "8.0.0",
     "minimist": "1.2.6",

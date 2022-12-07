@@ -1,11 +1,11 @@
 import { UploadButton } from "uploader/components/widgets/uploader/components/UploadButton";
 import { JSX } from "preact";
-import { UploaderOptionsRequired } from "uploader/UploaderOptions";
+import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 
 interface Props {
   addFiles: (files: File[]) => void;
   isImageUploader: boolean;
-  options: UploaderOptionsRequired;
+  options: UploadWidgetConfigRequired;
 }
 
 export const UploaderWelcomeScreen = ({

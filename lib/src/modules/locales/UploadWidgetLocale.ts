@@ -1,4 +1,4 @@
-export interface UploaderLocale {
+export interface UploadWidgetLocale {
   "addAnotherFile": string;
   "addAnotherImage": string;
   "cancel": string;

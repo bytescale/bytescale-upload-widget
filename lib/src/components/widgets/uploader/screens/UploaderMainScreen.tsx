@@ -1,7 +1,7 @@
 import { JSX } from "preact";
 import { SubmittedFile, UploadedFileContainer } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { SubmittedFileComponent } from "uploader/components/widgets/uploader/components/files/SubmittedFileComponent";
-import { UploaderOptionsRequired } from "uploader/UploaderOptions";
+import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 import cn from "classnames";
 import "./UploaderMainScreen.scss";
 import { UploadButton } from "uploader/components/widgets/uploader/components/UploadButton";
@@ -11,7 +11,7 @@ interface Props {
   addFiles: (files: File[]) => void;
   finalize: () => void;
   isImageUploader: boolean;
-  options: UploaderOptionsRequired;
+  options: UploadWidgetConfigRequired;
   remove: (fileIndex: number) => void;
   submittedFiles: SubmittedFile[];
   uploadedFiles: UploadedFileContainer[];

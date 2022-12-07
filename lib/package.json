@@ -38,6 +38,8 @@
     "xhr"
   ],
   "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist && rm -f uploader.tgz",
     "analyse": "npm run clean && webpack --config webpack.config.analyse.js",
     "prepack": "npm run clean && webpack --config webpack.config.js && tsc-alias && cp ../README.md README.md",

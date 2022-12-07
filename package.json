@@ -3,12 +3,12 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "lint": "npm run prettier && npm run lint-sdk && npm run lint-e2e",
-    "lint-sdk": "(cd sdk && npm run lint)",
-    "lint-e2e": "(cd e2e_test && npm run lint)",
-    "typecheck": "npm run typecheck-sdk && npm run typecheck-e2e",
-    "typecheck-sdk": "(cd sdk && npm run typecheck)",
-    "typecheck-e2e": "(cd e2e_test && npm run typecheck)",
+    "lint": "run-p --print-label prettier lint:*",
+    "lint:lib": "(cd lib && npm run lint)",
+    "lint:examples": "(cd examples && npm run lint)",
+    "typecheck": "run-p --print-label typecheck:*",
+    "typecheck:lib": "(cd lib && npm run typecheck)",
+    "typecheck:examples": "(cd examples && npm run typecheck)",
     "prettier": "prettier . --check",
     "prettier-fix": "prettier . --write --loglevel=silent",
     "test": "(cd e2e_test && npm run test)",
@@ -18,9 +18,6 @@
     "*/**/*.{js,jsx,ts,tsx}": [
       "./runForEachPackage.js eslint !"
     ],
-    "*/**/*.{ts,tsx}": [
-      "./runForEachPackage.js tsc --noEmit ?"
-    ],
     "*.{js,jsx,ts,tsx,json,css,html,md,yaml,yml}": [
       "prettier -c"
     ]
@@ -28,6 +25,7 @@
   "devDependencies": {
     "husky": "7.0.4",
     "lint-staged": "10.5.1",
+    "npm-run-all": "4.1.5",
     "prettier": "2.1.2"
   }
 }

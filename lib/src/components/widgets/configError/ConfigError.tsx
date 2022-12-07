@@ -1,11 +1,11 @@
 import { JSX } from "preact";
 import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
-import { UploaderLayout } from "uploader/UploaderLayout";
+import { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
 import { RightSvg } from "uploader/assets/svgs/RightSvg";
 
 interface Props {
   error: Error;
-  layout: UploaderLayout;
+  layout: UploadWidgetLayout;
 }
 
 export const ConfigError = ({ error, layout }: Props): JSX.Element => {

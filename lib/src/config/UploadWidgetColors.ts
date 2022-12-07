@@ -1,6 +1,6 @@
 import { highlightColor } from "uploader/modules/ColorUtils";
 
-export interface UploaderColorOptions {
+export interface UploadWidgetColors {
   active?: string;
   primary?: string;
 }
@@ -11,7 +11,7 @@ export interface UploaderColorOptionsRequired {
 }
 
 export namespace UploaderColorOptionsRequired {
-  export function from(options: UploaderColorOptions | undefined): UploaderColorOptionsRequired {
+  export function from(options: UploadWidgetColors | undefined): UploaderColorOptionsRequired {
     const primaryDefault = "#377dff";
     const activeDefault = "#528fff";
     let primary = options?.primary ?? primaryDefault;
