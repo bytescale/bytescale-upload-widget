@@ -17,6 +17,7 @@ export interface UploadWidgetConfig {
   mimeTypes?: string[];
   multi?: boolean;
   onUpdate?: (files: UploadWidgetResult[]) => void;
+  onValidate?: (file: File) => Promise<string | undefined>;
   path?: FilePathDefinition;
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
@@ -35,6 +36,7 @@ export interface UploadWidgetConfigRequired {
   mimeTypes: string[] | undefined;
   multi: boolean;
   onUpdate: (files: UploadWidgetResult[]) => void;
+  onValidate: ((file: File) => Promise<string | undefined>) | undefined;
   path: FilePathDefinition | undefined;
   showFinishButton: boolean;
   showRemoveButton: boolean;
@@ -57,6 +59,7 @@ export namespace UploadWidgetConfigRequired {
       mimeTypes: options.mimeTypes,
       multi,
       onUpdate: options.onUpdate ?? (() => {}),
+      onValidate: options.onValidate,
       path: options.path,
       showFinishButton: options.showFinishButton ?? (multi ? layout === "modal" : false),
       showRemoveButton: options.showRemoveButton ?? true,

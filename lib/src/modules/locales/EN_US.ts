@@ -8,6 +8,7 @@ export const UploaderLocaleEnUs: UploadWidgetLocale = {
   "cancel": "cancel",
   "cancelled!": "cancelled",
   "continue": "Continue",
+  "customValidationFailed": "Failed to validate file.",
   "crop": "Crop",
   "finish": "Finished",
   "finishIcon": true,
@@ -29,5 +30,6 @@ export const UploaderLocaleEnUs: UploadWidgetLocale = {
   "uploadFile": "Upload a File",
   "uploadFiles": "Upload a File", // We've now chosen to use singular tense for the upload button.
   "uploadImage": "Upload an Image",
-  "uploadImages": "Upload an Image" // We've now chosen to use singular tense for the upload button.
+  "uploadImages": "Upload an Image", // We've now chosen to use singular tense for the upload button.
+  "validatingFile": "Validating file..."
 };

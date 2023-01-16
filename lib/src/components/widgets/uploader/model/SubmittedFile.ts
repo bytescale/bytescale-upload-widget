@@ -1,5 +1,11 @@
 import { UploadedFile } from "upload-js";
 
+export interface ValidatingFile {
+  file: File;
+  fileIndex: number;
+  type: "validating";
+}
+
 export interface UploadingFile {
   cancel: () => void;
   file: File;
@@ -23,7 +29,7 @@ export interface UploadedFileContainer {
   uploadedFile: UploadedFile;
 }
 
-export type SubmittedFile = UploadingFile | UploadedFileContainer | ErroneousFile;
+export type SubmittedFile = UploadingFile | ValidatingFile | UploadedFileContainer | ErroneousFile;
 
 export function isUploadedFile(file: SubmittedFile): file is UploadedFileContainer {
   return file.type === "uploaded";

@@ -205,38 +205,39 @@ All configuration is optional.
 ```javascript
 uploader
   .open({
-    container: "body",           // "body" by default.
-    layout: "modal",             // "modal" by default. "inline" also supported.
-    locale: myCustomLocale,      // EN_US by default. (See "Localization" section below.)
-    maxFileCount: 5,             // Unlimited by default (or 1 if multi: false).
-    maxFileSizeBytes: 1024 ** 2, // Unlimited by default.
-    mimeTypes: ["image/jpeg"],   // Unrestricted by default.
-    multi: false,                // False by default.
-    onUpdate: files => {},       // Called each time the list of uploaded files change.
-    showFinishButton: true,      // Whether to show the "finish" button in the widget.
-    showRemoveButton: true,      // Whether to show the "remove" button next to each file.
+    container: "body",            // "body" by default.
+    layout: "modal",              // "modal" by default. "inline" also supported.
+    locale: myCustomLocale,       // EN_US by default. (See "Localization" section below.)
+    maxFileCount: 5,              // Unlimited by default (or 1 if multi: false).
+    maxFileSizeBytes: 1024 ** 2,  // Unlimited by default.
+    mimeTypes: ["image/jpeg"],    // Unrestricted by default.
+    multi: false,                 // False by default.
+    onUpdate: files => {},        // Called each time the list of uploaded files change.
+    onValidate: async file => {}, // Return Promise<string> to show a custom error message.
+    showFinishButton: true,       // Whether to show the "finish" button in the widget.
+    showRemoveButton: true,       // Whether to show the "remove" button next to each file.
     styles: {
       colors: {
-        primary: "#377dff",      // Primary color (e.g. buttons).
-        active: "#528fff"        // Active/hover color (inferred from primary by default).
+        primary: "#377dff",       // Primary color (e.g. buttons).
+        active: "#528fff"         // Active/hover color (inferred from primary by default).
       },
       fontSizes: {
-        base: 16                 // Base font size (px).
+        base: 16                  // Base font size (px).
       }
     },
-    path: {                      // Optional: a string (full file path) or an object like so:
-      fileName: "Example.jpg",   // Each supports path variables (e.g. {ORIGINAL_FILE_EXT}).
-      folderPath: "/uploads"     // Please refer to docs for all path variables.
+    path: {                       // Optional: a string (full file path) or an object like so:
+      fileName: "Example.jpg",    // Each supports path variables (e.g. {ORIGINAL_FILE_EXT}).
+      folderPath: "/uploads"      // Please refer to docs for all path variables.
     },
     metadata: {
-      hello: "world"             // Arbitrary JSON metadata (saved against the file).
+      hello: "world"              // Arbitrary JSON metadata (saved against the file).
     },
-    tags: ["profile_picture"],   // Requires an Upload.io account.
+    tags: ["profile_picture"],    // Requires an Upload.io account.
     editor: {
       images: {
-        crop: true,              // True by default.
-        cropRatio: 4 / 3,        // width / height. undefined enables freeform (default).
-        cropShape: "rect"        // "rect" (default) or "circ".
+        crop: true,               // True by default.
+        cropRatio: 4 / 3,         // width / height. undefined enables freeform (default).
+        cropShape: "rect"         // "rect" (default) or "circ".
       }
     },
   })
@@ -256,6 +257,7 @@ const myCustomLocale = {
   "cancel": "cancel",
   "cancelled!": "cancelled",
   "continue": "Continue",
+  "customValidationFailed": "Failed to validate file.",
   "crop": "Crop",
   "finish": "Finished",
   "finishIcon": true,
@@ -277,7 +279,8 @@ const myCustomLocale = {
   "uploadFile": "Upload a File",
   "uploadFiles": "Upload Files",
   "uploadImage": "Upload an Image",
-  "uploadImages": "Upload Images"
+  "uploadImages": "Upload Images",
+  "validatingFile": "Validating file..."
 }
 ```
 

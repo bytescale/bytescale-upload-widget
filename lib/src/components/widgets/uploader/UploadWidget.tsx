@@ -169,12 +169,30 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       throw error;
     };
 
-    const { maxFileSizeBytes, mimeTypes } = options;
+    const { maxFileSizeBytes, mimeTypes, onValidate } = options;
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
       raiseError(new Error(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
     }
     if (mimeTypes !== undefined && !mimeTypes.includes(file.type)) {
       raiseError(new Error(options.locale.unsupportedFileType));
+    }
+
+    if (onValidate !== undefined) {
+      setSubmittedFile(fileIndex, {
+        file,
+        fileIndex,
+        type: "validating"
+      });
+      let customValidationError: string | undefined;
+      try {
+        customValidationError = (await onValidate(file)) ?? undefined;
+      } catch (e) {
+        customValidationError = options.locale.customValidationFailed;
+        console.error("[uploader] Custom validation function (onValidate) returned an unhandled error.", e);
+      }
+      if (customValidationError !== undefined) {
+        raiseError(new Error(customValidationError));
+      }
     }
 
     return await upload.uploadFile(file, {
@@ -183,6 +201,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       tags,
       onBegin: ({ cancel }) =>
         setSubmittedFile(fileIndex, {
+          // IMPORTANT: use 'setSubmittedFile' as file may already exist in collection as a "validating" file.
           file,
           fileIndex,
           cancel,

@@ -5,6 +5,7 @@ export interface UploadWidgetLocale {
   "cancelled!": string;
   "continue": string;
   "crop": string;
+  "customValidationFailed": string;
   "done": string;
   "error!": string;
   "finish": string;
@@ -28,4 +29,5 @@ export interface UploadWidgetLocale {
   "uploadFiles": string;
   "uploadImage": string;
   "uploadImages": string;
+  "validatingFile": string;
 }

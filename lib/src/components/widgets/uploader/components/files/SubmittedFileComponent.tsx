@@ -60,8 +60,13 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
   let thumbnail = unknownSvg;
   let progress = 0;
   let fileName: string;
-  let errorMessage: string | undefined;
+  let fileMessage: string | undefined;
   switch (file.type) {
+    case "validating":
+      progress = 0;
+      fileName = file.file.name;
+      fileMessage = locale.validatingFile;
+      break;
     case "uploading":
       progress = Math.min(file.progress, 1 - progressMargin); // Do not let progress display 100%, as we don't have the MIME type & URL for the thumbnail yet. Plus it's confusing leaving it hanging on 100%.
       fileName = file.file.name;
@@ -74,7 +79,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
     case "error":
       progress = 1;
       thumbnail = errorSvg;
-      errorMessage = file.error?.message ?? "Unexpected error occurred.";
+      fileMessage = file.error?.message ?? "Unexpected error occurred.";
       fileName = file.file.name;
       break;
     default:
@@ -95,9 +100,9 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
             <span className="uploader__submitted-file__name" title={fileName}>
               {fileName}
             </span>
-            {errorMessage !== undefined && (
-              <span className="uploader__submitted-file__error">
-                <LinkToUpload text={errorMessage} />
+            {fileMessage !== undefined && (
+              <span className="uploader__submitted-file__message">
+                <LinkToUpload text={fileMessage} />
               </span>
             )}
           </span>
