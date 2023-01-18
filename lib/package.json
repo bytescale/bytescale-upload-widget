@@ -16,7 +16,6 @@
     "url": "https://github.com/upload-io/uploader/issues"
   },
   "files": [
-    "*",
     "/dist/*"
   ],
   "keywords": [
@@ -55,7 +54,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "preact": "^10.6.5",
-    "upload-js": "^2.4.0"
+    "upload-js": "^2.5.0"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
