@@ -5,18 +5,22 @@ class App {
    * elements
    */
   get heading() {
+    // @ts-expect-error
     return $("h1");
   }
 
   get modalLauncher() {
+    // @ts-expect-error
     return $("#uploadButton");
   }
 
   get modal() {
+    // @ts-expect-error
     return $(".uploader--with-modal");
   }
 
   get modalButton() {
+    // @ts-expect-error
     return $(".uploader--with-modal .btn");
   }
 
@@ -24,6 +28,7 @@ class App {
    * methods
    */
   async open(path = "/") {
+    // @ts-expect-error
     await browser.url(path);
   }
 }

@@ -13,7 +13,7 @@ const openUploader = (): void => {
     .open({
       multi: true,
       mimeTypes: ["image/jpeg", "image/webp", "image/png"],
-      onValidate: async file =>
+      onValidate: async (file: File): Promise<string | undefined> =>
         await new Promise((resolve, reject) =>
           setTimeout(
             () =>

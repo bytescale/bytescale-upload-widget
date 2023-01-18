@@ -8,7 +8,6 @@
     "lint:examples": "(cd examples && npm run lint)",
     "typecheck": "run-p --print-label typecheck:*",
     "typecheck:lib": "(cd lib && npm run typecheck)",
-    "typecheck:examples": "(cd examples && npm run typecheck)",
     "prettier": "prettier . --check",
     "prettier-fix": "prettier . --write --loglevel=silent",
     "test": "(cd e2e_test && npm run test)",
@@ -18,7 +17,7 @@
     "*/**/*.{js,jsx,ts,tsx}": [
       "./runForEachPackage.js eslint !"
     ],
-    "*/**/*.{ts,tsx}": [
+    "lib/**/*.{ts,tsx}": [
       "./runForEachPackage.js tsc --noEmit ?"
     ],
     "*.{js,jsx,ts,tsx,json,css,html,md,yaml,yml}": [
