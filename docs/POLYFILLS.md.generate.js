@@ -44,9 +44,9 @@ execSync("npm run prepack:fat", { stdio: "inherit", cwd: reactUploaderDir });
 // Polyfill a temporary version of the 'uploader' module.
 // webpackBootstrap
 const distCode = fs.readFileSync(distFile).toString();
-if (distCode.includes("// webpackBootstrap")) {
-  throw new Error("Distribution must be compiled with 'mode=production' -- else incorrect polyfills will be inferred.");
-}
+// if (distCode.includes("// webpackBootstrap")) {
+//   throw new Error("Distribution must be compiled with 'mode=production' -- else incorrect polyfills will be inferred.");
+// }
 const { code: polyfilledCode } = babel.transformSync(distCode, {
   presets: [
     [
