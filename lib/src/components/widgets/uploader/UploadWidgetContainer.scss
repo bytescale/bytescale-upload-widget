@@ -21,13 +21,16 @@
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   color: #333;
-  font-family: -apple-system,blinkmacsystemfont,Segoe UI,helvetica,arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-family: -apple-system, blinkmacsystemfont, Segoe UI, helvetica, arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol;
   line-height: 1;
   text-align: left;
   position: static; // We've seen stylesheets (e.g. in the Vue boilerplate project) that set 'position: relative' on '*', which breaks Uploader, unless we include this.
 
   // --- Reset styles (which may have been set in the containing page) ---
-  a, p, button {
+  a,
+  p,
+  button {
     font-size: inherit;
     margin: 0;
   }
@@ -42,7 +45,10 @@
 
   a {
     color: var(--primary-color);
-    &, &:hover, &:active, &:focus {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
       text-decoration: underline;
     }
     &:hover {
@@ -63,13 +69,16 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: rgba(0,0,0,0);
-    border: $px solid rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
+    border: $px solid rgba(0, 0, 0, 0);
     padding: 0 1em;
     line-height: 3;
     -webkit-border-radius: 0.3125em;
     border-radius: 0.3125em;
-    &, &:hover, &:active, &:focus {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
       text-decoration: none;
     }
     &:not(:disabled):not(.disabled) {
@@ -141,7 +150,7 @@
   }
   .nudge-up-1 {
     position: relative;
-    top: -1px
+    top: -1px;
   }
 
   .ml-0 {

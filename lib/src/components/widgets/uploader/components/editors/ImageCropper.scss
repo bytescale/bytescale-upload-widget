@@ -11,7 +11,8 @@
     bottom: -2px;
   }
   &--circular {
-    &, &:before {
+    &,
+    &:before {
       border-radius: 100%;
     }
   }

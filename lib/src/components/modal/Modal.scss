@@ -11,7 +11,7 @@
     flex-direction: column;
     display: flex;
     position: fixed;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -39,7 +39,7 @@
     }
 
     @media (max-width: $mobile-width-max), (max-height: $mobile-height-max) {
-      top:0;
+      top: 0;
       height: 100%;
       width: 100%;
       max-width: none;
@@ -54,7 +54,7 @@
       z-index: $modal-bg-z-index + 1;
       a {
         transition: 0.1s color linear;
-        color: #D3D3D3;
+        color: #d3d3d3;
         padding: 18 * $px 17 * $px 13 * $px 14 * $px;
         display: inline-block;
         &:hover {
@@ -65,7 +65,7 @@
   }
   &__backdrop {
     content: " ";
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     position: fixed;
     left: 0;
     right: 0;
@@ -74,7 +74,8 @@
     z-index: $modal-index - 1;
   }
 
-  &__modal, &__backdrop {
+  &__modal,
+  &__backdrop {
     opacity: 0;
     transition: 0.15s opacity linear;
     &.show {
