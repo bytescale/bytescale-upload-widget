@@ -49,6 +49,12 @@ jobs:
           npm install
         working-directory: ./examples
 
+      - name: "Type checks"
+        run: npm run typecheck
+
+      - name: "Linting"
+        run: npm run lint
+
       - name: "Acceptance tests (start web server)"
         run:
           # Run in 'dist' mode to ensure the packaged 'uploadjs' NPM module is used,
