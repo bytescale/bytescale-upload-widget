@@ -1,4 +1,4 @@
-import { UploadedFile } from "upload-js";
+import { UploadedFile, UploadInterface } from "upload-js";
 
 export interface UploadWidgetResult {
   editedFile: UploadedFile | undefined;
@@ -17,16 +17,14 @@ export interface UploadWidgetResult {
 }
 
 export namespace UploadWidgetResult {
-  export function from(originalFile: UploadedFile, editedFile: UploadedFile | undefined): UploadWidgetResult {
+  export function from(
+    upload: UploadInterface,
+    originalFile: UploadedFile,
+    editedFile: UploadedFile | undefined
+  ): UploadWidgetResult {
     const calculateFileUrl = (): string => {
-      const find = "/raw/";
-      const replace = "/thumbnail/"; // Will be the "auto" transformation in future.
-
-      if (editedFile === undefined || !editedFile.fileUrl.includes(find)) {
-        return originalFile.fileUrl;
-      }
-
-      return editedFile.fileUrl.replace(find, replace);
+      const imageUrl = upload.url(editedFile?.filePath ?? originalFile.filePath, { transformation: "image" });
+      return `${imageUrl}?w=600&h=600&fit=max&q=70`;
     };
 
     return {
