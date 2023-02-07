@@ -12,17 +12,7 @@ const openUploader = (): void => {
   uploader
     .open({
       multi: true,
-      mimeTypes: ["image/jpeg", "image/webp", "image/png"],
-      onValidate: async (file: File): Promise<string | undefined> =>
-        await new Promise((resolve, reject) =>
-          setTimeout(
-            () =>
-              file.name.endsWith("webp")
-                ? reject(new Error("Some error"))
-                : resolve(file.size > 50 * 1024 ? "This file looks bad." : undefined),
-            5000
-          )
-        ),
+      mimeTypes: ["image/jpeg", "image/webp", "image/png", "image/heic", "image/svg+xml"],
       maxFileCount: 10,
       editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } },
       styles: {
