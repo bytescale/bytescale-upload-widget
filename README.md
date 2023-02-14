@@ -303,7 +303,7 @@ curl --data "Hello World" \
 
 _Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file types!_
 
-[Read the File Upload API docs »](https://upload.io/docs/upload-api)
+[Read the Upload API docs »](https://upload.io/docs/upload-api)
 
 ## 🎨 Image Processing API (Resize, Crop, etc.)
 
