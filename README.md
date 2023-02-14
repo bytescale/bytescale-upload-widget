@@ -286,7 +286,7 @@ const myCustomLocale = {
 
 ## 🌐 File Management API
 
-You can use Upload.io's [File Upload API](https://upload.io/file-upload-api) directly to achieve:
+You can use the [Upload API](https://upload.io/docs/upload-api) directly to achieve:
 
 - File uploading.
 - File listing.
@@ -305,7 +305,7 @@ _Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file 
 
 [Read the File Upload API docs »](https://upload.io/docs/upload-api)
 
-# 🎨 Image Processing API (Resize, Crop, etc.)
+## 🎨 Image Processing API (Resize, Crop, etc.)
 
 The [Upload.io](https://upload.io/) platform includes a built-in [Image Processing API](https://upload.io/docs/image-processing-api), which supports the following:
 
