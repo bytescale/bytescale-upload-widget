@@ -1,5 +1,5 @@
-import { SubmittedFile } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { JSX } from "preact";
+import { SubmittedFile } from "uploader/components/widgets/uploader/model/SubmittedFile";
 import { assertUnreachable } from "uploader/modules/common/TypeUtils";
 import { ProgressIcon } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { getFileIconImageSource } from "uploader/components/widgets/uploader/components/fileIcons/utils/FileIconUtil";
@@ -9,6 +9,7 @@ import { useEffect, useState } from "preact/compat";
 import { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale";
 import errorSvg from "uploader/components/widgets/uploader/components/fileIcons/svgs/Error.svg";
 import cn from "classnames";
+import { Hypermedia } from "uploader/components/widgets/uploader/components/hypermedia/Hypermedia";
 
 interface Props {
   file: SubmittedFile;
@@ -20,24 +21,6 @@ interface Props {
 
 // Keep up-to-date with total animation duration in CSS.
 const removalAnimationTime = 1000;
-
-const LinkToUpload = ({ text }: { text: string }): JSX.Element => {
-  const find = "upload.io";
-  const index = text.toLowerCase().indexOf(find);
-  if (index === -1) {
-    return <>{text}</>;
-  }
-
-  return (
-    <>
-      {text.substring(0, index)}{" "}
-      <a href="https://upload.io/pricing" target="_blank">
-        Upload.io
-      </a>{" "}
-      {text.substring(index + find.length)}
-    </>
-  );
-};
 
 export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRemoveButton }: Props): JSX.Element => {
   const [isDelayedRemove, setIsDelayedRemove] = useState(false);
@@ -102,7 +85,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
             </span>
             {fileMessage !== undefined && (
               <span className="uploader__submitted-file__message">
-                <LinkToUpload text={fileMessage} />
+                <Hypermedia text={fileMessage} />
               </span>
             )}
           </span>
