@@ -288,7 +288,7 @@ const myCustomLocale = {
 
 ## 🌐 File Management API
 
-Upload.io provides an [Upload API](https://upload.io/docs/upload-api) that allows you to:
+Upload.io provides an [Upload API](https://upload.io/docs/upload-api), which supports the following:
 
 - File uploading.
 - File listing.
@@ -311,12 +311,12 @@ _Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file 
 
 Upload.io also provides an [Image Processing API](https://upload.io/docs/image-processing-api), which supports the following:
 
-- [Automatic Image Cropping](https://upload.io/docs/image-processing-api#crop)
-- [Manual Image Cropping](https://upload.io/docs/image-processing-api#crop-x)
-- [Image Resizing](https://upload.io/docs/image-processing-api#fit)
-- [Text Layering (e.g for text watermarks)](https://upload.io/docs/image-processing-api#text)
-- [Image Layering (e.g. for image watermarks)](https://upload.io/docs/image-processing-api#image)
-- [Adjustments (blur, sharpen, brightness, etc.)](https://upload.io/docs/image-processing-api#blur)
+- [Image Resizing](https://upload.io/docs/image-processing-api#image-resizing-api)
+- [Image Cropping](https://upload.io/docs/image-processing-api#image-cropping-api)
+- [Image Compression](https://upload.io/docs/image-processing-api#image-compression-api)
+- [Image Conversion](https://upload.io/docs/image-processing-api#f)
+- [Image Manipulation (blur, sharpen, brightness, etc.)](https://upload.io/docs/image-processing-api#image-manipulation-api)
+- [Layering (e.g for text & image watermarks)](https://upload.io/docs/image-processing-api#image)
 - and more...
 
 [Read the Image Processing API docs »](https://upload.io/docs/image-processing-api)
@@ -333,7 +333,7 @@ https://upcdn.io/W142hJk/raw/example/city-landscape.jpg
 
 ### Processed Image
 
-You can use the [Image Processing API](https://upload.io/docs/image-processing-api) to convert the above photo into [this processed image](https://upcdn.io/W142hJk/image/example/city-landscape.jpg?w=900&h=600&fit=crop&f=webp&q=80&blur=4&text=WATERMARK&layer-opacity=80&blend=overlay&layer-rotate=315&font-size=100&padding=10&font-weight=900&color=ffffff&repeat=true&text=Chicago&gravity=bottom&padding-x=50&padding-bottom=20&font=/example/fonts/Lobster.ttf&color=ffe400):
+Using the [Image Processing API](https://upload.io/docs/image-processing-api), you can produce [this image](https://upcdn.io/W142hJk/image/example/city-landscape.jpg?w=900&h=600&fit=crop&f=webp&q=80&blur=4&text=WATERMARK&layer-opacity=80&blend=overlay&layer-rotate=315&font-size=100&padding=10&font-weight=900&color=ffffff&repeat=true&text=Chicago&gravity=bottom&padding-x=50&padding-bottom=20&font=/example/fonts/Lobster.ttf&color=ffe400):
 
 <img src="https://upcdn.io/W142hJk/image/example/city-landscape.jpg?w=900&h=600&fit=crop&f=webp&q=80&blur=4&text=WATERMARK&layer-opacity=80&blend=overlay&layer-rotate=315&font-size=100&padding=10&font-weight=900&color=ffffff&repeat=true&text=Chicago&gravity=bottom&padding-x=50&padding-bottom=20&font=/example/fonts/Lobster.ttf&color=ffe400" />
 
@@ -372,13 +372,15 @@ https://upcdn.io/W142hJk/image/example/city-landscape.jpg
 
 ## Can I use my own storage?
 
-**Yes!** [Upload.io](https://upload.io) supports custom S3 buckets on [Upload Plus](https://upload.io/pricing) plans.
+**Yes:** Upload.io supports AWS S3 on [Upload Plus](https://upload.io/pricing) plans.
 
-For ease and simplicity, your files are stored in Upload.io's internal S3 buckets by default. You can change this on a folder-by-folder basis — to use your existing S3 bucket(s) — in the Upload Dashboard.
+Upload.io offers its own built-in storage for ease and simplicity (default).
+
+You can change this to AWS S3 on a folder-by-folder basis in the Upload Dashboard.
 
 ## 👋 Create your Upload.io Account
 
-Uploader is the file upload component for [Upload.io](https://upload.io/): the file upload service for web apps.
+Uploader is the file upload component for Upload.io — The File Upload Service for Web Apps:
 
 **[Create an Upload.io account »](https://upload.io/upload-js/get-started)**
 
