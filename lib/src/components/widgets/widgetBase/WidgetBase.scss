@@ -2,7 +2,7 @@
 
 .uploader__widget-base {
   $margin: 15 * $px;
-  $border-color: #ddd;
+  $border-color: var(--shade-500);
   border-radius: 5 * $px;
 
   position: absolute;

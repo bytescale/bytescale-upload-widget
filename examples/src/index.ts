@@ -39,4 +39,11 @@ button.onclick = e => {
   e.preventDefault();
   openUploader();
 };
-document.body.prepend(button);
+document.getElementById("container")?.prepend(button);
+
+uploader.open({ container: "#dropzone", layout: "inline", multi: true }).then(
+  (f: UploadWidgetResult[]) => {
+    alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+  },
+  (e: Error) => console.error(e)
+);

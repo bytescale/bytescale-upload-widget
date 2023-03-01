@@ -19,7 +19,7 @@
   }
 
   &__modal {
-    background: #fff;
+    background: var(--shade-max);
     border-radius: 8 * $px;
     z-index: $modal-index;
     position: relative;
@@ -54,12 +54,9 @@
       z-index: $modal-bg-z-index + 1;
       a {
         transition: 0.1s color linear;
-        color: #d3d3d3;
+        color: var(--shade-400);
         padding: 18 * $px 17 * $px 13 * $px 14 * $px;
         display: inline-block;
-        &:hover {
-          color: #888;
-        }
       }
     }
   }

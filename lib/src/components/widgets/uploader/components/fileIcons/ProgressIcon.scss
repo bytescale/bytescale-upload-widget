@@ -19,7 +19,7 @@
     stroke: var(--primary-color);
     &__bg {
       transition: $circleVanishSpeed opacity linear;
-      fill: #f0f0f0;
+      fill: var(--shade-700);
     }
     &--error {
       stroke: var(--error-color);

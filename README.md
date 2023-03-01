@@ -218,8 +218,18 @@ uploader
     showRemoveButton: true,       // Whether to show the "remove" button next to each file.
     styles: {
       colors: {
-        primary: "#377dff",       // Primary color (e.g. buttons).
-        active: "#528fff"         // Active/hover color (inferred from primary by default).
+        primary: "#377dff",       // Primary buttons & links
+        active: "#528fff",        // Primary buttons & links (hover). Inferred if undefined.
+        error: "#d23f4d",         // Error messages
+        shadeMin: "#333",         // Standard text
+        shade100: "#7a7a7a",      // Secondary button text
+        shade200: "#999",         // Secondary button text (hover)
+        shade300: "#a5a6a8",      // Welcome text
+        shade400: "#d3d3d3",      // Modal close button
+        shade500: "#dddddd",      // Border
+        shade700: "#f0f0f0",      // Progress indicator background
+        shade900: "#f8f8f8",      // File item background
+        shadeMax: "#fff"          // Various (draggable crop buttons, etc.)
       },
       fontSizes: {
         base: 16                  // Base font size (px).

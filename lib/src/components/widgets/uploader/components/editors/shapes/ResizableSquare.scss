@@ -12,7 +12,7 @@
     width: $size * $px;
     height: $size * $px;
     opacity: 0.75;
-    background-color: #fff;
+    background-color: var(--shade-max);
     border: 1 * $px solid var(--primary-color);
     border-radius: 100%;
     position: absolute;
