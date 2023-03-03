@@ -39,7 +39,6 @@ export function useDragDrop(
       const files = Array.from(e.dataTransfer.files);
       if (files.length > 0) {
         acceptFiles(files);
-        e.dataTransfer.clearData();
       }
     }
   };
