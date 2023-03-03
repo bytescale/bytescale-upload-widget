@@ -55,14 +55,14 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
         `--error-color: ${options.styles.colors.error};`,
         `--primary-color: ${options.styles.colors.primary};`,
         `--primary-active-color: ${options.styles.colors.active};`,
-        `--shade-min: ${options.styles.colors.shadeMin};`,
-        `--shade-max: ${options.styles.colors.shadeMax};`,
         `--shade-100: ${options.styles.colors.shade100};`,
         `--shade-200: ${options.styles.colors.shade200};`,
         `--shade-300: ${options.styles.colors.shade300};`,
         `--shade-400: ${options.styles.colors.shade400};`,
         `--shade-500: ${options.styles.colors.shade500};`,
+        `--shade-600: ${options.styles.colors.shade600};`,
         `--shade-700: ${options.styles.colors.shade700};`,
+        `--shade-800: ${options.styles.colors.shade800};`,
         `--shade-900: ${options.styles.colors.shade900};`,
         `font-size: ${options.styles.fontSizes.base}px;`
       ].join(" ")

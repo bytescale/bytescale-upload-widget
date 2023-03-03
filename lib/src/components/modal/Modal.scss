@@ -19,7 +19,7 @@
   }
 
   &__modal {
-    background: var(--shade-max);
+    background: var(--shade-900);
     border-radius: 8 * $px;
     z-index: $modal-index;
     position: relative;
@@ -54,7 +54,7 @@
       z-index: $modal-bg-z-index + 1;
       a {
         transition: 0.1s color linear;
-        color: var(--shade-400);
+        color: var(--shade-500);
         padding: 18 * $px 17 * $px 13 * $px 14 * $px;
         display: inline-block;
       }

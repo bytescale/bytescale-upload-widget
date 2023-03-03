@@ -28,7 +28,7 @@ $large: 1200px;
   margin: $px * $file-gutter 0;
   &__container {
     margin: 0 $file-gutter * $px;
-    background: var(--shade-900);
+    background: var(--shade-800);
     border-radius: 7 * $px;
   }
   &__inner {
@@ -48,7 +48,7 @@ $large: 1200px;
     text-align: right;
     display: inline-block;
     &--performed {
-      color: var(--shade-200);
+      color: var(--shade-300);
     }
   }
   &__message {

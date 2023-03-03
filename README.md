@@ -221,15 +221,15 @@ uploader
         primary: "#377dff",       // Primary buttons & links
         active: "#528fff",        // Primary buttons & links (hover). Inferred if undefined.
         error: "#d23f4d",         // Error messages
-        shadeMin: "#333",         // Standard text
-        shade100: "#7a7a7a",      // Secondary button text
-        shade200: "#999",         // Secondary button text (hover)
-        shade300: "#a5a6a8",      // Welcome text
-        shade400: "#d3d3d3",      // Modal close button
-        shade500: "#dddddd",      // Border
+        shade100: "#333",         // Standard text
+        shade200: "#7a7a7a",      // Secondary button text
+        shade300: "#999",         // Secondary button text (hover)
+        shade400: "#a5a6a8",      // Welcome text
+        shade500: "#d3d3d3",      // Modal close button
+        shade600: "#dddddd",      // Border
         shade700: "#f0f0f0",      // Progress indicator background
-        shade900: "#f8f8f8",      // File item background
-        shadeMax: "#fff"          // Various (draggable crop buttons, etc.)
+        shade800: "#f8f8f8",      // File item background
+        shade900: "#fff"          // Various (draggable crop buttons, etc.)
       },
       fontSizes: {
         base: 16                  // Base font size (px).
