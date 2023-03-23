@@ -8,15 +8,12 @@ interface Props {
   options: UploadWidgetConfigRequired;
 }
 
-export const UploaderWelcomeScreen = ({
-  addFiles,
-  options: { multi, locale },
-  isImageUploader
-}: Props): JSX.Element => {
+export const UploaderWelcomeScreen = ({ addFiles, options, isImageUploader }: Props): JSX.Element => {
+  const { multi, locale } = options;
   return (
     <>
       <UploadButton
-        multi={multi}
+        options={options}
         text={
           isImageUploader
             ? multi

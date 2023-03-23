@@ -53,7 +53,7 @@ export const UploaderMainScreen = ({
           {options.multi &&
             (options.maxFileCount === undefined || submittedFiles.length < options.maxFileCount ? (
               <UploadButton
-                multi={options.multi}
+                options={options}
                 text={isImageUploader ? locale.addAnotherImage : locale.addAnotherFile}
                 onUpload={addFiles}
               />
