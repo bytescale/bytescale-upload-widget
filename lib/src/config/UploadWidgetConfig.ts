@@ -56,7 +56,7 @@ export namespace UploadWidgetConfigRequired {
       maxFileCount: options.maxFileCount,
       maxFileSizeBytes: options.maxFileSizeBytes,
       metadata: options.metadata,
-      mimeTypes: options.mimeTypes,
+      mimeTypes: options.mimeTypes?.map(x => x.trim().toLowerCase()),
       multi,
       onUpdate: options.onUpdate ?? (() => {}),
       onValidate: options.onValidate,
