@@ -1,4 +1,4 @@
-export interface UploadWidgetInitParams {
+export interface UploadWidgetMethods {
   close: () => void;
   reset: () => void;
 }

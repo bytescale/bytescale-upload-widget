@@ -1,4 +1,4 @@
-import { Uploader, UploadWidgetInitParams, UploadWidgetResult } from "uploader";
+import { Uploader, UploadWidgetMethods, UploadWidgetResult } from "uploader";
 
 // For local development of Upload.js only: this is not an example of how you should set the API key in your app.
 const apiKey: string | undefined = (window as any).UPLOAD_JS_API_KEY;
@@ -41,7 +41,7 @@ button.onclick = e => {
 };
 document.getElementById("container")?.prepend(button);
 
-let dropzoneMethods: UploadWidgetInitParams | undefined;
+let dropzoneMethods: UploadWidgetMethods | undefined;
 uploader
   .open({
     container: "#dropzone",
