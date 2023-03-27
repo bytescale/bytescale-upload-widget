@@ -8,14 +8,19 @@ import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
 import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 
-export interface UploaderRootProps {
+export interface UploadWidgetContainerProps {
   options: UploadWidgetConfigRequired;
   reject: (error: Error) => void;
   resolve: (files: UploadWidgetResult[]) => void;
   upload: UploadInstanceMaybe;
 }
 
-export const UploadWidgetContainer = ({ upload, resolve, reject, options }: UploaderRootProps): JSX.Element => (
+export const UploadWidgetContainer = ({
+  upload,
+  resolve,
+  reject,
+  options
+}: UploadWidgetContainerProps): JSX.Element => (
   <>
     {upload.type === "error" ? (
       <ConfigError error={upload.value} layout={options.layout} />

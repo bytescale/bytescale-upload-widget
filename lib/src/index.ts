@@ -7,6 +7,7 @@ export { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale"
 export { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
 export { UploadWidgetEditor } from "uploader/config/UploadWidgetEditor";
 export { UploadWidgetConfig } from "uploader/config/UploadWidgetConfig";
+export { UploadWidgetInitParams } from "uploader/config/UploadWidgetInitParams";
 export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
 
 if (typeof window !== "undefined") {

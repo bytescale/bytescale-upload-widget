@@ -2,10 +2,10 @@ import { Upload, UploadInterface, UploadConfig } from "upload-js";
 import { UploadWidgetConfig, UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 import { render } from "preact";
 import { UploadInstanceMaybe } from "uploader/UploadInstanceMaybe";
-import { UploadWidgetContainer, UploaderRootProps } from "uploader/components/widgets/uploader/UploadWidgetContainer";
-import { RootModal } from "uploader/components/modal/RootModal";
+import { UploadWidgetContainerProps } from "uploader/components/widgets/uploader/UploadWidgetContainer";
 import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploaderInterface } from "uploader/UploaderInterface";
+import { RootContainer } from "uploader/components/RootContainer";
 
 export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): UploaderInterface {
   // ----------------
@@ -69,22 +69,17 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
     );
 
     const uploadedFiles = await new Promise<UploadWidgetResult[]>((resolve, reject) => {
-      const props: UploaderRootProps = {
+      const props: UploadWidgetContainerProps = {
         upload: uploadMaybe,
         resolve,
         reject,
         options
       };
 
-      render(
-        options.layout === "modal" ? <RootModal {...props} container={widget} /> : <UploadWidgetContainer {...props} />,
-        widget
-      );
+      render(<RootContainer widgetProps={props} />, widget);
     });
 
-    if (options.layout === "modal") {
-      widget.remove();
-    }
+    widget.remove();
 
     return uploadedFiles;
   };

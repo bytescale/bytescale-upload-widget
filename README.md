@@ -205,49 +205,50 @@ All configuration is optional.
 ```javascript
 uploader
   .open({
-    container: "body",            // "body" by default.
-    layout: "modal",              // "modal" by default. "inline" also supported.
-    locale: myCustomLocale,       // EN_US by default. (See "Localization" section below.)
-    maxFileCount: 5,              // Unlimited by default (or 1 if multi: false).
-    maxFileSizeBytes: 1024 ** 2,  // Unlimited by default.
-    mimeTypes: ["image/jpeg"],    // Unrestricted by default.
-    multi: false,                 // False by default.
-    onUpdate: files => {},        // Called each time the list of uploaded files change.
-    onValidate: async file => {}, // Return Promise<string> to show a custom error message.
-    showFinishButton: true,       // Whether to show the "finish" button in the widget.
-    showRemoveButton: true,       // Whether to show the "remove" button next to each file.
+    container: "body",              // "body" by default.
+    layout: "modal",                // "modal" by default. "inline" also supported.
+    locale: myCustomLocale,         // EN_US by default. (See "Localization" section below.)
+    maxFileCount: 5,                // Unlimited by default (or 1 if multi: false).
+    maxFileSizeBytes: 1024 ** 2,    // Unlimited by default.
+    mimeTypes: ["image/jpeg"],      // Unrestricted by default.
+    multi: false,                   // False by default.
+    onInit: ({close, reset}) => {}, // Exposes lifecycle methods for the component.
+    onUpdate: files => {},          // Called each time the list of uploaded files change.
+    onValidate: async file => {},   // Return Promise<string> to show a custom error message.
+    showFinishButton: true,         // Show/hide the "finish" button in the widget.
+    showRemoveButton: true,         // Show/hide the "remove" button next to each file.
     styles: {
       colors: {
-        primary: "#377dff",       // Primary buttons & links
-        active: "#528fff",        // Primary buttons & links (hover). Inferred if undefined.
-        error: "#d23f4d",         // Error messages
-        shade100: "#333",         // Standard text
-        shade200: "#7a7a7a",      // Secondary button text
-        shade300: "#999",         // Secondary button text (hover)
-        shade400: "#a5a6a8",      // Welcome text
-        shade500: "#d3d3d3",      // Modal close button
-        shade600: "#dddddd",      // Border
-        shade700: "#f0f0f0",      // Progress indicator background
-        shade800: "#f8f8f8",      // File item background
-        shade900: "#fff"          // Various (draggable crop buttons, etc.)
+        primary: "#377dff",         // Primary buttons & links
+        active: "#528fff",          // Primary buttons & links (hover). Inferred if undefined.
+        error: "#d23f4d",           // Error messages
+        shade100: "#333",           // Standard text
+        shade200: "#7a7a7a",        // Secondary button text
+        shade300: "#999",           // Secondary button text (hover)
+        shade400: "#a5a6a8",        // Welcome text
+        shade500: "#d3d3d3",        // Modal close button
+        shade600: "#dddddd",        // Border
+        shade700: "#f0f0f0",        // Progress indicator background
+        shade800: "#f8f8f8",        // File item background
+        shade900: "#fff"            // Various (draggable crop buttons, etc.)
       },
       fontSizes: {
-        base: 16                  // Base font size (px).
+        base: 16                    // Base font size (px).
       }
     },
-    path: {                       // Optional: a string (full file path) or an object like so:
-      fileName: "Example.jpg",    // Each supports path variables (e.g. {ORIGINAL_FILE_EXT}).
-      folderPath: "/uploads"      // Please refer to docs for all path variables.
+    path: {                         // Optional: a string (full file path) or object like so:
+      fileName: "Example.jpg",      // Supports path variables (e.g. {ORIGINAL_FILE_EXT}).
+      folderPath: "/uploads"        // Please refer to docs for all path variables.
     },
     metadata: {
-      hello: "world"              // Arbitrary JSON metadata (saved against the file).
+      hello: "world"                // Arbitrary JSON metadata (saved against the file).
     },
-    tags: ["profile_picture"],    // Requires an Upload.io account.
+    tags: ["profile_picture"],      // Requires an Upload.io account.
     editor: {
       images: {
-        crop: true,               // True by default.
-        cropRatio: 4 / 3,         // width / height. undefined enables freeform (default).
-        cropShape: "rect"         // "rect" (default) or "circ".
+        crop: true,                 // True by default.
+        cropRatio: 4 / 3,           // Width / Height. Undefined enables freeform (default).
+        cropShape: "rect"           // "rect" (default) or "circ".
       }
     },
   })

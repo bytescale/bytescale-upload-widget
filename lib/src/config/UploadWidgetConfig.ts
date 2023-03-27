@@ -5,6 +5,7 @@ import { UploadWidgetEditor, UploadWidgetEditorRequired } from "uploader/config/
 import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploadWidgetStyles, UploadWidgetStylesRequired } from "uploader/config/UploadWidgetStyles";
 import { FilePathDefinition, JsonObject } from "@upload-io/upload-api-client-upload-js";
+import { UploadWidgetInitParams } from "uploader/config/UploadWidgetInitParams";
 
 export interface UploadWidgetConfig {
   container?: string | HTMLElement;
@@ -16,6 +17,7 @@ export interface UploadWidgetConfig {
   metadata?: JsonObject;
   mimeTypes?: string[];
   multi?: boolean;
+  onInit?: (params: UploadWidgetInitParams) => void;
   onUpdate?: (files: UploadWidgetResult[]) => void;
   onValidate?: (file: File) => Promise<string | undefined>;
   path?: FilePathDefinition;
@@ -35,6 +37,7 @@ export interface UploadWidgetConfigRequired {
   metadata: JsonObject | undefined;
   mimeTypes: string[] | undefined;
   multi: boolean;
+  onInit: (params: UploadWidgetInitParams) => void;
   onUpdate: (files: UploadWidgetResult[]) => void;
   onValidate: ((file: File) => Promise<string | undefined>) | undefined;
   path: FilePathDefinition | undefined;
@@ -58,6 +61,7 @@ export namespace UploadWidgetConfigRequired {
       metadata: options.metadata,
       mimeTypes: options.mimeTypes?.map(x => x.trim().toLowerCase()),
       multi,
+      onInit: options.onInit ?? (() => {}),
       onUpdate: options.onUpdate ?? (() => {}),
       onValidate: options.onValidate,
       path: options.path,

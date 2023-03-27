@@ -8,14 +8,13 @@ import cn from "classnames";
 interface Props {
   children: ReactNode;
   closeModal: () => void;
-  onClosedModal: () => void;
 }
 
 const modalTransitionDuration = 250; // Actual CSS transition of 'fade' is 150ms, but we add 100ms for safety.
 export const modalCloseButtonSize = 27;
 export const modalCloseButtonPadding = 11;
 
-export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Element => {
+export const Modal = ({ children, closeModal }: Props): JSX.Element => {
   const [isClosed, setIsClosed] = useState(false);
   const [visible, setVisible] = useState(false);
   const [showModalAsync, setShowModalAsync] = useState(false);
@@ -49,7 +48,6 @@ export const Modal = ({ children, closeModal, onClosedModal }: Props): JSX.Eleme
     return () => {
       document.documentElement.className = oldHtmlClass;
       document.body.className = oldBodyClass;
-      onClosedModal();
     };
   }, []);
 
