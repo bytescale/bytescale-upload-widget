@@ -177,7 +177,7 @@ The image cropper uses server-side image cropping, and works like so:
    - The `filePath` in the result will reference the original image.
 1. Else a **2nd file is uploaded** containing JSON that describes the crop geometry and includes a reference to the original image's `filePath`.
    - The `filePath` in the result will reference the JSON file.
-1. When a JSON file is requested via the [Image Processing API](https://upload.io/docs/image-processing-api), then Upload's image processing pipelines will first apply the crop transformation described by the JSON file, before then applying any additional steps you have specified via the URL.
+1. When a JSON file is requested via the [Image Processing API](https://upload.io/docs/image-processing-api), then the crop transformation described by the JSON file will be applied first, followed by any additional steps you have specified via the URL.
 
 ### Creating a "Single File" Upload Button — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
 
