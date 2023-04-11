@@ -258,6 +258,10 @@ uploader
     editor: {
       images: {
         crop: true,                 // True by default.
+        cropFilePath: image => {    // Choose the file path used for JSON image crop files.
+          const {filePath} = image  // In:  https://upload.io/docs/upload-api/types/FileDetails
+          return `${filePath}.crop` // Out: https://upload.io/docs/upload-api/types/FilePathDefinition
+        },
         cropRatio: 4 / 3,           // Width / Height. Undefined enables freeform (default).
         cropShape: "rect"           // "rect" (default) or "circ".
       }

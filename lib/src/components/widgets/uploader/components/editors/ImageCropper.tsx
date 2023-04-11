@@ -84,7 +84,7 @@ export const ImageCropper = ({
           slice: (start, end) => blob.slice(start, end)
         },
         {
-          path: `${originalImage.filePath}.crop`
+          path: options.editor.images.cropFilePath(originalImage)
         }
       );
       onFinish(editedFile);
