@@ -34,6 +34,7 @@ export const Draggable = <T extends unknown>({
     };
   };
   const onDown = (e: PointerEvent): void => {
+    console.log("DOWN");
     e.stopPropagation(); // Required so that if a draggable element exists within another draggable element, when the child element is dragged, the parent element is not.
     setIsDragging(true);
     (e.target as any).setPointerCapture(e.pointerId);
@@ -41,15 +42,22 @@ export const Draggable = <T extends unknown>({
     setStart(startingValue);
   };
   const onUp = (e: PointerEvent): void => {
+    console.log("UP");
     setIsDragging(false);
     (e.target as any).releasePointerCapture(e.pointerId);
   };
   const onMove = (e: PointerEvent): void => {
+    console.log("MOVE");
+
     if (!isDragging) {
       return;
     }
     const { x, y } = getPositionDelta(e);
     onMoveCallback(x, y, start);
+  };
+  const onTouchStart = (e: TouchEvent): void => {
+    // Cancel scrolling on mobile, which causes dragging to immediately halt after it's started.
+    e.preventDefault();
   };
   return (
     <div
@@ -58,7 +66,8 @@ export const Draggable = <T extends unknown>({
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}
-      onPointerCancel={onUp}>
+      onPointerCancel={onUp}
+      onTouchStart={onTouchStart}>
       {children}
     </div>
   );
