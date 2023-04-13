@@ -1,5 +1,9 @@
 .uploader__image-cropper__clip {
   overflow: hidden;
+  img {
+    // A common problem we've seen is sites that have 'max-width: 100%' at a root level, which causes our image cropper to skew the image.
+    max-width: unset;
+  }
   &:before {
     content: " ";
     display: block;
