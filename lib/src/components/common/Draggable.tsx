@@ -34,7 +34,6 @@ export const Draggable = <T extends unknown>({
     };
   };
   const onDown = (e: PointerEvent): void => {
-    console.log("DOWN");
     e.stopPropagation(); // Required so that if a draggable element exists within another draggable element, when the child element is dragged, the parent element is not.
     setIsDragging(true);
     (e.target as any).setPointerCapture(e.pointerId);
@@ -42,13 +41,10 @@ export const Draggable = <T extends unknown>({
     setStart(startingValue);
   };
   const onUp = (e: PointerEvent): void => {
-    console.log("UP");
     setIsDragging(false);
     (e.target as any).releasePointerCapture(e.pointerId);
   };
   const onMove = (e: PointerEvent): void => {
-    console.log("MOVE");
-
     if (!isDragging) {
       return;
     }
