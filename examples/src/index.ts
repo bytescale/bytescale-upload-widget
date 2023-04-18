@@ -4,8 +4,8 @@ import { Uploader, UploadWidgetMethods, UploadWidgetResult } from "uploader";
 const apiKey: string | undefined = (window as any).UPLOAD_JS_API_KEY;
 
 const uploader = Uploader({
-  apiKey: apiKey ?? "free",
-  internal: { apiUrl: (window as any).UPLOAD_JS_API_URL, cdnUrl: (window as any).UPLOAD_JS_CDN_URL }
+  apiKey: apiKey ?? "free"
+  // internal: { apiUrl: (window as any).UPLOAD_JS_API_URL, cdnUrl: (window as any).UPLOAD_JS_CDN_URL }
 });
 
 const openUploader = (): void => {
@@ -47,6 +47,7 @@ uploader
     container: "#dropzone",
     layout: "inline",
     multi: true,
+    showFinishButton: true,
     onInit: x => {
       dropzoneMethods = x;
     }
