@@ -1,12 +1,14 @@
 import { JSX } from "preact";
 import { useState } from "preact/compat";
 import { ReactNode } from "uploader/modules/common/React";
+import { Rect } from "uploader/modules/common/Rect";
 
 export interface GeometryWithProvenance<K> {
   lastUpdatedBy: K;
 }
 
 interface Props<T extends GeometryWithProvenance<K>, K extends string> {
+  boundary: Rect;
   children?: ReactNode;
   className?: string;
   geometryMutatorId: K;
@@ -16,6 +18,7 @@ interface Props<T extends GeometryWithProvenance<K>, K extends string> {
 }
 
 export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>({
+  boundary,
   children,
   className,
   onMove: onMoveCallback,
@@ -26,20 +29,21 @@ export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
-  const [lastX, setLastX] = useState(0);
-  const [lastY, setLastY] = useState(0);
+  const [lastXDelta, setLastXDelta] = useState(0);
+  const [lastYDelta, setLastYDelta] = useState(0);
   const [start, setStart] = useState(startingValue);
 
+  const clip = (min: number, max: number, value: number): number => Math.min(Math.max(value, min), max);
+  const clipDimension = (length: number, value: number): number => clip(length * -1, length, value);
+
   const setPositionStart = (e: PointerEvent): void => {
-    const x = e.pageX;
-    const y = e.pageY;
-    setStartX(x);
-    setStartY(y);
+    setStartX(e.pageX);
+    setStartY(e.pageY);
   };
   const getPositionDelta = (e: PointerEvent): { x: number; y: number } => {
     return {
-      x: e.pageX - startX + lastX,
-      y: e.pageY - startY + lastY
+      x: e.pageX - startX + lastXDelta,
+      y: e.pageY - startY + lastYDelta
     };
   };
   const onDown = (e: PointerEvent): void => {
@@ -49,8 +53,8 @@ export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>
     setPositionStart(e);
 
     if (startingValue.lastUpdatedBy !== geometryMutatorId) {
-      setLastX(0);
-      setLastY(0);
+      setLastXDelta(0);
+      setLastYDelta(0);
       setStart(startingValue);
     }
   };
@@ -58,8 +62,8 @@ export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>
     setIsDragging(false);
     (e.target as any).releasePointerCapture(e.pointerId);
     const { x, y } = getPositionDelta(e);
-    setLastY(y);
-    setLastX(x);
+    setLastYDelta(clipDimension(boundary.height, y));
+    setLastXDelta(clipDimension(boundary.width, x));
   };
   const onMove = (e: PointerEvent): void => {
     if (!isDragging) {

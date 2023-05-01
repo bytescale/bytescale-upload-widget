@@ -17,10 +17,12 @@ type ReRatioMode = Corner | "center";
 type RectWithProvenance = RectWithPos & GeometryWithProvenance<ReRatioMode>;
 
 const CornerDragger = ({
+  boundary,
   corner,
   geometry,
   setGeometry
 }: {
+  boundary: Rect;
   corner: Corner;
   geometry: RectWithProvenance;
   setGeometry: (corner: Corner, geometry: RectWithPos) => void;
@@ -28,6 +30,7 @@ const CornerDragger = ({
   return (
     <Draggable
       className={`uploader__resizable-square__${corner}`}
+      boundary={boundary}
       geometryMutatorId={corner as ReRatioMode}
       startingValue={geometry}
       onMove={(x, y, g) =>
@@ -44,6 +47,10 @@ const CornerDragger = ({
 
 export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props): JSX.Element => {
   const minSize = 50;
+  const adjustedBoundary: Rect = {
+    width: boundary.width - minSize,
+    height: boundary.height - minSize
+  };
   const reRatio = (g: RectWithPos, fixed: ReRatioMode): RectWithProvenance => {
     if (ratio === undefined) {
       return { ...g, lastUpdatedBy: fixed };
@@ -103,6 +110,7 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props)
   return (
     <Draggable
       className="uploader__resizable-square"
+      boundary={adjustedBoundary}
       style={RectWithPos.toCssProps(geometry)}
       geometryMutatorId={"center" as ReRatioMode}
       startingValue={geometry}
@@ -115,10 +123,10 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props)
         })
       }>
       {children}
-      <CornerDragger corner="nw" setGeometry={setGeometry} geometry={geometry} />
-      <CornerDragger corner="ne" setGeometry={setGeometry} geometry={geometry} />
-      <CornerDragger corner="se" setGeometry={setGeometry} geometry={geometry} />
-      <CornerDragger corner="sw" setGeometry={setGeometry} geometry={geometry} />
+      <CornerDragger corner="nw" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />
+      <CornerDragger corner="ne" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />
+      <CornerDragger corner="se" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />
+      <CornerDragger corner="sw" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />
     </Draggable>
   );
 };
