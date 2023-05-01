@@ -2,25 +2,34 @@ import { JSX } from "preact";
 import { useState } from "preact/compat";
 import { ReactNode } from "uploader/modules/common/React";
 
-interface Props<T> {
+export interface GeometryWithProvenance<K> {
+  lastUpdatedBy: K;
+}
+
+interface Props<T extends GeometryWithProvenance<K>, K extends string> {
   children?: ReactNode;
   className?: string;
+  geometryMutatorId: K;
   onMove: (xDelta: number, yDelta: number, start: T) => void;
   startingValue: T;
   style?: JSX.CSSProperties;
 }
 
-export const Draggable = <T extends unknown>({
+export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>({
   children,
   className,
   onMove: onMoveCallback,
   style,
-  startingValue
-}: Props<T>): JSX.Element => {
+  startingValue,
+  geometryMutatorId
+}: Props<T, K>): JSX.Element => {
   const [isDragging, setIsDragging] = useState(false);
-  const [previousX, setStartX] = useState(0);
-  const [previousY, setStartY] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
+  const [lastX, setLastX] = useState(0);
+  const [lastY, setLastY] = useState(0);
   const [start, setStart] = useState(startingValue);
+
   const setPositionStart = (e: PointerEvent): void => {
     const x = e.pageX;
     const y = e.pageY;
@@ -29,20 +38,28 @@ export const Draggable = <T extends unknown>({
   };
   const getPositionDelta = (e: PointerEvent): { x: number; y: number } => {
     return {
-      x: e.pageX - previousX,
-      y: e.pageY - previousY
+      x: e.pageX - startX + lastX,
+      y: e.pageY - startY + lastY
     };
   };
   const onDown = (e: PointerEvent): void => {
     e.stopPropagation(); // Required so that if a draggable element exists within another draggable element, when the child element is dragged, the parent element is not.
-    setIsDragging(true);
     (e.target as any).setPointerCapture(e.pointerId);
+    setIsDragging(true);
     setPositionStart(e);
-    setStart(startingValue);
+
+    if (startingValue.lastUpdatedBy !== geometryMutatorId) {
+      setLastX(0);
+      setLastY(0);
+      setStart(startingValue);
+    }
   };
   const onUp = (e: PointerEvent): void => {
     setIsDragging(false);
     (e.target as any).releasePointerCapture(e.pointerId);
+    const { x, y } = getPositionDelta(e);
+    setLastY(y);
+    setLastX(x);
   };
   const onMove = (e: PointerEvent): void => {
     if (!isDragging) {
