@@ -16,6 +16,7 @@
     border: 1 * $px solid var(--primary-color);
     border-radius: 100%;
     position: absolute;
+    display: block !important; // Shopify's default theme hides empty divs with 'div:empty{display:none}', so we counteract that here.
   }
   &__nw {
     top: $offset;
