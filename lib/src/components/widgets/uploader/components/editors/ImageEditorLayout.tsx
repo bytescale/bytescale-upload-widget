@@ -5,6 +5,7 @@ import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import { UploadedFile } from "upload-js";
 import { getElementDimensionsOnParentResize } from "uploader/modules/common/UseDimensionsFromElement";
 import "./ImageEditorLayout.scss";
+import { calculateImagePreviewUrl } from "uploader/components/widgets/uploader/components/editors/modules/PreviewImageUrlCalculator";
 
 interface Props {
   actions: ReactNode;
@@ -14,12 +15,13 @@ interface Props {
 }
 
 export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
-  const [imageUrl, setImageUrl] = useState(originalImage.fileUrl);
+  const [imageUrl, setImageUrl] = useState("");
   const [containerId] = useState(`uploader__image-editor__image-${Math.round(Math.random() * 100000)}`);
   const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize();
 
+  // When multiple images are uploaded, the same component instance is used, so we need to update the image with an effect:
   useLayoutEffect(() => {
-    setImageUrl(URL.createObjectURL(originalImage.file as any));
+    setImageUrl(calculateImagePreviewUrl(originalImage));
   }, [originalImage.fileUrl]);
 
   return (

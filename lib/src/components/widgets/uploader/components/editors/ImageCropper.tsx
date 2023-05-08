@@ -9,6 +9,7 @@ import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import "./ImageCropper.scss";
 import cn from "classnames";
 import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
+import { calculateImagePreviewUrl } from "uploader/components/widgets/uploader/components/editors/modules/PreviewImageUrlCalculator";
 
 interface Props {
   imageCount: number;
@@ -70,7 +71,7 @@ export const ImageCropper = ({
         img.onload = function () {
           resolve({ width: img.naturalWidth, height: img.naturalHeight });
         };
-        img.src = URL.createObjectURL(originalImage.file as any);
+        img.src = calculateImagePreviewUrl(originalImage);
       });
 
       const originalImageUploadedName = originalImage.filePath.substring(originalImage.filePath.lastIndexOf("/") + 1);
