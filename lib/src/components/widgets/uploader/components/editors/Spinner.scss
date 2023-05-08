@@ -1,0 +1,29 @@
+@import "~uploader/components/widgets/uploader/Variables";
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: block !important; // Shopify default theme hides hidden divs.
+
+  // Creates a square ratio, at a relative size to the parent container.
+  height: 0;
+  width: 50%;
+  padding-bottom: 50%;
+
+  border: 0.3em solid var(--shade-700);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner .75s linear infinite;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+}

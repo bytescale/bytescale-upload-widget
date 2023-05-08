@@ -4,8 +4,9 @@ import { useLayoutEffect, useState } from "preact/compat";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
 import { UploadedFile } from "upload-js";
 import { getElementDimensionsOnParentResize } from "uploader/modules/common/UseDimensionsFromElement";
-import "./ImageEditorLayout.scss";
 import { calculateImagePreviewUrl } from "uploader/components/widgets/uploader/components/editors/modules/PreviewImageUrlCalculator";
+import { Spinner } from "uploader/components/widgets/uploader/components/editors/Spinner";
+import "./ImageEditorLayout.scss";
 
 interface Props {
   actions: ReactNode;
@@ -16,12 +17,14 @@ interface Props {
 
 export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
   const [imageUrl, setImageUrl] = useState("");
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [containerId] = useState(`uploader__image-editor__image-${Math.round(Math.random() * 100000)}`);
   const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize();
 
   // When multiple images are uploaded, the same component instance is used, so we need to update the image with an effect:
   useLayoutEffect(() => {
     setImageUrl(calculateImagePreviewUrl(originalImage));
+    setImageLoaded(false);
   }, [originalImage.fileUrl]);
 
   return (
@@ -32,14 +35,17 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image }: Pro
       </div>
       <div className="uploader__image-editor__image" ref={containerRef}>
         <div className="uploader__image-editor__image-padding">
+          {!imageLoaded && <Spinner />}
           <img
             id={containerId}
             src={imageUrl}
+            onLoad={() => setImageLoaded(true)}
             className="uploader__image-editor__image-inner"
+            style={imageLoaded ? {} : { display: "none" }}
             ref={imgRef}
             draggable={false}
           />
-          {imgDimensions !== undefined && (
+          {imgDimensions !== undefined && imageLoaded && (
             <div className="uploader__image-editor__image-overlay" style={RectWithPos.toCssProps(imgDimensions)}>
               {image({ imgDimensions, imageUrl })}
             </div>
