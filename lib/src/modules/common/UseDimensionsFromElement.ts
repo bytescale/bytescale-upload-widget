@@ -10,39 +10,50 @@ export function useElementRef(): [HTMLElement | undefined, (e: HTMLElement | nul
   return [element, elementRef];
 }
 
-export function getElementDimensionsOnResize(): [RectWithPos | undefined, (element: HTMLElement | null) => void] {
+export function getElementDimensionsOnResize(
+  isElementReady: boolean,
+  imageSizeDeps: unknown[]
+): [RectWithPos | undefined, (element: HTMLElement | null) => void] {
   const [element, elementRef] = useElementRef();
-  const dimensions = doGetElementDimensionsOnResize(element, element);
+  const dimensions = doGetElementDimensionsOnResize(isElementReady, element, element, imageSizeDeps);
   return [dimensions, elementRef];
 }
 
-export function getElementDimensionsOnParentResize(): [
-  RectWithPos | undefined,
-  (element: HTMLElement | null) => void,
-  (parentElement: HTMLElement | null) => void
-] {
+export function getElementDimensionsOnParentResize(
+  isElementReady: boolean,
+  imageSizeDeps: unknown[]
+): [RectWithPos | undefined, (element: HTMLElement | null) => void, (parentElement: HTMLElement | null) => void] {
   const [element, elementRef] = useElementRef();
   const [parentElement, parentElementRef] = useElementRef();
-  const dimensions = doGetElementDimensionsOnResize(element, parentElement);
+  const dimensions = doGetElementDimensionsOnResize(isElementReady, element, parentElement, imageSizeDeps);
   return [dimensions, elementRef, parentElementRef];
 }
 
 function doGetElementDimensionsOnResize(
+  isElementReady: boolean,
   element: HTMLElement | undefined,
-  parentElement: HTMLElement | undefined
+  parentElement: HTMLElement | undefined,
+  imageSizeDeps: unknown[]
 ): RectWithPos | undefined {
-  const [dimensions, setDimensions] = useState<RectWithPos | undefined>(getDimensionsFromElement(element));
+  // Must be 'undefined' to begin with, as these dimensions will be zero'd if the element isn't ready (i.e. it's an image and hasn't loaded yet).
+  // IMPORTANT: do not override 'onload' for an image to achieve this, as we're already setting the attribute elsewhere, so don't want to overwrite the handler.
+  const [dimensions, setDimensions] = useState<RectWithPos | undefined>(undefined);
 
   useLayoutEffect(() => {
-    const updateDimensions = (): void => setDimensions(getDimensionsFromElement(element));
+    const updateDimensions = (): void => {
+      if (isElementReady) {
+        setDimensions(getDimensionsFromElement(element));
+      }
+    };
+
     if (element === undefined || parentElement === undefined) {
       return;
     }
-    element.onload = updateDimensions;
+
     const observer = new ResizeObserver(updateDimensions);
     observer.observe(parentElement);
     return () => observer.disconnect();
-  }, [element]);
+  }, [element, isElementReady, ...imageSizeDeps]);
 
   return dimensions;
 }

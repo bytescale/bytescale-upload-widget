@@ -17,15 +17,25 @@ interface Props {
 
 export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
   const [imageUrl, setImageUrl] = useState("");
+
+  // Used to determine whether to show the image element or the spinner.
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Used to track if the image element is 'loaded' per its onload state.
+  const [imageLoadedReal, setImageLoadedReal] = useState(false);
+
   const [containerId] = useState(`uploader__image-editor__image-${Math.round(Math.random() * 100000)}`);
-  const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize();
+  const [imgDimensions, imgRef, containerRef] = getElementDimensionsOnParentResize(imageLoadedReal, [
+    imageUrl,
+    imageLoaded
+  ]);
 
   // When multiple images are uploaded, the same component instance is used, so we need to update the image with an effect:
   useLayoutEffect(() => {
     const { url, external } = calculateImagePreviewUrl(originalImage);
     setImageUrl(url);
     setImageLoaded(!external); // Delay for displaying a local image is very short, so don't flash the loader to the user.
+    setImageLoadedReal(false); // Image will be unloaded to being with, as we're changing its "src" attribute here.
   }, [originalImage.fileUrl]);
 
   return (
@@ -40,7 +50,10 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image }: Pro
           <img
             id={containerId}
             src={imageUrl}
-            onLoad={() => setImageLoaded(true)}
+            onLoad={() => {
+              setImageLoaded(true);
+              setImageLoadedReal(true);
+            }}
             className="uploader__image-editor__image-inner"
             style={imageLoaded ? {} : { display: "none" }}
             ref={imgRef}

@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout, multi }: Props): JSX.Element => {
-  const [dimensions, containerRef] = getElementDimensionsOnResize();
+  const [dimensions, containerRef] = getElementDimensionsOnResize(true, []);
   const breakpoints = [
     { width: 650, value: "md" },
     { width: 930, value: "lg" }
