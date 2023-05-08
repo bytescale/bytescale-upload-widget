@@ -23,8 +23,9 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image }: Pro
 
   // When multiple images are uploaded, the same component instance is used, so we need to update the image with an effect:
   useLayoutEffect(() => {
-    setImageUrl(calculateImagePreviewUrl(originalImage));
-    setImageLoaded(false);
+    const { url, external } = calculateImagePreviewUrl(originalImage);
+    setImageUrl(url);
+    setImageLoaded(!external); // Delay for displaying a local image is very short, so don't flash the loader to the user.
   }, [originalImage.fileUrl]);
 
   return (

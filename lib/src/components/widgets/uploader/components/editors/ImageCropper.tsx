@@ -71,7 +71,7 @@ export const ImageCropper = ({
         img.onload = function () {
           resolve({ width: img.naturalWidth, height: img.naturalHeight });
         };
-        img.src = calculateImagePreviewUrl(originalImage);
+        img.src = calculateImagePreviewUrl(originalImage).url;
       });
 
       const originalImageUploadedName = originalImage.filePath.substring(originalImage.filePath.lastIndexOf("/") + 1);
