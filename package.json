@@ -20,7 +20,7 @@
     "lib/**/*.{ts,tsx}": [
       "./runForEachPackage.js tsc --noEmit ?"
     ],
-    "*.{js,jsx,ts,tsx,json,css,html,md,yaml,yml}": [
+    "*.{js,jsx,ts,tsx,json,css,scss,html,md,yaml,yml}": [
       "prettier -w"
     ]
   },

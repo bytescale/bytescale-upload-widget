@@ -17,7 +17,7 @@
   border: 0.3em solid var(--shade-700);
   border-right-color: transparent;
   border-radius: 50%;
-  animation: spinner .75s linear infinite;
+  animation: spinner 0.75s linear infinite;
 
   &__container {
     display: flex;
