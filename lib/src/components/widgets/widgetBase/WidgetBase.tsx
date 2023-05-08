@@ -16,7 +16,7 @@ interface Props {
   multi: boolean;
 }
 
-export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout, multi }: Props): JSX.Element => {
+export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layout }: Props): JSX.Element => {
   const [dimensions, containerRef] = getElementDimensionsOnResize(true, []);
   const breakpoints = [
     { width: 650, value: "md" },
@@ -44,7 +44,7 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
       )}
       <div
         className={cn("uploader__widget-base__children", {
-          "uploader__widget-base__children--is-multi-file-modal": layout === "modal" && multi
+          "uploader__widget-base__children--is-modal": layout === "modal"
         })}>
         {children}
       </div>

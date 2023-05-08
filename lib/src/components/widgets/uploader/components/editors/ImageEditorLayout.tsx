@@ -6,16 +6,18 @@ import { UploadedFile } from "upload-js";
 import { getElementDimensionsOnParentResize } from "uploader/modules/common/UseDimensionsFromElement";
 import { calculateImagePreviewUrl } from "uploader/components/widgets/uploader/components/editors/modules/PreviewImageUrlCalculator";
 import { Spinner } from "uploader/components/widgets/uploader/components/editors/Spinner";
+import cn from "classnames";
 import "./ImageEditorLayout.scss";
 
 interface Props {
   actions: ReactNode;
   header?: ReactNode;
   image: (props: { imageUrl: string; imgDimensions: Rect }) => ReactNode;
+  modal: boolean;
   originalImage: UploadedFile;
 }
 
-export const ImageEditorLayout = ({ actions, originalImage, header, image }: Props): JSX.Element => {
+export const ImageEditorLayout = ({ actions, originalImage, header, image, modal }: Props): JSX.Element => {
   const [imageUrl, setImageUrl] = useState("");
 
   // Used to determine whether to show the image element or the spinner.
@@ -41,7 +43,10 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image }: Pro
   return (
     <div className="uploader__image-editor">
       <div
-        className={header === undefined ? "uploader__image-editor__header--empty" : "uploader__image-editor__header"}>
+        className={cn({
+          "uploader__image-editor__header": header !== undefined,
+          "uploader__image-editor__header--empty-non-modal": header === undefined && !modal
+        })}>
         {header}
       </div>
       <div className="uploader__image-editor__image" ref={containerRef}>

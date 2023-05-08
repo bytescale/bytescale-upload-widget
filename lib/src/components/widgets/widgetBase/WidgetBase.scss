@@ -42,8 +42,8 @@
     left: 0;
     right: 0;
 
-    &--is-multi-file-modal {
-      top: 40 * $px;
+    &--is-modal {
+      top: 40 * $px; // Required to avoid collision with the modal's close button.
     }
   }
 

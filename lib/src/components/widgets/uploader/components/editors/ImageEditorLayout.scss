@@ -15,7 +15,8 @@
     }
     &__header {
       padding: 0.825em 0.8em 0.75em 0.8em;
-      &--empty {
+      &--empty-non-modal {
+        // This additional gutter is only required on dropzone layouts, as modals already have a top gutter from the close button.
         min-height: $btn-group-padding * $px;
       }
     }

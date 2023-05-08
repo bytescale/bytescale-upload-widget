@@ -58,7 +58,7 @@ export const ImageCropper = ({
   upload,
   onFinish
 }: Props): JSX.Element => {
-  const { locale } = options;
+  const { locale, layout } = options;
   const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
   const multi = options.multi ? { imageIndex, imageCount } : undefined;
 
@@ -94,6 +94,7 @@ export const ImageCropper = ({
 
   return (
     <ImageEditorLayout
+      modal={layout === "modal"}
       header={
         multi === undefined || multi.imageCount === 1 ? undefined : (
           <span className="text-secondary">
