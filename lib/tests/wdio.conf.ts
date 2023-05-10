@@ -1,4 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Options } from "@wdio/types";
+// @ts-expect-error
+import * as foo from "wdio-html-nice-reporter";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const video = require("wdio-video-reporter");
 
 export const config: Options.Testrunner = {
   //
@@ -170,7 +175,31 @@ export const config: Options.Testrunner = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: [
+    "spec",
+    [
+      "html-nice",
+      {
+        outputDir: "./tmp/test-report/html/",
+        filename: "report.html",
+        reportTitle: "Test Report Title",
+        linkScreenshots: true,
+        // to show the report in a browser when done
+        showInBrowser: true,
+        collapseTests: false,
+        // to turn on screenshots after every test
+        useOnAfterCommandForScreenshot: false
+      }
+    ],
+    [
+      video,
+      {
+        outputDir: "./tmp/test-report/videos/",
+        saveAllVideos: true, // If true, also saves videos for successful test cases
+        videoSlowdownMultiplier: 1 // Higher to get slower videos, lower for faster videos [Value 1-100]
+      }
+    ]
+  ],
 
   //
   // Options to be passed to Mocha.

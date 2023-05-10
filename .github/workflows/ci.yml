@@ -99,7 +99,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-report
-          path: ./examples/tmp/test-report
+          path: ./lib/tmp/test-report
 
       - name: "Publish"
         if: github.ref == 'refs/heads/main'
