@@ -7,7 +7,6 @@ import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult
 import { UploaderInterface } from "uploader/UploaderInterface";
 import { RootContainer } from "uploader/components/RootContainer";
 import { UploadManager } from "uploader/modules/UploadManager";
-import { assertUnreachable } from "uploader/modules/common/TypeUtils";
 
 export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): UploaderInterface {
   // ----------------
@@ -75,17 +74,10 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
     console.log("[uploader] initializing...");
 
     let uploadManager: UploadManager | undefined;
-    let upload: UploadInstanceMaybe;
-    switch (uploadMaybe.type) {
-      case "upload":
-        uploadManager = new UploadManager(uploadMaybe.value);
-        upload = { type: "upload", value: uploadManager };
-        break;
-      case "error":
-        upload = uploadMaybe;
-        break;
-      default:
-        assertUnreachable(uploadMaybe);
+    let upload = uploadMaybe;
+    if (uploadMaybe.type === "upload") {
+      uploadManager = new UploadManager(uploadMaybe.value);
+      upload = { type: "upload", value: uploadManager };
     }
 
     console.log("[uploader] initialized");
