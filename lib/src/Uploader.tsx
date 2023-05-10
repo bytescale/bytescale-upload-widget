@@ -34,8 +34,6 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
   // ----------------
 
   const open = async (optionsMaybe: UploadWidgetConfig = {}): Promise<UploadWidgetResult[]> => {
-    console.log("[uploader] 'open' called.");
-
     const options = UploadWidgetConfigRequired.from(optionsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
@@ -71,16 +69,12 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
       ].join(" ")
     );
 
-    console.log("[uploader] initializing...");
-
     let uploadManager: UploadManager | undefined;
     let upload = uploadMaybe;
     if (uploadMaybe.type === "upload") {
       uploadManager = new UploadManager(uploadMaybe.value);
       upload = { type: "upload", value: uploadManager };
     }
-
-    console.log("[uploader] initialized");
 
     const uploadedFiles = await new Promise<UploadWidgetResult[]>((resolve, reject) => {
       const props: UploadWidgetContainerProps = {
@@ -93,12 +87,8 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
       render(<RootContainer widgetProps={props} />, widget);
     });
 
-    console.log("[uploader] uploaded files.");
-
     widget.remove();
     uploadManager?.cancelAll(); // Stops in-progress uploads when the widget is closed.
-
-    console.log("[uploader] returning.");
 
     return uploadedFiles;
   };
