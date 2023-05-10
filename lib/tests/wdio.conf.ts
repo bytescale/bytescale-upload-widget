@@ -89,6 +89,9 @@ export const config: Options.Testrunner = {
       "maxInstances": 5,
       //
       "browserName": "chrome",
+      "goog:loggingPrefs": {
+        browser: "ALL"
+      },
       "goog:chromeOptions": {
         args: [
           "--headless",
@@ -104,7 +107,7 @@ export const config: Options.Testrunner = {
       // it is possible to configure which logTypes to include/exclude.
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
       // excludeDriverLogs: ['bugreport', 'server'],
-    }
+    } as any
   ],
   //
   // ===================
@@ -176,7 +179,7 @@ export const config: Options.Testrunner = {
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: [
-    "spec",
+    ["spec", { addConsoleLogs: true }],
     [
       "html-nice",
       {

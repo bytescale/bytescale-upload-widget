@@ -32,10 +32,13 @@ const openUploader = (): void => {
     );
 };
 
+console.log("TEST LOG");
+
 const button = document.createElement("button");
 button.id = "uploadButton";
 button.innerHTML = "Upload an Image...";
 button.onclick = e => {
+  console.log("I have been clicked!");
   e.preventDefault();
   openUploader();
 };
