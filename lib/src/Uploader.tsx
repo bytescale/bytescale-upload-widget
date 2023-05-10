@@ -6,6 +6,8 @@ import { UploadWidgetContainerProps } from "uploader/components/widgets/uploader
 import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploaderInterface } from "uploader/UploaderInterface";
 import { RootContainer } from "uploader/components/RootContainer";
+import { UploadManager } from "uploader/modules/UploadManager";
+import { assertUnreachable } from "uploader/modules/common/TypeUtils";
 
 export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): UploaderInterface {
   // ----------------
@@ -68,9 +70,23 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
       ].join(" ")
     );
 
+    let uploadManager: UploadManager | undefined;
+    let upload: UploadInstanceMaybe;
+    switch (uploadMaybe.type) {
+      case "upload":
+        uploadManager = new UploadManager(uploadMaybe.value);
+        upload = { type: "upload", value: uploadManager };
+        break;
+      case "error":
+        upload = uploadMaybe;
+        break;
+      default:
+        assertUnreachable(uploadMaybe);
+    }
+
     const uploadedFiles = await new Promise<UploadWidgetResult[]>((resolve, reject) => {
       const props: UploadWidgetContainerProps = {
-        upload: uploadMaybe,
+        upload,
         resolve,
         reject,
         options
@@ -80,6 +96,7 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
     });
 
     widget.remove();
+    uploadManager?.cancelAll(); // Stops in-progress uploads when the widget is closed.
 
     return uploadedFiles;
   };
