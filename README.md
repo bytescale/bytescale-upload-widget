@@ -243,6 +243,9 @@ uploader
         shade800: "#f8f8f8",        // File item background
         shade900: "#fff"            // Various (draggable crop buttons, etc.)
       },
+      fontFamilies: {
+        base: "arial, sans-serif"   // Base font family (comma-delimited).
+      },
       fontSizes: {
         base: 16                    // Base font size (px).
       }

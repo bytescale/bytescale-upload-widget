@@ -7,18 +7,18 @@
 .uploader {
   --btn-text-color: var(--shade-200);
 
-  $base-size: 16; // When this base font size is used, borders will be 1px thick.
-  $px: (1 / $base-size) * 1em;
+  $default-base-size: 16; // When this base font size is used, borders will be 1px thick.
+  $px: (1 / $default-base-size) * 1em;
 
   // Set inline on element.
-  // font-size: $base-size * 1px;
+  // font-size: $default-base-size * 1px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   color: var(--shade-100);
-  font-family: -apple-system, blinkmacsystemfont, Segoe UI, helvetica, arial, sans-serif, Apple Color Emoji,
-    Segoe UI Emoji, Segoe UI Symbol;
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
   line-height: 1;
   text-align: left;
   position: static; // We've seen stylesheets (e.g. in the Vue boilerplate project) that set 'position: relative' on '*', which breaks Uploader, unless we include this.

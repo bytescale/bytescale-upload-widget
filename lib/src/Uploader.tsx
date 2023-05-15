@@ -65,7 +65,8 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
         `--shade-700: ${options.styles.colors.shade700};`,
         `--shade-800: ${options.styles.colors.shade800};`,
         `--shade-900: ${options.styles.colors.shade900};`,
-        `font-size: ${options.styles.fontSizes.base}px;`
+        `--base-font-family: ${options.styles.fontFamilies.base};`,
+        `--base-font-size: ${options.styles.fontSizes.base}px;`
       ].join(" ")
     );
 
