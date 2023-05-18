@@ -1,4 +1,5 @@
 import { UploadedFile } from "upload-js";
+import { isPreviewableFile } from "uploader/modules/MimeUtils";
 
 // Do not allow SVGs, as these may include scripts, so a user may unwittingly upload an SVG that captures their own session information.
 const nativelySupportedImages = ["image/jpeg", "image/gif", "image/png", "image/webp"];
@@ -15,8 +16,9 @@ export function calculateImagePreviewUrl(
   // if left in their native dimensions).
   const enlarge = requiresServeSideEnlargement(originalImage);
   const imageUrl = originalImage.fileUrl.replace("/raw/", "/image/");
+  const maxDimension = 1000;
   return {
-    url: `${imageUrl}?f=webp&f2=jpg${enlarge ? "&w=1000&h=1000&fit=max" : ""}`,
+    url: `${imageUrl}?f=webp&f2=jpg${enlarge ? `&w=${maxDimension}&h=${maxDimension}&fit=max` : ""}`,
     external: true,
     urlForDimensions: enlarge ? `${imageUrl}?f=jpg` : undefined
   };
@@ -32,5 +34,5 @@ function isImageNativelySupported(originalImage: UploadedFile): boolean {
  * @param originalImage
  */
 function requiresServeSideEnlargement(originalImage: UploadedFile): boolean {
-  return originalImage.mime === "image/svg+xml";
+  return isPreviewableFile(originalImage) || originalImage.mime === "image/svg+xml";
 }

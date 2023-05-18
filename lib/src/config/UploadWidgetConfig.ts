@@ -55,7 +55,10 @@ export namespace UploadWidgetConfigRequired {
       container: options.container,
       editor: UploadWidgetEditorRequired.from(options.editor),
       layout,
-      locale: options.locale ?? UploaderLocaleEnUs,
+      locale: {
+        ...UploaderLocaleEnUs, // This way ensures if the client code excludes certain entries (e.g. we've added new ones) then we default onto those.
+        ...options.locale
+      },
       maxFileCount: options.maxFileCount,
       maxFileSizeBytes: options.maxFileSizeBytes,
       metadata: options.metadata,

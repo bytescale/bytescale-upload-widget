@@ -1,7 +1,7 @@
 import { JSX } from "preact";
 import { ReactNode } from "uploader/modules/common/React";
 import { useLayoutEffect, useState } from "preact/compat";
-import { Rect, RectWithPos } from "uploader/modules/common/Rect";
+import { RectWithPos } from "uploader/modules/common/Rect";
 import { UploadedFile } from "upload-js";
 import { getElementDimensionsOnParentResize } from "uploader/modules/common/UseDimensionsFromElement";
 import { calculateImagePreviewUrl } from "uploader/components/widgets/uploader/components/editors/modules/PreviewImageUrlCalculator";
@@ -12,7 +12,7 @@ import "./ImageEditorLayout.scss";
 interface Props {
   actions: ReactNode;
   header?: ReactNode;
-  image: (props: { imageUrl: string; imgDimensions: Rect }) => ReactNode;
+  image?: (props: { imageUrl: string; imgDimensions: RectWithPos }) => ReactNode;
   modal: boolean;
   originalImage: UploadedFile;
 }
@@ -64,11 +64,7 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image, modal
             ref={imgRef}
             draggable={false}
           />
-          {imgDimensions !== undefined && imageLoaded && (
-            <div className="uploader__image-editor__image-overlay" style={RectWithPos.toCssProps(imgDimensions)}>
-              {image({ imgDimensions, imageUrl })}
-            </div>
-          )}
+          {imgDimensions !== undefined && imageLoaded && image !== undefined && image({ imgDimensions, imageUrl })}
         </div>
       </div>
       <div className="uploader__image-editor__actions btn-group">{actions}</div>

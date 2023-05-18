@@ -2,7 +2,7 @@
 import { JSX } from "preact";
 import { UploadedFile, UploadInterface } from "upload-js";
 import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
-import { useEffect, useLayoutEffect, useState } from "preact/compat";
+import { useLayoutEffect, useState } from "preact/compat";
 import { isDefined } from "uploader/modules/common/TypeUtils";
 import { UploaderWelcomeScreen } from "uploader/components/widgets/uploader/screens/UploaderWelcomeScreen";
 import { UploaderMainScreen } from "uploader/components/widgets/uploader/screens/UploaderMainScreen";
@@ -24,6 +24,8 @@ import {
 } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
+import { useShowImageScreen } from "uploader/components/widgets/uploader/screens/modules/UseShowImageScreen";
+import { isEditableImage, isPreviewableFile } from "uploader/modules/MimeUtils";
 
 interface Props {
   options: UploadWidgetConfigRequired;
@@ -36,55 +38,47 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   const [, setNextSparseFileIndex] = useState<number>(0);
   const [isInitialUpdate, setIsInitialUpdate] = useState(true);
   const [submittedFiles, setSubmittedFiles] = useState<SubmittedFileMap>({});
-  const [showImageEditor, setShowImageEditor] = useState(false);
-  const [showImageEditorTimeout, setShowImageEditorTimeout] = useState<number | null>(null);
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
   const { multi, tags, metadata, path } = options;
   const uploadWidgetResult = uploadedFiles.map(x => UploadWidgetResult.from(upload, x.uploadedFile, x.editedFile));
-  const isImage = (mime: string): boolean => mime.toLowerCase().startsWith("image/");
-  const imagesToEdit = uploadedFiles.filter(
-    x => x.editedFile === undefined && !x.editingDone && options.editor.images.crop && isImage(x.uploadedFile.mime)
-  );
+  const canEditImages = options.editor.images.crop;
+  const nonSubmittedFiles = uploadedFiles.filter(x => !x.isSubmitted);
+  const nonSubmittedImages = nonSubmittedFiles.filter(x => isEditableImage(x.uploadedFile));
+  const othersToPreview = nonSubmittedFiles.filter(x => isPreviewableFile(x.uploadedFile));
+  const imagesToEdit = canEditImages ? nonSubmittedImages : [];
 
-  const onImageEdited = (editedFile: UploadedFile | undefined, sparseFileIndex: number): void => {
-    updateFile<UploadedFileContainer>(
-      sparseFileIndex,
-      "uploaded",
-      (file): UploadedFileContainer => ({
-        ...file,
-        editedFile,
-        editingDone: true
-      })
-    );
+  const imagesToPreview = !canEditImages ? nonSubmittedImages : [];
+  const itemsToPreview = options.editor.images.preview ? [...imagesToPreview, ...othersToPreview] : [];
+
+  const pendingImages = [...itemsToPreview, ...imagesToEdit];
+  const showImageEditor = useShowImageScreen(pendingImages, onFileUploadDelay);
+
+  const onImageSubmitted = (keep: boolean, editedFile: UploadedFile | undefined, sparseFileIndex: number): void => {
+    if (!keep) {
+      removeSubmittedFile(sparseFileIndex);
+    } else {
+      updateFile<UploadedFileContainer>(
+        sparseFileIndex,
+        "uploaded",
+        (file): UploadedFileContainer => ({
+          ...file,
+          editedFile,
+          isSubmitted: true
+        })
+      );
+    }
   };
 
   const finalize = (): void => {
     resolve(uploadWidgetResult);
   };
 
-  useEffect(() => {
-    if (imagesToEdit.length > 0) {
-      const timeout = (setTimeout(() => {
-        setShowImageEditor(true);
-      }, onFileUploadDelay) as any) as number;
-      setShowImageEditorTimeout(timeout);
-      return () => clearTimeout(timeout);
-    }
-    if (showImageEditor) {
-      setShowImageEditor(false);
-    }
-    if (showImageEditorTimeout !== null) {
-      clearTimeout(showImageEditorTimeout);
-      setShowImageEditorTimeout(null);
-    }
-  }, [imagesToEdit.length, showImageEditor]);
-
   // We want to use a 'layout effect' since if the cropper has just been closed in 'single file mode', we want to
   // immediately resolve the uploader, rather than momentarily showing the main screen.
   useLayoutEffect(() => {
-    if (imagesToEdit.length > 0) {
+    if (pendingImages.length > 0) {
       // Do not raise update events until after the images have finished editing.
       return;
     }
@@ -105,7 +99,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       // Just in case the user dragged-and-dropped multiple files.
       const firstUploadedFile = uploadWidgetResult.slice(0, 1);
       const doResolve = (): void => resolve(firstUploadedFile);
-      const previousScreenWasEditor = uploadedFiles[0].editingDone;
+      const previousScreenWasEditor = uploadedFiles[0].isSubmitted;
 
       if (previousScreenWasEditor) {
         doResolve();
@@ -114,7 +108,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
         return () => clearTimeout(timeout);
       }
     }
-  }, [imagesToEdit.length, ...uploadedFiles.map(x => x.uploadedFile.fileUrl)]);
+  }, [pendingImages.length, ...uploadedFiles.map(x => x.uploadedFile.fileUrl)]);
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles(
@@ -242,7 +236,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
                 fileIndex,
                 uploadedFile,
                 editedFile: undefined,
-                editingDone: false,
+                isSubmitted: false,
                 type: "uploaded"
               })
             );
@@ -277,10 +271,10 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       multi={options.multi}>
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen options={options} addFiles={addFiles} isImageUploader={isImageUploader} />
-      ) : showImageEditor && imagesToEdit.length > 0 ? (
+      ) : showImageEditor && pendingImages.length > 0 ? (
         <UploaderImageListEditor
-          images={imagesToEdit}
-          onImageEdited={onImageEdited}
+          images={pendingImages}
+          onImageEdited={onImageSubmitted}
           upload={upload}
           options={options}
         />

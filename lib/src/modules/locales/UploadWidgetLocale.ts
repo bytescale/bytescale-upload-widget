@@ -2,6 +2,7 @@ export interface UploadWidgetLocale {
   "addAnotherFile": string;
   "addAnotherImage": string;
   "cancel": string;
+  "cancelInPreviewWindow": string;
   "cancelled!": string;
   "continue": string;
   "crop": string;

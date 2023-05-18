@@ -23,8 +23,8 @@ export interface ErroneousFile {
 
 export interface UploadedFileContainer {
   editedFile: UploadedFile | undefined;
-  editingDone: boolean;
   fileIndex: number;
+  isSubmitted: boolean; // True if the image has been 'passed' by the user, i.e. successfully edited/left unedited, or has been accepted in the preview screen.
   type: "uploaded";
   uploadedFile: UploadedFile;
 }

@@ -4,17 +4,18 @@ import { ParamsFromFile } from "uploader/components/widgets/uploader/model/Param
 import { UploadedFile, UploadInterface } from "upload-js";
 import { ImageEditorLayout } from "uploader/components/widgets/uploader/components/editors/ImageEditorLayout";
 import { useState } from "preact/compat";
-import { SubmitButton } from "uploader/components/widgets/uploader/components/buttons/SubmitButton";
 import { Rect, RectWithPos } from "uploader/modules/common/Rect";
-import "./ImageCropper.scss";
 import cn from "classnames";
 import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 import { calculateImagePreviewUrl } from "uploader/components/widgets/uploader/components/editors/modules/PreviewImageUrlCalculator";
+import { getImageEditorHeader } from "uploader/components/widgets/uploader/components/editors/ImageEditorHeader";
+import { ImageEditorButtons } from "uploader/components/widgets/uploader/components/editors/ImageEditorButtons";
+import "./ImageCropper.scss";
 
 interface Props {
   imageCount: number;
   imageIndex: number;
-  onFinish: (editedFile: UploadedFile | undefined) => void;
+  onFinish: (keep: boolean, editedFile: UploadedFile | undefined) => void;
   options: UploadWidgetConfigRequired;
   originalImage: UploadedFile;
   upload: UploadInterface;
@@ -50,21 +51,13 @@ function makeCropJson(
   };
 }
 
-export const ImageCropper = ({
-  imageCount,
-  imageIndex,
-  options,
-  originalImage,
-  upload,
-  onFinish
-}: Props): JSX.Element => {
-  const { locale, layout } = options;
+export const ImageCropper = (props: Props): JSX.Element => {
+  const { options, originalImage, upload, onFinish } = props;
   const [geometry, setGeometry] = useState<{ boundary: Rect; geometry: RectWithPos } | undefined>(undefined);
-  const multi = options.multi ? { imageIndex, imageCount } : undefined;
 
-  const submit = async (): Promise<void> => {
-    if (geometry === undefined) {
-      onFinish(undefined);
+  const submit = async (keep: boolean): Promise<void> => {
+    if (!keep || geometry === undefined) {
+      onFinish(keep, undefined);
     } else {
       const nativeImageSize = await new Promise<Rect>(resolve => {
         const img = new Image();
@@ -89,54 +82,40 @@ export const ImageCropper = ({
           path: options.editor.images.cropFilePath(originalImage)
         }
       );
-      onFinish(editedFile);
+      onFinish(keep, editedFile);
     }
   };
 
   return (
     <ImageEditorLayout
-      modal={layout === "modal"}
-      header={
-        multi === undefined || multi.imageCount === 1 ? undefined : (
-          <span className="text-secondary">
-            {locale.image} {multi.imageIndex + 1} {locale.of} {multi.imageCount}
-          </span>
-        )
-      }
-      actions={
-        <>
-          <SubmitButton
-            onSubmit={submit}
-            locale={locale}
-            idleText={options.multi ? locale.continue : locale.done}
-            busyText={locale.pleaseWait}
-            showIcon={false}
-          />
-        </>
-      }
+      modal={options.layout === "modal"}
+      header={getImageEditorHeader(props)}
+      actions={<ImageEditorButtons options={options} onFinish={submit} />}
       image={({ imgDimensions, imageUrl }) => (
-        <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={options.editor.images.cropRatio}>
-          <div
-            className={cn("uploader__image-cropper__clip", {
-              "uploader__image-cropper__clip--circular": options.editor.images.cropShape === "circ"
-            })}
-            style={{
-              width: geometry?.geometry.width ?? imgDimensions.width,
-              height: geometry?.geometry.height ?? imgDimensions.height
-            }}>
-            <img
-              src={imageUrl}
-              draggable={false}
+        <div className="uploader__image-cropper__overlay" style={RectWithPos.toCssProps(imgDimensions)}>
+          <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={options.editor.images.cropRatio}>
+            <div
+              className={cn("uploader__image-cropper__clip", {
+                "uploader__image-cropper__clip--circular": options.editor.images.cropShape === "circ"
+              })}
               style={{
-                width: imgDimensions.width,
-                height: imgDimensions.height,
-                transform: `translateX(${(geometry?.geometry.x ?? 0) * -1}px) translateY(${
-                  (geometry?.geometry.y ?? 0) * -1
-                }px)`
-              }}
-            />
-          </div>
-        </ResizableSquare>
+                width: geometry?.geometry.width ?? imgDimensions.width,
+                height: geometry?.geometry.height ?? imgDimensions.height
+              }}>
+              <img
+                src={imageUrl}
+                draggable={false}
+                style={{
+                  width: imgDimensions.width,
+                  height: imgDimensions.height,
+                  transform: `translateX(${(geometry?.geometry.x ?? 0) * -1}px) translateY(${
+                    (geometry?.geometry.y ?? 0) * -1
+                  }px)`
+                }}
+              />
+            </div>
+          </ResizableSquare>
+        </div>
       )}
       originalImage={originalImage}
     />

@@ -6,6 +6,7 @@ export const UploaderLocaleEnUs: UploadWidgetLocale = {
   "addAnotherFile": "Add another file...",
   "addAnotherImage": "Add another image...",
   "cancel": "cancel",
+  "cancelInPreviewWindow": "Cancel",
   "cancelled!": "cancelled",
   "continue": "Continue",
   "customValidationFailed": "Failed to validate file.",
