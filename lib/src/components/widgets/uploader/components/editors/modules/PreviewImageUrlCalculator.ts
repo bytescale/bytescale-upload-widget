@@ -1,5 +1,5 @@
 import { UploadedFile } from "upload-js";
-import { isPreviewableFile } from "uploader/modules/MimeUtils";
+import { isReadOnlyImage } from "uploader/modules/MimeUtils";
 
 // Do not allow SVGs, as these may include scripts, so a user may unwittingly upload an SVG that captures their own session information.
 const nativelySupportedImages = ["image/jpeg", "image/gif", "image/png", "image/webp"];
@@ -34,5 +34,5 @@ function isImageNativelySupported(originalImage: UploadedFile): boolean {
  * @param originalImage
  */
 function requiresServeSideEnlargement(originalImage: UploadedFile): boolean {
-  return isPreviewableFile(originalImage) || originalImage.mime === "image/svg+xml";
+  return isReadOnlyImage(originalImage) || originalImage.mime === "image/svg+xml";
 }

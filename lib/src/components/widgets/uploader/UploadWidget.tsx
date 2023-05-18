@@ -24,8 +24,8 @@ import {
 } from "uploader/components/widgets/uploader/components/fileIcons/ProgressIcon";
 import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
 import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
-import { useShowImageScreen } from "uploader/components/widgets/uploader/screens/modules/UseShowImageScreen";
-import { isEditableImage, isPreviewableFile } from "uploader/modules/MimeUtils";
+import { useShowImageEditor } from "uploader/components/widgets/uploader/screens/modules/UseShowImageEditor";
+import { isEditableImage, isReadOnlyImage } from "uploader/modules/MimeUtils";
 
 interface Props {
   options: UploadWidgetConfigRequired;
@@ -44,16 +44,14 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   const { multi, tags, metadata, path } = options;
   const uploadWidgetResult = uploadedFiles.map(x => UploadWidgetResult.from(upload, x.uploadedFile, x.editedFile));
   const canEditImages = options.editor.images.crop;
-  const nonSubmittedFiles = uploadedFiles.filter(x => !x.isSubmitted);
-  const nonSubmittedImages = nonSubmittedFiles.filter(x => isEditableImage(x.uploadedFile));
-  const othersToPreview = nonSubmittedFiles.filter(x => isPreviewableFile(x.uploadedFile));
-  const imagesToEdit = canEditImages ? nonSubmittedImages : [];
-
-  const imagesToPreview = !canEditImages ? nonSubmittedImages : [];
-  const itemsToPreview = options.editor.images.preview ? [...imagesToPreview, ...othersToPreview] : [];
-
-  const pendingImages = [...itemsToPreview, ...imagesToEdit];
-  const showImageEditor = useShowImageScreen(pendingImages, onFileUploadDelay);
+  const canPreviewImages = options.editor.images.preview;
+  const pendingImages = uploadedFiles.filter(
+    x =>
+      !x.isSubmitted &&
+      (((canEditImages || canPreviewImages) && isEditableImage(x.uploadedFile)) ||
+        (canPreviewImages && isReadOnlyImage(x.uploadedFile)))
+  );
+  const showImageEditor = useShowImageEditor(pendingImages, onFileUploadDelay);
 
   const onImageSubmitted = (keep: boolean, editedFile: UploadedFile | undefined, sparseFileIndex: number): void => {
     if (!keep) {
