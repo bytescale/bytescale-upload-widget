@@ -23,7 +23,12 @@ export namespace UploadWidgetResult {
     editedFile: UploadedFile | undefined
   ): UploadWidgetResult {
     const calculateFileUrl = (): string => {
-      const imageUrl = upload.url(editedFile?.filePath ?? originalFile.filePath, { transformation: "image" });
+      if (editedFile === undefined) {
+        // Always return the original file if unedited (could be a ZIP, EXE, etc. so don't run through our image API).
+        return upload.url(originalFile.filePath);
+      }
+
+      const imageUrl = upload.url(editedFile.filePath, { transformation: "image" });
       return `${imageUrl}?w=600&h=600&fit=max&q=70`;
     };
 
