@@ -68,10 +68,11 @@ export const ImageCropper = ({
     } else {
       const nativeImageSize = await new Promise<Rect>(resolve => {
         const img = new Image();
+        const imgInfo = calculateImagePreviewUrl(originalImage);
         img.onload = function () {
           resolve({ width: img.naturalWidth, height: img.naturalHeight });
         };
-        img.src = calculateImagePreviewUrl(originalImage).url;
+        img.src = imgInfo.urlForDimensions ?? imgInfo.url;
       });
 
       const originalImageUploadedName = originalImage.filePath.substring(originalImage.filePath.lastIndexOf("/") + 1);

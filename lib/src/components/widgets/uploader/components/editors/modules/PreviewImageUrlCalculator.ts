@@ -3,16 +3,34 @@ import { UploadedFile } from "upload-js";
 // Do not allow SVGs, as these may include scripts, so a user may unwittingly upload an SVG that captures their own session information.
 const nativelySupportedImages = ["image/jpeg", "image/gif", "image/png", "image/webp"];
 
-export function calculateImagePreviewUrl(originalImage: UploadedFile): { external: boolean; url: string } {
+export function calculateImagePreviewUrl(
+  originalImage: UploadedFile
+): { external: boolean; url: string; urlForDimensions: string | undefined } {
   if (isImageNativelySupported(originalImage)) {
-    return { url: URL.createObjectURL(originalImage.file as any), external: false };
+    return { url: URL.createObjectURL(originalImage.file as any), external: false, urlForDimensions: undefined };
   }
 
-  // Don't modify dimensions (as it will interfere with the cropper's calculations), but use JPG to force faster processing.
+  // We use WebP to support transparency, e.g. in SVGs.
+  // and use fit=max to enlarge SVGs (as they typically come out very small
+  // if left in their native dimensions).
+  const enlarge = requiresServeSideEnlargement(originalImage);
   const imageUrl = originalImage.fileUrl.replace("/raw/", "/image/");
-  return { url: `${imageUrl}?f=jpg`, external: true };
+  return {
+    url: `${imageUrl}?f=webp&f2=jpg${enlarge ? "&w=1000&h=1000&fit=max" : ""}`,
+    external: true,
+    urlForDimensions: enlarge ? `${imageUrl}?f=jpg` : undefined
+  };
 }
 
 function isImageNativelySupported(originalImage: UploadedFile): boolean {
   return nativelySupportedImages.includes(originalImage.mime);
+}
+
+/**
+ * SVGs can come out very small natively, but can obviously be enlarged without affecting quality, so we enlarge them
+ * server-side for the previews.
+ * @param originalImage
+ */
+function requiresServeSideEnlargement(originalImage: UploadedFile): boolean {
+  return originalImage.mime === "image/svg+xml";
 }
