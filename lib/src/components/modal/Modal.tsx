@@ -62,9 +62,12 @@ export const Modal = ({ children, closeModal }: Props): JSX.Element => {
     }
   }, [showModal]);
 
+  // 'onMouseDown' vs 'onClick':
+  // When cropping an image, if we start a crop then release the mouse button outside the modal, it appears to register
+  // as an 'onClick', so we use 'onMouseDown' to fix this.
   return (
     <>
-      {showModal && <div className={cn("uploader__backdrop", { show: showModalAsync })} onClick={doClose} />}
+      {showModal && <div className={cn("uploader__backdrop", { show: showModalAsync })} onMouseDown={doClose} />}
       {showModal && (
         <div className={cn("uploader__modal", { show: showModalAsync })}>
           {children}
