@@ -260,6 +260,7 @@ uploader
     tags: ["profile_picture"],      // Requires an Upload.io account.
     editor: {
       images: {
+        preview: true,              // True by default if cropping is enabled. Previews PDFs and videos too.
         crop: true,                 // True by default.
         cropFilePath: image => {    // Choose the file path used for JSON image crop files.
           const {filePath} = image  // In:  https://upload.io/docs/upload-api/types/FileDetails
@@ -284,6 +285,7 @@ const myCustomLocale = {
   "addAnotherFile": "Add another file...",
   "addAnotherImage": "Add another image...",
   "cancel": "cancel",
+  "cancelInPreviewWindow": "Cancel",
   "cancelled!": "cancelled",
   "continue": "Continue",
   "customValidationFailed": "Failed to validate file.",
