@@ -27,7 +27,7 @@ export const ImageEditorButtons = ({ options, onFinish }: Props): JSX.Element =>
       <SubmitButton
         onSubmit={async () => await onFinish(true)}
         locale={locale}
-        idleText={options.multi ? locale.continue : locale.done}
+        idleText={locale.continue}
         busyText={locale.pleaseWait}
         showIcon={false}
       />

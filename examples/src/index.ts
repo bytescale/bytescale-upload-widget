@@ -48,7 +48,7 @@ uploader
   .open({
     container: "#dropzone",
     layout: "inline",
-    multi: true,
+    multi: false,
     showFinishButton: true,
     onInit: x => {
       dropzoneMethods = x;
