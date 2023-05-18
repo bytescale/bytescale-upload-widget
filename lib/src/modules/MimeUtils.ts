@@ -10,5 +10,7 @@ export const isEditableImage = (originalImage: UploadedFile): boolean =>
  * IMPORTANT:
  * Must be mutually exclusive with 'isEditableImage' (there's several parts of the code that assume this).
  */
-export const isReadOnlyImage = (originalImage: UploadedFile): boolean =>
-  originalImage.mime.toLowerCase().startsWith("application/pdf");
+export const isReadOnlyImage = (originalImage: UploadedFile): boolean => {
+  const mime = originalImage.mime.toLowerCase();
+  return mime.startsWith("application/pdf") || mime.startsWith("video/");
+};
