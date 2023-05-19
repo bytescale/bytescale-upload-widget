@@ -54,7 +54,9 @@
     }
   }
 
-  .btn {
+  // We add '.btn-group > .btn' to override Bootstrap's behaviour for 'btn-group' (if set on the outer webpage) as it causes border radiuses to get removed.
+  .btn,
+  .btn-group > .btn {
     transition: 0.1s border-color linear, 0.1s background-color linear;
     display: inline-block;
     font-weight: 400;
