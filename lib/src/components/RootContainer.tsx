@@ -15,6 +15,10 @@ interface Props {
 export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [options, setOptions] = useState(widgetProps.options);
+  const widgetPropsUpdated: UploadWidgetContainerProps = {
+    ...widgetProps,
+    options
+  };
 
   useEffect(() => {
     options.onInit({
@@ -51,9 +55,9 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
           "--base-font-size": `${options.styles.fontSizes.base}px`
         }}>
         {options.layout === "modal" ? (
-          <ModalContainer widgetProps={widgetProps} />
+          <ModalContainer widgetProps={widgetPropsUpdated} />
         ) : (
-          <UploadWidgetContainer {...widgetProps} />
+          <UploadWidgetContainer {...widgetPropsUpdated} />
         )}
       </div>
     </Fragment>
