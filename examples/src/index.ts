@@ -50,6 +50,11 @@ uploader
     layout: "inline",
     multi: false,
     showFinishButton: true,
+    styles: {
+      colors: {
+        primary: "#8b63f1"
+      }
+    },
     onInit: x => {
       dropzoneMethods = x;
     }

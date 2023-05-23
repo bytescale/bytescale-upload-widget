@@ -23,6 +23,15 @@
   text-align: left;
   position: static; // We've seen stylesheets (e.g. in the Vue boilerplate project) that set 'position: relative' on '*', which breaks Uploader, unless we include this.
 
+  // Used in the DIV that gets created in "Uploader.tsx"
+  &__root {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
   // --- Reset styles (which may have been set in the containing page) ---
   a,
   p,
