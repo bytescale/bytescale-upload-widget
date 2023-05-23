@@ -11,7 +11,7 @@ export const ImageEditorButtons = ({ options, onFinish }: Props): JSX.Element =>
   const { locale } = options;
 
   return (
-    <div class="btn-group btn-group--space">
+    <>
       <button
         onClick={() => {
           onFinish(false).then(
@@ -31,6 +31,6 @@ export const ImageEditorButtons = ({ options, onFinish }: Props): JSX.Element =>
         busyText={locale.pleaseWait}
         showIcon={false}
       />
-    </div>
+    </>
   );
 };
