@@ -223,7 +223,11 @@ uploader
     maxFileSizeBytes: 1024 ** 2,    // Unlimited by default.
     mimeTypes: ["image/jpeg"],      // Unrestricted by default.
     multi: false,                   // False by default.
-    onInit: ({close, reset}) => {}, // Exposes lifecycle methods for the component.
+    onInit: ({                      // Exposes lifecycle methods for the component.
+      close,                        // Closes the widget when called.
+      reset,                        // Resets the widget when called.
+      updateConfig                  // Updates the widget's config by passing a new config
+    }) => {},                       // object to the method's first parameter.
     onUpdate: files => {},          // Called each time the list of uploaded files change.
     onValidate: async file => {},   // Return Promise<string> to show a custom error message.
     showFinishButton: true,         // Show/hide the "finish" button in the widget.

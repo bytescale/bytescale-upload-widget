@@ -49,6 +49,7 @@ export function Uploader(uploadOrConfig: UploadConfig | UploadInterface): Upload
     const widget = document.createElement("div");
     (container ?? body).appendChild(widget);
 
+    // Do not refer to 'options' in this file (where possible): move to 'RootContainer' so that it can handle prop updates.
     widget.className = "uploader__root";
 
     let uploadManager: UploadManager | undefined;

@@ -1,4 +1,4 @@
-import { Uploader, UploadWidgetMethods, UploadWidgetResult } from "uploader";
+import { Uploader, UploadWidgetConfig, UploadWidgetMethods, UploadWidgetResult } from "uploader";
 
 // For local development of Upload.js only: this is not an example of how you should set the API key in your app.
 const apiKey: string | undefined = (window as any).UPLOAD_JS_API_KEY;
@@ -44,27 +44,26 @@ button.onclick = e => {
 document.getElementById("container")?.prepend(button);
 
 let dropzoneMethods: UploadWidgetMethods | undefined;
-uploader
-  .open({
-    container: "#dropzone",
-    layout: "inline",
-    multi: false,
-    showFinishButton: true,
-    styles: {
-      colors: {
-        primary: "#8b63f1"
-      }
-    },
-    onInit: x => {
-      dropzoneMethods = x;
+const dropZoneInitialConfig: UploadWidgetConfig = {
+  container: "#dropzone",
+  layout: "inline",
+  multi: false,
+  showFinishButton: true,
+  styles: {
+    colors: {
+      primary: "#8b63f1"
     }
-  })
-  .then(
-    (f: UploadWidgetResult[]) => {
-      alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
-    },
-    (e: Error) => console.error(e)
-  );
+  },
+  onInit: x => {
+    dropzoneMethods = x;
+  }
+};
+uploader.open(dropZoneInitialConfig).then(
+  (f: UploadWidgetResult[]) => {
+    alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+  },
+  (e: Error) => console.error(e)
+);
 
 const dropzoneResetButton = document.createElement("button");
 dropzoneResetButton.innerHTML = "Reset Dropzone";
@@ -73,6 +72,17 @@ dropzoneResetButton.onclick = e => {
   dropzoneMethods?.reset();
 };
 document.getElementById("container")?.prepend(dropzoneResetButton);
+
+const dropzoneUpdateButton = document.createElement("button");
+dropzoneUpdateButton.innerHTML = "Update Dropzone Color";
+dropzoneUpdateButton.onclick = e => {
+  e.preventDefault();
+  dropzoneMethods?.updateConfig({
+    ...dropZoneInitialConfig,
+    styles: { colors: { primary: `#${Math.floor(Math.random() * 16777215).toString(16)}` } }
+  });
+};
+document.getElementById("container")?.prepend(dropzoneUpdateButton);
 
 const dropzoneCloseButton = document.createElement("button");
 dropzoneCloseButton.innerHTML = "Close Dropzone";

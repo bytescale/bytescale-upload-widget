@@ -6,6 +6,7 @@ import {
 import { ModalContainer } from "uploader/components/modal/ModalContainer";
 import { useEffect, useState } from "preact/compat";
 import cn from "classnames";
+import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
 
 interface Props {
   widgetProps: UploadWidgetContainerProps;
@@ -13,7 +14,7 @@ interface Props {
 
 export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
   const [refreshKey, setRefreshKey] = useState(0);
-  const { options } = widgetProps;
+  const [options, setOptions] = useState(widgetProps.options);
 
   useEffect(() => {
     options.onInit({
@@ -22,6 +23,9 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
       },
       reset: () => {
         setRefreshKey(x => x + 1);
+      },
+      updateConfig: newOptionsPartial => {
+        setOptions(UploadWidgetConfigRequired.from(newOptionsPartial));
       }
     });
   }, []);
@@ -46,7 +50,7 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
           "--base-font-family": options.styles.fontFamilies.base,
           "--base-font-size": `${options.styles.fontSizes.base}px`
         }}>
-        {widgetProps.options.layout === "modal" ? (
+        {options.layout === "modal" ? (
           <ModalContainer widgetProps={widgetProps} />
         ) : (
           <UploadWidgetContainer {...widgetProps} />
