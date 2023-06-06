@@ -6,6 +6,8 @@ import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult
 import { UploadWidgetStyles, UploadWidgetStylesRequired } from "uploader/config/UploadWidgetStyles";
 import { FilePathDefinition, JsonObject } from "@upload-io/upload-api-client-upload-js";
 import { UploadWidgetMethods } from "uploader/config/UploadWidgetMethods";
+import { OnPreUploadResult } from "uploader/config/OnPreUploadResult";
+import { Resolvable } from "uploader/modules/common/Resolvable";
 
 export interface UploadWidgetConfig {
   container?: string | HTMLElement;
@@ -18,8 +20,12 @@ export interface UploadWidgetConfig {
   mimeTypes?: string[];
   multi?: boolean;
   onInit?: (methods: UploadWidgetMethods) => void;
+  onPreUpload?: ((file: File) => Resolvable<OnPreUploadResult | undefined>) | undefined;
   onUpdate?: (files: UploadWidgetResult[]) => void;
-  onValidate?: (file: File) => Promise<string | undefined>;
+  /**
+   * @deprecated Use 'onPreUpload' instead, e.g. onPreUpload: (file: File) => ({errorMessage: "File too big."})
+   */
+  onValidate?: (file: File) => Resolvable<string | undefined>;
   path?: FilePathDefinition;
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
@@ -38,8 +44,8 @@ export interface UploadWidgetConfigRequired {
   mimeTypes: string[] | undefined;
   multi: boolean;
   onInit: (methods: UploadWidgetMethods) => void;
+  onPreUpload: (file: File) => Promise<OnPreUploadResult | undefined>;
   onUpdate: (files: UploadWidgetResult[]) => void;
-  onValidate: ((file: File) => Promise<string | undefined>) | undefined;
   path: FilePathDefinition | undefined;
   showFinishButton: boolean;
   showRemoveButton: boolean;
@@ -66,7 +72,13 @@ export namespace UploadWidgetConfigRequired {
       multi,
       onInit: options.onInit ?? (() => {}),
       onUpdate: options.onUpdate ?? (() => {}),
-      onValidate: options.onValidate,
+      onPreUpload: async (file): Promise<OnPreUploadResult | undefined> => {
+        const { onValidate, onPreUpload } = options;
+        return {
+          ...(onValidate === undefined ? {} : { errorMessage: await onValidate(file) }),
+          ...(onPreUpload === undefined ? {} : await onPreUpload(file))
+        };
+      },
       path: options.path,
       showFinishButton: options.showFinishButton ?? (multi ? layout === "modal" : false),
       showRemoveButton: options.showRemoveButton ?? true,

@@ -45,10 +45,10 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
   let fileName: string;
   let fileMessage: string | undefined;
   switch (file.type) {
-    case "validating":
+    case "preprocessing":
       progress = 0;
       fileName = file.file.name;
-      fileMessage = locale.validatingFile;
+      fileMessage = locale.processingFile;
       break;
     case "uploading":
       progress = Math.min(file.progress, 1 - progressMargin); // Do not let progress display 100%, as we don't have the MIME type & URL for the thumbnail yet. Plus it's confusing leaving it hanging on 100%.

@@ -25,6 +25,7 @@ import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult
 import { UploaderImageListEditor } from "uploader/components/widgets/uploader/screens/UploaderImageListEditor";
 import { useShowImageEditor } from "uploader/components/widgets/uploader/screens/modules/UseShowImageEditor";
 import { isEditableImage, isReadOnlyImage } from "uploader/modules/MimeUtils";
+import { OnPreUploadResult } from "uploader/config/OnPreUploadResult";
 
 interface Props {
   options: UploadWidgetConfigRequired;
@@ -160,7 +161,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       throw error;
     };
 
-    const { maxFileSizeBytes, mimeTypes, onValidate } = options;
+    const { maxFileSizeBytes, mimeTypes, onPreUpload } = options;
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
       raiseError(new Error(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
     }
@@ -168,32 +169,37 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       raiseError(new Error(options.locale.unsupportedFileType));
     }
 
-    if (onValidate !== undefined) {
-      setSubmittedFile(fileIndex, {
-        file,
-        fileIndex,
-        type: "validating"
-      });
-      let customValidationError: string | undefined;
-      try {
-        customValidationError = (await onValidate(file)) ?? undefined;
-      } catch (e) {
-        customValidationError = options.locale.customValidationFailed;
-        console.error("[uploader] Custom validation function (onValidate) returned an unhandled error.", e);
-      }
-      if (customValidationError !== undefined) {
-        raiseError(new Error(customValidationError));
-      }
+    setSubmittedFile(fileIndex, {
+      file,
+      fileIndex,
+      type: "preprocessing"
+    });
+
+    let preUploadResult: OnPreUploadResult | undefined;
+
+    try {
+      preUploadResult = (await onPreUpload(file)) ?? undefined; // incase the user returns 'null' instead of undefined.
+    } catch (e) {
+      preUploadResult = {
+        errorMessage: options.locale.customValidationFailed
+      };
+      console.error("[uploader] onPreUpload function raised an error.", e);
     }
 
-    return await upload.uploadFile(file, {
+    if (preUploadResult?.errorMessage !== undefined) {
+      raiseError(new Error(preUploadResult.errorMessage));
+    }
+
+    const fileToUpload = preUploadResult?.transformedFile ?? file;
+
+    return await upload.uploadFile(fileToUpload, {
       path,
       metadata,
       tags,
       onBegin: ({ cancel }) =>
         setSubmittedFile(fileIndex, {
           // IMPORTANT: use 'setSubmittedFile' as file may already exist in collection as a "validating" file.
-          file,
+          file: fileToUpload,
           fileIndex,
           cancel,
           progress: 0,

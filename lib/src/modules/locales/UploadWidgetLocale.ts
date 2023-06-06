@@ -22,6 +22,7 @@ export interface UploadWidgetLocale {
   "orDragDropImage": string;
   "orDragDropImages": string;
   "pleaseWait": string;
+  "processingFile": string;
   "remove": string;
   "removed!": string;
   "skip": string;
@@ -30,5 +31,4 @@ export interface UploadWidgetLocale {
   "uploadFiles": string;
   "uploadImage": string;
   "uploadImages": string;
-  "validatingFile": string;
 }

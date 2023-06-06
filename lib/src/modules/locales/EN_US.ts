@@ -32,5 +32,5 @@ export const UploaderLocaleEnUs: UploadWidgetLocale = {
   "uploadFiles": "Upload a File", // We've now chosen to use singular tense for the upload button.
   "uploadImage": "Upload an Image",
   "uploadImages": "Upload an Image", // We've now chosen to use singular tense for the upload button.
-  "validatingFile": "Validating file..."
+  "processingFile": "Processing file..."
 };

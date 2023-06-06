@@ -229,7 +229,10 @@ uploader
       updateConfig                  // Updates the widget's config by passing a new config
     }) => {},                       // object to the method's first parameter.
     onUpdate: files => {},          // Called each time the list of uploaded files change.
-    onValidate: async file => {},   // Return Promise<string> to show a custom error message.
+    onPreUpload: async file => ({
+      errorMessage: "Uh oh!",       // Displays this error message to the user (if set).
+      transformedFile: file         // Uploads 'transformedFile' instead of 'file' (if set).
+    }),
     showFinishButton: true,         // Show/hide the "finish" button in the widget.
     showRemoveButton: true,         // Show/hide the "remove" button next to each file.
     styles: {
