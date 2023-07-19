@@ -34,6 +34,22 @@ interface Props {
   upload: UploadInterface;
 }
 
+function isValidMimeType(allowedMimeTypes: string[] | undefined, actualMimeType: string): boolean {
+  if (allowedMimeTypes === undefined || allowedMimeTypes.length === 0) {
+    return true;
+  }
+  const normalize = (x: string): string => x.trim().toLowerCase();
+  const actualNormalized = normalize(actualMimeType);
+  return allowedMimeTypes.some(x => {
+    const requiredNormalized = normalize(x);
+    return (
+      requiredNormalized === actualNormalized ||
+      (requiredNormalized.endsWith("*") &&
+        actualNormalized.startsWith(requiredNormalized.substring(0, requiredNormalized.length - 1)))
+    );
+  });
+}
+
 export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element => {
   const [, setNextSparseFileIndex] = useState<number>(0);
   const [isInitialUpdate, setIsInitialUpdate] = useState(true);
@@ -165,7 +181,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
       raiseError(new Error(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
     }
-    if (mimeTypes !== undefined && !mimeTypes.includes(file.type)) {
+    if (!isValidMimeType(mimeTypes, file.type)) {
       raiseError(new Error(options.locale.unsupportedFileType));
     }
 

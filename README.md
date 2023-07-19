@@ -156,7 +156,7 @@ The cropper appears by default, but can be disabled with `crop: false` (see exam
 uploader
   .open({
     multi: false,
-    mimeTypes: ["image/jpeg", "image/png", "image/webp"],
+    mimeTypes: ["image/*"],
     editor: {
       images: {
         crop: true,
@@ -221,7 +221,7 @@ uploader
     locale: myCustomLocale,         // EN_US by default. (See "Localization" section below.)
     maxFileCount: 5,                // Unlimited by default (or 1 if multi: false).
     maxFileSizeBytes: 1024 ** 2,    // Unlimited by default.
-    mimeTypes: ["image/jpeg"],      // Unrestricted by default.
+    mimeTypes: ["image/*"],         // Unrestricted by default. Supports * wildcard suffix.
     multi: false,                   // False by default.
     onInit: ({                      // Exposes lifecycle methods for the component.
       close,                        // Closes the widget when called.
