@@ -1,6 +1,6 @@
 {
   "name": "uploader",
-  "version": "3.43.0",
+  "version": "3.44.0",
   "author": "Upload <hello@upload.io> (https://upload.io)",
   "description": "File Upload UI Widget — Lightweight & supports: drag and drop, multiple file uploads, image cropping, customization, and more 🚀 Comes with Cloud Storage 🌐",
   "license": "MIT",
@@ -65,7 +65,7 @@
     "@types/classnames": "2.2.11",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",
-    "@upload-io/style-loader": "3.3.1-forked-4",
+    "@upload-io/style-loader": "3.3.1-forked-5",
     "@wdio/cli": "^7.19.3",
     "@wdio/local-runner": "^7.19.3",
     "@wdio/mocha-framework": "^7.19.3",
