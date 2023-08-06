@@ -67,7 +67,7 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image, modal
           {imgDimensions !== undefined && imageLoaded && image !== undefined && image({ imgDimensions, imageUrl })}
         </div>
       </div>
-      <div className="uploader__image-editor__actions btn-group btn-group--space">{actions}</div>
+      <div className="uploader__image-editor__actions uploader__controls uploader__controls--space">{actions}</div>
     </div>
   );
 };

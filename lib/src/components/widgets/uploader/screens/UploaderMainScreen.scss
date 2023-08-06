@@ -24,8 +24,5 @@
     color: var(--btn-text-color);
     text-align: center;
     padding: 1.15em 0;
-    + .btn {
-      display: block; // Causes the "finished" button, which appears underneath the "info" element (if at all), to appear full-width.
-    }
   }
 }

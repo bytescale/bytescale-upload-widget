@@ -49,7 +49,7 @@ export const UploaderMainScreen = ({
         </div>
       </div>
       {hasButtons && (
-        <div className="btn-group">
+        <div className="uploader__controls">
           {options.multi &&
             (options.maxFileCount === undefined || submittedFiles.length < options.maxFileCount ? (
               <UploadButton

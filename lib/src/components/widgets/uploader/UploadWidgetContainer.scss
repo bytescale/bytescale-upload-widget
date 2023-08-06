@@ -48,6 +48,18 @@
   }
   // ---------------------------------------------------------------------
 
+  &__controls {
+    text-align: center; // Required when 'max file count reached' message is displayed, so that button underneath is centered.
+    padding: $controls-padding * $px;
+    &--space {
+      button {
+        &:not(:last-child) {
+          margin-right: 0.5em;
+        }
+      }
+    }
+  }
+
   a {
     color: var(--primary-color);
     &,
@@ -63,9 +75,7 @@
     }
   }
 
-  // We add '.btn-group > .btn' to override Bootstrap's behaviour for 'btn-group' (if set on the outer webpage) as it causes border radiuses to get removed.
-  .btn,
-  .btn-group > .btn {
+  .btn {
     transition: 0.1s border-color linear, 0.1s background-color linear;
     display: inline-block;
     font-weight: 400;
@@ -133,17 +143,6 @@
       font-size: 1.11em;
       padding: 0.2em 1.6em;
       margin-bottom: 1.5em;
-    }
-  }
-
-  .btn-group {
-    padding: $btn-group-padding * $px;
-    &--space {
-      button {
-        &:not(:last-child) {
-          margin-right: 0.5em;
-        }
-      }
     }
   }
 

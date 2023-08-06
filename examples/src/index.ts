@@ -47,7 +47,8 @@ let dropzoneMethods: UploadWidgetMethods | undefined;
 const dropZoneInitialConfig: UploadWidgetConfig = {
   container: "#dropzone",
   layout: "inline",
-  multi: false,
+  multi: true,
+  maxFileCount: 2,
   showFinishButton: true,
   styles: {
     colors: {
