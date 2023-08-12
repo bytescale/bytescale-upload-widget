@@ -28,8 +28,13 @@ export namespace UploadWidgetResult {
         return upload.url(originalFile.filePath);
       }
 
-      const imageUrl = upload.url(editedFile.filePath, { transformation: "image" });
-      return `${imageUrl}?w=600&h=600&fit=max&q=70`;
+      // DO NOT add a width and height etc.
+      // This causes confusion for users, as the expectation is this URL is the image they uploaded, not a resized version
+      // of it, and has parity with the URL for images where the user has decided not to crop (which we simply return a
+      // raw URL for).
+      // The sole purpose of this result is to process CROP files so that they return as images, not JSON files, and to
+      // do nothing more. (Again, for parity with uploading images where the user has decided not to crop.)
+      return upload.url(editedFile.filePath, { transformation: "image" });
     };
 
     return {
