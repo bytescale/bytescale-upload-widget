@@ -55,7 +55,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "preact": "^10.6.5",
-    "upload-js": "^2.20.0"
+    "upload-js": "^2.21.0"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
@@ -72,7 +72,7 @@
     "@wdio/spec-reporter": "^7.19.1",
     "babel-loader": "8.2.3",
     "babel-plugin-transform-async-to-promises": "0.8.15",
-    "chromedriver": "^114.0.0",
+    "chromedriver": "^115.0.0",
     "css-loader": "5.0.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "6.15.0",
