@@ -17,7 +17,7 @@ export const ConfigError = ({ error, layout }: Props): JSX.Element => {
       <p>{errorMessage}</p>
       {isApiKeyError ? (
         <div className="mt-5">
-          <a href="https://upload.io/get-started" className="btn btn--primary-outline">
+          <a href="https://www.bytescale.com/get-started" className="btn btn--primary-outline">
             Get API Key <RightSvg width={12} className="ml-2" />
           </a>{" "}
         </div>

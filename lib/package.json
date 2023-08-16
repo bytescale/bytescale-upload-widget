@@ -1,19 +1,19 @@
 {
   "name": "uploader",
   "version": "3.46.0",
-  "author": "Upload <hello@upload.io> (https://upload.io)",
+  "author": "Bytescale <hello@bytescale.com> (https://www.bytescale.com)",
   "description": "File Upload UI Widget — Lightweight & supports: drag and drop, multiple file uploads, image cropping, customization, and more 🚀 Comes with Cloud Storage 🌐",
   "license": "MIT",
   "main": "dist/main.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://upload.io/uploader",
+  "homepage": "https://www.bytescale.com/docs/upload-widget",
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/upload-io/uploader.git"
+    "url": "git+https://github.com/bytescale/uploader.git"
   },
   "bugs": {
-    "url": "https://github.com/upload-io/uploader/issues"
+    "url": "https://github.com/bytescale/uploader/issues"
   },
   "files": [
     "/dist/**/*",
@@ -49,13 +49,13 @@
     "publish:executeIfReleaseCommit": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:execute'",
     "publish:execute": "npm run publish:cdn && npm publish && npm run publish:createGitHubRelease",
     "publish:createGitHubRelease": "gh release create v$(node -p \"require('./package.json').version\")",
-    "publish:cdn": "npm run prepack:cdn &&  aws s3 cp --recursive --content-type application/javascript dist/ s3://upload-js-releases/uploader/ && aws cloudfront create-invalidation --distribution-id EO4VJPLCDN8HY --paths '/uploader/*'",
+    "publish:cdn": "npm run prepack:cdn &&  aws s3 cp --recursive --content-type application/javascript dist/ s3://upload-js-releases/uploader/ && aws cloudfront create-invalidation --distribution-id EO4VJPLCDN8HY --paths '/uploader/*' && aws cloudfront create-invalidation --distribution-id E250290WAJ43YY --paths '/uploader/*'",
     "test": "npx wdio run tests/wdio.conf.ts --autoCompileOpts.tsNodeOpts.project=tests/tsconfig.json"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "preact": "^10.6.5",
-    "upload-js": "^2.21.0"
+    "upload-js": "^2.22.0"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",

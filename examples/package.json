@@ -1,7 +1,7 @@
 {
   "name": "@upload.io/uploader-examples",
   "version": "0.0.0",
-  "author": "Upload.io <hello@upload.io> (https://upload.io)",
+  "author": "Bytescale <hello@bytescale.com> (https://www.bytescale.com)",
   "private": true,
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",

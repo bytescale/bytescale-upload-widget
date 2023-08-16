@@ -34,7 +34,7 @@ function replaceFirstLink(text: string): JSX.Element | undefined {
 }
 
 function replaceUploadIo(text: string): JSX.Element | undefined {
-  const find = "upload.io";
+  const find = "bytescale";
   const index = text.toLowerCase().indexOf(find);
   if (index === -1) {
     return undefined;
@@ -42,8 +42,8 @@ function replaceUploadIo(text: string): JSX.Element | undefined {
 
   return (
     <Link
-      text="Upload.io"
-      url={"https://upload.io/pricing"}
+      text="Bytescale"
+      url={"https://www.bytescale.com/pricing"}
       prefix={text.substring(0, index)}
       suffix={text.substring(index + find.length)}
     />

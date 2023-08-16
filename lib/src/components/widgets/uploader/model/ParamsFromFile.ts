@@ -1,4 +1,4 @@
-// Full Definition: https://github.com/upload-io/upload-image-plugin/blob/main/src/types/ParamsFromFile.ts
+// Full Definition: https://github.com/bytescale/upload-image-plugin/blob/main/src/types/ParamsFromFile.ts
 export interface ParamsFromFile {
   inputPath: string;
   pipeline: {
