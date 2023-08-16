@@ -38,7 +38,7 @@
 </p>
 <h1 align="center">
   Get Started —
-  <a href="https://codepen.io/upload-js/pen/QWOZWZR?editors=0010">
+  <a href="https://codepen.io/bytescale/pen/QWOZWZR?editors=0010">
     Try on CodePen
   </a>
 </h1>
@@ -95,7 +95,7 @@ const uploader = Uploader({
 });
 ```
 
-### Open the Modal — [Try on CodePen](https://codepen.io/upload-js/pen/oNoRmJW?editors=1010):
+### Open the Modal — [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(files => {
@@ -144,7 +144,7 @@ uploader.open({ multi: true }).then(files => {
 
 ## 👀 More Examples
 
-### Creating an Image Uploader — [Try on CodePen](https://codepen.io/upload-js/pen/gOXEWWB?editors=1010):
+### Creating an Image Uploader — [Try on CodePen](https://codepen.io/bytescale/pen/gOXEWWB?editors=1010):
 
 Uploader contains a built-in image cropper:
 
@@ -179,19 +179,19 @@ The image cropper uses server-side image cropping, and works like so:
    - The `filePath` in the result will reference the JSON file.
 1. When a JSON file is requested via the [Image Processing API](https://www.bytescale.com/docs/image-processing-api), then the crop described by the JSON file will be applied first, followed by any additional transformations you have specified via the URL.
 
-### Creating a "Single File" Upload Button — [Try on CodePen](https://codepen.io/upload-js/pen/WNXmjjq?editors=1010):
+### Creating a "Single File" Upload Button — [Try on CodePen](https://codepen.io/bytescale/pen/WNXmjjq?editors=1010):
 
 ```javascript
 uploader.open().then(files => alert(JSON.stringify(files)));
 ```
 
-### Creating a "Multi File" Upload Button — [Try on CodePen](https://codepen.io/upload-js/pen/RwjdVxY?editors=1010):
+### Creating a "Multi File" Upload Button — [Try on CodePen](https://codepen.io/bytescale/pen/RwjdVxY?editors=1010):
 
 ```javascript
 uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 ```
 
-### Creating a Dropzone — [Try on CodePen](https://codepen.io/upload-js/pen/PoOLmeL?editors=1010):
+### Creating a Dropzone — [Try on CodePen](https://codepen.io/bytescale/pen/PoOLmeL?editors=1010):
 
 You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 

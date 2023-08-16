@@ -21,7 +21,7 @@ The CI process will automatically `git tag` and `npm publish`.
 7. After release:
 
 ```bash
-( UPLOADER_VERSION=3.20.0 && \
+( UPLOADER_VERSION=3.47.0 && \
   cd ../vue-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp && \
   cd ../react-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp && \
   cd ../jquery-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp && \
