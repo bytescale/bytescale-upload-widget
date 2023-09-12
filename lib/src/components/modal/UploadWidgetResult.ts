@@ -1,4 +1,6 @@
-import { UploadedFile, UploadInterface } from "upload-js";
+import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
+import { UploadTracker } from "@bytescale/upload-widget/modules/UploadTracker";
+import { UrlBuilder } from "@bytescale/sdk";
 
 export interface UploadWidgetResult {
   editedFile: UploadedFile | undefined;
@@ -18,14 +20,16 @@ export interface UploadWidgetResult {
 
 export namespace UploadWidgetResult {
   export function from(
-    upload: UploadInterface,
+    upload: UploadTracker,
     originalFile: UploadedFile,
     editedFile: UploadedFile | undefined
   ): UploadWidgetResult {
     const calculateFileUrl = (): string => {
+      const urlBuilder = new UrlBuilder(upload.config);
+
       if (editedFile === undefined) {
         // Always return the original file if unedited (could be a ZIP, EXE, etc. so don't run through our image API).
-        return upload.url(originalFile.filePath);
+        return urlBuilder.url({ filePath: originalFile.filePath, accountId: originalFile.accountId });
       }
 
       // DO NOT add a width and height etc.
@@ -34,7 +38,13 @@ export namespace UploadWidgetResult {
       // raw URL for).
       // The sole purpose of this result is to process CROP files so that they return as images, not JSON files, and to
       // do nothing more. (Again, for parity with uploading images where the user has decided not to crop.)
-      return upload.url(editedFile.filePath, { transformation: "image" });
+      return urlBuilder.url({
+        filePath: editedFile.filePath,
+        accountId: editedFile.accountId,
+        options: {
+          transformation: "image"
+        }
+      });
     };
 
     return {

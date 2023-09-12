@@ -1,13 +1,13 @@
-import { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale";
-import { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
-import { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
-import { UploadWidgetEditor, UploadWidgetEditorRequired } from "uploader/config/UploadWidgetEditor";
-import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
-import { UploadWidgetStyles, UploadWidgetStylesRequired } from "uploader/config/UploadWidgetStyles";
-import { FilePathDefinition, JsonObject } from "@upload-io/upload-api-client-upload-js";
-import { UploadWidgetMethods } from "uploader/config/UploadWidgetMethods";
-import { OnPreUploadResult } from "uploader/config/OnPreUploadResult";
-import { Resolvable } from "uploader/modules/common/Resolvable";
+import { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocale";
+import { UploaderLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";
+import { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
+import { UploadWidgetEditor, UploadWidgetEditorRequired } from "@bytescale/upload-widget/config/UploadWidgetEditor";
+import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
+import { UploadWidgetStyles, UploadWidgetStylesRequired } from "@bytescale/upload-widget/config/UploadWidgetStyles";
+import { UploadWidgetMethods } from "@bytescale/upload-widget/config/UploadWidgetMethods";
+import { OnPreUploadResult } from "@bytescale/upload-widget/config/OnPreUploadResult";
+import { Resolvable } from "@bytescale/upload-widget/modules/common/Resolvable";
+import { FilePathDefinition } from "@bytescale/sdk";
 
 export interface UploadWidgetConfig {
   container?: string | HTMLElement;
@@ -16,7 +16,7 @@ export interface UploadWidgetConfig {
   locale?: UploadWidgetLocale;
   maxFileCount?: number;
   maxFileSizeBytes?: number;
-  metadata?: JsonObject;
+  metadata?: object;
   mimeTypes?: string[];
   multi?: boolean;
   onInit?: (methods: UploadWidgetMethods) => void;
@@ -40,7 +40,7 @@ export interface UploadWidgetConfigRequired {
   locale: UploadWidgetLocale;
   maxFileCount: number | undefined;
   maxFileSizeBytes: number | undefined;
-  metadata: JsonObject | undefined;
+  metadata: object | undefined;
   mimeTypes: string[] | undefined;
   multi: boolean;
   onInit: (methods: UploadWidgetMethods) => void;

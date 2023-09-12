@@ -1,4 +1,4 @@
-import { UploadWidgetConfig } from "uploader/config/UploadWidgetConfig";
+import { UploadWidgetConfig } from "@bytescale/upload-widget/config/UploadWidgetConfig";
 
 export interface UploadWidgetMethods {
   close: () => void;

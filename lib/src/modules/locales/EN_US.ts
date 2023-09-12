@@ -1,4 +1,4 @@
-import { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale";
+import { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocale";
 
 export const UploaderLocaleEnUs: UploadWidgetLocale = {
   "error!": "Error!",

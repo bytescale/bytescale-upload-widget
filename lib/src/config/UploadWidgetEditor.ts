@@ -1,5 +1,4 @@
-import { FilePathDefinition } from "@upload-io/upload-api-client-upload-js/dist/models/FilePathDefinition";
-import { FileDetails } from "@upload-io/upload-api-client-upload-js/dist/models/FileDetails";
+import { FileDetails, FilePathDefinition } from "@bytescale/sdk";
 
 export interface UploadWidgetEditor {
   images?: {

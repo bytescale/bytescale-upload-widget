@@ -1,7 +1,7 @@
 import cn from "classnames";
-import { DashedBackgroundSvg } from "uploader/assets/svgs/DashedBackgroundSvg";
+import { DashedBackgroundSvg } from "@bytescale/upload-widget/assets/svgs/DashedBackgroundSvg";
 import { JSX } from "preact";
-import { Rect } from "uploader/modules/common/Rect";
+import { Rect } from "@bytescale/upload-widget/modules/common/Rect";
 
 interface Props {
   closeButtonSize: number;
@@ -19,7 +19,9 @@ export const WidgetBaseBackground = ({ closeButtonSize, isDragging, dimensions }
       width={dimensions.width}
       height={dimensions.height}
       notchSize={closeButtonSize}
-      className={cn("uploader__widget-base__modal-bg", { "uploader__widget-base__modal-bg--dragging": isDragging })}
+      className={cn("upload-widget__widget-base__modal-bg", {
+        "upload-widget__widget-base__modal-bg--dragging": isDragging
+      })}
     />
   );
 };

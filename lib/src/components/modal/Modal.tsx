@@ -1,7 +1,7 @@
 import { JSX } from "preact";
-import { ReactNode } from "uploader/modules/common/React";
+import { ReactNode } from "@bytescale/upload-widget/modules/common/React";
 import { useEffect, useLayoutEffect, useState } from "preact/compat";
-import { CloseSvg } from "uploader/assets/svgs/CloseSvg";
+import { CloseSvg } from "@bytescale/upload-widget/assets/svgs/CloseSvg";
 import "./Modal.scss";
 import cn from "classnames";
 
@@ -43,8 +43,8 @@ export const Modal = ({ children, closeModal }: Props): JSX.Element => {
   useLayoutEffect(() => {
     const oldHtmlClass = document.documentElement.className;
     const oldBodyClass = document.body.className;
-    document.documentElement.className = `${oldHtmlClass} uploader__html`;
-    document.body.className = `${oldBodyClass} uploader__body`;
+    document.documentElement.className = `${oldHtmlClass} upload-widget__html`;
+    document.body.className = `${oldBodyClass} upload-widget__body`;
     return () => {
       document.documentElement.className = oldHtmlClass;
       document.body.className = oldBodyClass;
@@ -67,11 +67,11 @@ export const Modal = ({ children, closeModal }: Props): JSX.Element => {
   // as an 'onClick', so we use 'onMouseDown' to fix this.
   return (
     <>
-      {showModal && <div className={cn("uploader__backdrop", { show: showModalAsync })} onMouseDown={doClose} />}
+      {showModal && <div className={cn("upload-widget__backdrop", { show: showModalAsync })} onMouseDown={doClose} />}
       {showModal && (
-        <div className={cn("uploader__modal", { show: showModalAsync })}>
+        <div className={cn("upload-widget__modal", { show: showModalAsync })}>
           {children}
-          <div className="uploader__modal__close">
+          <div className="upload-widget__modal__close">
             <a
               href="#close"
               onClick={e => {

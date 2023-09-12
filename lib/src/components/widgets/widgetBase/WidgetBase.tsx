@@ -1,11 +1,11 @@
-import { ReactNode } from "uploader/modules/common/React";
+import { ReactNode } from "@bytescale/upload-widget/modules/common/React";
 import { JSX } from "preact";
 import cn from "classnames";
 import "./WidgetBase.scss";
-import { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
-import { WidgetBaseBackground } from "uploader/components/widgets/widgetBase/WidgetBaseBackground";
-import { modalCloseButtonPadding, modalCloseButtonSize } from "uploader/components/modal/Modal";
-import { getElementDimensionsOnResize } from "uploader/modules/common/UseDimensionsFromElement";
+import { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
+import { WidgetBaseBackground } from "@bytescale/upload-widget/components/widgets/widgetBase/WidgetBaseBackground";
+import { modalCloseButtonPadding, modalCloseButtonSize } from "@bytescale/upload-widget/components/modal/Modal";
+import { getElementDimensionsOnResize } from "@bytescale/upload-widget/modules/common/UseDimensionsFromElement";
 
 interface Props {
   children: ReactNode;
@@ -30,9 +30,9 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
   return (
     <div
       ref={containerRef}
-      className={cn("uploader__widget-base", `breakpoint-${breakpoint}`, {
-        "uploader__widget-base--draggable": isDraggable === true && layout !== "modal",
-        "uploader__widget-base--dragging": isDragging === true && layout !== "modal"
+      className={cn("upload-widget__widget-base", `breakpoint-${breakpoint}`, {
+        "upload-widget__widget-base--draggable": isDraggable === true && layout !== "modal",
+        "upload-widget__widget-base--dragging": isDragging === true && layout !== "modal"
       })}
       {...htmlProps}>
       {isDraggable === true && layout === "modal" && (
@@ -43,8 +43,8 @@ export const WidgetBase = ({ children, htmlProps, isDraggable, isDragging, layou
         />
       )}
       <div
-        className={cn("uploader__widget-base__children", {
-          "uploader__widget-base__children--is-modal": layout === "modal"
+        className={cn("upload-widget__widget-base__children", {
+          "upload-widget__widget-base__children--is-modal": layout === "modal"
         })}>
         {children}
       </div>

@@ -1,5 +1,5 @@
 {
-  "name": "@upload.io/uploader-examples",
+  "name": "@bytescale/upload-widget-examples",
   "version": "0.0.0",
   "author": "Bytescale <hello@bytescale.com> (https://www.bytescale.com)",
   "private": true,
@@ -9,19 +9,19 @@
     "start": "npm run start:dev",
     "start:dev": "webpack serve --config webpack.config.dev.js",
     "start:dist": "webpack serve",
-    "install": "(rm -rf ./node_modules/uploader && tar zxvf ../lib/uploader.tgz -C . && mv package ./node_modules/uploader)"
+    "install": "(rm -rf ./node_modules/@bytescale/upload-widget && tar zxvf ../lib/bytescale-upload-widget.tgz -C . && mkdir -p ./node_modules/@bytescale && mv package ./node_modules/@bytescale/upload-widget)"
   },
   "dependencies": {
-    "uploader": "../lib/uploader.tgz"
+    "@bytescale/upload-widget": "../lib/bytescale-upload-widget.tgz"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
     "@babel/core": "7.17.8",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
+    "@bytescale/style-loader": "3.3.1-forked.5",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",
-    "@upload-io/style-loader": "3.3.1-forked-3",
     "ansi-regex": "6.0.1",
     "babel-loader": "8.2.3",
     "css-loader": "5.0.1",

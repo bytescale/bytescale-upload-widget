@@ -21,9 +21,9 @@ The CI process will automatically `git tag` and `npm publish`.
 7. After release:
 
 ```bash
-( UPLOADER_VERSION=3.47.0 && \
-  cd ../vue-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp && \
-  cd ../react-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp && \
-  cd ../jquery-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp && \
-  cd ../angular-uploader && npm install uploader@^${UPLOADER_VERSION} && cd projects/angular-uploader && npm install uploader@^${UPLOADER_VERSION} && ga -A && gcmsg 'Upgrade uploader package' && gp )
+( UPLOAD_WIDGET_VERSION=3.47.0 && \
+  cd ../vue-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
+  cd ../react-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
+  cd ../jquery-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
+  cd ../angular-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && cd projects/angular-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp )
 ```

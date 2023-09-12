@@ -7,7 +7,7 @@ const port = 3010;
 const srcs = [path.resolve(__dirname, "src"), path.resolve(__dirname, "../lib/src")];
 
 const cssLoaders = [
-  "@upload-io/style-loader",
+  "@bytescale/style-loader",
   "css-loader",
   {
     loader: "postcss-loader",
@@ -37,7 +37,7 @@ module.exports = {
   entry: [`webpack-dev-server/client?http://localhost:${port}/`, "./src/index.ts"],
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Uploader Demo",
+      title: "Upload Widget Demo",
       template: path.resolve(__dirname, "src/index.html"),
       filename: "index.html" // output file
     }),
@@ -86,13 +86,13 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
       // Remember to keep in sync with `tsconfig.json`
-      "@upload.io/uploader-examples": path.resolve(__dirname, "../examples/src"),
-      "uploader": path.resolve(__dirname, "../lib/src")
+      "@bytescale/upload-widget-examples": path.resolve(__dirname, "../examples/src"),
+      "@bytescale/upload-widget": path.resolve(__dirname, "../lib/src")
     },
     modules: [
       // Default value (resolve relative 'node_modules' from current dir, and up the ancestors).
       "node_modules",
-      // Allows source files from 'uploader' to resolve its peer dependencies from the host application's
+      // Allows source files from '@bytescale/upload-widget' to resolve its peer dependencies from the host application's
       // 'node_modules' directory (which has the the peer dependencies installed).
       path.resolve(__dirname, "node_modules")
     ]

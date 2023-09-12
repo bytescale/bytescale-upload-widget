@@ -3,10 +3,10 @@ import { useState } from "preact/compat";
 import {
   UploadWidgetContainer,
   UploadWidgetContainerProps
-} from "uploader/components/widgets/uploader/UploadWidgetContainer";
-import { Modal } from "uploader/components/modal/Modal";
+} from "@bytescale/upload-widget/components/widgets/uploadWidget/UploadWidgetContainer";
+import { Modal } from "@bytescale/upload-widget/components/modal/Modal";
 import "./Modal.scss";
-import { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
+import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
 
 interface Props {
   widgetProps: UploadWidgetContainerProps;

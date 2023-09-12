@@ -2,11 +2,11 @@ import { JSX, Fragment } from "preact";
 import {
   UploadWidgetContainer,
   UploadWidgetContainerProps
-} from "uploader/components/widgets/uploader/UploadWidgetContainer";
-import { ModalContainer } from "uploader/components/modal/ModalContainer";
+} from "@bytescale/upload-widget/components/widgets/uploadWidget/UploadWidgetContainer";
+import { ModalContainer } from "@bytescale/upload-widget/components/modal/ModalContainer";
 import { useEffect, useState } from "preact/compat";
 import cn from "classnames";
-import { UploadWidgetConfigRequired } from "uploader/config/UploadWidgetConfig";
+import { UploadWidgetConfigRequired } from "@bytescale/upload-widget/config/UploadWidgetConfig";
 
 interface Props {
   widgetProps: UploadWidgetContainerProps;
@@ -27,6 +27,9 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
       },
       reset: () => {
         setRefreshKey(x => x + 1);
+        if (widgetProps.upload.type === "success") {
+          widgetProps.upload.value.cancelAll();
+        }
       },
       updateConfig: newOptionsPartial => {
         setOptions(UploadWidgetConfigRequired.from(newOptionsPartial));
@@ -37,7 +40,7 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
   return (
     <Fragment key={refreshKey}>
       <div
-        className={cn("uploader", { "uploader--with-modal": options.layout === "modal" })}
+        className={cn("upload-widget", { "upload-widget--with-modal": options.layout === "modal" })}
         style={{
           "--error-color": options.styles.colors.error,
           "--primary-color": options.styles.colors.primary,

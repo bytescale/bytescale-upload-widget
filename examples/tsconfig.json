@@ -22,10 +22,10 @@
     "paths": {
       // These mappings are relative to "baseUrl".
       // Remember to keep in sync with `webpack.config.js`
-      "uploader": ["../../lib/src"],
-      "uploader/*": ["../../lib/src/*"],
-      "uploader-examples": ["./"],
-      "uploader-examples/*": ["./*"]
+      "@bytescale/upload-widget": ["../../lib/src"],
+      "@bytescale/upload-widget/*": ["../../lib/src/*"],
+      "@bytescale/upload-widget-examples": ["./"],
+      "@bytescale/upload-widget-examples/*": ["./*"]
     }
   },
   "include": ["./**/*"],

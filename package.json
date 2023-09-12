@@ -1,5 +1,5 @@
 {
-  "name": "uploader-root",
+  "name": "@bytescale/upload-widget-root",
   "private": true,
   "license": "MIT",
   "scripts": {

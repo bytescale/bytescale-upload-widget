@@ -10,7 +10,7 @@ module.exports = {
     // like it would in the end-user's app, with the exception of the source files for this example project.
     // modules: ...webpack defaults...
     alias: {
-      "@upload.io/uploader-examples": config.resolve.alias["@upload.io/uploader-examples"]
+      "@bytescale/upload-widget-examples": config.resolve.alias["@bytescale/upload-widget-examples"]
     }
   }
 };

@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { ResizedSvg } from "uploader/assets/svgs/utils/ResizedSvg";
+import { ResizedSvg } from "@bytescale/upload-widget/assets/svgs/utils/ResizedSvg";
 
 export const RightSvg = ({ className, width }: { className?: string; width?: number }): JSX.Element => (
   <ResizedSvg originalWidth={13} originalHeight={10} width={width ?? 13} className={className}>

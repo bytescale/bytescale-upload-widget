@@ -1,4 +1,4 @@
-import { highlightColor } from "uploader/modules/ColorUtils";
+import { highlightColor } from "@bytescale/upload-widget/modules/ColorUtils";
 
 export interface UploadWidgetColors {
   active?: string;

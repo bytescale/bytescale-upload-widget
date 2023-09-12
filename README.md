@@ -1,33 +1,33 @@
 <h1 align="center">
   <a href="https://www.bytescale.com/docs/upload-widget">
-    <img alt="Uploader" width="313" height="93" src="https://raw.githubusercontent.com/bytescale/uploader/main/.github/assets/logo.svg">
+    <img alt="UploadWidget" width="313" height="93" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/logo.svg">
   </a>
 </h1>
 <p align="center"><b>File & Image Upload Widget</b><br/> (With Integrated Cloud Storage)</p>
 <br/>
 <p align="center">
-  <a href="https://github.com/bytescale/uploader/">
+  <a href="https://github.com/bytescale/bytescale-upload-widget/">
     <img src="https://img.shields.io/badge/gzipped-33%20kb-4ba0f6" />
   </a>
 
-  <a href="https://www.npmjs.com/package/uploader">
-    <img src="https://img.shields.io/badge/uploader-npm-4ba0f6" />
+  <a href="https://www.npmjs.com/package/@bytescale/upload-widget">
+    <img src="https://img.shields.io/badge/%40bytescale%2Fupload--widget-npm-4ba0f6" />
   </a>
 
-  <a href="https://github.com/bytescale/uploader/actions/workflows/ci.yml">
+  <a href="https://github.com/bytescale/bytescale-upload-widget/actions/workflows/ci.yml">
     <img src="https://img.shields.io/badge/build-passing-4ba0f6" />
   </a>
 
-  <a href="https://www.npmjs.com/package/uploader">
+  <a href="https://www.npmjs.com/package/@bytescale/upload-widget">
     <img src="https://img.shields.io/npm/dt/uploader?color=%234ba0f6" />
   </a>
   <br/>
 
-  <a href="https://www.npmjs.com/package/uploader">
+  <a href="https://www.npmjs.com/package/@bytescale/upload-widget">
     <img src="https://img.shields.io/badge/TypeScript-included-4ba0f6" />
   </a>
 
-  <a href="https://github.com/bytescale/uploader/actions/workflows/ci.yml">
+  <a href="https://github.com/bytescale/bytescale-upload-widget/actions/workflows/ci.yml">
     <img src="https://img.shields.io/npms-io/maintenance-score/uploader?color=4ba0f6" />
   </a>
 
@@ -43,7 +43,7 @@
   </a>
 </h1>
 
-<p align="center"><a href="https://www.bytescale.com/docs/upload-widget"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/bytescale/uploader/main/.github/assets/demo.gif"></a></p>
+<p align="center"><a href="https://www.bytescale.com/docs/upload-widget"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/demo.gif"></a></p>
 
 <p align="center">100% Serverless File Upload Widget  <br /> Powered by <a href="https://www.bytescale.com/">Bytescale</a><br/><br/></p>
 
@@ -64,19 +64,19 @@
 Install via NPM:
 
 ```shell
-npm install uploader
+npm install @bytescale/upload-widget
 ```
 
 Or via YARN:
 
 ```shell
-yarn add uploader
+yarn add @bytescale/upload-widget
 ```
 
 Or via a `<script>` tag:
 
 ```html
-<script src="https://js.bytescale.com/uploader/v3"></script>
+<script src="https://js.bytescale.com/upload-widget/v4"></script>
 ```
 
 ## Usage
@@ -87,10 +87,10 @@ Initialize once at the start of your application:
 
 ```javascript
 // Ignore if installed via a script tag.
-const { Uploader } = require("uploader");
+const { UploadWidget } = require("@bytescale/upload-widget");
 
 // Get production API keys from Bytescale
-const uploader = Uploader({
+const uploadWidget = new UploadWidget({
   apiKey: "free"
 });
 ```
@@ -98,7 +98,7 @@ const uploader = Uploader({
 ### Open the Modal — [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010):
 
 ```javascript
-uploader.open({ multi: true }).then(files => {
+uploadWidget.open({ multi: true }).then(files => {
   if (files.length === 0) {
     console.log('No files selected.')
   } else {
@@ -144,16 +144,16 @@ uploader.open({ multi: true }).then(files => {
 
 ## 👀 More Examples
 
-### Creating an Image Uploader — [Try on CodePen](https://codepen.io/bytescale/pen/gOXEWWB?editors=1010):
+### Creating an Image UploadWidget — [Try on CodePen](https://codepen.io/bytescale/pen/gOXEWWB?editors=1010):
 
-Uploader contains a built-in image cropper:
+UploadWidget contains a built-in image cropper:
 
 <p align="center"><a href="https://www.bytescale.com/docs/upload-widget"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/bytescale/jquery-uploader/main/.github/assets/demo.webp"></a></p>
 
 The cropper appears by default, but can be disabled with `crop: false` (see examples below):
 
 ```javascript
-uploader
+uploadWidget
   .open({
     multi: false,
     mimeTypes: ["image/*"],
@@ -182,21 +182,21 @@ The image cropper uses server-side image cropping, and works like so:
 ### Creating a "Single File" Upload Button — [Try on CodePen](https://codepen.io/bytescale/pen/WNXmjjq?editors=1010):
 
 ```javascript
-uploader.open().then(files => alert(JSON.stringify(files)));
+uploadWidget.open().then(files => alert(JSON.stringify(files)));
 ```
 
 ### Creating a "Multi File" Upload Button — [Try on CodePen](https://codepen.io/bytescale/pen/RwjdVxY?editors=1010):
 
 ```javascript
-uploader.open({ multi: true }).then(files => alert(JSON.stringify(files)));
+uploadWidget.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 ```
 
 ### Creating a Dropzone — [Try on CodePen](https://codepen.io/bytescale/pen/PoOLmeL?editors=1010):
 
-You can use Uploader as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
+You can use UploadWidget as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 
 ```javascript
-uploader.open({
+uploadWidget.open({
   multi: true,
   layout: "inline",
   container: "#example_div_id",  // Replace with the ID of an existing DOM element.
@@ -214,7 +214,7 @@ Note:
 All configuration is optional.
 
 ```javascript
-uploader
+uploadWidget
   .open({
     container: "body",              // "body" by default.
     layout: "modal",                // "modal" by default. "inline" also supported.
@@ -283,7 +283,7 @@ uploader
 
 ### 🏳️ Localization
 
-Default is [EN_US](https://github.com/bytescale/uploader/blob/main/lib/src/modules/locales/EN_US.ts):
+Default is [EN_US](https://github.com/bytescale/bytescale-upload-widget/blob/main/lib/src/modules/locales/EN_US.ts):
 
 ```javascript
 const myCustomLocale = {
@@ -402,7 +402,7 @@ https://upcdn.io/W142hJk/image/example/city-landscape.jpg
 
 ## Full Documentation
 
-[Uploader Documentation »](https://www.bytescale.com/docs/upload-widget)
+[UploadWidget Documentation »](https://www.bytescale.com/docs/upload-widget)
 
 ## Need a Headless (no UI) File Upload Library?
 
@@ -418,7 +418,7 @@ To configure a custom storage backend, please see:
 
 ## 👋 Create your Bytescale Account
 
-Uploader is the Upload Widget for Bytescale: the best way to serve images, videos, and audio for web apps.
+UploadWidget is the Upload Widget for Bytescale: the best way to serve images, videos, and audio for web apps.
 
 **[Create a Bytescale account »](https://www.bytescale.com/)**
 

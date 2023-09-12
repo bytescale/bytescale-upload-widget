@@ -1,6 +1,6 @@
-@import "~uploader/components/widgets/uploader/Variables";
+@import "~@bytescale/upload-widget/components/widgets/uploadWidget/Variables";
 
-.uploader {
+.upload-widget {
   $modal-index: 100000;
   &__body {
     overflow: hidden;

@@ -1,6 +1,12 @@
-import { UploadWidgetColors, UploaderColorOptionsRequired } from "uploader/config/UploadWidgetColors";
-import { UploadWidgetFontSize, UploadWidgetFontSizeRequired } from "uploader/config/UploadWidgetFontSize";
-import { UploadWidgetFontFamily, UploadWidgetFontFamilyRequired } from "uploader/config/UploadWidgetFontFamily";
+import { UploadWidgetColors, UploaderColorOptionsRequired } from "@bytescale/upload-widget/config/UploadWidgetColors";
+import {
+  UploadWidgetFontSize,
+  UploadWidgetFontSizeRequired
+} from "@bytescale/upload-widget/config/UploadWidgetFontSize";
+import {
+  UploadWidgetFontFamily,
+  UploadWidgetFontFamilyRequired
+} from "@bytescale/upload-widget/config/UploadWidgetFontFamily";
 
 export interface UploadWidgetStyles {
   colors?: UploadWidgetColors;

@@ -5,8 +5,8 @@ const babel = require("@babel/core");
 
 const browsersMD = path.resolve(__dirname, "../POLYFILLS.md");
 const browsersMDTemplate = path.resolve(__dirname, "POLYFILLS.md.template.md");
-const reactUploaderDir = path.resolve(__dirname, "../lib");
-const distFile = path.resolve(reactUploaderDir, "dist/index-fat.js");
+const uploadWidgetDir = path.resolve(__dirname, "../lib");
+const distFile = path.resolve(uploadWidgetDir, "dist/index-fat.js");
 const coreJsVersion = "3.19";
 
 // See: https://stackoverflow.com/a/32197381/592768
@@ -38,10 +38,10 @@ const splitLines = function (string) {
   return string.split(/\r?\n/);
 };
 
-// Create 'uploader' fat distribution (so all transitive dependencies can be inspected for polyfills).
-execSync("npm run prepack:fat", { stdio: "inherit", cwd: reactUploaderDir });
+// Create '@bytescale/upload-widget' fat distribution (so all transitive dependencies can be inspected for polyfills).
+execSync("npm run prepack:fat", { stdio: "inherit", cwd: uploadWidgetDir });
 
-// Polyfill a temporary version of the 'uploader' module.
+// Polyfill a temporary version of the '@bytescale/upload-widget' module.
 // webpackBootstrap
 const distCode = fs.readFileSync(distFile).toString();
 // if (distCode.includes("// webpackBootstrap")) {

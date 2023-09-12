@@ -1,9 +1,9 @@
 /**
- * This script tests to see if errors occur when including Uploader server-side.
+ * This script tests to see if errors occur when including the Bytescale Upload Widget server-side.
  */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { Uploader } = require("uploader");
+const { UploadWidget } = require("@bytescale/upload-widget");
 
-const uploader = Uploader({ apiKey: "free" });
+const uploadWidget = new UploadWidget({ apiKey: "free" });
 
-console.log(uploader);
+console.log(uploadWidget);

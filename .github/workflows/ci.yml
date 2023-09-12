@@ -28,11 +28,11 @@ jobs:
       - name: "Check code style"
         run: find . -type f \( -iname \*.js -o -iname \*.jsx -o -iname \*.ts -o -iname \*.tsx \) | grep -v node_modules | grep -v /dist/ | xargs ./node_modules/.bin/prettier --check
 
-      - name: "Uploader (npm install)"
+      - name: "Upload Widget (npm install)"
         run: npm ci
         working-directory: ./lib
 
-      - name: "Uploader (npm pack)"
+      - name: "Upload Widget (npm pack)"
         run: npm pack
         working-directory: ./lib
         env:
@@ -42,7 +42,7 @@ jobs:
         run:
           # We use 'install' rather than 'ci' due to lack of 'packages-lock.json' in this specific
           # project: we don't use 'packages-lock.json' because this project has a local dependency on
-          # 'uploader' via tarball, which is rarely rebuilt on the developers machine, making the
+          # '@bytescale/upload-widget' via tarball, which is rarely rebuilt on the developers machine, making the
           # 'package-lock.json' often stale, causing 'npm ci' to fail. We don't mind using 'npm install'
           # and missing out on the hash-checks, as we don't actually publish this package, so security
           # isn't as much of a concern.
@@ -58,7 +58,7 @@ jobs:
       - name: "Acceptance tests (start web server)"
         run:
           # Run in 'dist' mode to ensure the packaged 'uploadjs' NPM module is used,
-          # rather than loading 'uploader' from source (for a better end-to-end test).
+          # rather than loading '@bytescale/upload-widget' from source (for a better end-to-end test).
           npm run start:dist &
         working-directory: ./examples
         env:
@@ -121,7 +121,7 @@ jobs:
         env:
           SLACK_CHANNEL: deployments
           SLACK_COLOR: "#17BB5E"
-          SLACK_TITLE: "Built: uploader :rocket:"
+          SLACK_TITLE: "Built: @bytescale/upload-widget :rocket:"
           SLACK_FOOTER: "This package was successfully built."
           MSG_MINIMAL: true
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -132,7 +132,7 @@ jobs:
         env:
           SLACK_CHANNEL: deployments
           SLACK_COLOR: "#BB1717"
-          SLACK_TITLE: "Failed: uploader :boom:"
+          SLACK_TITLE: "Failed: @bytescale/upload-widget :boom:"
           SLACK_FOOTER: "No packages published."
           MSG_MINIMAL: true
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

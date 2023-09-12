@@ -1,0 +1,24 @@
+@import "~@bytescale/upload-widget/components/widgets/uploadWidget/Variables";
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: block !important; // Shopify default theme hides hidden divs.
+
+  border: 0.275em solid var(--shade-700);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner 0.75s linear infinite;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { ReactNode } from "uploader/modules/common/React";
+import { ReactNode } from "@bytescale/upload-widget/modules/common/React";
 import { JSXInternal } from "preact/src/jsx";
 import CSSProperties = JSXInternal.CSSProperties;
 

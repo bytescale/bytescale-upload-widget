@@ -1,7 +1,7 @@
 import { JSX } from "preact";
 import { useState } from "preact/compat";
-import { ReactNode } from "uploader/modules/common/React";
-import { Rect } from "uploader/modules/common/Rect";
+import { ReactNode } from "@bytescale/upload-widget/modules/common/React";
+import { Rect } from "@bytescale/upload-widget/modules/common/Rect";
 
 export interface GeometryWithProvenance<K> {
   lastUpdatedBy: K;

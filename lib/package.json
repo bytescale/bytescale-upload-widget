@@ -1,6 +1,6 @@
 {
-  "name": "uploader",
-  "version": "3.48.0",
+  "name": "@bytescale/upload-widget",
+  "version": "4.0.0",
   "author": "Bytescale <hello@bytescale.com> (https://www.bytescale.com)",
   "description": "File Upload UI Widget — Lightweight & supports: drag and drop, multiple file uploads, image cropping, customization, and more 🚀 Comes with Cloud Storage 🌐",
   "license": "MIT",
@@ -10,10 +10,10 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bytescale/uploader.git"
+    "url": "git+https://github.com/bytescale/bytescale-upload-widget.git"
   },
   "bugs": {
-    "url": "https://github.com/bytescale/uploader/issues"
+    "url": "https://github.com/bytescale/bytescale-upload-widget/issues"
   },
   "files": [
     "/dist/**/*",
@@ -40,32 +40,32 @@
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist && rm -f uploader.tgz",
+    "clean": "rm -rf dist && rm -f bytescale-upload-widget.tgz",
     "analyse": "npm run clean && webpack --config webpack.config.analyse.js",
     "prepack": "npm run clean && webpack --config webpack.config.js && tsc-alias && cp ../README.md README.md",
     "prepack:fat": "npm run clean && webpack --config webpack.config.fat.js && tsc-alias",
     "prepack:cdn": "npm run clean && webpack --config webpack.config.cdn.js && find dist -name \"*.ts\" -type f -delete && for f in dist/*.js; do cp -- \"$f\" \"${f%.js}\"; done",
-    "postpack": "([ ! -f uploader-*.tgz ] || mv uploader-*.tgz uploader.tgz) && rm README.md",
+    "postpack": "([ ! -f bytescale-upload-widget-*.tgz ] || mv bytescale-upload-widget-*.tgz bytescale-upload-widget.tgz) && rm README.md",
     "publish:executeIfReleaseCommit": "bash -c 'COMMIT=$(git log -1 --pretty=%B) && [ \"${COMMIT:0:8}\" != \"Release \" ] || npm run publish:execute'",
     "publish:execute": "npm run publish:cdn && npm publish && npm run publish:createGitHubRelease",
     "publish:createGitHubRelease": "gh release create v$(node -p \"require('./package.json').version\")",
-    "publish:cdn": "npm run prepack:cdn &&  aws s3 cp --recursive --content-type application/javascript dist/ s3://upload-js-releases/uploader/ && aws cloudfront create-invalidation --distribution-id EO4VJPLCDN8HY --paths '/uploader/*' && aws cloudfront create-invalidation --distribution-id E250290WAJ43YY --paths '/uploader/*'",
+    "publish:cdn": "npm run prepack:cdn && aws s3 cp --recursive --content-type application/javascript dist/ s3://upload-js-releases/upload-widget/ && aws cloudfront create-invalidation --distribution-id E250290WAJ43YY --paths '/upload-widget/*'",
     "test": "npx wdio run tests/wdio.conf.ts --autoCompileOpts.tsNodeOpts.project=tests/tsconfig.json"
   },
   "dependencies": {
+    "@bytescale/sdk": "^3.0.0-alpha.8",
     "classnames": "^2.2.6",
-    "preact": "^10.6.5",
-    "upload-js": "^2.22.0"
+    "preact": "^10.6.5"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
     "@babel/core": "7.17.8",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
+    "@bytescale/style-loader": "3.3.1-forked.5",
     "@types/classnames": "2.2.11",
     "@typescript-eslint/eslint-plugin": "4.8.1",
     "@typescript-eslint/parser": "4.8.1",
-    "@upload-io/style-loader": "3.3.1-forked-5",
     "@wdio/cli": "^7.19.3",
     "@wdio/local-runner": "^7.19.3",
     "@wdio/mocha-framework": "^7.19.3",

@@ -1,6 +1,6 @@
 import App from "../pageobjects/app.page";
 
-describe("uploader sandbox", () => {
+describe("@bytescale/upload-widget sandbox", () => {
   it("should contain a file upload button", async () => {
     try {
       await App.open();

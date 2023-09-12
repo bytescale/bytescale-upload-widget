@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useState } from "preact/compat";
-import { RectWithPos } from "uploader/modules/common/Rect";
+import { RectWithPos } from "@bytescale/upload-widget/modules/common/Rect";
 
 export function useElementRef(): [HTMLElement | undefined, (e: HTMLElement | null) => void] {
   const [element, setElement] = useState<HTMLElement | undefined>(undefined);

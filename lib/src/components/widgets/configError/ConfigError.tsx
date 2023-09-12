@@ -1,7 +1,7 @@
 import { JSX } from "preact";
-import { WidgetBase } from "uploader/components/widgets/widgetBase/WidgetBase";
-import { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
-import { RightSvg } from "uploader/assets/svgs/RightSvg";
+import { WidgetBase } from "@bytescale/upload-widget/components/widgets/widgetBase/WidgetBase";
+import { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
+import { RightSvg } from "@bytescale/upload-widget/assets/svgs/RightSvg";
 
 interface Props {
   error: Error;

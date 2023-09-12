@@ -1,4 +1,4 @@
-import { UploadedFile } from "upload-js";
+import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 
 export const isEditableImage = (originalImage: UploadedFile): boolean =>
   originalImage.mime.toLowerCase().startsWith("image/");

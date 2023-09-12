@@ -1,0 +1,29 @@
+.upload-widget__image-cropper {
+  &__overlay {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+  }
+  &__clip {
+    overflow: hidden;
+    img {
+      // A common problem we've seen is sites that have 'max-width: 100%' at a root level, which causes our image cropper to skew the image.
+      max-width: unset;
+    }
+    &:before {
+      content: " ";
+      display: block;
+      background: rgba(255, 255, 255, 0.15);
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: -2px;
+      bottom: -2px;
+    }
+    &--circular {
+      &,
+      &:before {
+        border-radius: 100%;
+      }
+    }
+  }
+}

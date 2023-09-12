@@ -1,6 +1,6 @@
-@import "~uploader/components/widgets/uploader/Variables";
+@import "~@bytescale/upload-widget/components/widgets/uploadWidget/Variables";
 
-.uploader__widget-base {
+.upload-widget__widget-base {
   $margin: 15 * $px;
   $border-color: var(--shade-600);
   border-radius: 5 * $px;

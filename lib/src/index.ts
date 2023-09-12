@@ -1,9 +1,8 @@
-export { Uploader } from "uploader/Uploader";
-export { UploaderInterface } from "uploader/UploaderInterface";
-export { UploadWidgetResult } from "uploader/components/modal/UploadWidgetResult";
-export { UploadWidgetLocale } from "uploader/modules/locales/UploadWidgetLocale";
-export { UploadWidgetLayout } from "uploader/config/UploadWidgetLayout";
-export { UploadWidgetEditor } from "uploader/config/UploadWidgetEditor";
-export { UploadWidgetConfig } from "uploader/config/UploadWidgetConfig";
-export { UploadWidgetMethods } from "uploader/config/UploadWidgetMethods";
-export { UploaderLocaleEnUs } from "uploader/modules/locales/EN_US";
+export { UploadWidget } from "@bytescale/upload-widget/UploadWidget";
+export { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
+export { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocale";
+export { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
+export { UploadWidgetEditor } from "@bytescale/upload-widget/config/UploadWidgetEditor";
+export { UploadWidgetConfig } from "@bytescale/upload-widget/config/UploadWidgetConfig";
+export { UploadWidgetMethods } from "@bytescale/upload-widget/config/UploadWidgetMethods";
+export { UploaderLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";
