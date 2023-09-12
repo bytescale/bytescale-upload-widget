@@ -22,10 +22,6 @@ export interface UploadWidgetConfig {
   onInit?: (methods: UploadWidgetMethods) => void;
   onPreUpload?: ((file: File) => Resolvable<OnPreUploadResult | undefined>) | undefined;
   onUpdate?: (files: UploadWidgetResult[]) => void;
-  /**
-   * @deprecated Use 'onPreUpload' instead, e.g. onPreUpload: (file: File) => ({errorMessage: "File too big."})
-   */
-  onValidate?: (file: File) => Resolvable<string | undefined>;
   path?: FilePathDefinition;
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
@@ -73,11 +69,8 @@ export namespace UploadWidgetConfigRequired {
       onInit: options.onInit ?? (() => {}),
       onUpdate: options.onUpdate ?? (() => {}),
       onPreUpload: async (file): Promise<OnPreUploadResult | undefined> => {
-        const { onValidate, onPreUpload } = options;
-        return {
-          ...(onValidate === undefined ? {} : { errorMessage: await onValidate(file) }),
-          ...(onPreUpload === undefined ? {} : await onPreUpload(file))
-        };
+        const { onPreUpload } = options;
+        return onPreUpload === undefined ? undefined : await onPreUpload(file);
       },
       path: options.path,
       showFinishButton: options.showFinishButton ?? (multi ? layout === "modal" : false),

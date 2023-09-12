@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://www.bytescale.com/docs/upload-widget">
-    <img alt="UploadWidget" width="313" height="93" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/logo.svg">
+    <img alt="UploadWidget" width="541" height="67" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
   </a>
 </h1>
 <p align="center"><b>File & Image Upload Widget</b><br/> (With Integrated Cloud Storage)</p>
@@ -31,8 +31,8 @@
     <img src="https://img.shields.io/npms-io/maintenance-score/uploader?color=4ba0f6" />
   </a>
 
-  <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20found%20Uploader%20%26%20Upload.io%20%E2%80%94%20they%20make%20it%20super%20easy%20to%20upload%20files%20%E2%80%94%20installs%20with%207%20lines%20of%20code%20https%3A%2F%2Fgithub.com%2Fupload-io%2Fuploader&hashtags=javascript,opensource,js,webdev,developers&via=UploadJS">
-    <img alt="Twitter URL" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fupload-io%2Fuploader%2F" />
+  <a target="_blank" href="https://twitter.com/intent/tweet?text=This%20was%20a%20great%20find...%0A%0Ahttps%3A%2F%2Fgithub.com%2Fbytescale%2Fbytescale-upload-widget">
+    <img alt="Twitter URL" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fbytescale%2Fbytescale-upload-widget" />
   </a>
 
 </p>
@@ -47,15 +47,18 @@
 
 <p align="center">100% Serverless File Upload Widget  <br /> Powered by <a href="https://www.bytescale.com/">Bytescale</a><br/><br/></p>
 
+
 <hr/>
 
-<p align="center"><a href="https://www.bytescale.com/dmca" rel="nofollow">DMCA Compliant</a> • <a href="https://www.bytescale.com/dpa" rel="nofollow">GDPR Compliant</a> • <a href="https://www.bytescale.com/sla" rel="nofollow">99.9% Uptime SLA</a>
-  <br/>
-  <b>Supports:</b> Rate Limiting, Volume Limiting, File Size &amp; Type Limiting, JWT Auth, and more...
+<p align="center">
+  <b>Supports:</b> Image Cropping, Video Previews, Document Previews, Drag & Drop, Multiple Files & More...
   <br />
+  <br />
+  <a href="https://www.bytescale.com/docs/upload-widget" rel="nofollow"><b>Full Documentation</b></a> • <a href="https://www.bytescale.com/docs/sdks/javascript" rel="nofollow">Headless SDK</a> • <a href="https://www.bytescale.com/docs/media-processing-apis" rel="nofollow">Media Processing APIs</a> • <a href="https://www.bytescale.com/docs/storage/sources" rel="nofollow">Storage</a> • <a href="https://www.bytescale.com/docs/cdn" rel="nofollow">CDN</a>
 </p>
 
 <hr/>
+
 <br />
 <br />
 
@@ -81,33 +84,36 @@ Or via a `<script>` tag:
 
 ## Usage
 
-### Initialize
-
-Initialize once at the start of your application:
-
-```javascript
-// Ignore if installed via a script tag.
-const { UploadWidget } = require("@bytescale/upload-widget");
-
-// Get production API keys from Bytescale
-const uploadWidget = new UploadWidget({
-  apiKey: "free"
-});
-```
-
 ### Open the Modal — [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010):
 
-```javascript
-uploadWidget.open({ multi: true }).then(files => {
-  if (files.length === 0) {
-    console.log('No files selected.')
-  } else {
-    console.log('Files uploaded:');
-    console.log(files.map(f => f.fileUrl));
-  }
-}).catch(err => {
-  console.error(err);
-});
+```html
+<html>
+  <head>
+    <script src="https://js.bytescale.com/upload-widget/v4"></script>
+    <script>
+
+      // import * as Bytescale from "@bytescale/upload-widget"
+      const uploadWidget = Bytescale.UploadWidget({
+        apiKey: "free" // Get API keys from: www.bytescale.com
+      });
+
+      uploadWidget.open({ maxFileCount: 1 }).then(
+        files => {
+          const fileUrls = files.map(x => x.fileUrl).join("\n");
+          const success = fileUrls.length === 0
+            ? "No file selected."
+            : `File uploaded:\n\n${fileUrls}`;
+          alert(success);
+        },
+        error => {
+          alert(error);
+        }
+      );
+
+    </script>
+  </head>
+  <body></body>
+</html>
 ```
 
 ### Get the Result
@@ -144,13 +150,9 @@ uploadWidget.open({ multi: true }).then(files => {
 
 ## 👀 More Examples
 
-### Creating an Image UploadWidget — [Try on CodePen](https://codepen.io/bytescale/pen/gOXEWWB?editors=1010):
+### Creating a profile picker — [Try on CodePen](https://codepen.io/bytescale/pen/gOXEWWB?editors=1010):
 
-UploadWidget contains a built-in image cropper:
-
-<p align="center"><a href="https://www.bytescale.com/docs/upload-widget"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/bytescale/jquery-uploader/main/.github/assets/demo.webp"></a></p>
-
-The cropper appears by default, but can be disabled with `crop: false` (see examples below):
+<p align="center"><a href="https://www.bytescale.com/docs/upload-widget"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/demo.webp"></a></p>
 
 ```javascript
 uploadWidget
@@ -179,13 +181,7 @@ The image cropper uses server-side image cropping, and works like so:
    - The `filePath` in the result will reference the JSON file.
 1. When a JSON file is requested via the [Image Processing API](https://www.bytescale.com/docs/image-processing-api), then the crop described by the JSON file will be applied first, followed by any additional transformations you have specified via the URL.
 
-### Creating a "Single File" Upload Button — [Try on CodePen](https://codepen.io/bytescale/pen/WNXmjjq?editors=1010):
-
-```javascript
-uploadWidget.open().then(files => alert(JSON.stringify(files)));
-```
-
-### Creating a "Multi File" Upload Button — [Try on CodePen](https://codepen.io/bytescale/pen/RwjdVxY?editors=1010):
+### Uploading multiple files — [Try on CodePen](https://codepen.io/bytescale/pen/RwjdVxY?editors=1010):
 
 ```javascript
 uploadWidget.open({ multi: true }).then(files => alert(JSON.stringify(files)));
@@ -230,7 +226,7 @@ uploadWidget
     }) => {},                       // object to the method's first parameter.
     onUpdate: files => {},          // Called each time the list of uploaded files change.
     onPreUpload: async file => ({
-      errorMessage: "Uh oh!",       // Displays this error message to the user (if set).
+      errorMessage: "Uh oh!",       // Displays this validation error to the user (if set).
       transformedFile: file         // Uploads 'transformedFile' instead of 'file' (if set).
     }),
     showFinishButton: true,         // Show/hide the "finish" button in the widget.
@@ -324,42 +320,24 @@ const myCustomLocale = {
 
 # 🌐 API Support
 
-## 🌐 File Management API
+## 🌐 File Management APIs
 
-Bytescale provides an [Upload API](https://www.bytescale.com/docs/upload-api), which supports the following:
+Bytescale provides [File Management APIs](https://www.bytescale.com/docs/apis):
 
-- File uploading.
-- File listing.
-- File deleting.
-- And more...
+- **[File Listing](https://www.bytescale.com/docs/folder-api/ListFolder)**
+- **[File Deleting](https://www.bytescale.com/docs/file-api/DeleteFile)**
+- **[File Copying](https://www.bytescale.com/docs/file-api/CopyFile)**
+- [And more...](https://www.bytescale.com/docs/apis)
 
-Uploading a `"Hello World"` text file is as simple as:
+## 🌐 Media Processing APIs (Image/Video/Audio)
 
-```shell
-curl --data "Hello World" \
-     -u apikey:free \
-     -X POST "https://api.bytescale.com/v1/files/basic"
-```
+Bytescale also provides real-time [Media Processing APIs](https://www.bytescale.com/docs/media-processing-apis):
 
-_Note: Remember to set `-H "Content-Type: mime/type"` when uploading other file types!_
+- **[Image Processing APIs](https://www.bytescale.com/docs/image-processing-api)** ([resize](https://www.bytescale.com/docs/image-processing-api#image-resizing-api), [crop](https://www.bytescale.com/docs/image-processing-api#image-cropping-api), [convert](https://www.bytescale.com/docs/image-processing-api#f), [compress](https://www.bytescale.com/docs/image-processing-api#image-compression-api) & [watermark](https://www.bytescale.com/docs/image-processing-api#Text-layering-api))
+- **[Video Processing APIs](https://www.bytescale.com/docs/video-processing-api)** ([transcode](https://www.bytescale.com/docs/video-processing-api#video-transcoding-api), [optimize](https://www.bytescale.com/docs/video-processing-api#video-compression-api), [resize](https://www.bytescale.com/docs/video-processing-api#video-resizing-api) & [extract metadata](https://www.bytescale.com/docs/video-processing-api#video-metadata-api))
+- **[Audio Processing APIs](https://www.bytescale.com/docs/audio-processing-api)** ([transcode](https://www.bytescale.com/docs/audio-processing-api#audio-transcoding-api), [optimize](https://www.bytescale.com/docs/audio-processing-api#audio-compression-api), [trim](https://www.bytescale.com/docs/audio-processing-api#audio-trimming-api) & [extract metadata](https://www.bytescale.com/docs/audio-processing-api#audio-metadata-api))
 
-[Read the Upload API docs »](https://www.bytescale.com/docs/upload-api)
-
-## 🌐 Image Processing API (Resize, Crop, etc.)
-
-Bytescale also provides an [Image Processing API](https://www.bytescale.com/docs/image-processing-api), which supports the following:
-
-- [Image Resizing](https://www.bytescale.com/docs/image-processing-api#image-resizing-api)
-- [Image Cropping](https://www.bytescale.com/docs/image-processing-api#image-cropping-api)
-- [Image Compression](https://www.bytescale.com/docs/image-processing-api#image-compression-api)
-- [Image Conversion](https://www.bytescale.com/docs/image-processing-api#f)
-- [Image Manipulation (blur, sharpen, brightness, etc.)](https://www.bytescale.com/docs/image-processing-api#image-manipulation-api)
-- [Layering (e.g for text & image watermarks)](https://www.bytescale.com/docs/image-processing-api#image)
-- and more...
-
-[Read the Image Processing API docs »](https://www.bytescale.com/docs/image-processing-api)
-
-### Original Image
+### Image Processing API (Original Image)
 
 Here's an example using [a photo of Chicago](https://upcdn.io/W142hJk/raw/example/city-landscape.jpg):
 
@@ -369,7 +347,7 @@ Here's an example using [a photo of Chicago](https://upcdn.io/W142hJk/raw/exampl
 https://upcdn.io/W142hJk/raw/example/city-landscape.jpg
 ```
 
-### Processed Image
+### Image Processing API (Transformed Image)
 
 Using the [Image Processing API](https://www.bytescale.com/docs/image-processing-api), you can produce [this image](https://upcdn.io/W142hJk/image/example/city-landscape.jpg?w=900&h=600&fit=crop&f=webp&q=80&blur=4&text=WATERMARK&layer-opacity=80&blend=overlay&layer-rotate=315&font-size=100&padding=10&font-weight=900&color=ffffff&repeat=true&text=Chicago&gravity=bottom&padding-x=50&padding-bottom=20&font=/example/fonts/Lobster.ttf&color=ffe400):
 
@@ -400,31 +378,157 @@ https://upcdn.io/W142hJk/image/example/city-landscape.jpg
   &color=ffe400
 ```
 
-## Full Documentation
+## Authorization
 
-[UploadWidget Documentation »](https://www.bytescale.com/docs/upload-widget)
+Bytescale supports two types of authorization:
 
-## Need a Headless (no UI) File Upload Library?
+### API Keys
 
-[Try Upload.js »](https://www.bytescale.com/upload-js)
+The Bytescale Upload Widget uses the `apiKey` from the constructor to authenticate with the Bytescale API.
 
-## Can I use my own storage?
+With API key auth, the requester has access to the resources available to the API key.
 
-**Yes:** Bytescale supports AWS S3, Cloudflare R2, Google Storage, and DigitalOcean Spaces.
+You must always use **public API keys** (e.g. `public_***`) in your client-side code.
 
-To configure a custom storage backend, please see:
+Each API Key can have its read/write access limited to a subset of files/folders.
 
-[https://www.bytescale.com/docs/storage/sources](https://www.bytescale.com/docs/storage/sources)
+### JWT Cookies
+
+JWT cookies are optional.
+
+With JWT cookies, the user can download private files directly via URL, as authorization is performed implicitly via a session cookie. This allows the browser to display private files in `<img>` and `<video>` elements.
+
+With JWT cookies, the user can also upload files to locations that aren't otherwise permitted by the API key, but are permitted by the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt). This is because the [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads, and the Bytescale JavaScript SDK automatically injects the user's JWT into all API requests once the `AuthManager.beginAuthSession` method has been called.
+
+_Note: when using JWT cookies to download files, the `?auth=true` query parameter must be added to the URL._
+
+[Learn more about using JWT cookies »](https://www.bytescale.com/docs/authorization#jwt-cookie)
+
+## UrlBuilder
+
+The [Bytescale JavaScript SDK](https://github.com/bytescale/bytescale-javascript-sdk) exports a `UrlBuilder` for making URLs from `filePath` values:
+
+```javascript
+import { UrlBuilder } from "@bytescale/sdk";
+```
+
+**Recommended:** you should always save `filePath` values to your DB instead of `fileUrl` values.
+
+#### Raw Files
+
+To get the URL for the uploaded image `/example.jpg` in its original form, use the following params:
+
+```javascript
+// Returns: "https://upcdn.io/1234abc/raw/example.jpg"
+new UrlBuilder().url({
+  accountId: "1234abc",
+  filePath: "/example.jpg"
+});
+```
+
+#### Images
+
+To resize the uploaded image `/example.jpg` to 800x600, use the following params:
+
+```javascript
+// Returns: "https://upcdn.io/1234abc/image/example.jpg?w=800&h=600"
+new UrlBuilder().url({
+  accountId: "1234abc",
+  filePath: "/example.jpg",
+  options: {
+    transformation: "image",
+    transformationParams: {
+      w: 800,
+      h: 600
+    }
+  }
+});
+```
+
+[Image Processing API Docs »](https://www.bytescale.com/docs/image-processing-api)
+
+#### Videos
+
+To transcode the uploaded video `/example.mov` to MP4/H.264 in HD, use the following params:
+
+```javascript
+// Returns: "https://upcdn.io/1234abc/video/example.mov?f=mp4-h264&h=1080"
+new UrlBuilder().url({
+  accountId: "1234abc",
+  filePath: "/example.mov",
+  options: {
+    transformation: "video",
+    transformationParams: {
+      f: "mp4-h264",
+      h: 1080
+    }
+  }
+});
+```
+
+[Video Processing API Docs »](https://www.bytescale.com/docs/video-processing-api)
+
+#### Audio
+
+To transcode the uploaded audio `/example.wav` to AAC in 192kbps, use the following params:
+
+```javascript
+// Returns: "https://upcdn.io/1234abc/audio/example.wav?f=aac&br=192"
+new UrlBuilder().url({
+  accountId: "1234abc",
+  filePath: "/example.wav",
+  options: {
+    transformation: "audio",
+    transformationParams: {
+      f: "aac",
+      br: 192
+    }
+  }
+});
+```
+
+[Audio Processing API Docs »](https://www.bytescale.com/docs/audio-processing-api)
+
+#### Archives
+
+To extract the file `document.docx` from the uploaded ZIP file `/example.zip`, use the following params:
+
+```javascript
+// Returns: "https://upcdn.io/1234abc/archive/example.zip?m=extract&artifact=/document.docx"
+new UrlBuilder().url({
+  accountId: "1234abc",
+  filePath: "/example.zip",
+  options: {
+    transformation: "archive",
+    transformationParams: {
+      m: "extract"
+    },
+    artifact: "/document.docx"
+  }
+});
+```
+
+[Archive Processing API Docs »](https://www.bytescale.com/docs/archive-processing-api)
 
 ## 👋 Create your Bytescale Account
 
-UploadWidget is the Upload Widget for Bytescale: the best way to serve images, videos, and audio for web apps.
+Bytescale is the best way to serve images, videos, and audio for web apps.
 
-**[Create a Bytescale account »](https://www.bytescale.com/)**
+**[Create a Bytescale account »](https://www.bytescale.com/get-started)**
 
-## Building From Source
+## 🙋 Can I use my own storage?
 
-[BUILD.md](BUILD.md)
+Bytescale supports AWS S3, Cloudflare R2, Google Storage, DigitalOcean Spaces, and Bytescale Storage.
+
+**[Bytescale Storage Docs »](https://www.bytescale.com/docs/storage/sources)**
+
+#### Full Documentation
+
+- **[Bytescale Upload Widget Docs »](https://www.bytescale.com/docs/upload-widget)**
+- **[Bytescale Upload Widget (React) Docs »](https://www.bytescale.com/docs/upload-widget/frameworks/react)**
+- **[Bytescale Upload Widget (Angular) Docs »](https://www.bytescale.com/docs/upload-widget/frameworks/angular)**
+- **[Bytescale Upload Widget (Vue.js) Docs »](https://www.bytescale.com/docs/upload-widget/frameworks/vue)**
+- **[Bytescale Upload Widget (jQuery) Docs »](https://www.bytescale.com/docs/upload-widget/frameworks/jquery)**
 
 ## License
 
