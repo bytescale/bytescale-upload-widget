@@ -402,7 +402,7 @@ With JWT cookies, the user can also upload files to locations that aren't otherw
 
 _Note: when using JWT cookies to download files, the `?auth=true` query parameter must be added to the URL._
 
-[Learn more about using JWT cookies »](https://www.bytescale.com/docs/authorization#jwt-cookie)
+[Learn more about using the `AuthManager` and JWT cookies »](https://www.bytescale.com/docs/authorization#jwt-cookie)
 
 ## UrlBuilder
 
