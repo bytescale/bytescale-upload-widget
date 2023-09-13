@@ -398,7 +398,7 @@ JWT cookies are optional.
 
 With JWT cookies, the user can download private files directly via the URL, as authorization is performed implicitly via a session cookie. This allows the browser to display private files in `<img>` and `<video>` elements.
 
-With JWT cookies, the user can also upload files to locations that aren't otherwise permitted by the API key, but are permitted by the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt). This is because the [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads, and the Bytescale JavaScript SDK automatically injects the user's JWT into all API requests once the `AuthManager.beginAuthSession` method has been called.
+With JWT cookies, the user can also upload files to locations that aren't otherwise permitted by the API key, but are permitted by the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt). This is because the [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads, and the Bytescale JavaScript SDK automatically injects the user's JWT into all API requests once the `AuthManager.beginAuthSession` method has been called.
 
 _Note: when using JWT cookies to download files, the `?auth=true` query parameter must be added to the URL._
 
