@@ -93,7 +93,7 @@ Or via a `<script>` tag:
     <script>
 
       // import * as Bytescale from "@bytescale/upload-widget"
-      const uploadWidget = Bytescale.UploadWidget({
+      const uploadWidget = new Bytescale.UploadWidget({
         apiKey: "free" // Get API keys from: www.bytescale.com
       });
 
