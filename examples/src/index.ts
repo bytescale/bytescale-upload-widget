@@ -1,35 +1,29 @@
 import { UploadWidget, UploadWidgetConfig, UploadWidgetMethods, UploadWidgetResult } from "@bytescale/upload-widget";
 
 // For local development of Upload.js only: this is not an example of how you should set the API key in your app.
-const apiKey: string | undefined = (window as any).UPLOAD_JS_API_KEY;
-
-const uploadWidget = new UploadWidget({
-  apiKey: apiKey ?? "free"
-  // internal: { apiUrl: (window as any).UPLOAD_JS_API_URL, cdnUrl: (window as any).UPLOAD_JS_CDN_URL }
-});
+const apiKey: string = (window as any).UPLOAD_JS_API_KEY ?? "free";
 
 const openUploader = (): void => {
-  uploadWidget
-    .open({
-      multi: true,
-      mimeTypes: ["image/jpeg", "image/webp", "image/png", "image/heic", "image/svg+xml"],
-      maxFileCount: 10,
-      editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } },
-      styles: {
-        colors: {
-          primary: "#377dff"
-        },
-        fontSizes: {
-          base: 16
-        }
-      }
-    })
-    .then(
-      (f: UploadWidgetResult[]) => {
-        alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+  UploadWidget.open({
+    apiKey,
+    multi: true,
+    mimeTypes: ["image/jpeg", "image/webp", "image/png", "image/heic", "image/svg+xml"],
+    maxFileCount: 10,
+    editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } },
+    styles: {
+      colors: {
+        primary: "#377dff"
       },
-      (e: Error) => console.error(e)
-    );
+      fontSizes: {
+        base: 16
+      }
+    }
+  }).then(
+    (f: UploadWidgetResult[]) => {
+      alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+    },
+    (e: Error) => console.error(e)
+  );
 };
 
 console.log("TEST LOG");
@@ -45,6 +39,7 @@ document.getElementById("container")?.prepend(button);
 
 let dropzoneMethods: UploadWidgetMethods | undefined;
 const dropZoneInitialConfig: UploadWidgetConfig = {
+  apiKey,
   container: "#dropzone",
   layout: "inline",
   multi: true,
@@ -59,7 +54,7 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
     dropzoneMethods = x;
   }
 };
-uploadWidget.open(dropZoneInitialConfig).then(
+UploadWidget.open(dropZoneInitialConfig).then(
   (f: UploadWidgetResult[]) => {
     alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
   },
