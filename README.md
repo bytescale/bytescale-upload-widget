@@ -107,7 +107,6 @@ Or via a `<script>` tag:
           alert(error);
         }
       );
-
     </script>
   </head>
   <body></body>
