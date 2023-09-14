@@ -93,7 +93,7 @@ Or via a `<script>` tag:
     <script>
       // import * as Bytescale from "@bytescale/upload-widget"
       Bytescale.UploadWidget.open({
-        apiKey: "free"   // Get API keys from: www.bytescale.com
+        apiKey: "free",  // Get API keys from: www.bytescale.com
         maxFileCount: 1  // Config: https://www.bytescale.com/docs/upload-widget#configuration
       }).then(
         files => {
@@ -153,7 +153,8 @@ Or via a `<script>` tag:
 
 ```javascript
 Bytescale.UploadWidget.open({
-  multi: false,
+  apiKey: "free", // Get API keys from: www.bytescale.com
+  multi: false,   // Config: https://www.bytescale.com/docs/upload-widget#configuration
   mimeTypes: ["image/*"],
   editor: {
     images: {
@@ -180,7 +181,10 @@ The image cropper uses server-side image cropping, and works like so:
 ### Uploading multiple files — [Try on CodePen](https://codepen.io/bytescale/pen/RwjdVxY?editors=1010):
 
 ```javascript
-Bytescale.UploadWidget.open({ multi: true }).then(files => alert(JSON.stringify(files)));
+Bytescale.UploadWidget.open({
+  apiKey: "free", // Get API keys from: www.bytescale.com
+  multi: true     // Config: https://www.bytescale.com/docs/upload-widget#configuration
+}).then(files => alert(JSON.stringify(files)));
 ```
 
 ### Creating a Dropzone — [Try on CodePen](https://codepen.io/bytescale/pen/PoOLmeL?editors=1010):
@@ -189,9 +193,10 @@ You can use UploadWidget as a dropzone — rather than a modal — by specifying
 
 ```javascript
 Bytescale.UploadWidget.open({
-  multi: true,
-  layout: "inline",
-  container: "#example_div_id",  // Replace with the ID of an existing DOM element.
+  apiKey: "free",               // Get API keys from: www.bytescale.com
+  multi: true,                  // Config: https://www.bytescale.com/docs/upload-widget#configuration
+  layout: "inline",             // Specifies dropzone behaviour.
+  container: "#example_div_id", // Replace with the ID of an existing DOM element (to render the dropzone inside).
   onUpdate: (files) => console.log(files)
 })
 ```
@@ -207,6 +212,7 @@ All configuration is optional.
 
 ```javascript
 Bytescale.UploadWidget.open({
+  apiKey: "free",                 // Get API keys from: www.bytescale.com
   container: "body",              // "body" by default.
   layout: "modal",                // "modal" by default. "inline" also supported.
   locale: myCustomLocale,         // EN_US by default. (See "Localization" section below.)
