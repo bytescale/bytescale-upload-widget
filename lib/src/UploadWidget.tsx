@@ -5,20 +5,16 @@ import { UploadWidgetContainerProps } from "@bytescale/upload-widget/components/
 import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
 import { RootContainer } from "@bytescale/upload-widget/components/RootContainer";
 import { UploadTracker } from "@bytescale/upload-widget/modules/UploadTracker";
-import { BytescaleApiClientConfig } from "@bytescale/sdk";
 
 export class UploadWidget {
-  private readonly uploadTracker: MaybeError<UploadTracker>;
-
-  constructor(config: BytescaleApiClientConfig) {
+  async open(optionsMaybe: UploadWidgetConfig): Promise<UploadWidgetResult[]> {
+    let uploadTracker: MaybeError<UploadTracker>;
     try {
-      this.uploadTracker = { type: "success", value: new UploadTracker(config) };
+      uploadTracker = { type: "success", value: new UploadTracker(optionsMaybe) };
     } catch (e) {
-      this.uploadTracker = { type: "error", value: e as Error };
+      uploadTracker = { type: "error", value: e as Error };
     }
-  }
 
-  async open(optionsMaybe: UploadWidgetConfig = {}): Promise<UploadWidgetResult[]> {
     const options = UploadWidgetConfigRequired.from(optionsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
@@ -39,7 +35,7 @@ export class UploadWidget {
 
     const uploadedFiles = await new Promise<UploadWidgetResult[]>((resolve, reject) => {
       const props: UploadWidgetContainerProps = {
-        upload: this.uploadTracker,
+        upload: uploadTracker,
         resolve,
         reject,
         options
@@ -50,8 +46,8 @@ export class UploadWidget {
 
     widget.remove();
 
-    if (this.uploadTracker.type === "success") {
-      this.uploadTracker.value.cancelAll(); // Stops in-progress uploads when the widget is closed.
+    if (uploadTracker.type === "success") {
+      uploadTracker.value.cancelAll(); // Stops in-progress uploads when the widget is closed.
     }
 
     return uploadedFiles;

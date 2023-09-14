@@ -8,8 +8,9 @@ import { UploadWidgetMethods } from "@bytescale/upload-widget/config/UploadWidge
 import { OnPreUploadResult } from "@bytescale/upload-widget/config/OnPreUploadResult";
 import { Resolvable } from "@bytescale/upload-widget/modules/common/Resolvable";
 import { FilePathDefinition } from "@bytescale/sdk";
+import { BytescaleApiClientConfig } from "@bytescale/sdk/dist/types/public/shared/generated/runtime";
 
-export interface UploadWidgetConfig {
+export interface UploadWidgetConfig extends BytescaleApiClientConfig {
   container?: string | HTMLElement;
   editor?: UploadWidgetEditor;
   layout?: UploadWidgetLayout;
@@ -29,7 +30,7 @@ export interface UploadWidgetConfig {
   tags?: string[];
 }
 
-export interface UploadWidgetConfigRequired {
+export interface UploadWidgetConfigRequired extends BytescaleApiClientConfig {
   container: string | HTMLElement | undefined;
   editor: UploadWidgetEditorRequired;
   layout: UploadWidgetLayout;
@@ -54,6 +55,13 @@ export namespace UploadWidgetConfigRequired {
     const layout = options.layout ?? "modal";
     const multi = options.multi ?? (options.maxFileCount !== undefined && options.maxFileCount > 1);
     return {
+      // Bytescale SDK settings:
+      apiKey: options.apiKey,
+      apiUrl: options.apiUrl,
+      cdnUrl: options.cdnUrl,
+      headers: options.headers,
+
+      // Bytescale Upload Widget settings:
       container: options.container,
       editor: UploadWidgetEditorRequired.from(options.editor),
       layout,
