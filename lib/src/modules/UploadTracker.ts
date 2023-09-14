@@ -1,4 +1,4 @@
-import { BytescaleApiClientConfigUtils, UploadManager, UploadManagerParams } from "@bytescale/sdk";
+import { UploadManager, UploadManagerParams } from "@bytescale/sdk";
 import { CancellationToken } from "@bytescale/sdk/dist/types/public/shared/CommonTypes";
 import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 import { FileLike } from "@bytescale/upload-widget/modules/FileLike";
@@ -10,11 +10,9 @@ import { BytescaleApiClientConfig } from "@bytescale/sdk/dist/types/public/share
 export class UploadTracker {
   private uploadCancellations: Array<() => void> = [];
   private readonly uploadManager: UploadManager;
-  private readonly accountId: string;
 
   constructor(readonly config: BytescaleApiClientConfig) {
     this.uploadManager = new UploadManager(config);
-    this.accountId = BytescaleApiClientConfigUtils.getAccountId(this.config);
   }
 
   cancelAll(): void {
@@ -43,8 +41,7 @@ export class UploadTracker {
       const fileDetails = await this.uploadManager.upload({
         ...request,
         cancellationToken,
-        data: file,
-        accountId: this.accountId
+        data: file
       });
 
       return {
