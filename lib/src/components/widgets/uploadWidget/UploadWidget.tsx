@@ -59,7 +59,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
   const { multi, tags, metadata, path } = options;
-  const uploadWidgetResult = uploadedFiles.map(x => UploadWidgetResult.from(upload, x.uploadedFile, x.editedFile));
+  const uploadWidgetResult = uploadedFiles.map(x => UploadWidgetResult.from(x.uploadedFile, x.editedFile));
   const canEditImages = options.editor.images.crop;
   const canPreviewImages = options.editor.images.preview;
   const pendingImages = uploadedFiles.filter(

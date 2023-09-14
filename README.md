@@ -420,7 +420,7 @@ To get the URL for the uploaded image `/example.jpg` in its original form, use t
 
 ```javascript
 // Returns: "https://upcdn.io/1234abc/raw/example.jpg"
-new UrlBuilder().url({
+UrlBuilder.url({
   accountId: "1234abc",
   filePath: "/example.jpg"
 });
@@ -432,7 +432,7 @@ To resize the uploaded image `/example.jpg` to 800x600, use the following params
 
 ```javascript
 // Returns: "https://upcdn.io/1234abc/image/example.jpg?w=800&h=600"
-new UrlBuilder().url({
+UrlBuilder.url({
   accountId: "1234abc",
   filePath: "/example.jpg",
   options: {
@@ -453,7 +453,7 @@ To transcode the uploaded video `/example.mov` to MP4/H.264 in HD, use the follo
 
 ```javascript
 // Returns: "https://upcdn.io/1234abc/video/example.mov?f=mp4-h264&h=1080"
-new UrlBuilder().url({
+UrlBuilder.url({
   accountId: "1234abc",
   filePath: "/example.mov",
   options: {
@@ -474,7 +474,7 @@ To transcode the uploaded audio `/example.wav` to AAC in 192kbps, use the follow
 
 ```javascript
 // Returns: "https://upcdn.io/1234abc/audio/example.wav?f=aac&br=192"
-new UrlBuilder().url({
+UrlBuilder.url({
   accountId: "1234abc",
   filePath: "/example.wav",
   options: {
@@ -495,7 +495,7 @@ To extract the file `document.docx` from the uploaded ZIP file `/example.zip`, u
 
 ```javascript
 // Returns: "https://upcdn.io/1234abc/archive/example.zip?m=extract&artifact=/document.docx"
-new UrlBuilder().url({
+UrlBuilder.url({
   accountId: "1234abc",
   filePath: "/example.zip",
   options: {
