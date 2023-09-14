@@ -91,13 +91,11 @@ Or via a `<script>` tag:
   <head>
     <script src="https://js.bytescale.com/upload-widget/v4"></script>
     <script>
-
       // import * as Bytescale from "@bytescale/upload-widget"
-      const uploadWidget = new Bytescale.UploadWidget({
-        apiKey: "free" // Get API keys from: www.bytescale.com
-      });
-
-      uploadWidget.open({ maxFileCount: 1 }).then(
+      Bytescale.UploadWidget.open({
+        apiKey: "free"   // Get API keys from: www.bytescale.com
+        maxFileCount: 1  // Config: https://www.bytescale.com/docs/upload-widget#configuration
+      }).then(
         files => {
           const fileUrls = files.map(x => x.fileUrl).join("\n");
           const success = fileUrls.length === 0
@@ -155,19 +153,18 @@ Or via a `<script>` tag:
 <p align="center"><a href="https://www.bytescale.com/docs/upload-widget"><img alt="Upload Widget Demo" width="100%" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/demo.webp"></a></p>
 
 ```javascript
-uploadWidget
-  .open({
-    multi: false,
-    mimeTypes: ["image/*"],
-    editor: {
-      images: {
-        crop: true,
-        cropShape: "circ", // "rect" also supported.
-        cropRatio: 1 / 1   // "1" is enforced for "circ".
-      }
+Bytescale.UploadWidget.open({
+  multi: false,
+  mimeTypes: ["image/*"],
+  editor: {
+    images: {
+      crop: true,
+      cropShape: "circ", // "rect" also supported.
+      cropRatio: 1 / 1   // "1" is enforced for "circ".
     }
-  })
-  .then(files => alert(JSON.stringify(files)));
+  }
+})
+.then(files => alert(JSON.stringify(files)));
 ```
 
 #### How does image cropping work?
@@ -184,7 +181,7 @@ The image cropper uses server-side image cropping, and works like so:
 ### Uploading multiple files — [Try on CodePen](https://codepen.io/bytescale/pen/RwjdVxY?editors=1010):
 
 ```javascript
-uploadWidget.open({ multi: true }).then(files => alert(JSON.stringify(files)));
+Bytescale.UploadWidget.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 ```
 
 ### Creating a Dropzone — [Try on CodePen](https://codepen.io/bytescale/pen/PoOLmeL?editors=1010):
@@ -192,7 +189,7 @@ uploadWidget.open({ multi: true }).then(files => alert(JSON.stringify(files)));
 You can use UploadWidget as a dropzone — rather than a modal — by specifying `layout: "inline"` and a container:
 
 ```javascript
-uploadWidget.open({
+Bytescale.UploadWidget.open({
   multi: true,
   layout: "inline",
   container: "#example_div_id",  // Replace with the ID of an existing DOM element.
@@ -210,71 +207,69 @@ Note:
 All configuration is optional.
 
 ```javascript
-uploadWidget
-  .open({
-    container: "body",              // "body" by default.
-    layout: "modal",                // "modal" by default. "inline" also supported.
-    locale: myCustomLocale,         // EN_US by default. (See "Localization" section below.)
-    maxFileCount: 5,                // Unlimited by default (or 1 if multi: false).
-    maxFileSizeBytes: 1024 ** 2,    // Unlimited by default.
-    mimeTypes: ["image/*"],         // Unrestricted by default. Supports * wildcard suffix.
-    multi: false,                   // False by default.
-    onInit: ({                      // Exposes lifecycle methods for the component.
-      close,                        // Closes the widget when called.
-      reset,                        // Resets the widget when called.
-      updateConfig                  // Updates the widget's config by passing a new config
-    }) => {},                       // object to the method's first parameter.
-    onUpdate: files => {},          // Called each time the list of uploaded files change.
-    onPreUpload: async file => ({
-      errorMessage: "Uh oh!",       // Displays this validation error to the user (if set).
-      transformedFile: file         // Uploads 'transformedFile' instead of 'file' (if set).
-    }),
-    showFinishButton: true,         // Show/hide the "finish" button in the widget.
-    showRemoveButton: true,         // Show/hide the "remove" button next to each file.
-    styles: {
-      colors: {
-        primary: "#377dff",         // Primary buttons & links
-        active: "#528fff",          // Primary buttons & links (hover). Inferred if undefined.
-        error: "#d23f4d",           // Error messages
-        shade100: "#333",           // Standard text
-        shade200: "#7a7a7a",        // Secondary button text
-        shade300: "#999",           // Secondary button text (hover)
-        shade400: "#a5a6a8",        // Welcome text
-        shade500: "#d3d3d3",        // Modal close button
-        shade600: "#dddddd",        // Border
-        shade700: "#f0f0f0",        // Progress indicator background
-        shade800: "#f8f8f8",        // File item background
-        shade900: "#fff"            // Various (draggable crop buttons, etc.)
+Bytescale.UploadWidget.open({
+  container: "body",              // "body" by default.
+  layout: "modal",                // "modal" by default. "inline" also supported.
+  locale: myCustomLocale,         // EN_US by default. (See "Localization" section below.)
+  maxFileCount: 5,                // Unlimited by default (or 1 if multi: false).
+  maxFileSizeBytes: 1024 ** 2,    // Unlimited by default.
+  mimeTypes: ["image/*"],         // Unrestricted by default. Supports * wildcard suffix.
+  multi: false,                   // False by default.
+  onInit: ({                      // Exposes lifecycle methods for the component.
+    close,                        // Closes the widget when called.
+    reset,                        // Resets the widget when called.
+    updateConfig                  // Updates the widget's config by passing a new config
+  }) => {},                       // object to the method's first parameter.
+  onUpdate: files => {},          // Called each time the list of uploaded files change.
+  onPreUpload: async file => ({
+    errorMessage: "Uh oh!",       // Displays this validation error to the user (if set).
+    transformedFile: file         // Uploads 'transformedFile' instead of 'file' (if set).
+  }),
+  showFinishButton: true,         // Show/hide the "finish" button in the widget.
+  showRemoveButton: true,         // Show/hide the "remove" button next to each file.
+  styles: {
+    colors: {
+      primary: "#377dff",         // Primary buttons & links
+      active: "#528fff",          // Primary buttons & links (hover). Inferred if undefined.
+      error: "#d23f4d",           // Error messages
+      shade100: "#333",           // Standard text
+      shade200: "#7a7a7a",        // Secondary button text
+      shade300: "#999",           // Secondary button text (hover)
+      shade400: "#a5a6a8",        // Welcome text
+      shade500: "#d3d3d3",        // Modal close button
+      shade600: "#dddddd",        // Border
+      shade700: "#f0f0f0",        // Progress indicator background
+      shade800: "#f8f8f8",        // File item background
+      shade900: "#fff"            // Various (draggable crop buttons, etc.)
+    },
+    fontFamilies: {
+      base: "arial, sans-serif"   // Base font family (comma-delimited).
+    },
+    fontSizes: {
+      base: 16                    // Base font size (px).
+    }
+  },
+  path: {                         // Optional: a string (full file path) or object like so:
+    fileName: "Example.jpg",      // Supports path variables (e.g. {ORIGINAL_FILE_EXT}).
+    folderPath: "/uploads"        // Please refer to docs for all path variables.
+  },
+  metadata: {
+    hello: "world"                // Arbitrary JSON metadata (saved against the file).
+  },
+  tags: ["profile_picture"],      // Requires a Bytescale account.
+  editor: {
+    images: {
+      preview: true,              // True by default if cropping is enabled. Previews PDFs and videos too.
+      crop: true,                 // True by default.
+      cropFilePath: image => {    // Choose the file path used for JSON image crop files.
+        const {filePath} = image  // In:  https://www.bytescale.com/docs/upload-api/types/FileDetails
+        return `${filePath}.crop` // Out: https://www.bytescale.com/docs/upload-api/types/FilePathDefinition
       },
-      fontFamilies: {
-        base: "arial, sans-serif"   // Base font family (comma-delimited).
-      },
-      fontSizes: {
-        base: 16                    // Base font size (px).
-      }
-    },
-    path: {                         // Optional: a string (full file path) or object like so:
-      fileName: "Example.jpg",      // Supports path variables (e.g. {ORIGINAL_FILE_EXT}).
-      folderPath: "/uploads"        // Please refer to docs for all path variables.
-    },
-    metadata: {
-      hello: "world"                // Arbitrary JSON metadata (saved against the file).
-    },
-    tags: ["profile_picture"],      // Requires a Bytescale account.
-    editor: {
-      images: {
-        preview: true,              // True by default if cropping is enabled. Previews PDFs and videos too.
-        crop: true,                 // True by default.
-        cropFilePath: image => {    // Choose the file path used for JSON image crop files.
-          const {filePath} = image  // In:  https://www.bytescale.com/docs/upload-api/types/FileDetails
-          return `${filePath}.crop` // Out: https://www.bytescale.com/docs/upload-api/types/FilePathDefinition
-        },
-        cropRatio: 4 / 3,           // Width / Height. Undefined enables freeform (default).
-        cropShape: "rect"           // "rect" (default) or "circ".
-      }
-    },
-  })
-  .then(files => alert(files))
+      cropRatio: 4 / 3,           // Width / Height. Undefined enables freeform (default).
+      cropShape: "rect"           // "rect" (default) or "circ".
+    }
+  },
+}).then(files => alert(files))
 ```
 
 ### 🏳️ Localization

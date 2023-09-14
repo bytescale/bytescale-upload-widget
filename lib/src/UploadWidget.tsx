@@ -7,7 +7,7 @@ import { RootContainer } from "@bytescale/upload-widget/components/RootContainer
 import { UploadTracker } from "@bytescale/upload-widget/modules/UploadTracker";
 
 export class UploadWidget {
-  async open(optionsMaybe: UploadWidgetConfig): Promise<UploadWidgetResult[]> {
+  static async open(optionsMaybe: UploadWidgetConfig): Promise<UploadWidgetResult[]> {
     let uploadTracker: MaybeError<UploadTracker>;
     try {
       uploadTracker = { type: "success", value: new UploadTracker(optionsMaybe) };
@@ -18,7 +18,7 @@ export class UploadWidget {
     const options = UploadWidgetConfigRequired.from(optionsMaybe);
 
     // Important: wait for body first, before using 'querySelector' below.
-    const body = await this.getBody();
+    const body = await UploadWidget.getBody();
 
     const container =
       options.container !== undefined
@@ -56,7 +56,7 @@ export class UploadWidget {
   /**
    * Required when the 'uploadWidget.open()' method is called from within '<head>'.
    */
-  private async getBody(): Promise<HTMLElement> {
+  private static async getBody(): Promise<HTMLElement> {
     return await new Promise(resolve => {
       const attempt = (): void => {
         const bodyMaybe = document.body ?? undefined;
