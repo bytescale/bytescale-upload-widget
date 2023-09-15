@@ -3,19 +3,19 @@
     <img alt="UploadWidget" width="541" height="67" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
   </a>
 </h1>
-<p align="center"><b>File & Image Upload Widget</b><br/> (With Integrated Cloud Storage)</p>
+<p align="center"><b>Beautiful Upload Widget for Web Apps</b><br/> (With Built-in Cloud Storage)</p>
 <br/>
 <p align="center">
-  <a href="https://github.com/bytescale/bytescale-upload-widget/">
-    <img src="https://img.shields.io/badge/gzipped-33%20kb-4ba0f6" />
-  </a>
-
   <a href="https://www.npmjs.com/package/@bytescale/upload-widget">
     <img src="https://img.shields.io/badge/%40bytescale%2Fupload--widget-npm-4ba0f6" />
   </a>
 
   <a href="https://github.com/bytescale/bytescale-upload-widget/actions/workflows/ci.yml">
     <img src="https://img.shields.io/badge/build-passing-4ba0f6" />
+  </a>
+
+  <a href="https://github.com/bytescale/bytescale-upload-widget/">
+    <img src="https://img.shields.io/badge/gzipped-33%20kb-4ba0f6" />
   </a>
 
   <a href="https://www.npmjs.com/package/@bytescale/upload-widget">
