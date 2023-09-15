@@ -410,7 +410,7 @@ _Note: when using JWT cookies to download files, the `?auth=true` query paramete
 
 ## UrlBuilder
 
-The [Bytescale JavaScript SDK](https://github.com/bytescale/bytescale-javascript-sdk) exports a `UrlBuilder` for making URLs from `filePath` values:
+The [Bytescale JavaScript SDK](https://github.com/bytescale/bytescale-javascript-sdk) exports a `UrlBuilder` to construct URLs from `filePath` values:
 
 ```javascript
 import { UrlBuilder } from "@bytescale/sdk";
@@ -516,7 +516,7 @@ UrlBuilder.url({
 
 ## 👋 Create your Bytescale Account
 
-Bytescale is the best way to serve images, videos, and audio for web apps.
+Bytescale is the best way to upload, transform, and serve images, videos, and audio.
 
 **[Create a Bytescale account »](https://www.bytescale.com/get-started)**
 
