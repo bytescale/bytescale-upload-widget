@@ -84,7 +84,7 @@ Or via a `<script>` tag:
 
 ## Usage
 
-### Open the Modal — [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010):
+### [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010)
 
 ```html
 <html>
@@ -386,7 +386,11 @@ Bytescale supports two types of authorization:
 
 The Bytescale Upload Widget uses the `apiKey` from the constructor to authenticate with the Bytescale API.
 
-With API key auth, the requester has access to the resources available to the API key.
+With API key auth, the requester has access to the resources available to the API key:
+
+- Secret API keys (`secret_***`) have access to all API endpoints (see [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
+
+- Public API keys (`public_***`) have access to file upload, file download, and file listing API endpoints. File overwrites and deletes cannot be performed with public API keys, and file listing is disabled by default (this can be changed in the API key's settings).
 
 You must always use **public API keys** (e.g. `public_***`) in your client-side code.
 
