@@ -388,9 +388,9 @@ The Bytescale Upload Widget uses the `apiKey` from the constructor to authentica
 
 With API key auth, the requester has access to the resources available to the API key:
 
-- Secret API keys (`secret_***`) have access to all API endpoints (see [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
+- Secret API keys (`secret_***`) have access to all API endpoints (see the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
 
-- Public API keys (`public_***`) have access to file upload, file download, and file listing API endpoints. File overwrites and deletes cannot be performed with public API keys, and file listing is disabled by default (this can be changed in the API key's settings).
+- Public API keys (`public_***`) have access to file upload, file download, and file listing API endpoints. File overwrites, file deletes, and all other destructive operations cannot be performed using public API keys. File listing is also disabled by default (but can be changed in the API key's settings).
 
 You must always use **public API keys** (e.g. `public_***`) in your client-side code.
 
