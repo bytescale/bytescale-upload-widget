@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://www.bytescale.com/docs/upload-widget">
-    <img alt="UploadWidget" width="541" height="67" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
+    <img alt="Bytescale Upload Widget" width="541" height="67" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
   </a>
 </h1>
 <p align="center"><b>Beautiful Upload Widget for Web Apps</b><br/> (With Built-in Cloud Storage)</p>
@@ -94,7 +94,7 @@ Or via a `<script>` tag:
       // import * as Bytescale from "@bytescale/upload-widget"
       Bytescale.UploadWidget.open({
         apiKey: "free",  // Get API keys from: www.bytescale.com
-        maxFileCount: 1  // Config: https://www.bytescale.com/docs/upload-widget#configuration
+        maxFileCount: 1  // Full Config: https://www.bytescale.com/docs/upload-widget#configuration
       }).then(
         files => {
           const fileUrls = files.map(x => x.fileUrl).join("\n");
@@ -154,7 +154,7 @@ Or via a `<script>` tag:
 ```javascript
 Bytescale.UploadWidget.open({
   apiKey: "free", // Get API keys from: www.bytescale.com
-  multi: false,   // Config: https://www.bytescale.com/docs/upload-widget#configuration
+  multi: false,   // Full Config: https://www.bytescale.com/docs/upload-widget#configuration
   mimeTypes: ["image/*"],
   editor: {
     images: {
@@ -183,7 +183,7 @@ The image cropper uses server-side image cropping, and works like so:
 ```javascript
 Bytescale.UploadWidget.open({
   apiKey: "free", // Get API keys from: www.bytescale.com
-  multi: true     // Config: https://www.bytescale.com/docs/upload-widget#configuration
+  multi: true     // Full Config: https://www.bytescale.com/docs/upload-widget#configuration
 }).then(files => alert(JSON.stringify(files)));
 ```
 
@@ -194,7 +194,7 @@ You can use UploadWidget as a dropzone — rather than a modal — by specifying
 ```javascript
 Bytescale.UploadWidget.open({
   apiKey: "free",               // Get API keys from: www.bytescale.com
-  multi: true,                  // Config: https://www.bytescale.com/docs/upload-widget#configuration
+  multi: true,                  // Full Config: https://www.bytescale.com/docs/upload-widget#configuration
   layout: "inline",             // Specifies dropzone behaviour.
   container: "#example_div_id", // Replace with the ID of an existing DOM element (to render the dropzone inside).
   onUpdate: (files) => console.log(files)
@@ -384,7 +384,7 @@ Bytescale supports two types of authorization:
 
 ### API Keys
 
-The Bytescale Upload Widget uses the `apiKey` from the constructor to authenticate with the Bytescale API.
+The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with the Bytescale API.
 
 With API key auth, the requester has access to the resources available to the API key:
 
@@ -514,17 +514,17 @@ UrlBuilder.url({
 
 [Archive Processing API Docs »](https://www.bytescale.com/docs/archive-processing-api)
 
-## 👋 Create your Bytescale Account
-
-Bytescale is the best way to upload, transform, and serve images, videos, and audio.
-
-**[Create a Bytescale account »](https://www.bytescale.com/get-started)**
-
 ## 🙋 Can I use my own storage?
 
 Bytescale supports AWS S3, Cloudflare R2, Google Storage, DigitalOcean Spaces, and Bytescale Storage.
 
 **[Bytescale Storage Docs »](https://www.bytescale.com/docs/storage/sources)**
+
+## 👋 Create your Bytescale Account
+
+Bytescale is the best way to upload, transform, and serve images, videos, and audio at scale.
+
+**[Create a Bytescale account »](https://www.bytescale.com/get-started)**
 
 #### Full Documentation
 
