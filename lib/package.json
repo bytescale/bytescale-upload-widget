@@ -1,6 +1,6 @@
 {
   "name": "@bytescale/upload-widget",
-  "version": "4.7.2",
+  "version": "4.8.0",
   "author": "Bytescale <hello@bytescale.com> (https://www.bytescale.com)",
   "description": "File Upload UI Widget — Lightweight & supports: drag and drop, multiple file uploads, image cropping, customization, and more 🚀 Comes with Cloud Storage 🌐",
   "license": "MIT",
