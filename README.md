@@ -82,9 +82,9 @@ Or via a `<script>` tag:
 <script src="https://js.bytescale.com/upload-widget/v4"></script>
 ```
 
-## Usage
+## Usage — [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010)
 
-### [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010)
+Opens a file upload modal on the current page:
 
 ```html
 <html>
