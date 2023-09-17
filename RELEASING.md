@@ -25,5 +25,5 @@ The CI process will automatically `git tag` and `npm publish`.
   cd ../bytescale-upload-widget-react && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
   cd ../bytescale-upload-widget-vue && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
   cd ../bytescale-upload-widget-jquery && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
-  cd ../bytescale-upload-widget-angular && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && cd projects/angular-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp )
+  cd ../bytescale-upload-widget-angular && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && cd projects/bytescale-upload-widget-angular && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp )
 ```
