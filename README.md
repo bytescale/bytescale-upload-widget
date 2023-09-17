@@ -383,11 +383,11 @@ Bytescale supports two types of authorization:
 
 ### API Keys
 
-The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with the [Bytescale API](https://www.bytescale.com/docs/apis).
+The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with [Bytescale](https://www.bytescale.com/).
 
 With API key auth, the requester has access to the resources available to the API key:
 
-- Secret API keys (`secret_***`) have access to all API endpoints (see the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
+- Secret API keys (`secret_***`) have access to all API endpoints ([Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
 
 - Public API keys (`public_***`) have access to file upload, file download, and file listing API endpoints. File overwrites, file deletes, and all other destructive operations cannot be performed using public API keys. File listing is also disabled by default (but can be changed in the API key's settings).
 
@@ -409,13 +409,13 @@ _Note: when using JWT cookies to download files, the `?auth=true` query paramete
 
 ## UrlBuilder
 
-The [Bytescale JavaScript SDK](https://github.com/bytescale/bytescale-javascript-sdk) exports a `UrlBuilder` to construct URLs from `filePath` values:
+The [Bytescale JavaScript SDK](https://github.com/bytescale/bytescale-javascript-sdk) exports a `UrlBuilder` to construct URLs from `filePaths`:
 
 ```javascript
 import { UrlBuilder } from "@bytescale/sdk";
 ```
 
-**Recommended:** you should always save `filePath` values to your DB instead of `fileUrl` values.
+**Recommended:** you should always save `filePaths` to your DB instead of `fileUrls`.
 
 #### Raw Files
 
@@ -515,7 +515,7 @@ UrlBuilder.url({
 
 ## 🙋 Can I use my own storage?
 
-Bytescale supports AWS S3, Cloudflare R2, Google Storage, DigitalOcean Spaces, and Bytescale Storage.
+Bytescale supports AWS S3, Cloudflare R2, Google Storage, DigitalOcean, and Bytescale Storage.
 
 **[Bytescale Storage Docs »](https://www.bytescale.com/docs/storage/sources)**
 
