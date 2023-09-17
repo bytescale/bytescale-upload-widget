@@ -2,6 +2,11 @@ import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 import { UrlBuilder } from "@bytescale/sdk";
 
 export interface UploadWidgetResult {
+  /**
+   * The `accountId` the file was uploaded to.
+   */
+  accountId: string;
+
   editedFile: UploadedFile | undefined;
 
   /**
@@ -41,6 +46,7 @@ export namespace UploadWidgetResult {
     };
 
     return {
+      accountId: originalFile.accountId,
       editedFile,
       originalFile,
       fileUrl: calculateFileUrl(),
