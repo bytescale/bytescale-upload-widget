@@ -494,7 +494,7 @@ UrlBuilder.url({
 
 #### Archives
 
-To extract the file `document.docx` from the uploaded ZIP file `/example.zip`, use the following:
+To extract the file `document.docx` from the uploaded ZIP file `/example.zip`:
 
 ```javascript
 // Returns: "https://upcdn.io/1234abc/archive/example.zip?m=extract&artifact=/document.docx"
