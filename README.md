@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://www.bytescale.com/docs/upload-widget">
-    <img alt="Bytescale Upload Widget" width="541" height="67" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
+    <img alt="Bytescale Upload Widget" width="453" height="80" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
   </a>
 </h1>
 <p align="center"><b>Beautiful File Upload Widget for Web Apps</b><br/> (With Built-in Cloud Storage)</p>
@@ -59,7 +59,6 @@
 
 <hr/>
 
-<br />
 <br />
 
 ## Installation
