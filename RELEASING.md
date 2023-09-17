@@ -21,9 +21,9 @@ The CI process will automatically `git tag` and `npm publish`.
 7. After release:
 
 ```bash
-( UPLOAD_WIDGET_VERSION=3.47.0 && \
-  cd ../vue-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
-  cd ../react-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
-  cd ../jquery-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
-  cd ../angular-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && cd projects/angular-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp )
+( UPLOAD_WIDGET_VERSION=4.6.0 && \
+  cd ../bytescale-upload-widget-react && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
+  cd ../bytescale-upload-widget-vue && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
+  cd ../bytescale-upload-widget-jquery && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp && \
+  cd ../bytescale-upload-widget-angular && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && cd projects/angular-uploader && npm install @bytescale/upload-widget@^${UPLOAD_WIDGET_VERSION} && ga -A && gcmsg 'Upgrade @bytescale/upload-widget package' && gp )
 ```
