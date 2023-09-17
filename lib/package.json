@@ -1,6 +1,6 @@
 {
   "name": "@bytescale/upload-widget",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "author": "Bytescale <hello@bytescale.com> (https://www.bytescale.com)",
   "description": "File Upload UI Widget — Lightweight & supports: drag and drop, multiple file uploads, image cropping, customization, and more 🚀 Comes with Cloud Storage 🌐",
   "license": "MIT",
@@ -53,7 +53,7 @@
     "test": "npx wdio run tests/wdio.conf.ts --autoCompileOpts.tsNodeOpts.project=tests/tsconfig.json"
   },
   "dependencies": {
-    "@bytescale/sdk": "^3.0.0-alpha.18",
+    "@bytescale/sdk": "^3.1.0",
     "classnames": "^2.2.6",
     "preact": "^10.6.5"
   },
