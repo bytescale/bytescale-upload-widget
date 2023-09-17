@@ -112,7 +112,7 @@ jobs:
           NODE_OPTIONS: --openssl-legacy-provider
         working-directory: ./lib
         run: |
-          npm set //registry.npmjs.org/:_authToken=${BYTESCALE_NPM_AUTH_TOKEN}
+          npm set //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}
           npm run publish:executeIfReleaseCommit
 
       - name: "Notification on success"
