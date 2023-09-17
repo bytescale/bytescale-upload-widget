@@ -84,7 +84,7 @@ Or via a `<script>` tag:
 
 ## Usage — [Try on CodePen](https://codepen.io/bytescale/pen/oNoRmJW?editors=1010)
 
-Opens a file upload dialog on the current page:
+Opens a file upload modal, allowing one file upload:
 
 ```html
 <html>
