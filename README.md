@@ -208,7 +208,7 @@ Note:
 
 ## ⚙️ Configuration
 
-All configuration is optional.
+All configuration is optional (except for the `apiKey` field, which is required).
 
 ```javascript
 Bytescale.UploadWidget.open({
@@ -322,7 +322,7 @@ const myCustomLocale = {
 
 ## 🌐 File Management APIs
 
-Bytescale provides [File Management APIs](https://www.bytescale.com/docs/apis):
+Bytescale provides a wide range of [File Management APIs](https://www.bytescale.com/docs/apis):
 
 - **[File Listing](https://www.bytescale.com/docs/folder-api/ListFolder)**
 - **[File Deleting](https://www.bytescale.com/docs/file-api/DeleteFile)**
@@ -384,7 +384,7 @@ Bytescale supports two types of authorization:
 
 ### API Keys
 
-The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with the Bytescale API.
+The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with the [Bytescale API](https://www.bytescale.com/docs/apis).
 
 With API key auth, the requester has access to the resources available to the API key:
 
