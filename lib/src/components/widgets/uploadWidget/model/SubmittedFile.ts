@@ -23,16 +23,23 @@ export interface ErroneousFile {
 
 export interface UploadedFileContainer {
   editedFile: UploadedFile | undefined;
+  file: File;
   fileIndex: number;
-  isSubmitted: boolean; // True if the image has been 'passed' by the user, i.e. successfully edited/left unedited, or has been accepted in the preview screen.
+  isReady: boolean; // False if the file still requires some action performing before it's considered fully uploaded, i.e. editing, or having 'accept' clicked in the preview screen.
   type: "uploaded";
   uploadedFile: UploadedFile;
 }
 
-export type SubmittedFile = UploadingFile | PreprocessingFile | UploadedFileContainer | ErroneousFile;
+export type PendingFile = PreprocessingFile | UploadingFile;
+
+export type SubmittedFile = PendingFile | UploadedFileContainer | ErroneousFile;
 
 export function isUploadedFile(file: SubmittedFile): file is UploadedFileContainer {
   return file.type === "uploaded";
+}
+
+export function isPendingFile(file: SubmittedFile): file is PendingFile {
+  return file.type === "preprocessing" || file.type === "uploading";
 }
 
 export interface SubmittedFileMap {

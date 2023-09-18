@@ -6,9 +6,11 @@ const apiKey: string = (window as any).UPLOAD_JS_API_KEY ?? "free";
 const openUploader = (): void => {
   UploadWidget.open({
     apiKey,
-    multi: true,
-    mimeTypes: ["image/jpeg", "image/webp", "image/png", "image/heic", "image/svg+xml"],
-    maxFileCount: 10,
+    // multi: true,
+    // mimeTypes: ["image/jpeg", "image/webp", "image/png", "image/heic", "image/svg+xml"],
+    maxFileCount: 1,
+    showFinishButton: false,
+    onUpdate: x => console.log(JSON.stringify(x)),
     editor: { images: { cropShape: "circ", cropRatio: 1 / 1 } },
     styles: {
       colors: {
@@ -50,6 +52,7 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
       primary: "#8b63f1"
     }
   },
+  onUpdate: x => console.log(JSON.stringify(x)),
   onInit: x => {
     dropzoneMethods = x;
   }

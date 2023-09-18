@@ -10,9 +10,10 @@ Steps:
 4. Replace `uploader` with `upload-widget` in all CSS class name overrides (if you have any).
 5. Replace `Uploader({apiKey}).open(params)` with `UploadWidget.open({apiKey, ...params })`
    1. As such `.open(...)` now takes a mandatory configuration object, with `apiKey` being the only required field.
-6. `beginAuthSession` and `endAuthSession` are now static methods on `AuthManager` from the [`@bytescale/sdk` NPM package](https://www.bytescale.com/docs/sdks/javascript).
-7. `url` is now a static method on `UrlBuilder` from the [`@bytescale/sdk` NPM package](https://www.bytescale.com/docs/sdks/javascript).
-8. `onValidate` has been replaced with `onPreUpload`: you should return an object of `{errorMessage: "your error message"}` instead of `"your error message"`. (This can also be a promise.)
+6. Replace `onUpdate: (files) => {}` with `onUpdate: ({uploadedFiles}) => {}`.
+7. `beginAuthSession` and `endAuthSession` are now static methods on `AuthManager` from the [`@bytescale/sdk` NPM package](https://www.bytescale.com/docs/sdks/javascript).
+8. `url` is now a static method on `UrlBuilder` from the [`@bytescale/sdk` NPM package](https://www.bytescale.com/docs/sdks/javascript).
+9. `onValidate` has been replaced with `onPreUpload`: you should return an object of `{errorMessage: "your error message"}` instead of `"your error message"`. (This can also be a promise.)
 
 ### Before
 

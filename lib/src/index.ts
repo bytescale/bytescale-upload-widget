@@ -3,7 +3,7 @@ export { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 export { UploadWidget } from "@bytescale/upload-widget/UploadWidget";
 export { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
 export { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocale";
-export { OnPreUploadResult } from "@bytescale/upload-widget/config/OnPreUploadResult";
+export { UploadWidgetOnPreUploadResult } from "@bytescale/upload-widget/config/UploadWidgetOnPreUploadResult";
 export { UploadWidgetColors } from "@bytescale/upload-widget/config/UploadWidgetColors";
 export { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
 export { UploadWidgetFontFamily } from "@bytescale/upload-widget/config/UploadWidgetFontFamily";

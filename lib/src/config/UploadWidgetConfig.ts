@@ -2,13 +2,13 @@ import { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/Upl
 import { UploaderLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";
 import { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
 import { UploadWidgetEditor, UploadWidgetEditorRequired } from "@bytescale/upload-widget/config/UploadWidgetEditor";
-import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
 import { UploadWidgetStyles, UploadWidgetStylesRequired } from "@bytescale/upload-widget/config/UploadWidgetStyles";
 import { UploadWidgetMethods } from "@bytescale/upload-widget/config/UploadWidgetMethods";
-import { OnPreUploadResult } from "@bytescale/upload-widget/config/OnPreUploadResult";
+import { UploadWidgetOnPreUploadResult } from "@bytescale/upload-widget/config/UploadWidgetOnPreUploadResult";
 import { Resolvable } from "@bytescale/upload-widget/modules/common/Resolvable";
 import { FilePathDefinition } from "@bytescale/sdk";
 import { BytescaleApiClientConfig } from "@bytescale/sdk/dist/types/public/shared/generated/runtime";
+import { UploadWidgetOnUpdateEvent } from "@bytescale/upload-widget/config/UploadWidgetOnUpdateEvent";
 
 export interface UploadWidgetConfig extends BytescaleApiClientConfig {
   container?: string | HTMLElement;
@@ -21,8 +21,8 @@ export interface UploadWidgetConfig extends BytescaleApiClientConfig {
   mimeTypes?: string[];
   multi?: boolean;
   onInit?: (methods: UploadWidgetMethods) => void;
-  onPreUpload?: ((file: File) => Resolvable<OnPreUploadResult | undefined>) | undefined;
-  onUpdate?: (files: UploadWidgetResult[]) => void;
+  onPreUpload?: ((file: File) => Resolvable<UploadWidgetOnPreUploadResult | undefined>) | undefined;
+  onUpdate?: (event: UploadWidgetOnUpdateEvent) => void;
   path?: FilePathDefinition;
   showFinishButton?: boolean;
   showRemoveButton?: boolean;
@@ -41,8 +41,8 @@ export interface UploadWidgetConfigRequired extends BytescaleApiClientConfig {
   mimeTypes: string[] | undefined;
   multi: boolean;
   onInit: (methods: UploadWidgetMethods) => void;
-  onPreUpload: (file: File) => Promise<OnPreUploadResult | undefined>;
-  onUpdate: (files: UploadWidgetResult[]) => void;
+  onPreUpload: (file: File) => Promise<UploadWidgetOnPreUploadResult | undefined>;
+  onUpdate: (event: UploadWidgetOnUpdateEvent) => void;
   path: FilePathDefinition | undefined;
   showFinishButton: boolean;
   showRemoveButton: boolean;
@@ -76,7 +76,7 @@ export namespace UploadWidgetConfigRequired {
       multi,
       onInit: options.onInit ?? (() => {}),
       onUpdate: options.onUpdate ?? (() => {}),
-      onPreUpload: async (file): Promise<OnPreUploadResult | undefined> => {
+      onPreUpload: async (file): Promise<UploadWidgetOnPreUploadResult | undefined> => {
         const { onPreUpload } = options;
         return onPreUpload === undefined ? undefined : await onPreUpload(file);
       },

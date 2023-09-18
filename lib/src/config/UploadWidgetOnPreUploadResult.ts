@@ -1,4 +1,4 @@
-export interface OnPreUploadResult {
+export interface UploadWidgetOnPreUploadResult {
   errorMessage?: string;
   transformedFile?: File;
 }
