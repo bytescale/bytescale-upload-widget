@@ -1,5 +1,5 @@
 <h1 align="center">
-  Migrated: <a href="https://www.npmjs.com/package/@bytescale/upload-widget">@bytescale/upload-widget</a>
+  Migrated to: <a href="https://www.npmjs.com/package/@bytescale/upload-widget">@bytescale/upload-widget</a>
 </h1>
 <p align="center"><b>File & Image Upload Widget</b><br/> (With Integrated Cloud Storage)</p>
 <br/>
