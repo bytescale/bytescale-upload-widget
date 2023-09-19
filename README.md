@@ -1,7 +1,5 @@
 <h1 align="center">
-  <a href="https://www.bytescale.com/docs/upload-widget">
-    <img alt="Uploader" width="313" height="93" src="https://raw.githubusercontent.com/bytescale/uploader/main/.github/assets/logo.svg">
-  </a>
+  Migrated: <a href="https://www.npmjs.com/package/@bytescale/upload-widget">@bytescale/upload-widget</a>
 </h1>
 <p align="center"><b>File & Image Upload Widget</b><br/> (With Integrated Cloud Storage)</p>
 <br/>
