@@ -137,6 +137,12 @@
         width: 100%;
         height: 100%;
         opacity: 0;
+
+        // This is required to enable 'pointer: cursor' behaviour. Without this, the cursor behaves erratically across
+        // different environments it seems, with a standard 'arrow' pointer appearing most times, instead of the 'finger'
+        // pointer. Specifically, we have seen this occur on restorePhotos.io.
+        // The <label for="xyz"> method should be sufficient for diverting clicks to the button.
+        z-index: -1;
       }
     }
     &--upload {
