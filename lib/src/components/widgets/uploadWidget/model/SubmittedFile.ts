@@ -14,11 +14,11 @@ export interface UploadingFile {
   type: "uploading";
 }
 
-export interface ErroneousFile {
+export interface FailedFile {
   error: Error;
   file: File;
   fileIndex: number;
-  type: "error";
+  type: "failed";
 }
 
 export interface UploadedFileContainer {
@@ -32,7 +32,7 @@ export interface UploadedFileContainer {
 
 export type PendingFile = PreprocessingFile | UploadingFile;
 
-export type SubmittedFile = PendingFile | UploadedFileContainer | ErroneousFile;
+export type SubmittedFile = PendingFile | UploadedFileContainer | FailedFile;
 
 export function isUploadedFile(file: SubmittedFile): file is UploadedFileContainer {
   return file.type === "uploaded";
@@ -40,6 +40,10 @@ export function isUploadedFile(file: SubmittedFile): file is UploadedFileContain
 
 export function isPendingFile(file: SubmittedFile): file is PendingFile {
   return file.type === "preprocessing" || file.type === "uploading";
+}
+
+export function isFailedFile(file: SubmittedFile): file is FailedFile {
+  return file.type === "failed";
 }
 
 export interface SubmittedFileMap {

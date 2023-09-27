@@ -6,7 +6,7 @@ import {
 } from "@bytescale/upload-widget/components/widgets/uploadWidget/UploadWidgetContainer";
 import { Modal } from "@bytescale/upload-widget/components/modal/Modal";
 import "./Modal.scss";
-import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
+import { UploadWidgetResult } from "@bytescale/upload-widget/model/UploadWidgetResult";
 
 interface Props {
   widgetProps: UploadWidgetContainerProps;

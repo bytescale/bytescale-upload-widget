@@ -6,7 +6,7 @@ import { UploadWidget } from "@bytescale/upload-widget/components/widgets/upload
 import { JSX } from "preact";
 import { MaybeError } from "@bytescale/upload-widget/MaybeError";
 import { UploadWidgetConfigRequired } from "@bytescale/upload-widget/config/UploadWidgetConfig";
-import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
+import { UploadWidgetResult } from "@bytescale/upload-widget/model/UploadWidgetResult";
 import { UploadTracker } from "@bytescale/upload-widget/modules/UploadTracker";
 
 export interface UploadWidgetContainerProps {

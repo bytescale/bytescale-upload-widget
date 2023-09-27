@@ -6,7 +6,8 @@ import { isDefined } from "@bytescale/upload-widget/modules/common/TypeUtils";
 import { UploaderWelcomeScreen } from "@bytescale/upload-widget/components/widgets/uploadWidget/screens/UploaderWelcomeScreen";
 import { UploaderMainScreen } from "@bytescale/upload-widget/components/widgets/uploadWidget/screens/UploaderMainScreen";
 import {
-  ErroneousFile,
+  FailedFile,
+  isFailedFile,
   isPendingFile,
   isUploadedFile,
   SubmittedFile,
@@ -21,14 +22,16 @@ import {
   progressWheelDelay,
   progressWheelVanish
 } from "@bytescale/upload-widget/components/widgets/uploadWidget/components/fileIcons/ProgressIcon";
-import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
+import { UploadWidgetResult } from "@bytescale/upload-widget/model/UploadWidgetResult";
 import { UploaderImageListEditor } from "@bytescale/upload-widget/components/widgets/uploadWidget/screens/UploaderImageListEditor";
 import { useShowImageEditor } from "@bytescale/upload-widget/components/widgets/uploadWidget/screens/modules/UseShowImageEditor";
 import { isEditableImage, isReadOnlyImage } from "@bytescale/upload-widget/modules/MimeUtils";
 import { UploadWidgetOnPreUploadResult } from "@bytescale/upload-widget/config/UploadWidgetOnPreUploadResult";
 import { UploadTracker } from "@bytescale/upload-widget/modules/UploadTracker";
 import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
-import { UploadWidgetPendingFile } from "@bytescale/upload-widget/components/modal/UploadWidgetPendingFile";
+import { UploadWidgetPendingFile } from "@bytescale/upload-widget/model/UploadWidgetPendingFile";
+import { UploadWidgetFailedFile } from "@bytescale/upload-widget/model/UploadWidgetFailedFile";
+import { UploadWidgetValidationError } from "@bytescale/upload-widget";
 
 interface Props {
   options: UploadWidgetConfigRequired;
@@ -60,6 +63,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   const submittedFileList: SubmittedFile[] = Object.values(submittedFiles).filter(isDefined);
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const pendingFiles = submittedFileList.filter(isPendingFile);
+  const failedFiles = submittedFileList.filter(isFailedFile);
   const makeDeps = (fileLists: SubmittedFile[][]): number[] => [
     ...fileLists.map(x => x.length),
     ...fileLists.flatMap(x => x.map(y => y.fileIndex))
@@ -105,6 +109,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     }
 
     options.onUpdate({
+      failedFiles: failedFiles.map(({ file, error }): UploadWidgetFailedFile => ({ file, error })),
       uploadedFiles: uploadedFilesReadyResult,
       pendingFiles: [...pendingFiles, ...uploadedFilesNotReady].map(({ file }): UploadWidgetPendingFile => ({ file }))
     });
@@ -127,7 +132,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
         return () => clearTimeout(timeout);
       }
     }
-  }, makeDeps([pendingFiles, uploadedFilesReady, uploadedFilesNotReady]));
+  }, makeDeps([pendingFiles, uploadedFilesNotReady, uploadedFilesReady, failedFiles]));
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles(
@@ -171,12 +176,14 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   };
 
   const doUpload = async (file: File, fileIndex: number): Promise<UploadedFile> => {
-    const raiseError = (error: Error): never => {
+    const raiseValidationError = (errorMessage: string): never => {
+      const error = new UploadWidgetValidationError(errorMessage);
+
       setSubmittedFile(fileIndex, {
         file,
         fileIndex,
         error,
-        type: "error"
+        type: "failed"
       });
 
       throw error;
@@ -184,10 +191,10 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
 
     const { maxFileSizeBytes, mimeTypes, onPreUpload } = options;
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
-      raiseError(new Error(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`));
+      raiseValidationError(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`);
     }
     if (!isValidMimeType(mimeTypes, file.type)) {
-      raiseError(new Error(options.locale.unsupportedFileType));
+      raiseValidationError(options.locale.unsupportedFileType);
     }
 
     setSubmittedFile(fileIndex, {
@@ -208,7 +215,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     }
 
     if (preUploadResult?.errorMessage !== undefined) {
-      raiseError(new Error(preUploadResult.errorMessage));
+      raiseValidationError(preUploadResult.errorMessage);
     }
 
     const fileToUpload = preUploadResult?.transformedFile ?? file;
@@ -270,11 +277,11 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
             updateFile<UploadingFile>(
               fileIndex,
               "uploading",
-              (uploadingFile): ErroneousFile => ({
+              (uploadingFile): FailedFile => ({
                 fileIndex,
                 error,
                 file: uploadingFile.file,
-                type: "error"
+                type: "failed"
               })
             );
           }

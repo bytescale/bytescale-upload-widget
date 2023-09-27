@@ -2,7 +2,7 @@ import { UploadWidgetConfig, UploadWidgetConfigRequired } from "@bytescale/uploa
 import { render } from "preact";
 import { MaybeError } from "@bytescale/upload-widget/MaybeError";
 import { UploadWidgetContainerProps } from "@bytescale/upload-widget/components/widgets/uploadWidget/UploadWidgetContainer";
-import { UploadWidgetResult } from "@bytescale/upload-widget/components/modal/UploadWidgetResult";
+import { UploadWidgetResult } from "@bytescale/upload-widget/model/UploadWidgetResult";
 import { RootContainer } from "@bytescale/upload-widget/components/RootContainer";
 import { UploadTracker } from "@bytescale/upload-widget/modules/UploadTracker";
 

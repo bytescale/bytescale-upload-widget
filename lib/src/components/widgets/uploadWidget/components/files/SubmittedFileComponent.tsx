@@ -59,7 +59,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
       thumbnail = getFileIconImageSource(file.uploadedFile.file.name, file.uploadedFile.mime);
       fileName = file.uploadedFile.file.name;
       break;
-    case "error":
+    case "failed":
       progress = 1;
       thumbnail = errorSvg;
       fileMessage = file.error?.message ?? "Unexpected error occurred.";
@@ -77,7 +77,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
             progress={Math.max(progressMargin, progress)}
             onCompleteImageSource={thumbnail}
             height={15}
-            isError={file.type === "error"}
+            isError={file.type === "failed"}
           />{" "}
           <span className="upload-widget__submitted-file__text">
             <span className="upload-widget__submitted-file__name" title={fileName}>
