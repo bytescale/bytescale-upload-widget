@@ -272,8 +272,8 @@ Bytescale.UploadWidget.open({
       preview: true,              // True by default if cropping is enabled. Previews PDFs and videos too.
       crop: true,                 // True by default.
       cropFilePath: image => {    // Choose the file path used for JSON image crop files.
-        const {filePath} = image  // In:  https://www.bytescale.com/docs/upload-api/types/FileDetails
-        return `${filePath}.crop` // Out: https://www.bytescale.com/docs/upload-api/types/FilePathDefinition
+        const {filePath} = image  // In:  https://www.bytescale.com/docs/types/UploadedFile
+        return `${filePath}.crop` // Out: https://www.bytescale.com/docs/types/FilePathDefinition
       },
       cropRatio: 4 / 3,           // Width / Height. Undefined enables freeform (default).
       cropShape: "rect"           // "rect" (default) or "circ".

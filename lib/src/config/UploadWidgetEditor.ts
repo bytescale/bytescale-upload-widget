@@ -1,9 +1,10 @@
-import { FileDetails, FilePathDefinition } from "@bytescale/sdk";
+import { FilePathDefinition } from "@bytescale/sdk";
+import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 
 export interface UploadWidgetEditor {
   images?: {
     crop?: boolean;
-    cropFilePath?: (originalFile: FileDetails) => FilePathDefinition;
+    cropFilePath?: (originalFile: UploadedFile) => FilePathDefinition;
     cropRatio?: number;
     cropShape?: "rect" | "circ";
     preview?: boolean;
@@ -13,7 +14,7 @@ export interface UploadWidgetEditor {
 export interface UploadWidgetEditorRequired {
   images: {
     crop: boolean;
-    cropFilePath: (originalFile: FileDetails) => FilePathDefinition;
+    cropFilePath: (originalFile: UploadedFile) => FilePathDefinition;
     cropRatio: number | undefined;
     cropShape: "rect" | "circ";
     preview: boolean;
