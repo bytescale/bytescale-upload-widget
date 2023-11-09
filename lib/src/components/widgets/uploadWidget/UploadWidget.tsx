@@ -40,10 +40,27 @@ interface Props {
   upload: UploadTracker;
 }
 
-function isValidMimeType(allowedMimeTypes: string[] | undefined, actualMimeType: string): boolean {
+function inferMimeType(fileName: string): string {
+  const ext = (fileName.split(".").pop() ?? "").trim().toLowerCase();
+  const fallback = "application/octet-stream";
+
+  // These are popular file types that some browser+OSs don't recognise (so return "" for the file.type), meaning
+  // we need to lookup the extension ourselves. In the future, it would be a good idea to over an API endpoint to
+  // perform this resolution (so that we can hold a more extensive dataset, without increasing bundle size).
+  const commonUnsupportedExtensions: Record<string, string | undefined> = {
+    heic: "image/heic",
+    heif: "image/heif"
+  };
+
+  return commonUnsupportedExtensions[ext] ?? fallback;
+}
+
+function isValidMimeType(allowedMimeTypes: string[] | undefined, file: File): boolean {
   if (allowedMimeTypes === undefined || allowedMimeTypes.length === 0) {
     return true;
   }
+  // Some browsers/OSs return "" as the MIME type for unknown MIME types (e.g. HEIC on some devices is reported like this).
+  const actualMimeType = (file.type === "" ? undefined : file.type) ?? inferMimeType(file.name);
   const normalize = (x: string): string => x.trim().toLowerCase();
   const actualNormalized = normalize(actualMimeType);
   return allowedMimeTypes.some(x => {
@@ -193,7 +210,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
       raiseValidationError(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`);
     }
-    if (!isValidMimeType(mimeTypes, file.type)) {
+    if (!isValidMimeType(mimeTypes, file)) {
       raiseValidationError(options.locale.unsupportedFileType);
     }
 
