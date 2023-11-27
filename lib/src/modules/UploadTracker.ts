@@ -1,8 +1,6 @@
-import { UploadManager, UploadManagerParams } from "@bytescale/sdk";
-import { CancellationToken } from "@bytescale/sdk/dist/types/public/shared/CommonTypes";
+import { UploadManager, UploadManagerParams, CancellationToken, BytescaleApiClientConfig } from "@bytescale/sdk";
 import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 import { FileLike } from "@bytescale/upload-widget/modules/FileLike";
-import { BytescaleApiClientConfig } from "@bytescale/sdk/dist/types/public/shared/generated";
 
 /**
  * Allows all file uploads to be cancelled (e.g. when widget closes).

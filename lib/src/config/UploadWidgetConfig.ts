@@ -6,8 +6,7 @@ import { UploadWidgetStyles, UploadWidgetStylesRequired } from "@bytescale/uploa
 import { UploadWidgetMethods } from "@bytescale/upload-widget/config/UploadWidgetMethods";
 import { UploadWidgetOnPreUploadResult } from "@bytescale/upload-widget/config/UploadWidgetOnPreUploadResult";
 import { Resolvable } from "@bytescale/upload-widget/modules/common/Resolvable";
-import { FilePathDefinition } from "@bytescale/sdk";
-import { BytescaleApiClientConfig } from "@bytescale/sdk/dist/types/public/shared/generated/runtime";
+import { FilePathDefinition, BytescaleApiClientConfig } from "@bytescale/sdk";
 import { UploadWidgetOnUpdateEvent } from "@bytescale/upload-widget/config/UploadWidgetOnUpdateEvent";
 
 export interface UploadWidgetConfig extends BytescaleApiClientConfig {
