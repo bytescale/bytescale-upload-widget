@@ -383,9 +383,9 @@ https://upcdn.io/W142hJk/image/example/city-landscape.jpg
   &color=ffe400
 ```
 
-## Authorization
+## Authentication
 
-Bytescale supports two types of authorization:
+Bytescale supports two types of authentication:
 
 ### API Keys
 
@@ -393,7 +393,7 @@ The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with [By
 
 With API key auth, the requester has access to the resources available to the API key:
 
-- Secret API keys (`secret_***`) have access to all API endpoints ([Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
+- Secret API keys (`secret_***`) have access to all API endpoints (see: [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
 
 - Public API keys (`public_***`) have access to file upload, file download, and file listing API endpoints. File overwrites, file deletes, and all other destructive operations cannot be performed using public API keys. File listing is also disabled by default (but can be changed in the API key's settings).
 
@@ -401,17 +401,15 @@ You must always use **public API keys** (e.g. `public_***`) in your client-side 
 
 Each API key can have its read/write access limited to a subset of files/folders.
 
-### JWT Cookies
+### JWTs
 
-JWT cookies are optional.
+JWTs are optional.
 
-With JWT cookies, the user can download private files directly via the URL, as authorization is performed implicitly via a session cookie. This allows the browser to display private files in `<img>` and `<video>` elements.
+With JWTs, the user can download private files directly via the URL, as authentication is performed implicitly via a session cookie _or_ via an `authorization` header if service workers are used (see the `serviceWorkerScript` param on the `AuthManager.beginAuthSession` method). This allows the browser to display private files in `<img>` and `<video>` elements.
 
-With JWT cookies, the user can also upload files to locations that aren't otherwise permitted by the API key, but are permitted by the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt). This is because the [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads, and the Bytescale JavaScript SDK automatically injects the user's JWT into all API requests once the `AuthManager.beginAuthSession` method has been called.
+With JWTs, the user can also perform API requests, such as file uploads, as these can be granted by the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt). This is because the [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads, and the Bytescale JavaScript SDK automatically injects the user's JWT into all API requests once the `AuthManager.beginAuthSession` method has been called.
 
-_Note: when using JWT cookies to download files, the `?auth=true` query parameter must be added to the URL._
-
-[Learn more about the `AuthManager` and JWT cookies »](https://www.bytescale.com/docs/authorization#jwt-cookie)
+[Learn more about the `AuthManager` and JWTs »](https://www.bytescale.com/docs/auth)
 
 ## UrlBuilder
 
