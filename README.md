@@ -393,9 +393,9 @@ The Bytescale Upload Widget uses the `apiKey` parameter to authenticate with [By
 
 With API key auth, the requester has access to the resources available to the API key:
 
-- Secret API keys (`secret_***`) have access to all API endpoints (see: [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
+- Secret API keys (`secret_***`) can perform all API operations (see: [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript)).
 
-- Public API keys (`public_***`) have access to file upload, file download, and file listing API endpoints. File overwrites, file deletes, and all other destructive operations cannot be performed using public API keys. File listing is also disabled by default (but can be changed in the API key's settings).
+- Public API keys (`public_***`) can perform file uploads and file downloads only. File overwrites, file deletes, and all other destructive operations cannot be performed using public API keys.
 
 You must always use **public API keys** (e.g. `public_***`) in your client-side code.
 
@@ -405,9 +405,9 @@ Each API key can have its read/write access limited to a subset of files/folders
 
 JWTs are optional.
 
-With JWTs, the user can download private files directly via the URL, as authentication is performed implicitly via a session cookie _or_ via an `authorization` header if service workers are used (see the `serviceWorkerScript` param on the `AuthManager.beginAuthSession` method). This allows the browser to display private files in `<img>` and `<video>` elements.
+With JWTs, the user can download private files directly via the URL, as authentication is performed implicitly via a session cookie _or_ via an `authorization` header if service workers are enabled (see the `serviceWorkerScript` param on the `AuthManager.beginAuthSession` method). This allows the browser to display private files in `<img>`, `<video>`, and other elements.
 
-With JWTs, the user can also perform API requests, such as file uploads, as these can be granted by the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt). This is because the [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads, and the Bytescale JavaScript SDK automatically injects the user's JWT into all API requests once the `AuthManager.beginAuthSession` method has been called.
+With JWTs, the user can also upload files to per-user folders. This is because the permissions in the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt) can be generated at runtime. The [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads. The Bytescale JavaScript SDK handles the JWT refresh process with your API, requesting new JWTs when required, and includes your JWTs in all subsequent requests to the Bytescale API.
 
 [Learn more about the `AuthManager` and JWTs »](https://www.bytescale.com/docs/auth)
 
