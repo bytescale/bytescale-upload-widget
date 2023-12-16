@@ -28,6 +28,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.array.sort
   - core-js/modules/es.array.splice
   - core-js/modules/es.array.unscopables.flat-map
+  - core-js/modules/es.date.now
   - core-js/modules/es.date.to-primitive
   - core-js/modules/es.date.to-string
   - core-js/modules/es.function.bind
