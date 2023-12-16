@@ -405,9 +405,9 @@ Each API key can have its read/write access limited to a subset of files/folders
 
 JWTs are optional.
 
-With JWTs, the user can download private files directly via the URL, as authentication is performed implicitly via a session cookie _or_ via an `authorization` header if service workers are enabled (see the `serviceWorkerScript` param on the `AuthManager.beginAuthSession` method). This allows the browser to display private files in `<img>`, `<video>`, and other elements.
+With JWTs, users can download private files directly via the URL, as authentication is performed implicitly via a session cookie _or_ via an `authorization` header if service workers are enabled (see the `serviceWorkerScript` param on the `AuthManager.beginAuthSession` method). This allows the browser to display private files in `<img>`, `<video>`, and other elements.
 
-With JWTs, the user can also upload files to per-user folders. This is because the permissions in the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt) can be generated at runtime. The [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads. The Bytescale JavaScript SDK handles the JWT refresh process with your API, requesting new JWTs when required, and includes your JWTs in all subsequent requests to the Bytescale API.
+With JWTs, users can upload files to per-user folders. This is because the permissions in the [JWT's payload](https://www.bytescale.com/docs/types/BytescaleJwt) can be generated at runtime. The [Bytescale Upload Widget](https://www.bytescale.com/docs/upload-widget) internally uses the [Bytescale JavaScript SDK](https://www.bytescale.com/docs/sdks/javascript) to perform file uploads: the Bytescale JavaScript SDK automatically takes care of the JWT refresh process with your API, requesting new JWTs when required, and includes your JWTs in all subsequent requests to the Bytescale API.
 
 [Learn more about the `AuthManager` and JWTs »](https://www.bytescale.com/docs/auth)
 
