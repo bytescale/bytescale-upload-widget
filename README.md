@@ -269,6 +269,7 @@ Bytescale.UploadWidget.open({
   tags: ["profile_picture"],      // Requires a Bytescale account.
   editor: {
     images: {
+      allowResizeOnMove: true,    // True by default. If false, prevents cropper from resizing when moved.
       preview: true,              // True by default if cropping is enabled. Previews PDFs and videos too.
       crop: true,                 // True by default.
       cropFilePath: image => {    // Choose the file path used for JSON image crop files.

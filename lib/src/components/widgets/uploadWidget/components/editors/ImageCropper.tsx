@@ -94,7 +94,11 @@ export const ImageCropper = (props: Props): JSX.Element => {
       actions={<ImageEditorButtons options={options} onFinish={submit} />}
       image={({ imgDimensions, imageUrl }) => (
         <div className="upload-widget__image-cropper__overlay" style={RectWithPos.toCssProps(imgDimensions)}>
-          <ResizableSquare boundary={imgDimensions} onResized={setGeometry} ratio={options.editor.images.cropRatio}>
+          <ResizableSquare
+            boundary={imgDimensions}
+            onResized={setGeometry}
+            ratio={options.editor.images.cropRatio}
+            allowResizeOnMove={options.editor.images.allowResizeOnMove}>
             <div
               className={cn("upload-widget__image-cropper__clip", {
                 "upload-widget__image-cropper__clip--circular": options.editor.images.cropShape === "circ"

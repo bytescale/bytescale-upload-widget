@@ -5,6 +5,7 @@ import "./ResizableSquare.scss";
 import { Draggable, GeometryWithProvenance } from "@bytescale/upload-widget/components/common/Draggable";
 
 interface Props {
+  allowResizeOnMove: boolean;
   boundary: Rect;
   children: JSX.Element;
   onResized: (geometry: { boundary: Rect; geometry: RectWithPos } | undefined) => void;
@@ -15,6 +16,10 @@ type Corner = "nw" | "ne" | "se" | "sw";
 type ReRatioMode = Corner | "center";
 
 type RectWithProvenance = RectWithPos & GeometryWithProvenance<ReRatioMode>;
+
+function makeDeltaCacheKey(corner: ReRatioMode, allowResizeOnMove: boolean): ReRatioMode | undefined {
+  return allowResizeOnMove ? corner : undefined;
+}
 
 const CornerDragger = ({
   boundary,
@@ -31,7 +36,7 @@ const CornerDragger = ({
     <Draggable
       className={`upload-widget__resizable-square__${corner}`}
       boundary={boundary}
-      geometryMutatorId={corner as ReRatioMode}
+      deltaCacheKey={undefined}
       startingValue={geometry}
       onMove={(x, y, g) =>
         setGeometry(corner, {
@@ -45,7 +50,7 @@ const CornerDragger = ({
   );
 };
 
-export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props): JSX.Element => {
+export const ResizableSquare = ({ boundary, ratio, onResized, children, allowResizeOnMove }: Props): JSX.Element => {
   const minSize = 50;
   const adjustedBoundary: Rect = {
     width: boundary.width - minSize,
@@ -112,16 +117,27 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children }: Props)
       className="upload-widget__resizable-square"
       boundary={adjustedBoundary}
       style={RectWithPos.toCssProps(geometry)}
-      geometryMutatorId={"center" as ReRatioMode}
+      deltaCacheKey={makeDeltaCacheKey("center", allowResizeOnMove)}
       startingValue={geometry}
-      onMove={(x, y, g) =>
+      onMove={(x, y, g) => {
+        type Clipper = (newValue: number, size: number, bound: number) => number;
+        const clipperNoOp: Clipper = newValue => newValue;
+        const clipperRetainSize: Clipper = (newValue: number, size: number, bound: number) => {
+          const newValueClipped = Math.max(0, newValue);
+          if (newValueClipped + size > bound) {
+            return bound - size;
+          }
+          return newValueClipped;
+        };
+        const clipper = allowResizeOnMove ? clipperNoOp : clipperRetainSize;
+
         setGeometry("center", {
-          x: g.x + x,
-          y: g.y + y,
+          x: clipper(g.x + x, g.width, boundary.width),
+          y: clipper(g.y + y, g.height, boundary.height),
           width: g.width,
           height: g.height
-        })
-      }>
+        });
+      }}>
       {children}
       <CornerDragger corner="nw" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />
       <CornerDragger corner="ne" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />

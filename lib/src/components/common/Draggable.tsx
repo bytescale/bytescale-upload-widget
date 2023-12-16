@@ -11,7 +11,7 @@ interface Props<T extends GeometryWithProvenance<K>, K extends string> {
   boundary: Rect;
   children?: ReactNode;
   className?: string;
-  geometryMutatorId: K;
+  deltaCacheKey: K | undefined;
   onMove: (xDelta: number, yDelta: number, start: T) => void;
   startingValue: T;
   style?: JSX.CSSProperties;
@@ -24,7 +24,7 @@ export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>
   onMove: onMoveCallback,
   style,
   startingValue,
-  geometryMutatorId
+  deltaCacheKey
 }: Props<T, K>): JSX.Element => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -52,7 +52,7 @@ export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>
     setIsDragging(true);
     setPositionStart(e);
 
-    if (startingValue.lastUpdatedBy !== geometryMutatorId) {
+    if (deltaCacheKey === undefined || startingValue.lastUpdatedBy !== deltaCacheKey) {
       setLastXDelta(0);
       setLastYDelta(0);
       setStart(startingValue);

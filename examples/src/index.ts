@@ -45,6 +45,11 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
   multi: true,
   maxFileCount: 2,
   showFinishButton: true,
+  editor: {
+    images: {
+      allowResizeOnMove: false
+    }
+  },
   styles: {
     colors: {
       primary: "#8b63f1"
@@ -56,7 +61,9 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
 };
 UploadWidget.open(dropZoneInitialConfig).then(
   (f: UploadWidgetResult[]) => {
-    alert(`-- JAVASCRIPT CALLBACK --\n\nImage(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}`);
+    f.forEach(x => console.log(x.fileUrl));
+
+    alert(`Image(s) uploaded:\n\n${f.map(x => x.fileUrl).join("\n")}\n\n(See logs in dev console.)`);
   },
   (e: Error) => console.error(e)
 );

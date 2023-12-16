@@ -3,6 +3,7 @@ import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 
 export interface UploadWidgetEditor {
   images?: {
+    allowResizeOnMove?: boolean;
     crop?: boolean;
     cropFilePath?: (originalFile: UploadedFile) => FilePathDefinition;
     cropRatio?: number;
@@ -13,6 +14,7 @@ export interface UploadWidgetEditor {
 
 export interface UploadWidgetEditorRequired {
   images: {
+    allowResizeOnMove: boolean;
     crop: boolean;
     cropFilePath: (originalFile: UploadedFile) => FilePathDefinition;
     cropRatio: number | undefined;
@@ -27,6 +29,7 @@ export namespace UploadWidgetEditorRequired {
     const crop = options?.images?.crop ?? true;
     return {
       images: {
+        allowResizeOnMove: options?.images?.allowResizeOnMove ?? true,
         crop,
         cropFilePath: options?.images?.cropFilePath ?? (originalImage => `${originalImage.filePath}.crop`),
         cropRatio: cropShape === "circ" ? 1 : options?.images?.cropRatio,
