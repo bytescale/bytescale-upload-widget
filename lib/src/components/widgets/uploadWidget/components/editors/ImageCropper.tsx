@@ -72,6 +72,7 @@ export const ImageCropper = (props: Props): JSX.Element => {
       const originalImageUploadedName = originalImage.filePath.substring(originalImage.filePath.lastIndexOf("/") + 1);
       const cropJson = makeCropJson(originalImageUploadedName, geometry.geometry, geometry.boundary, nativeImageSize);
       const blob = new Blob([JSON.stringify(cropJson)], { type: "application/json" });
+      const { tags, metadata } = options;
       const editedFile = await upload.uploadFile(
         {
           name: `${originalImage.originalFileName ?? "image"}.crop`,
@@ -80,7 +81,11 @@ export const ImageCropper = (props: Props): JSX.Element => {
           slice: (start, end) => blob.slice(start, end)
         },
         {
-          path: options.editor.images.cropFilePath(originalImage)
+          path: options.editor.images.cropFilePath(originalImage),
+
+          // When uploading crops, users expect the crop file to be treated the same as the original image (e.g. when adding expiration rules to images).
+          metadata,
+          tags
         }
       );
       onFinish(keep, editedFile);
