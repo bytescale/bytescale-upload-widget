@@ -10,7 +10,7 @@
     "typecheck:lib": "(cd lib && npm run typecheck)",
     "prettier": "prettier . --check",
     "prettier-fix": "prettier . --write --loglevel=silent",
-    "test": "(cd e2e_test && npm run test)",
+    "test": "(cd lib && npm run test)",
     "prepare": "husky install"
   },
   "lint-staged": {
