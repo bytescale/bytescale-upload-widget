@@ -91,7 +91,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
           </span>
           {isDelayedRemove ? (
             <span className="upload-widget__submitted-file__action upload-widget__submitted-file__action--performed">
-              {file.type === "uploading" ? locale["cancelled!"] : locale["removed!"]}
+              {file.type === "uploading" ? locale.cancelBtnClicked : locale.removeBtnClicked}
             </span>
           ) : (
             <>
@@ -103,7 +103,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
                     e.preventDefault();
                     delayedRemove();
                   }}>
-                  {file.type === "uploading" ? locale.cancel : locale.remove}
+                  {file.type === "uploading" ? locale.cancelBtn : locale.removeBtn}
                 </a>
               )}
             </>

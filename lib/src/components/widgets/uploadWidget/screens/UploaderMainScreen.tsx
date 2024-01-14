@@ -57,12 +57,12 @@ export const UploaderMainScreen = ({
             (options.maxFileCount === undefined || submittedFiles.length < options.maxFileCount ? (
               <UploadButton
                 options={options}
-                text={isImageUploader ? locale.addAnotherImage : locale.addAnotherFile}
+                text={isImageUploader ? locale.addAnotherImageBtn : locale.addAnotherFileBtn}
                 onUpload={addFiles}
               />
             ) : (
               <div className="upload-widget__main-screen__info">
-                {isImageUploader ? locale.maxImagesReached : locale.maxFilesReached} {options.maxFileCount}
+                {isImageUploader ? locale.maxImagesReachedPrefix : locale.maxFilesReachedPrefix} {options.maxFileCount}
               </div>
             ))}
 
@@ -78,10 +78,10 @@ export const UploaderMainScreen = ({
               }}>
               {finishedUploading ? (
                 <span className="vcenter hcenter">
-                  {locale.finish} {locale.finishIcon && <RightSvg width={12} className="ml-2" />}
+                  {locale.finishBtn} {locale.finishBtnIcon && <RightSvg width={12} className="ml-2" />}
                 </span>
               ) : (
-                locale.pleaseWait
+                locale.submitBtnLoading
               )}
             </a>
           )}

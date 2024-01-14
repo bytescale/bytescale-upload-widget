@@ -22,13 +22,13 @@ export const ImageEditorButtons = ({ options, onFinish }: Props): JSX.Element =>
           );
         }}
         className="btn">
-        {locale.cancelInPreviewWindow}
+        {locale.cancelPreviewBtn}
       </button>
       <SubmitButton
         onSubmit={async () => await onFinish(true)}
         locale={locale}
-        idleText={locale.continue}
-        busyText={locale.pleaseWait}
+        idleText={locale.continueBtn}
+        busyText={locale.submitBtnLoading}
         showIcon={false}
       />
     </>

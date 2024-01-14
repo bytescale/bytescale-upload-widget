@@ -16,4 +16,4 @@ export { UploadWidgetStyles } from "@bytescale/upload-widget/config/UploadWidget
 export { UploadWidgetEditor } from "@bytescale/upload-widget/config/UploadWidgetEditor";
 export { UploadWidgetConfig } from "@bytescale/upload-widget/config/UploadWidgetConfig";
 export { UploadWidgetMethods } from "@bytescale/upload-widget/config/UploadWidgetMethods";
-export { UploaderLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";
+export { UploadWidgetLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";

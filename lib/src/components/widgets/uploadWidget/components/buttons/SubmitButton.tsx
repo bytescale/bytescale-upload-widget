@@ -35,7 +35,7 @@ export const SubmitButton = ({ busyText, idleText, locale, onSubmit, showIcon }:
 
   return (
     <button disabled={isDisabled} onClick={submitAsync} className={cn("btn btn--primary", { disabled: isDisabled })}>
-      {isSubmitting ? busyText : isError ? locale["error!"] : idleText}{" "}
+      {isSubmitting ? busyText : isError ? locale.submitBtnError : idleText}{" "}
       {showIcon && <RightSvg width={12} className="ml-2" />}
     </button>
   );

@@ -13,7 +13,7 @@ export const getImageEditorHeader = ({ imageCount, imageIndex, options }: Props)
 
   return multi === undefined || multi.imageCount === 1 ? undefined : (
     <span className="text-secondary">
-      {locale.image} {multi.imageIndex + 1} {locale.of} {multi.imageCount}
+      {locale.imageCropNumberPrefix} {multi.imageIndex + 1} {locale.xOfY} {multi.imageCount}
     </span>
   );
 };

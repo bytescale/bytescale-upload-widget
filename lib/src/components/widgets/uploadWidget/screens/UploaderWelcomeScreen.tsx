@@ -17,11 +17,11 @@ export const UploaderWelcomeScreen = ({ addFiles, options, isImageUploader }: Pr
         text={
           isImageUploader
             ? multi
-              ? locale.uploadImages
-              : locale.uploadImage
+              ? locale.uploadImageMultiBtn
+              : locale.uploadImageBtn
             : multi
-            ? locale.uploadFiles
-            : locale.uploadFile
+            ? locale.uploadFileMultiBtn
+            : locale.uploadFileBtn
         }
         className="btn--primary btn--upload"
         onUpload={addFiles}
@@ -29,10 +29,10 @@ export const UploaderWelcomeScreen = ({ addFiles, options, isImageUploader }: Pr
       <p className="text-secondary mb-0">
         {isImageUploader
           ? multi
-            ? locale.orDragDropImages
+            ? locale.orDragDropImageMulti
             : locale.orDragDropImage
           : multi
-          ? locale.orDragDropFiles
+          ? locale.orDragDropFileMulti
           : locale.orDragDropFile}
       </p>
     </>

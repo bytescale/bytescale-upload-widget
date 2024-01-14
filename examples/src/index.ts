@@ -50,6 +50,7 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
       allowResizeOnMove: false
     }
   },
+  locale: {},
   styles: {
     colors: {
       primary: "#8b63f1"

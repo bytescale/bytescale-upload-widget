@@ -208,7 +208,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
 
     const { maxFileSizeBytes, mimeTypes, onPreUpload } = options;
     if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
-      raiseValidationError(`${options.locale.maxSize} ${humanFileSize(maxFileSizeBytes)}`);
+      raiseValidationError(`${options.locale.fileSizeLimitPrefix} ${humanFileSize(maxFileSizeBytes)}`);
     }
     if (!isValidMimeType(mimeTypes, file)) {
       raiseValidationError(options.locale.unsupportedFileType);

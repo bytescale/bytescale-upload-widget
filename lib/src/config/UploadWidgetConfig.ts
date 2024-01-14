@@ -1,5 +1,5 @@
 import { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocale";
-import { UploaderLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";
+import { UploadWidgetLocaleEnUs } from "@bytescale/upload-widget/modules/locales/EN_US";
 import { UploadWidgetLayout } from "@bytescale/upload-widget/config/UploadWidgetLayout";
 import { UploadWidgetEditor, UploadWidgetEditorRequired } from "@bytescale/upload-widget/config/UploadWidgetEditor";
 import { UploadWidgetStyles, UploadWidgetStylesRequired } from "@bytescale/upload-widget/config/UploadWidgetStyles";
@@ -8,12 +8,14 @@ import { UploadWidgetOnPreUploadResult } from "@bytescale/upload-widget/config/U
 import { Resolvable } from "@bytescale/upload-widget/modules/common/Resolvable";
 import { FilePathDefinition, BytescaleApiClientConfig } from "@bytescale/sdk";
 import { UploadWidgetOnUpdateEvent } from "@bytescale/upload-widget/config/UploadWidgetOnUpdateEvent";
+import { UploadWidgetLocaleDeprecatedFields } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocaleDeprecatedFields";
+import { removeUndefinedAndNullFields } from "@bytescale/upload-widget/modules/common/ObjectUtils";
 
 export interface UploadWidgetConfig extends BytescaleApiClientConfig {
   container?: string | HTMLElement;
   editor?: UploadWidgetEditor;
   layout?: UploadWidgetLayout;
-  locale?: UploadWidgetLocale;
+  locale?: Partial<UploadWidgetLocale> & Partial<UploadWidgetLocaleDeprecatedFields>;
   maxFileCount?: number;
   maxFileSizeBytes?: number;
   metadata?: object;
@@ -65,8 +67,12 @@ export namespace UploadWidgetConfigRequired {
       editor: UploadWidgetEditorRequired.from(options.editor),
       layout,
       locale: {
-        ...UploaderLocaleEnUs, // This way ensures if the client code excludes certain entries (e.g. we've added new ones) then we default onto those.
-        ...options.locale
+        ...UploadWidgetLocaleEnUs,
+        // Ensure we don't overwrite defaults with undefined fields.
+        ...removeUndefinedAndNullFields({
+          ...UploadWidgetLocaleDeprecatedFields.migrate(options.locale ?? {}),
+          ...options.locale
+        })
       },
       maxFileCount: options.maxFileCount,
       maxFileSizeBytes: options.maxFileSizeBytes,
