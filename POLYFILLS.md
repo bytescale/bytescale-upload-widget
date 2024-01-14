@@ -42,6 +42,7 @@ Depending on the browsers you wish to support, your application may require some
   - core-js/modules/es.object.create
   - core-js/modules/es.object.define-property
   - core-js/modules/es.object.entries
+  - core-js/modules/es.object.from-entries
   - core-js/modules/es.object.get-prototype-of
   - core-js/modules/es.object.keys
   - core-js/modules/es.object.set-prototype-of
