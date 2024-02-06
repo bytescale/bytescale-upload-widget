@@ -9,7 +9,7 @@ interface Props {
   isDragging: boolean;
 }
 
-export const WidgetBaseBackground = ({ closeButtonSize, isDragging, dimensions }: Props): JSX.Element => {
+export const UploadWidgetInternalBorder = ({ closeButtonSize, isDragging, dimensions }: Props): JSX.Element => {
   if (dimensions === undefined) {
     return <></>;
   }
@@ -19,8 +19,8 @@ export const WidgetBaseBackground = ({ closeButtonSize, isDragging, dimensions }
       width={dimensions.width}
       height={dimensions.height}
       notchSize={closeButtonSize}
-      className={cn("upload-widget__widget-base__modal-bg", {
-        "upload-widget__widget-base__modal-bg--dragging": isDragging
+      className={cn("upload-widget__internal__modal-bg", {
+        "upload-widget__internal__modal-bg--dragging": isDragging
       })}
     />
   );

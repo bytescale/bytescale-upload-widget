@@ -33,18 +33,9 @@
     max-width: 1050 * $px;
     max-height: 660 * $px;
 
-    @media (max-height: $desktop-short-height) {
+    @media (max-height: $short-mode-height-max) {
       top: -1%;
       height: 80%;
-    }
-
-    @media (max-width: $mobile-width-max), (max-height: $mobile-height-max) {
-      top: 0;
-      height: 100%;
-      width: 100%;
-      max-width: none;
-      max-height: none;
-      border-radius: 0;
     }
 
     &__close {
@@ -60,6 +51,18 @@
       }
     }
   }
+
+  &--full-screen {
+    .upload-widget__modal {
+      top: 0;
+      height: 100%;
+      width: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+    }
+  }
+
   &__backdrop {
     content: " ";
     background: rgba(0, 0, 0, 0.5);

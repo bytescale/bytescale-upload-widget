@@ -2,16 +2,16 @@
 
 $large: 1200px;
 
-.breakpoint {
-  &-md .upload-widget__submitted-file {
+.upload-widget__internal {
+  &--md .upload-widget__submitted-file {
     max-width: 100%;
     width: 100%;
   }
-  &-lg .upload-widget__submitted-file {
+  &--lg .upload-widget__submitted-file {
     max-width: 50%;
     width: 50%;
   }
-  &-xl .upload-widget__submitted-file {
+  &--xl .upload-widget__submitted-file {
     max-width: 33.333333%;
     width: 33.333333%;
 

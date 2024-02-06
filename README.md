@@ -238,6 +238,10 @@ Bytescale.UploadWidget.open({
   showFinishButton: true,         // Show/hide the "finish" button in the widget.
   showRemoveButton: true,         // Show/hide the "remove" button next to each file.
   styles: {
+    breakpoints: {
+      fullScreenWidth: 750,       // Full-screen mode activates when the screen is at or below this width.
+      fullScreenHeight: 420       // Full-screen mode activates when the screen is at or below this height.
+    },
     colors: {
       primary: "#377dff",         // Primary buttons & links
       active: "#528fff",          // Primary buttons & links (hover). Inferred if undefined.

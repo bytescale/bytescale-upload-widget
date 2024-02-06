@@ -1,10 +1,6 @@
 $base-size: 16;
 $px: (1 / $base-size) * 1em;
-$mobile-width-max: 750px; // Use real pixels here
-$mobile-width-min: $mobile-width-max + 1px; // Use real pixels here
-$mobile-height-max: 420px; // Use real pixels here
-$mobile-height-min: $mobile-height-max + 1px; // Use real pixels here
-$desktop-short-height: 700px; // Use real pixels here
+$short-mode-height-max: 700px; // Use real pixels here
 $modal-bg-z-index: 1;
 $file-gutter: 5;
 $controls-padding: 15;

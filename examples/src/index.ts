@@ -16,7 +16,8 @@ const openUploader = (): void => {
       },
       fontSizes: {
         base: 16
-      }
+      },
+      breakpoints: {}
     }
   }).then(
     (f: UploadWidgetResult[]) => {

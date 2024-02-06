@@ -15,7 +15,7 @@ import {
   UploadedFileContainer,
   UploadingFile
 } from "@bytescale/upload-widget/components/widgets/uploadWidget/model/SubmittedFile";
-import { WidgetBase } from "@bytescale/upload-widget/components/widgets/widgetBase/WidgetBase";
+import { UploadWidgetInternal } from "@bytescale/upload-widget/components/widgets/uploadWidget/components/internal/UploadWidgetInternal";
 import { useDragDrop } from "@bytescale/upload-widget/modules/common/UseDragDrop";
 import { humanFileSize } from "@bytescale/upload-widget/modules/common/FormatUtils";
 import {
@@ -312,7 +312,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   const isImageUploader = mimeTypes.length > 0 && mimeTypes.every(x => x.trim().toLowerCase().startsWith("image/"));
 
   return (
-    <WidgetBase
+    <UploadWidgetInternal
       htmlProps={rootProps}
       isDraggable={true}
       isDragging={isDragging}
@@ -338,6 +338,6 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
           isImageUploader={isImageUploader}
         />
       )}
-    </WidgetBase>
+    </UploadWidgetInternal>
   );
 };

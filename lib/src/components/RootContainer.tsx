@@ -7,6 +7,7 @@ import { ModalContainer } from "@bytescale/upload-widget/components/modal/ModalC
 import { useEffect, useState } from "preact/compat";
 import cn from "classnames";
 import { UploadWidgetConfigRequired } from "@bytescale/upload-widget/config/UploadWidgetConfig";
+import { getElementDimensionsOnResize } from "@bytescale/upload-widget/modules/common/UseDimensionsFromElement";
 
 interface Props {
   widgetProps: UploadWidgetContainerProps;
@@ -15,6 +16,7 @@ interface Props {
 export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [options, setOptions] = useState(widgetProps.options);
+  const [dimensions, containerRef] = getElementDimensionsOnResize(true, []);
   const widgetPropsUpdated: UploadWidgetContainerProps = {
     ...widgetProps,
     options
@@ -37,10 +39,19 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
     });
   }, []);
 
+  const isFullScreen =
+    dimensions !== undefined &&
+    (dimensions.width <= options.styles.breakpoints.fullScreenWidth ||
+      dimensions.height <= options.styles.breakpoints.fullScreenHeight);
+
   return (
     <Fragment key={refreshKey}>
       <div
-        className={cn("upload-widget", { "upload-widget--with-modal": options.layout === "modal" })}
+        ref={containerRef}
+        className={cn("upload-widget", {
+          "upload-widget--with-modal": options.layout === "modal",
+          "upload-widget--full-screen": isFullScreen
+        })}
         style={{
           "--error-color": options.styles.colors.error,
           "--primary-color": options.styles.colors.primary,
