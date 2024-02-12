@@ -1,14 +1,15 @@
 import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
+import { FileLike } from "@bytescale/upload-widget";
 
 export interface PreprocessingFile {
-  file: File;
+  file: FileLike;
   fileIndex: number;
   type: "preprocessing";
 }
 
 export interface UploadingFile {
   cancel: () => void;
-  file: File;
+  file: FileLike;
   fileIndex: number;
   progress: number; // Factor (0 to 1)
   type: "uploading";
@@ -16,14 +17,14 @@ export interface UploadingFile {
 
 export interface FailedFile {
   error: Error;
-  file: File;
+  file: FileLike;
   fileIndex: number;
   type: "failed";
 }
 
 export interface UploadedFileContainer {
   editedFile: UploadedFile | undefined;
-  file: File;
+  file: FileLike;
   fileIndex: number;
   isReady: boolean; // False if the file still requires some action performing before it's considered fully uploaded, i.e. editing, or having 'accept' clicked in the preview screen.
   type: "uploaded";

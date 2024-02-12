@@ -8,7 +8,12 @@ export function calculateImagePreviewUrl(
   originalImage: UploadedFile
 ): { external: boolean; url: string; urlForDimensions: string | undefined } {
   if (isImageNativelySupported(originalImage)) {
-    return { url: URL.createObjectURL(originalImage.file as any), external: false, urlForDimensions: undefined };
+    try {
+      return { url: URL.createObjectURL(originalImage.file as any), external: false, urlForDimensions: undefined };
+    } catch (e) {
+      // This happens when 'onPreUpload' is used and a 'transformedFile' is returned; createObjectURL does not recognise
+      // these, so we catch the error and fall-through to the Bytescale API-generated preview instead.
+    }
   }
 
   // We use WebP to support transparency, e.g. in SVGs.

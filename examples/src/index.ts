@@ -46,6 +46,14 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
   multi: true,
   maxFileCount: 2,
   showFinishButton: true,
+  onPreUpload: file => ({
+    transformedFile: {
+      name: file.name.replace(" ", "_"),
+      size: file.size,
+      type: file.type,
+      slice: (start, end) => file.slice(start, end)
+    }
+  }),
   editor: {
     images: {
       allowResizeOnMove: false
