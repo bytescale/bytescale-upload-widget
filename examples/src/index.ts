@@ -39,6 +39,7 @@ button.onclick = e => {
 document.getElementById("container")?.prepend(button);
 
 let dropzoneMethods: UploadWidgetMethods | undefined;
+let uploadAttempt = 1;
 const dropZoneInitialConfig: UploadWidgetConfig = {
   apiKey,
   container: "#dropzone",
@@ -46,14 +47,18 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
   multi: true,
   maxFileCount: 2,
   showFinishButton: true,
-  onPreUpload: file => ({
-    transformedFile: {
-      name: file.name.replace(" ", "_"),
-      size: file.size,
-      type: file.type,
-      slice: (start, end) => file.slice(start, end)
-    }
-  }),
+  onPreUpload: () => {
+    dropzoneMethods?.updateConfig({
+      ...dropZoneInitialConfig,
+      editor: {
+        images: {
+          ...dropZoneInitialConfig.editor?.images,
+          cropRatio: 1 / uploadAttempt++ // Test updating crop ratio dynamically, e.g. based on image dimensions.
+        }
+      }
+    });
+    return undefined;
+  },
   editor: {
     images: {
       allowResizeOnMove: false

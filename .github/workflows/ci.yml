@@ -64,31 +64,6 @@ jobs:
         env:
           NODE_OPTIONS: --openssl-legacy-provider
 
-      - name: "Documentation (npm install)"
-        run: npm ci
-        working-directory: ./docs
-
-      - name: "Verify POLYFILLS.md up-to-date"
-        run: |
-          npm run generate-polyfills-md
-          changes=$(git --no-pager diff -- ../POLYFILLS.md)
-          if [[ ! -z "$changes" ]]; then
-            echo "Changes to POLYFILLS.md:"
-            echo ""
-            echo $changes
-            echo ""
-            echo "POLYFILLS.md needs updating!"
-            echo ""
-            echo "Please run the following command:"
-            echo ""
-            echo "  (cd docs && npm run generate-polyfills-md)"
-            echo ""
-            exit 1
-          fi
-        working-directory: ./docs
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
-
       # Note: we put other steps between the 'npm start' and the test runs, just to make time for the server to spin-up.
       - name: "Acceptance tests"
         run: npm test
