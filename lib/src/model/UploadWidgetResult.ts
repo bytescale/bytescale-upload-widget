@@ -10,12 +10,17 @@ export interface UploadWidgetResult {
   editedFile: UploadedFile | undefined;
 
   /**
+   * The `etag` of the `originalFile`
+   */
+  etag: string;
+
+  /**
    * The `filePath` of `editedFile` (if it exists) else the `filePath` of `originalFile`.
    */
   filePath: string;
 
   /**
-   * The browser-loadable URL for `filePath`, using the most suitable transformation available from the file owner's Upload account, else uses `raw`.
+   * The `fileUrl` of `editedFile` (if it exists) else the `fileUrl` of `originalFile`.
    */
   fileUrl: string;
 
@@ -47,6 +52,7 @@ export namespace UploadWidgetResult {
 
     return {
       accountId: originalFile.accountId,
+      etag: originalFile.etag,
       editedFile,
       originalFile,
       fileUrl: calculateFileUrl(),

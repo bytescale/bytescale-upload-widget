@@ -121,6 +121,8 @@ Opens a file upload modal, allowing one file upload:
   fileUrl: "https://upcdn.io/FW25...",   // URL to use when serving this file.
   filePath: "/uploads/example.jpg",      // File path (we recommend saving this to your database).
 
+  etag: "33a64df551425fcc55e4d42a...",   // File version (changes after each file modification).
+
   accountId: "FW251aX",                  // Bytescale account the file was uploaded to.
 
   editedFile: undefined,                 // Edited file (for image crops). Same structure as below.
@@ -128,6 +130,7 @@ Opens a file upload modal, allowing one file upload:
   originalFile: {
     fileUrl: "https://upcdn.io/FW25...", // Uploaded file URL.
     filePath: "/uploads/example.jpg",    // Uploaded file path (relative to your raw file directory).
+    etag: "33a64df551425fcc55e4d42a...", // File version (changes after each file modification).
     accountId: "FW251aX",                // Bytescale account the file was uploaded to.
     originalFileName: "example.jpg",     // Original file name from the user's machine.
     file: { ... },                       // Original DOM file object from the <input> element.
