@@ -7,9 +7,9 @@ export function useShowImageEditor(pendingImages: UploadedFileContainer[], onFil
 
   useEffect(() => {
     if (pendingImages.length > 0) {
-      const timeout = (setTimeout(() => {
+      const timeout = setTimeout(() => {
         setShowImageScreen(true);
-      }, onFileUploadDelay) as any) as number;
+      }, onFileUploadDelay) as any as number;
       setShowImageScreenTimeout(timeout);
       return () => clearTimeout(timeout);
     }

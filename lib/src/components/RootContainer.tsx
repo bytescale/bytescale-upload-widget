@@ -67,7 +67,8 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
           "--shade-900": options.styles.colors.shade900,
           "--base-font-family": options.styles.fontFamilies.base,
           "--base-font-size": `${options.styles.fontSizes.base}px`
-        }}>
+        }}
+      >
         {options.layout === "modal" ? (
           <ModalContainer widgetProps={widgetPropsUpdated} />
         ) : (

@@ -103,7 +103,8 @@ export const ImageCropper = (props: Props): JSX.Element => {
             boundary={imgDimensions}
             onResized={setGeometry}
             ratio={options.editor.images.cropRatio}
-            allowResizeOnMove={options.editor.images.allowResizeOnMove}>
+            allowResizeOnMove={options.editor.images.allowResizeOnMove}
+          >
             <div
               className={cn("upload-widget__image-cropper__clip", {
                 "upload-widget__image-cropper__clip--circular": options.editor.images.cropShape === "circ"
@@ -111,7 +112,8 @@ export const ImageCropper = (props: Props): JSX.Element => {
               style={{
                 width: geometry?.geometry.width ?? imgDimensions.width,
                 height: geometry?.geometry.height ?? imgDimensions.height
-              }}>
+              }}
+            >
               <img
                 src={imageUrl}
                 draggable={false}

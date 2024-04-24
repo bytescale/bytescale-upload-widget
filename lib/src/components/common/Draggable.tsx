@@ -84,7 +84,8 @@ export const Draggable = <T extends GeometryWithProvenance<K>, K extends string>
       onPointerMove={onMove}
       onPointerUp={onUp}
       onPointerCancel={onUp}
-      onTouchStart={onTouchStart}>
+      onTouchStart={onTouchStart}
+    >
       {children}
     </div>
   );

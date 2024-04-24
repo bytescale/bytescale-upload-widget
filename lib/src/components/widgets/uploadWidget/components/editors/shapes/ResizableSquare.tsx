@@ -137,7 +137,8 @@ export const ResizableSquare = ({ boundary, ratio, onResized, children, allowRes
           width: g.width,
           height: g.height
         });
-      }}>
+      }}
+    >
       {children}
       <CornerDragger corner="nw" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />
       <CornerDragger corner="ne" setGeometry={setGeometry} geometry={geometry} boundary={adjustedBoundary} />

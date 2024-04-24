@@ -102,7 +102,8 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
                   onClick={e => {
                     e.preventDefault();
                     delayedRemove();
-                  }}>
+                  }}
+                >
                   {file.type === "uploading" ? locale.cancelBtn : locale.removeBtn}
                 </a>
               )}

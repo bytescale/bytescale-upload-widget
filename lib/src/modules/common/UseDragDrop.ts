@@ -1,8 +1,6 @@
 import { useState } from "preact/compat";
 
-export function useDragDrop(
-  acceptFiles: (files: File[]) => void
-): {
+export function useDragDrop(acceptFiles: (files: File[]) => void): {
   isDragging: boolean | undefined;
   onDragEnter: (e: DragEvent) => void;
   onDragLeave: (e: DragEvent) => void;

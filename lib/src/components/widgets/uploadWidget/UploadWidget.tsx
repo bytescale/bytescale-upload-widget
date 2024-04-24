@@ -152,15 +152,13 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   }, makeDeps([pendingFiles, uploadedFilesNotReady, uploadedFilesReady, failedFiles]));
 
   const removeSubmittedFile = (fileIndex: number): void => {
-    setSubmittedFiles(
-      (x): SubmittedFileMap => {
-        const { [fileIndex]: removed, ...rest } = x;
-        if (removed?.type === "uploading") {
-          removed.cancel();
-        }
-        return rest;
+    setSubmittedFiles((x): SubmittedFileMap => {
+      const { [fileIndex]: removed, ...rest } = x;
+      if (removed?.type === "uploading") {
+        removed.cancel();
       }
-    );
+      return rest;
+    });
   };
 
   const setSubmittedFile = (fileIndex: number, file: SubmittedFile): void => {
@@ -177,19 +175,17 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     fileType: T["type"],
     file: (uploadingFile: T) => SubmittedFile
   ): void => {
-    setSubmittedFiles(
-      (x): SubmittedFileMap => {
-        const oldFile = x[fileIndex];
-        if (oldFile === undefined || oldFile.type !== fileType) {
-          return x;
-        }
-
-        return {
-          ...x,
-          [fileIndex]: file(oldFile as T)
-        };
+    setSubmittedFiles((x): SubmittedFileMap => {
+      const oldFile = x[fileIndex];
+      if (oldFile === undefined || oldFile.type !== fileType) {
+        return x;
       }
-    );
+
+      return {
+        ...x,
+        [fileIndex]: file(oldFile as T)
+      };
+    });
   };
 
   const doUpload = async (file: File, fileIndex: number): Promise<UploadedFile> => {
@@ -317,7 +313,8 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
       isDraggable={true}
       isDragging={isDragging}
       layout={options.layout}
-      multi={options.multi}>
+      multi={options.multi}
+    >
       {submittedFileList.length === 0 ? (
         <UploaderWelcomeScreen options={options} addFiles={addFiles} isImageUploader={isImageUploader} />
       ) : showImageEditor && uploadedFilesNotReady.length > 0 ? (

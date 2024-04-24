@@ -4,9 +4,11 @@ import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 // Do not allow SVGs, as these may include scripts, so a user may unwittingly upload an SVG that captures their own session information.
 const nativelySupportedImages = ["image/jpeg", "image/gif", "image/png", "image/webp"];
 
-export function calculateImagePreviewUrl(
-  originalImage: UploadedFile
-): { external: boolean; url: string; urlForDimensions: string | undefined } {
+export function calculateImagePreviewUrl(originalImage: UploadedFile): {
+  external: boolean;
+  url: string;
+  urlForDimensions: string | undefined;
+} {
   if (isImageNativelySupported(originalImage)) {
     try {
       return { url: URL.createObjectURL(originalImage.file as any), external: false, urlForDimensions: undefined };

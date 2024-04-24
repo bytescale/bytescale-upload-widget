@@ -75,7 +75,8 @@ export const UploaderMainScreen = ({
                 if (canFinish) {
                   finalize();
                 }
-              }}>
+              }}
+            >
               {finishedUploading ? (
                 <span className="vcenter hcenter">
                   {locale.finishBtn} {locale.finishBtnIcon && <RightSvg width={12} className="ml-2" />}

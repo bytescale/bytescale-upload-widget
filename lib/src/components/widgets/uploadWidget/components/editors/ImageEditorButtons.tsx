@@ -21,7 +21,8 @@ export const ImageEditorButtons = ({ options, onFinish }: Props): JSX.Element =>
             }
           );
         }}
-        className="btn">
+        className="btn"
+      >
         {locale.cancelPreviewBtn}
       </button>
       <SubmitButton

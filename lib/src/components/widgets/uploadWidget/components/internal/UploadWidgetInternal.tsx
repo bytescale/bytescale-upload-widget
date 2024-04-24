@@ -39,7 +39,8 @@ export const UploadWidgetInternal = ({ children, htmlProps, isDraggable, isDragg
         "upload-widget__internal--draggable": isDraggable === true && layout !== "modal",
         "upload-widget__internal--dragging": isDragging === true && layout !== "modal"
       })}
-      {...htmlProps}>
+      {...htmlProps}
+    >
       {isDraggable === true && layout === "modal" && (
         <UploadWidgetInternalBorder
           isDragging={isDragging === true}
@@ -50,7 +51,8 @@ export const UploadWidgetInternal = ({ children, htmlProps, isDraggable, isDragg
       <div
         className={cn("upload-widget__internal__children", {
           "upload-widget__internal__children--is-modal": layout === "modal"
-        })}>
+        })}
+      >
         {children}
       </div>
     </div>

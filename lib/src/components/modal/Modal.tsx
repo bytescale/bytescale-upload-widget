@@ -77,7 +77,8 @@ export const Modal = ({ children, closeModal }: Props): JSX.Element => {
               onClick={e => {
                 e.preventDefault();
                 doClose();
-              }}>
+              }}
+            >
               <CloseSvg width={modalCloseButtonSize} />
             </a>
           </div>

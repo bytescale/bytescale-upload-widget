@@ -46,7 +46,8 @@ export const ResizedSvg = ({
           : widthMaybe !== undefined
           ? { width: `${widthMaybe}px`, height: `${widthMaybe * (originalHeight / originalWidth)}px` }
           : {})
-      }}>
+      }}
+    >
       {children}
     </svg>
   );

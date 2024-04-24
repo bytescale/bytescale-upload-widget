@@ -35,7 +35,8 @@ export const DashedBackgroundSvg = ({
           y="0"
           width={width}
           height={height}
-          fill="#fff">
+          fill="#fff"
+        >
           <use xlinkHref="#rectWithNotch" />
         </mask>
       </defs>

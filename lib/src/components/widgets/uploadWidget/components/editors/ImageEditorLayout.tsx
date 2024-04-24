@@ -46,7 +46,8 @@ export const ImageEditorLayout = ({ actions, originalImage, header, image, modal
         className={cn({
           "upload-widget__image-editor__header": header !== undefined,
           "upload-widget__image-editor__header--empty-non-modal": header === undefined && !modal
-        })}>
+        })}
+      >
         {header}
       </div>
       <div className="upload-widget__image-editor__image" ref={containerRef}>
