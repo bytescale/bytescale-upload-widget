@@ -55,7 +55,7 @@
   "dependencies": {
     "@bytescale/sdk": "^3.37.0",
     "classnames": "^2.2.6",
-    "preact": "^10.6.5"
+    "preact": "^10.20.2"
   },
   "devDependencies": {
     "@babel/cli": "7.24.1",
