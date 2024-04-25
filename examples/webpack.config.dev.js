@@ -100,6 +100,9 @@ module.exports = {
   devServer: {
     hot: true,
     open: true,
-    port
+    port,
+    client: {
+      overlay: false
+    }
   }
 };
