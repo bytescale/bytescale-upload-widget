@@ -3,7 +3,7 @@
     <img alt="Bytescale Upload Widget" width="453" height="80" src="https://raw.githubusercontent.com/bytescale/bytescale-upload-widget/main/.github/assets/bytescale-upload-widget.svg">
   </a>
 </h1>
-<p align="center"><b>Beautiful File Upload Widget for Web Apps</b><br/> (With Built-in Cloud Storage)</p>
+<p align="center"><b>Beautiful File Upload Widget for All Web Apps</b><br/> (Works out-the-box, storage included)</p>
 <br/>
 <p align="center">
   <a href="https://www.npmjs.com/package/@bytescale/upload-widget">
