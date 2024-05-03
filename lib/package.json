@@ -53,7 +53,7 @@
     "test": "npx wdio run tests/wdio.conf.ts --autoCompileOpts.tsNodeOpts.project=tests/tsconfig.json"
   },
   "dependencies": {
-    "@bytescale/sdk": "^3.37.0",
+    "@bytescale/sdk": "^3.38.3",
     "classnames": "^2.2.6",
     "preact": "^10.20.2"
   },

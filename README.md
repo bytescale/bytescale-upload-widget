@@ -523,6 +523,23 @@ UrlBuilder.url({
 
 [Archive Processing API Docs »](https://www.bytescale.com/docs/archive-processing-api)
 
+#### Antivirus
+
+To scan the file `example.zip` for viruses, use the following:
+
+```javascript
+// Returns: "https://upcdn.io/1234abc/antivirus/example.zip"
+UrlBuilder.url({
+  accountId: "1234abc",
+  filePath: "/example.zip",
+  options: {
+    transformation: "antivirus"
+  }
+});
+```
+
+[Antivirus API Docs »](https://www.bytescale.com/docs/antivirus-api)
+
 ## 🙋 Can I use my own storage?
 
 Bytescale supports AWS S3, Cloudflare R2, Google Storage, DigitalOcean, and Bytescale Storage.
