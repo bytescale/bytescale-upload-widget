@@ -47,6 +47,7 @@ const dropZoneInitialConfig: UploadWidgetConfig = {
   multi: true,
   maxFileCount: 2,
   showFinishButton: true,
+  mimeTypes: ["message/rfc822"],
   onPreUpload: () => {
     dropzoneMethods?.updateConfig({
       ...dropZoneInitialConfig,
