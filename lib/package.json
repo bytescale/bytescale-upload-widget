@@ -98,7 +98,7 @@
     "wdio-video-reporter": "^3.5.0",
     "wdio-wait-for": "^2.2.5",
     "webdriverio": "7.7.5",
-    "webpack": "5.90.3",
+    "webpack": "5.94.0",
     "webpack-bundle-analyzer": "4.2.0",
     "webpack-cli": "4.10.0",
     "webpack-node-externals": "2.5.2"
