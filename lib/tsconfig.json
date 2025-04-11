@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "es2015", "es2016", "es2017"],
+    "types": ["@wdio/globals/types", "@wdio/mocha-framework"],
     "target": "es2017",
     "module": "es2015",
     "moduleResolution": "node",

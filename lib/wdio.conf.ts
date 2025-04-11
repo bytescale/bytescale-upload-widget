@@ -1,60 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import type { Options } from "@wdio/types";
-// @ts-expect-error
-import * as foo from "wdio-html-nice-reporter";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const video = require("wdio-video-reporter");
+export const config: WebdriverIO.Config = {
+  baseUrl: "http://localhost:3010",
 
-export const config: Options.Testrunner = {
   //
   // ====================
   // Runner Configuration
   // ====================
-  //
-  //
-  // =====================
-  // ts-node Configurations
-  // =====================
-  //
-  // You can write tests using TypeScript to get autocompletion and type safety.
-  // You will need typescript and ts-node installed as devDependencies.
-  // WebdriverIO will automatically detect if these dependencies are installed
-  // and will compile your config and tests for you.
-  // If you need to configure how ts-node runs please use the
-  // environment variables for ts-node or use wdio config's autoCompileOpts section.
-  //
+  // WebdriverIO supports running e2e tests as well as unit and component tests.
+  runner: "local",
+  tsConfigPath: "./test/tsconfig.json",
 
-  autoCompileOpts: {
-    autoCompile: true,
-    // see https://github.com/TypeStrong/ts-node#cli-and-programmatic-options
-    // for all available options
-    tsNodeOpts: {
-      transpileOnly: true,
-      project: "tests/tsconfig.json"
-    }
-    // tsconfig-paths is only used if "tsConfigPathsOpts" are provided, if you
-    // do please make sure "tsconfig-paths" is installed as dependency
-    // tsConfigPathsOpts: {
-    //     baseUrl: './'
-    // }
-  },
   //
   // ==================
   // Specify Test Files
   // ==================
   // Define which test specs should run. The pattern is relative to the directory
-  // from which `wdio` was called.
+  // of the configuration file being run.
   //
   // The specs are defined as an array of spec files (optionally using wildcards
   // that will be expanded). The test for each spec file will be run in a separate
   // worker process. In order to have a group of spec files run in the same worker
   // process simply enclose them in an array within the specs array.
   //
-  // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
-  // then the current working directory is where your `package.json` resides, so `wdio`
-  // will be called from there.
+  // The path of the spec files will be resolved relative from the directory of
+  // of the config file unless it's absolute.
   //
-  specs: ["./tests/e2e/specs/**/*.ts"],
+  specs: ["./test/specs/**/*.ts"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -83,32 +53,13 @@ export const config: Options.Testrunner = {
   //
   capabilities: [
     {
-      // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-      // grid with only 5 firefox instances available you can make sure that not more than
-      // 5 instances get started at a time.
-      "maxInstances": 5,
-      //
       "browserName": "chrome",
-      "goog:loggingPrefs": {
-        browser: "ALL"
-      },
       "goog:chromeOptions": {
-        args: [
-          "--headless",
-          "user-agent=...",
-          "--disable-gpu",
-          "--window-size=1440,735",
-          "--no-sandbox",
-          "--disable-dev-shm-usage"
-        ]
-      },
-      "acceptInsecureCerts": true
-      // If outputDir is provided WebdriverIO can capture driver session logs
-      // it is possible to configure which logTypes to include/exclude.
-      // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-      // excludeDriverLogs: ['bugreport', 'server'],
-    } as any
+        args: ["headless", "disable-gpu"]
+      }
+    }
   ],
+
   //
   // ===================
   // Test Configurations
@@ -121,7 +72,7 @@ export const config: Options.Testrunner = {
   // Set specific log levels per logger
   // loggers:
   // - webdriver, webdriverio
-  // - @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
+  // - @wdio/browserstack-service, @wdio/lighthouse-service, @wdio/sauce-service
   // - @wdio/mocha-framework, @wdio/jasmine-framework
   // - @wdio/local-runner
   // - @wdio/sumologic-reporter
@@ -140,7 +91,7 @@ export const config: Options.Testrunner = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "http://localhost:3010",
+  // baseUrl: 'http://localhost:8080',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -156,8 +107,8 @@ export const config: Options.Testrunner = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["chromedriver"],
-
+  // services: [],
+  //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
   // see also: https://webdriver.io/docs/frameworks
@@ -165,6 +116,7 @@ export const config: Options.Testrunner = {
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
   framework: "mocha",
+
   //
   // The number of times to retry the entire specfile when it fails as a whole
   // specFileRetries: 1,
@@ -172,45 +124,21 @@ export const config: Options.Testrunner = {
   // Delay in seconds between the spec file retry attempts
   // specFileRetriesDelay: 0,
   //
-  // Whether or not retried specfiles should be retried immediately or deferred to the end of the queue
+  // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
   // specFileRetriesDeferred: false,
   //
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: [
-    ["spec", { addConsoleLogs: true }],
-    [
-      "html-nice",
-      {
-        outputDir: "./tmp/test-report/html/",
-        filename: "report.html",
-        reportTitle: "Test Report Title",
-        linkScreenshots: true,
-        // to show the report in a browser when done
-        showInBrowser: true,
-        collapseTests: false,
-        // to turn on screenshots after every test
-        useOnAfterCommandForScreenshot: false
-      }
-    ],
-    [
-      video,
-      {
-        outputDir: "./tmp/test-report/videos/",
-        saveAllVideos: true, // If true, also saves videos for successful test cases
-        videoSlowdownMultiplier: 1 // Higher to get slower videos, lower for faster videos [Value 1-100]
-      }
-    ]
-  ],
+  reporters: ["spec"],
 
-  //
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: "bdd",
     timeout: 60000
   }
+
   //
   // =====
   // Hooks
@@ -221,38 +149,38 @@ export const config: Options.Testrunner = {
   // resolved to continue.
   /**
    * Gets executed once before all workers get launched.
-   * @param {Object} config wdio configuration object
+   * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   // onPrepare: function (config, capabilities) {
   // },
   /**
-   * Gets executed before a worker process is spawned and can be used to initialise specific service
+   * Gets executed before a worker process is spawned and can be used to initialize specific service
    * for that worker as well as modify runtime environments in an async fashion.
-   * @param  {String} cid      capability id (e.g 0-0)
-   * @param  {[type]} caps     object containing capabilities for session that will be spawn in the worker
-   * @param  {[type]} specs    specs to be run in the worker process
-   * @param  {[type]} args     object that will be merged with the main configuration once worker is initialized
-   * @param  {[type]} execArgv list of string arguments passed to the worker process
+   * @param  {string} cid      capability id (e.g 0-0)
+   * @param  {object} caps     object containing capabilities for session that will be spawn in the worker
+   * @param  {object} specs    specs to be run in the worker process
+   * @param  {object} args     object that will be merged with the main configuration once worker is initialized
+   * @param  {object} execArgv list of string arguments passed to the worker process
    */
   // onWorkerStart: function (cid, caps, specs, args, execArgv) {
   // },
   /**
    * Gets executed just after a worker process has exited.
-   * @param  {String} cid      capability id (e.g 0-0)
-   * @param  {Number} exitCode 0 - success, 1 - fail
-   * @param  {[type]} specs    specs to be run in the worker process
-   * @param  {Number} retries  number of retries used
+   * @param  {string} cid      capability id (e.g 0-0)
+   * @param  {number} exitCode 0 - success, 1 - fail
+   * @param  {object} specs    specs to be run in the worker process
+   * @param  {number} retries  number of retries used
    */
   // onWorkerEnd: function (cid, exitCode, specs, retries) {
   // },
   /**
    * Gets executed just before initialising the webdriver session and test framework. It allows you
    * to manipulate configurations depending on the capability or spec.
-   * @param {Object} config wdio configuration object
+   * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that are to be run
-   * @param {String} cid worker id (e.g. 0-0)
+   * @param {string} cid worker id (e.g. 0-0)
    */
   // beforeSession: function (config, capabilities, specs, cid) {
   // },
@@ -261,20 +189,20 @@ export const config: Options.Testrunner = {
    * variables like `browser`. It is the perfect place to define custom commands.
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs        List of spec file paths that are to be run
-   * @param {Object}         browser      instance of created browser/device session
+   * @param {object}         browser      instance of created browser/device session
    */
   // before: function (capabilities, specs) {
   // },
   /**
    * Runs before a WebdriverIO command gets executed.
-   * @param {String} commandName hook command name
+   * @param {string} commandName hook command name
    * @param {Array} args arguments that command would receive
    */
   // beforeCommand: function (commandName, args) {
   // },
   /**
    * Hook that gets executed before the suite starts
-   * @param {Object} suite suite details
+   * @param {object} suite suite details
    */
   // beforeSuite: function (suite) {
   // },
@@ -287,46 +215,46 @@ export const config: Options.Testrunner = {
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
    */
-  // beforeHook: function (test, context) {
+  // beforeHook: function (test, context, hookName) {
   // },
   /**
    * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
    * afterEach in Mocha)
    */
-  // afterHook: function (test, context, { error, result, duration, passed, retries }) {
+  // afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
   // },
   /**
    * Function to be executed after a test (in Mocha/Jasmine only)
-   * @param {Object}  test             test object
-   * @param {Object}  context          scope object the test was executed with
+   * @param {object}  test             test object
+   * @param {object}  context          scope object the test was executed with
    * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
-   * @param {Any}     result.result    return object of test function
-   * @param {Number}  result.duration  duration of test
-   * @param {Boolean} result.passed    true if test has passed, otherwise false
-   * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
+   * @param {*}       result.result    return object of test function
+   * @param {number}  result.duration  duration of test
+   * @param {boolean} result.passed    true if test has passed, otherwise false
+   * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
   // afterTest: function(test, context, { error, result, duration, passed, retries }) {
   // },
 
   /**
    * Hook that gets executed after the suite has ended
-   * @param {Object} suite suite details
+   * @param {object} suite suite details
    */
   // afterSuite: function (suite) {
   // },
   /**
    * Runs after a WebdriverIO command gets executed
-   * @param {String} commandName hook command name
+   * @param {string} commandName hook command name
    * @param {Array} args arguments that command would receive
-   * @param {Number} result 0 - command success, 1 - command error
-   * @param {Object} error error object if any
+   * @param {number} result 0 - command success, 1 - command error
+   * @param {object} error error object if any
    */
   // afterCommand: function (commandName, args, result, error) {
   // },
   /**
    * Gets executed after all tests are done. You still have access to all global variables from
    * the test.
-   * @param {Number} result 0 - test pass, 1 - test fail
+   * @param {number} result 0 - test pass, 1 - test fail
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that ran
    */
@@ -334,7 +262,7 @@ export const config: Options.Testrunner = {
   // },
   /**
    * Gets executed right after terminating the webdriver session.
-   * @param {Object} config wdio configuration object
+   * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that ran
    */
@@ -343,8 +271,8 @@ export const config: Options.Testrunner = {
   /**
    * Gets executed after all workers got shut down and the process is about to exit. An error
    * thrown in the onComplete hook will result in the test run failing.
-   * @param {Object} exitCode 0 - success, 1 - fail
-   * @param {Object} config wdio configuration object
+   * @param {object} exitCode 0 - success, 1 - fail
+   * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
@@ -352,9 +280,21 @@ export const config: Options.Testrunner = {
   // },
   /**
    * Gets executed when a refresh happens.
-   * @param {String} oldSessionId session ID of the old session
-   * @param {String} newSessionId session ID of the new session
+   * @param {string} oldSessionId session ID of the old session
+   * @param {string} newSessionId session ID of the new session
    */
   // onReload: function(oldSessionId, newSessionId) {
+  // }
+  /**
+   * Hook that gets executed before a WebdriverIO assertion happens.
+   * @param {object} params information about the assertion to be executed
+   */
+  // beforeAssertion: function(params) {
+  // }
+  /**
+   * Hook that gets executed after a WebdriverIO assertion happened.
+   * @param {object} params information about the assertion that was executed, including its results
+   */
+  // afterAssertion: function(params) {
   // }
 };
