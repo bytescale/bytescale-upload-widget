@@ -84,7 +84,7 @@
     "eslint-plugin-standard": "4.1.0",
     "file-loader": "6.2.0",
     "minimist": "1.2.6",
-    "node-sass": "9.0.0",
+    "sass": "1.91.0",
     "postcss-loader": "8.1.1",
     "postcss-preset-env": "9.5.2",
     "sass-loader": "16.0.5",
