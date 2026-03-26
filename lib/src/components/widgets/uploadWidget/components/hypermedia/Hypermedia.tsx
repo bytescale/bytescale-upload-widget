@@ -33,22 +33,4 @@ function replaceFirstLink(text: string): JSX.Element | undefined {
   return <Link text={url} url={url} prefix={prefix} suffix={suffix} />;
 }
 
-function replaceUploadIo(text: string): JSX.Element | undefined {
-  const find = "bytescale";
-  const index = text.toLowerCase().indexOf(find);
-  if (index === -1) {
-    return undefined;
-  }
-
-  return (
-    <Link
-      text="Bytescale"
-      url={"https://www.bytescale.com/pricing"}
-      prefix={text.substring(0, index)}
-      suffix={text.substring(index + find.length)}
-    />
-  );
-}
-
-export const Hypermedia = ({ text }: { text: string }): JSX.Element =>
-  replaceFirstLink(text) ?? replaceUploadIo(text) ?? <>{text}</>;
+export const Hypermedia = ({ text }: { text: string }): JSX.Element => replaceFirstLink(text) ?? <>{text}</>;

@@ -73,6 +73,22 @@ function isValidMimeType(allowedMimeTypes: string[] | undefined, file: File): bo
   });
 }
 
+function transfomError(error: unknown): Error {
+  if (!(error instanceof Error)) {
+    return new Error("Unexpected error occurred.");
+  }
+
+  if (isNetworkError(error)) {
+    return new Error("Network error."); // Offer a simpler error for the end-user, since this appears on-screen to a potentially non-technical end-user.
+  }
+
+  return error;
+}
+
+function isNetworkError(error: Error): boolean {
+  return error.message.includes("Failed to fetch");
+}
+
 export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element => {
   const [, setNextSparseFileIndex] = useState<number>(0);
   const [isInitialUpdate, setIsInitialUpdate] = useState(true);
@@ -313,7 +329,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
               "Uploading",
               (uploadingFile): FailedFile => ({
                 fileIndex,
-                error,
+                error: transfomError(error),
                 file: uploadingFile.file,
                 type: "Failed"
               })

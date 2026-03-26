@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ConfigError = ({ error, layout }: Props): JSX.Element => {
-  const errorMessage = (error.message ?? "unknown error").replace("[upload-js] ", "");
+  const errorMessage = error.message ?? "unknown error";
   const isApiKeyError = errorMessage.toLowerCase().includes("api key");
   return (
     <UploadWidgetInternal layout={layout} multi={false}>
