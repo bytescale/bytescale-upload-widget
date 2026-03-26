@@ -45,21 +45,21 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
   let fileName: string;
   let fileMessage: string | undefined;
   switch (file.type) {
-    case "preprocessing":
+    case "Preprocessing":
       progress = 0;
       fileName = file.file.name;
       fileMessage = locale.processingFile;
       break;
-    case "uploading":
+    case "Uploading":
       progress = Math.min(file.progress, 1 - progressMargin); // Do not let progress display 100%, as we don't have the MIME type & URL for the thumbnail yet. Plus it's confusing leaving it hanging on 100%.
       fileName = file.file.name;
       break;
-    case "uploaded":
+    case "Uploaded":
       progress = 1;
       thumbnail = getFileIconImageSource(file.uploadedFile.file.name, file.uploadedFile.mime);
       fileName = file.uploadedFile.file.name;
       break;
-    case "failed":
+    case "Failed":
       progress = 1;
       thumbnail = errorSvg;
       fileMessage = file.error?.message ?? "Unexpected error occurred.";
@@ -77,7 +77,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
             progress={Math.max(progressMargin, progress)}
             onCompleteImageSource={thumbnail}
             height={15}
-            isError={file.type === "failed"}
+            isError={file.type === "Failed"}
           />{" "}
           <span className="upload-widget__submitted-file__text">
             <span className="upload-widget__submitted-file__name" title={fileName}>
@@ -91,11 +91,11 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
           </span>
           {isDelayedRemove ? (
             <span className="upload-widget__submitted-file__action upload-widget__submitted-file__action--performed">
-              {file.type === "uploading" ? locale.cancelBtnClicked : locale.removeBtnClicked}
+              {file.type === "Uploading" ? locale.cancelBtnClicked : locale.removeBtnClicked}
             </span>
           ) : (
             <>
-              {(showRemoveButton || file.type === "uploading") && (
+              {(showRemoveButton || file.type === "Uploading") && (
                 <a
                   className="upload-widget__submitted-file__action"
                   href="#remove"
@@ -104,7 +104,7 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
                     delayedRemove();
                   }}
                 >
-                  {file.type === "uploading" ? locale.cancelBtn : locale.removeBtn}
+                  {file.type === "Uploading" ? locale.cancelBtn : locale.removeBtn}
                 </a>
               )}
             </>

@@ -81,15 +81,36 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
   const uploadedFiles = submittedFileList.filter(isUploadedFile);
   const pendingFiles = submittedFileList.filter(isPendingFile);
   const failedFiles = submittedFileList.filter(isFailedFile);
-  const makeDeps = (fileLists: SubmittedFile[][]): number[] => [
-    ...fileLists.map(x => x.length),
-    ...fileLists.flatMap(x => x.map(y => y.fileIndex))
-  ];
   const onFileUploadDelay = progressWheelDelay + (progressWheelVanish - 100); // Allows the animation to finish before closing modal. We add some time to allow the wheel to fade out.
   const { multi, tags, metadata, path } = options;
   const uploadedFilesReady = uploadedFiles.filter(x => x.isReady);
   const uploadedFilesNotReady = uploadedFiles.filter(x => !x.isReady); // These will be previewable or editable media files.
   const uploadedFilesReadyResult = uploadedFilesReady.map(x => UploadWidgetResult.from(x.uploadedFile, x.editedFile));
+  const pendingFilesResult = [...pendingFiles, ...uploadedFilesNotReady].map(
+    (submittedFile): UploadWidgetPendingFile => {
+      if (submittedFile.type === "Preprocessing") {
+        return {
+          file: submittedFile.file,
+          progress: 0,
+          status: "Preprocessing"
+        };
+      }
+
+      if (submittedFile.type === "Uploading") {
+        return {
+          file: submittedFile.file,
+          progress: submittedFile.progress,
+          status: "Uploading"
+        };
+      }
+
+      return {
+        file: submittedFile.file,
+        progress: 1,
+        status: "AwaitingUserInput"
+      };
+    }
+  );
   const canEditImages = options.editor.images.crop;
   const canPreviewImages = options.editor.images.preview;
   const fileRequiresUserInteraction = (uploadedFile: UploadedFile): boolean =>
@@ -103,7 +124,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     } else {
       updateFile<UploadedFileContainer>(
         sparseFileIndex,
-        "uploaded",
+        "Uploaded",
         (file): UploadedFileContainer => ({
           ...file,
           editedFile,
@@ -128,7 +149,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     options.onUpdate({
       failedFiles: failedFiles.map(({ file, error }): UploadWidgetFailedFile => ({ file, error })),
       uploadedFiles: uploadedFilesReadyResult,
-      pendingFiles: [...pendingFiles, ...uploadedFilesNotReady].map(({ file }): UploadWidgetPendingFile => ({ file }))
+      pendingFiles: pendingFilesResult
     });
 
     // For inline layouts, if in single-file mode, we never resolve (there is no terminal state): we just allow the
@@ -149,12 +170,12 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
         return () => clearTimeout(timeout);
       }
     }
-  }, makeDeps([pendingFiles, uploadedFilesNotReady, uploadedFilesReady, failedFiles]));
+  }, [submittedFiles]);
 
   const removeSubmittedFile = (fileIndex: number): void => {
     setSubmittedFiles((x): SubmittedFileMap => {
       const { [fileIndex]: removed, ...rest } = x;
-      if (removed?.type === "uploading") {
+      if (removed?.type === "Uploading") {
         removed.cancel();
       }
       return rest;
@@ -196,7 +217,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
         file,
         fileIndex,
         error,
-        type: "failed"
+        type: "Failed"
       });
 
       throw error;
@@ -213,7 +234,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     setSubmittedFile(fileIndex, {
       file,
       fileIndex,
-      type: "preprocessing"
+      type: "Preprocessing"
     });
 
     let preUploadResult: UploadWidgetOnPreUploadResult | undefined;
@@ -244,12 +265,12 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
           fileIndex,
           cancel,
           progress: 0,
-          type: "uploading"
+          type: "Uploading"
         }),
       onProgress: ({ bytesSent, bytesTotal }) =>
         updateFile<UploadingFile>(
           fileIndex,
-          "uploading",
+          "Uploading",
           (uploadingFile): UploadingFile => ({
             ...uploadingFile,
             progress: bytesSent / bytesTotal
@@ -275,26 +296,26 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
           uploadedFile => {
             updateFile<UploadingFile>(
               fileIndex,
-              "uploading",
+              "Uploading",
               (): UploadedFileContainer => ({
                 file,
                 fileIndex,
                 uploadedFile,
                 editedFile: undefined,
                 isReady: !fileRequiresUserInteraction(uploadedFile),
-                type: "uploaded"
+                type: "Uploaded"
               })
             );
           },
           error => {
             updateFile<UploadingFile>(
               fileIndex,
-              "uploading",
+              "Uploading",
               (uploadingFile): FailedFile => ({
                 fileIndex,
                 error,
                 file: uploadingFile.file,
-                type: "failed"
+                type: "Failed"
               })
             );
           }

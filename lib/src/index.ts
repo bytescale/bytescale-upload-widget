@@ -2,7 +2,10 @@ export { FileLike } from "@bytescale/upload-widget/modules/FileLike";
 export { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 export { UploadWidget } from "@bytescale/upload-widget/UploadWidget";
 export { UploadWidgetFailedFile } from "@bytescale/upload-widget/model/UploadWidgetFailedFile";
-export { UploadWidgetPendingFile } from "@bytescale/upload-widget/model/UploadWidgetPendingFile";
+export {
+  UploadWidgetPendingFile,
+  UploadWidgetPendingFileStatus
+} from "@bytescale/upload-widget/model/UploadWidgetPendingFile";
 export { UploadWidgetResult } from "@bytescale/upload-widget/model/UploadWidgetResult";
 export { UploadWidgetValidationError } from "@bytescale/upload-widget/model/UploadWidgetValidationError";
 export { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/UploadWidgetLocale";

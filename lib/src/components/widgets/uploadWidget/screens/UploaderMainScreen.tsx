@@ -29,7 +29,7 @@ export const UploaderMainScreen = ({
   finalize,
   isImageUploader
 }: Props): JSX.Element => {
-  const finishedUploading = submittedFiles.every(x => x.type !== "uploading");
+  const finishedUploading = submittedFiles.every(x => x.type !== "Uploading");
   const canFinish = finishedUploading && uploadedFiles.length > 0;
   const { locale } = options;
   const hasButtons = options.multi || options.showFinishButton;

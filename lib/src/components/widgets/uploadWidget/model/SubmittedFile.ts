@@ -4,7 +4,7 @@ import { FileLike } from "@bytescale/upload-widget";
 export interface PreprocessingFile {
   file: FileLike;
   fileIndex: number;
-  type: "preprocessing";
+  type: "Preprocessing";
 }
 
 export interface UploadingFile {
@@ -12,14 +12,14 @@ export interface UploadingFile {
   file: FileLike;
   fileIndex: number;
   progress: number; // Factor (0 to 1)
-  type: "uploading";
+  type: "Uploading";
 }
 
 export interface FailedFile {
   error: Error;
   file: FileLike;
   fileIndex: number;
-  type: "failed";
+  type: "Failed";
 }
 
 export interface UploadedFileContainer {
@@ -27,7 +27,7 @@ export interface UploadedFileContainer {
   file: FileLike;
   fileIndex: number;
   isReady: boolean; // False if the file still requires some action performing before it's considered fully uploaded, i.e. editing, or having 'accept' clicked in the preview screen.
-  type: "uploaded";
+  type: "Uploaded";
   uploadedFile: UploadedFile;
 }
 
@@ -36,15 +36,15 @@ export type PendingFile = PreprocessingFile | UploadingFile;
 export type SubmittedFile = PendingFile | UploadedFileContainer | FailedFile;
 
 export function isUploadedFile(file: SubmittedFile): file is UploadedFileContainer {
-  return file.type === "uploaded";
+  return file.type === "Uploaded";
 }
 
 export function isPendingFile(file: SubmittedFile): file is PendingFile {
-  return file.type === "preprocessing" || file.type === "uploading";
+  return file.type === "Preprocessing" || file.type === "Uploading";
 }
 
 export function isFailedFile(file: SubmittedFile): file is FailedFile {
-  return file.type === "failed";
+  return file.type === "Failed";
 }
 
 export interface SubmittedFileMap {

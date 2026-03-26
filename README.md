@@ -230,7 +230,9 @@ Bytescale.UploadWidget.open({
     updateConfig                  // Updates the widget's config by passing a new config
   }) => {},                       // object to the method's first parameter.
   onUpdate: (event) => {          // Called each time the Upload Widget's list of files change.
-    // event.pendingFiles         // Array of files that are either uploading or queued.
+    // event.pendingFiles         // Array of files that are preprocessing, uploading, or awaiting user input.
+    // event.pendingFiles[0].progress // Factor (0 to 1).
+    // event.pendingFiles[0].status   // "Preprocessing" | "Uploading" | "AwaitingUserInput"
     // event.failedFiles          // Array of files that failed to upload (due to network or validation reasons).
     // event.uploadedFiles        // Array of files that have been uploaded and not removed.
   },
