@@ -23,6 +23,11 @@ export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError 
   const strokeDasharray = `${circumference} ${circumference}`;
 
   useEffect(() => {
+    if (progress < 1 && completed) {
+      setCompleted(false);
+      return;
+    }
+
     if (progress === 1 && !completed) {
       const timeout = setTimeout(() => {
         setCompleted(true);
@@ -30,7 +35,7 @@ export const ProgressIcon = ({ height, progress, onCompleteImageSource, isError 
 
       return () => clearTimeout(timeout);
     }
-  }, [progress]);
+  }, [completed, progress]);
 
   return (
     <span className="progress-icon__container">

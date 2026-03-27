@@ -21,6 +21,8 @@ export interface UploadWidgetLocale {
   processingFile: string;
   removeBtn: string;
   removeBtnClicked: string;
+  retryBtn: string;
+  retryBtnClicked: string;
   submitBtnError: string;
   submitBtnLoading: string;
   unsupportedFileType: string;

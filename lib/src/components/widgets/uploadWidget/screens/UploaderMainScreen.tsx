@@ -9,6 +9,7 @@ import cn from "classnames";
 import "./UploaderMainScreen.scss";
 import { UploadButton } from "@bytescale/upload-widget/components/widgets/uploadWidget/components/UploadButton";
 import { RightSvg } from "@bytescale/upload-widget/assets/svgs/RightSvg";
+import { isNetworkError } from "@bytescale/upload-widget/components/widgets/uploadWidget/model/UploadErrorUtils";
 
 interface Props {
   addFiles: (files: File[]) => void;
@@ -16,6 +17,7 @@ interface Props {
   isImageUploader: boolean;
   options: UploadWidgetConfigRequired;
   remove: (fileIndex: number) => void;
+  retry: (fileIndex: number) => void;
   submittedFiles: SubmittedFile[];
   uploadedFiles: UploadedFileContainer[];
 }
@@ -26,6 +28,7 @@ export const UploaderMainScreen = ({
   uploadedFiles,
   options,
   remove,
+  retry,
   finalize,
   isImageUploader
 }: Props): JSX.Element => {
@@ -46,6 +49,7 @@ export const UploaderMainScreen = ({
               locale={locale}
               key={file.fileIndex}
               remove={() => remove(file.fileIndex)}
+              retry={file.type === "Failed" && isNetworkError(file.error) ? () => retry(file.fileIndex) : undefined}
               showRemoveButton={options.showRemoveButton}
             />
           ))}

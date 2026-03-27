@@ -10,23 +10,38 @@ import { UploadWidgetLocale } from "@bytescale/upload-widget/modules/locales/Upl
 import errorSvg from "@bytescale/upload-widget/components/widgets/uploadWidget/components/fileIcons/svgs/Error.svg";
 import cn from "classnames";
 import { Hypermedia } from "@bytescale/upload-widget/components/widgets/uploadWidget/components/hypermedia/Hypermedia";
+import { getUploadErrorMessage } from "@bytescale/upload-widget/components/widgets/uploadWidget/model/UploadErrorUtils";
 
 interface Props {
   file: SubmittedFile;
   fileCount: number;
   locale: UploadWidgetLocale;
   remove: () => void;
+  retry?: () => void;
   showRemoveButton: boolean;
 }
 
 // Keep up-to-date with total animation duration in CSS.
 const removalAnimationTime = 1000;
 
-export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRemoveButton }: Props): JSX.Element => {
+export const SubmittedFileComponent = ({
+  file,
+  fileCount,
+  remove,
+  retry,
+  locale,
+  showRemoveButton
+}: Props): JSX.Element => {
   const [isDelayedRemove, setIsDelayedRemove] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
 
   const delayedRemove = (): void => {
     setIsDelayedRemove(true);
+  };
+
+  const retryFile = (): void => {
+    setIsRetrying(true);
+    retry?.();
   };
 
   useEffect(() => {
@@ -38,6 +53,12 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
     }, removalAnimationTime);
     return () => clearTimeout(timeout);
   }, [isDelayedRemove]);
+
+  useEffect(() => {
+    if (file.type !== "Failed") {
+      setIsRetrying(false);
+    }
+  }, [file.type]);
 
   const progressMargin = 0.03;
   let thumbnail = unknownSvg;
@@ -62,12 +83,39 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
     case "Failed":
       progress = 1;
       thumbnail = errorSvg;
-      fileMessage = file.error?.message ?? "Unexpected error occurred.";
+      fileMessage = getUploadErrorMessage(file.error);
       fileName = file.file.name;
       break;
     default:
       assertUnreachable(file);
   }
+
+  const showRetryPerformedAction = isRetrying && file.type === "Failed";
+  const performedActionText = showRetryPerformedAction
+    ? locale.retryBtnClicked
+    : file.type === "Uploading"
+    ? locale.cancelBtnClicked
+    : locale.removeBtnClicked;
+  const action =
+    file.type === "Uploading"
+      ? {
+          href: "#remove",
+          onClick: delayedRemove,
+          text: locale.cancelBtn
+        }
+      : retry !== undefined
+      ? {
+          href: "#retry",
+          onClick: retryFile,
+          text: locale.retryBtn
+        }
+      : showRemoveButton
+      ? {
+          href: "#remove",
+          onClick: delayedRemove,
+          text: locale.removeBtn
+        }
+      : undefined;
 
   return (
     <div className={cn("upload-widget__submitted-file", { "upload-widget__submitted-file--loners": fileCount <= 2 })}>
@@ -89,22 +137,22 @@ export const SubmittedFileComponent = ({ file, fileCount, remove, locale, showRe
               </span>
             )}
           </span>
-          {isDelayedRemove ? (
+          {isDelayedRemove || showRetryPerformedAction ? (
             <span className="upload-widget__submitted-file__action upload-widget__submitted-file__action--performed">
-              {file.type === "Uploading" ? locale.cancelBtnClicked : locale.removeBtnClicked}
+              {performedActionText}
             </span>
           ) : (
             <>
-              {(showRemoveButton || file.type === "Uploading") && (
+              {action !== undefined && (
                 <a
                   className="upload-widget__submitted-file__action"
-                  href="#remove"
+                  href={action.href}
                   onClick={e => {
                     e.preventDefault();
-                    delayedRemove();
+                    action.onClick();
                   }}
                 >
-                  {file.type === "Uploading" ? locale.cancelBtn : locale.removeBtn}
+                  {action.text}
                 </a>
               )}
             </>

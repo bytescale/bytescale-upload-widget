@@ -32,6 +32,11 @@ import { UploadedFile } from "@bytescale/upload-widget/modules/UploadedFile";
 import { UploadWidgetPendingFile } from "@bytescale/upload-widget/model/UploadWidgetPendingFile";
 import { UploadWidgetFailedFile } from "@bytescale/upload-widget/model/UploadWidgetFailedFile";
 import { UploadWidgetValidationError } from "@bytescale/upload-widget";
+import { FileLike } from "@bytescale/upload-widget/modules/FileLike";
+import {
+  isNetworkError,
+  normalizeUploadError
+} from "@bytescale/upload-widget/components/widgets/uploadWidget/model/UploadErrorUtils";
 
 interface Props {
   options: UploadWidgetConfigRequired;
@@ -71,22 +76,6 @@ function isValidMimeType(allowedMimeTypes: string[] | undefined, file: File): bo
         actualNormalized.startsWith(requiredNormalized.substring(0, requiredNormalized.length - 1)))
     );
   });
-}
-
-function transfomError(error: unknown): Error {
-  if (!(error instanceof Error)) {
-    return new Error("Unexpected error occurred.");
-  }
-
-  if (isNetworkError(error)) {
-    return new Error("Network error."); // Offer a simpler error for the end-user, since this appears on-screen to a potentially non-technical end-user.
-  }
-
-  return error;
-}
-
-function isNetworkError(error: Error): boolean {
-  return error.message.includes("Failed to fetch");
 }
 
 export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element => {
@@ -225,52 +214,36 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
     });
   };
 
-  const doUpload = async (file: File, fileIndex: number): Promise<UploadedFile> => {
-    const raiseValidationError = (errorMessage: string): never => {
-      const error = new UploadWidgetValidationError(errorMessage);
-
-      setSubmittedFile(fileIndex, {
-        file,
-        fileIndex,
-        error,
-        type: "Failed"
-      });
-
-      throw error;
-    };
-
-    const { maxFileSizeBytes, mimeTypes, onPreUpload } = options;
-    if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
-      raiseValidationError(`${options.locale.fileSizeLimitPrefix} ${humanFileSize(maxFileSizeBytes)}`);
-    }
-    if (!isValidMimeType(mimeTypes, file)) {
-      raiseValidationError(options.locale.unsupportedFileType);
-    }
-
-    setSubmittedFile(fileIndex, {
-      file,
+  const completeUpload = (fileIndex: number, uploadedFile: UploadedFile): void => {
+    updateFile<UploadingFile>(
       fileIndex,
-      type: "Preprocessing"
-    });
+      "Uploading",
+      (uploadingFile): UploadedFileContainer => ({
+        file: uploadingFile.file,
+        fileIndex,
+        uploadedFile,
+        editedFile: undefined,
+        isReady: !fileRequiresUserInteraction(uploadedFile),
+        type: "Uploaded"
+      })
+    );
+  };
 
-    let preUploadResult: UploadWidgetOnPreUploadResult | undefined;
+  const failUpload = (fileIndex: number, error: unknown): void => {
+    updateFile<UploadingFile>(
+      fileIndex,
+      "Uploading",
+      (uploadingFile): FailedFile => ({
+        fileIndex,
+        error: normalizeUploadError(error),
+        file: uploadingFile.file,
+        type: "Failed"
+      })
+    );
+  };
 
-    try {
-      preUploadResult = (await onPreUpload(file)) ?? undefined; // incase the user returns 'null' instead of undefined.
-    } catch (e) {
-      preUploadResult = {
-        errorMessage: options.locale.customValidationFailed
-      };
-      console.error("[upload-widget] onPreUpload function raised an error.", e);
-    }
-
-    if (preUploadResult?.errorMessage !== undefined) {
-      raiseValidationError(preUploadResult.errorMessage);
-    }
-
-    const fileToUpload = preUploadResult?.transformedFile ?? file;
-
-    return await upload.uploadFile(fileToUpload, {
+  const uploadPreparedFile = async (fileToUpload: FileLike, fileIndex: number): Promise<UploadedFile> =>
+    await upload.uploadFile(fileToUpload, {
       path,
       metadata,
       tags,
@@ -293,6 +266,75 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
           })
         )
     });
+
+  const startUpload = (fileToUpload: FileLike, fileIndex: number): void => {
+    uploadPreparedFile(fileToUpload, fileIndex).then(
+      uploadedFile => {
+        completeUpload(fileIndex, uploadedFile);
+      },
+      error => {
+        failUpload(fileIndex, error);
+      }
+    );
+  };
+
+  const retryUpload = (fileIndex: number): void => {
+    const file = submittedFiles[fileIndex];
+
+    if (file?.type !== "Failed" || !isNetworkError(file.error)) {
+      return;
+    }
+
+    startUpload(file.file, fileIndex);
+  };
+
+  const doUpload = async (file: File, fileIndex: number): Promise<void> => {
+    const raiseValidationError = (errorMessage: string): void => {
+      const error = new UploadWidgetValidationError(errorMessage);
+
+      setSubmittedFile(fileIndex, {
+        file,
+        fileIndex,
+        error,
+        type: "Failed"
+      });
+    };
+
+    const { maxFileSizeBytes, mimeTypes, onPreUpload } = options;
+    if (maxFileSizeBytes !== undefined && file.size > maxFileSizeBytes) {
+      raiseValidationError(`${options.locale.fileSizeLimitPrefix} ${humanFileSize(maxFileSizeBytes)}`);
+      return;
+    }
+    if (!isValidMimeType(mimeTypes, file)) {
+      raiseValidationError(options.locale.unsupportedFileType);
+      return;
+    }
+
+    setSubmittedFile(fileIndex, {
+      file,
+      fileIndex,
+      type: "Preprocessing"
+    });
+
+    let preUploadResult: UploadWidgetOnPreUploadResult | undefined;
+
+    try {
+      preUploadResult = (await onPreUpload(file)) ?? undefined; // incase the user returns 'null' instead of undefined.
+    } catch (e) {
+      preUploadResult = {
+        errorMessage: options.locale.customValidationFailed
+      };
+      console.error("[upload-widget] onPreUpload function raised an error.", e);
+    }
+
+    if (preUploadResult?.errorMessage !== undefined) {
+      raiseValidationError(preUploadResult.errorMessage);
+      return;
+    }
+
+    const fileToUpload = preUploadResult?.transformedFile ?? file;
+
+    startUpload(fileToUpload, fileIndex);
   };
 
   const addFiles = (files: File[]): void =>
@@ -308,34 +350,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
 
       files.slice(0, filesToTake).forEach((file, i) => {
         const fileIndex = nextSparseFileIndex + i;
-        doUpload(file, fileIndex).then(
-          uploadedFile => {
-            updateFile<UploadingFile>(
-              fileIndex,
-              "Uploading",
-              (): UploadedFileContainer => ({
-                file,
-                fileIndex,
-                uploadedFile,
-                editedFile: undefined,
-                isReady: !fileRequiresUserInteraction(uploadedFile),
-                type: "Uploaded"
-              })
-            );
-          },
-          error => {
-            updateFile<UploadingFile>(
-              fileIndex,
-              "Uploading",
-              (uploadingFile): FailedFile => ({
-                fileIndex,
-                error: transfomError(error),
-                file: uploadingFile.file,
-                type: "Failed"
-              })
-            );
-          }
-        );
+        doUpload(file, fileIndex).catch(() => {});
       });
       return nextSparseFileIndex + files.length;
     });
@@ -368,6 +383,7 @@ export const UploadWidget = ({ resolve, options, upload }: Props): JSX.Element =
           submittedFiles={submittedFileList}
           uploadedFiles={uploadedFiles}
           remove={removeSubmittedFile}
+          retry={retryUpload}
           finalize={finalize}
           isImageUploader={isImageUploader}
         />

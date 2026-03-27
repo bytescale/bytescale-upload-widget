@@ -320,6 +320,8 @@ const myCustomLocale = {
   processingFile: "Processing file...",
   removeBtn: "remove",
   removeBtnClicked: "removed",
+  retryBtn: "retry",
+  retryBtnClicked: "retried",
   submitBtnError: "Error!",
   submitBtnLoading: "Please wait...",
   unsupportedFileType: "File type not supported.",
