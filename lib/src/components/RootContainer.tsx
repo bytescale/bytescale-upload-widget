@@ -1,4 +1,4 @@
-import { JSX, Fragment } from "preact";
+import { JSX } from "preact";
 import {
   UploadWidgetContainer,
   UploadWidgetContainerProps
@@ -45,36 +45,35 @@ export const RootContainer = ({ widgetProps }: Props): JSX.Element => {
       dimensions.height <= options.styles.breakpoints.fullScreenHeight);
 
   return (
-    <Fragment key={refreshKey}>
-      <div
-        ref={containerRef}
-        className={cn("upload-widget", {
-          "upload-widget--with-modal": options.layout === "modal",
-          "upload-widget--full-screen": isFullScreen
-        })}
-        style={{
-          "--error-color": options.styles.colors.error,
-          "--primary-color": options.styles.colors.primary,
-          "--primary-active-color": options.styles.colors.active,
-          "--shade-100": options.styles.colors.shade100,
-          "--shade-200": options.styles.colors.shade200,
-          "--shade-300": options.styles.colors.shade300,
-          "--shade-400": options.styles.colors.shade400,
-          "--shade-500": options.styles.colors.shade500,
-          "--shade-600": options.styles.colors.shade600,
-          "--shade-700": options.styles.colors.shade700,
-          "--shade-800": options.styles.colors.shade800,
-          "--shade-900": options.styles.colors.shade900,
-          "--base-font-family": options.styles.fontFamilies.base,
-          "--base-font-size": `${options.styles.fontSizes.base}px`
-        }}
-      >
-        {options.layout === "modal" ? (
-          <ModalContainer widgetProps={widgetPropsUpdated} />
-        ) : (
-          <UploadWidgetContainer {...widgetPropsUpdated} />
-        )}
-      </div>
-    </Fragment>
+    <div
+      key={refreshKey}
+      ref={containerRef}
+      className={cn("upload-widget", {
+        "upload-widget--with-modal": options.layout === "modal",
+        "upload-widget--full-screen": isFullScreen
+      })}
+      style={{
+        "--error-color": options.styles.colors.error,
+        "--primary-color": options.styles.colors.primary,
+        "--primary-active-color": options.styles.colors.active,
+        "--shade-100": options.styles.colors.shade100,
+        "--shade-200": options.styles.colors.shade200,
+        "--shade-300": options.styles.colors.shade300,
+        "--shade-400": options.styles.colors.shade400,
+        "--shade-500": options.styles.colors.shade500,
+        "--shade-600": options.styles.colors.shade600,
+        "--shade-700": options.styles.colors.shade700,
+        "--shade-800": options.styles.colors.shade800,
+        "--shade-900": options.styles.colors.shade900,
+        "--base-font-family": options.styles.fontFamilies.base,
+        "--base-font-size": `${options.styles.fontSizes.base}px`
+      }}
+    >
+      {options.layout === "modal" ? (
+        <ModalContainer widgetProps={widgetPropsUpdated} />
+      ) : (
+        <UploadWidgetContainer {...widgetPropsUpdated} />
+      )}
+    </div>
   );
 };

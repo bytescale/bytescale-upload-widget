@@ -34,7 +34,7 @@ module.exports = {
   },
   cache: true,
   mode: "development",
-  entry: [`webpack-dev-server/client?http://localhost:${port}/`, "./src/index.ts"],
+  entry: "./src/index.ts",
   plugins: [
     new HtmlWebpackPlugin({
       title: "Upload Widget Demo",
