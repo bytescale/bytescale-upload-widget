@@ -29,8 +29,12 @@
   },
   "devDependencies": {
     "husky": "7.0.4",
-    "lint-staged": "10.5.1",
+    "lint-staged": "16.4.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.8.8"
+  },
+  "overrides": {
+    "brace-expansion@1": "1.1.21",
+    "brace-expansion@2": "2.1.7"
   }
 }

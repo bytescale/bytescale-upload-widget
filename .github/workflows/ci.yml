@@ -20,7 +20,7 @@ jobs:
       - name: "Install node & npm"
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 24.x
 
       - name: "Install repository dependencies"
         run: npm ci
@@ -99,7 +99,7 @@ jobs:
       - name: "Install node & npm"
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 24.x
 
       - name: "Upload Widget (npm install)"
         run: npm ci

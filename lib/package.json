@@ -53,7 +53,10 @@
     "test": "wdio run ./wdio.conf.ts"
   },
   "overrides": {
-    "serialize-javascript": "7.0.5"
+    "serialize-javascript": "7.0.5",
+    "brace-expansion@1": "1.1.21",
+    "brace-expansion@2": "2.1.7",
+    "@types/node": "$@types/node"
   },
   "dependencies": {
     "@bytescale/sdk": "^3.38.3",
@@ -61,21 +64,19 @@
     "preact": "^10.20.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.24.1",
-    "@babel/core": "7.24.1",
-    "@babel/preset-env": "7.24.1",
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
     "@babel/preset-react": "7.24.1",
     "@bytescale/style-loader": "3.3.1-forked.5",
     "@types/classnames": "2.2.11",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
-    "@wdio/cli": "^9.12.4",
-    "@wdio/local-runner": "^9.12.4",
-    "@wdio/mocha-framework": "^9.12.3",
-    "@wdio/spec-reporter": "^9.12.3",
+    "@wdio/cli": "10.1.0",
+    "@wdio/local-runner": "10.1.0",
+    "@wdio/mocha-framework": "10.1.0",
+    "@wdio/spec-reporter": "10.1.0",
     "babel-loader": "8.3.0",
     "babel-plugin-transform-async-to-promises": "0.8.15",
-    "chromedriver": "^123.0.4",
     "css-loader": "5.0.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "6.15.0",
@@ -87,18 +88,19 @@
     "eslint-plugin-standard": "4.1.0",
     "file-loader": "6.2.0",
     "minimist": "1.2.6",
-    "sass": "1.91.0",
+    "sass": "1.105.2",
     "postcss-loader": "8.1.1",
     "postcss-preset-env": "9.5.2",
     "sass-loader": "16.0.5",
-    "ts-loader": "9.5.1",
+    "ts-loader": "9.6.2",
     "ts-node": "^10.7.0",
-    "tsc-alias": "1.2.10",
+    "tsc-alias": "1.9.8",
     "typescript": "4.7.4",
     "url-loader": "4.1.1",
-    "webpack": "5.106.1",
+    "webpack": "5.112.0",
     "webpack-bundle-analyzer": "4.2.0",
     "webpack-cli": "4.10.0",
-    "webpack-node-externals": "2.5.2"
+    "webpack-node-externals": "2.5.2",
+    "@types/node": "16.18.77"
   }
 }
